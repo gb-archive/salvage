@@ -1,0 +1,699 @@
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    
+        <title>Decoding Gamboy Z80 Opcodes</title>
+        <meta name="description" content="An algorithmic approach to decoding z80 instructions stored in memory, for use in disassemblers and emulators.">
+        <meta name="author" content="Cristian Dinu">
+        <style type="text/css">
+            /* General */
+            BODY {
+                margin: 0; padding: 1pc 2pc;
+                background: #f0f0ff; color: black;
+                font-family: times;
+            }
+            A:link, A:active, A:visited {
+                color: blue;
+                text-decoration: none;
+            }
+            A:hover {
+                color: red;
+                text-decoration: underline;
+            }
+            H1 {
+                text-align: center;
+                font-weight: bold; font-size: 120%;
+            }
+            H2 {
+                color: fuchsia;
+                text-align: center;
+                font-weight: bold; font-size: 110%;
+            }
+            H3 {
+                color: blue;
+                text-align: center;
+                font-weight: bold; font-size: 110%;
+            }
+            H4 {
+                text-align: left;
+                font-weight: bold; font-size: 110%;
+            }
+            H5 {
+                text-align: center;
+                font-size: 90%;
+            }
+            P {
+                text-align: justify;
+            }
+            HR {
+                border: none; border-top: 1px solid gray;
+                width: 80%;
+            }
+            HR.Short {
+                border: none; border-top: 1px solid gray;
+                width: 50%; 
+            }
+            TABLE {
+                margin: 0;
+                border-collapse: collapse;
+            }
+            TD {
+                padding: 0;
+                border: 1px solid black; border: 0;
+                text-align: justify;
+            }
+            OL, UL {
+                padding: 0; padding-left: 1.5pc;
+            }
+            /* Disassembly tables */
+            TABLE.DissTable8 {
+                border: 1px solid gray;
+                margin-bottom: 1em;
+                width: 100%;
+            }
+            TABLE.DissTable8 TD.Left {
+                padding: 1px;
+                border: 1px solid gray;
+                background: #e0e0e0;
+                font-weight:bold;
+                width: 12%;
+            }
+            TABLE.DissTable8 TD {
+                padding: 1px;
+                border: 1px solid gray;
+                background: white;
+                font-size: 90%; 
+                text-align:center; vertical-align: middle;
+                width: 11%;
+            }
+            TABLE.DissTable4 {
+                border: 1px solid gray;
+                margin-bottom: 1em;
+                width: 100%;
+            }
+            TABLE.DissTable4 TD.Left {
+                padding: 1px;
+                border: 1px solid gray;
+                background: #e0e0e0;
+                font-weight:bold;
+                width: 12%;
+            }
+            TABLE.DissTable4 TD {
+                padding: 1px;
+                border: 1px solid gray;
+                background: white;
+                font-size: 90%; 
+                text-align:center; vertical-align: middle;
+                width: 22%;
+            }
+            TABLE.DissTable4x4 {
+                border: 1px solid gray;
+                margin-bottom: 1em;
+                width: 100%;
+            }
+            TABLE.DissTable4x4 TD.Fixed {
+                padding: 1px;
+                border: 1px solid gray;
+                background: #e0e0e0;
+                font-weight:bold;
+            }
+            TABLE.DissTable4x4 TD {
+                padding: 1px;
+                border: 1px solid gray;
+                background: white;
+                font-size: 90%; 
+                text-align:center; vertical-align: middle;
+                width: 20%;
+            }
+            TH.TableName {
+                padding: 1px;
+                border: 1px solid gray;
+                background: #e0e0e0;
+                text-align:center;
+                font-weight:bold;
+            }
+            TH.TableDesc {
+                padding: 1px;
+                border: 1px solid gray;
+                background: #d0e0f0;
+                text-align:center;
+                font-weight:normal; font-size: 75%;
+            }
+            /* Figures */
+            DIV.Figure {
+                margin:0pc; padding: 0.5pc;
+                border: 1px solid gray;
+                background: #ffffff;
+                float: right;
+            }
+            TD.Fig1Text {
+                font-size:75%;
+                text-align:center;
+            }
+            TD.Fig1Bit {
+                padding: 0.1pc;
+                border: 1px solid gray;
+                font-size:75%;
+                text-align:center;
+                width: 1.5pc;
+            }
+            TD.Fig1BraceContainer {
+                padding-left: 2px; padding-right: 2px; padding-top: 0.3pc;
+                text-align: center;
+            }
+            DIV.Fig1Brace {
+                border: 2px solid black; border-top:0;
+                font-size: 0px;
+                height: 0.3pc;
+            }
+            SPAN.Fig1ColX {
+                color: #a00000;
+            }
+            SPAN.Fig1ColY {
+                color: #00a000;
+            }
+            SPAN.Fig1ColZ {
+                color: #0000a0;
+            }
+            SPAN.Fig1ColP {
+                color: #a000a0;
+            }
+            SPAN.Fig1ColQ {
+                color: #00a0a0;
+            }
+            /* Instruction table */
+            TABLE.InsTableZ {
+                margin-bottom: 1em;
+                width: 100%;
+            }
+            TABLE.InsTableZ TD {
+                padding: 0.3pc 0.6pc;
+                border-bottom: 1px solid #80c0a0;
+                vertical-align: middle;
+                text-align:justify;
+            }
+            TABLE.InsTableZ TD.XHeader {
+                border-top: 2px solid black; border-bottom: 2px solid black;
+                background: #e0e0ff; color: #a00000;
+                font-size: 120%; font-weight:bold;
+                text-align: center;
+            }
+            TABLE.InsTableZ TD.X {
+                border-right: 1px solid gray;
+                color: #a00000;
+                font-weight:bold;
+                text-align: right;
+                width: 6%;
+            }
+            TABLE.InsTableZ TD.Z {
+                border-right: 1px solid gray;
+                color: #0000a0;
+                font-weight:bold;
+                text-align: right;
+                width: 6%;
+            }
+            TABLE.InsTableZ TD.YTable {
+                padding: 0pc;
+                border-right: 1px solid gray;
+                width: 54%;
+            }
+            TABLE.InsTableZ TD.Comment {
+                font-size: 90%;
+                width: 40%;
+            }
+            TABLE.InsTableY {
+                width: 100%;
+            }
+            TABLE.InsTableY TD {
+                border: 0;
+                padding: 0.3pc 0.6pc;
+                font-weight: bold;
+                width: 35%;
+            }
+            TABLE.InsTableY TD.Long {
+                width: 80%;
+            }
+            TABLE.InsTableY TD.Q {
+                color: #00a0a0;
+                font-weight:bold;
+                text-align: right;
+                width: 10%;
+            }
+            TABLE.InsTableY TD.P {
+                color: #a000a0;
+                font-weight:bold;
+                text-align: right;
+                width: 10%;
+            }
+            TABLE.InsTableY TD.Y {
+                color: #00a000;
+                font-weight:bold;
+                text-align: right;
+                width: 10%;
+            }
+            SPAN.arg {
+                font-weight: normal; font-style:italic;
+            }
+            DT {
+                font-weight: bold;
+            }
+            DD {
+                text-align: justify;
+            }
+        </style>
+    </head><body>
+        <h1>DECODING Gameboy Z80 OPCODES</h1>
+        <h5>- of use to disassembler and emulator writers -</h5>
+        <h5>Revision 3 (gameboy)</h5>
+        <p>By Scott Mansell, Based on the orignal by Cristian Dinu. </p>
+        <hr>
+        <h2>CONTENTS</h2>
+        <table style="width: 100%;"><tbody><tr>
+        <td style="width: 45%;"></td>
+        <td>
+            <ol>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#upfx">Unprefixed&nbsp;opcodes</a></li>
+                <li><a href="#cb">CB&#8209;prefixed&nbsp;opcodes</a></li>
+                <li><a href="#ack">Acknowledgements</a></li>
+                <li><a href="#rev">Revision&nbsp;history</a></li>
+            </ol>
+        </td>
+        <td style="width: 45%;"></td>
+        </tr></tbody></table>
+        <hr>
+        <a name="intro"></a>
+        <h2>1. INTRODUCTION</h2>
+        <h4>Instruction format and emulation notes</h4>
+        <p>Z80 instructions are represented in memory as byte sequences of the form (items in brackets are optional):</p>
+        <p style="text-align: center;">
+            [<i>prefix byte</i>,]&nbsp;&nbsp;<i>opcode</i>&nbsp;&nbsp;[,<i>displacement byte</i>]&nbsp;&nbsp;[,<i>immediate data</i>]<br>
+            - OR -<br>
+            <i>two prefix bytes</i>,&nbsp;&nbsp;<i>displacement byte</i>,&nbsp;&nbsp;<i>opcode</i>
+        </p>
+        <p>The <i>opcode</i>
+    (operation code) is a single byte whose bit pattern indicates the
+    operation we need the Z80 to perform (register loading, arithmetic,
+    I/O, etc.). The opcode may also contain information regarding the
+    operation's parameters (operands), e.g. the registers which will be
+    used/affected by the operation.</p>
+        <p>An optional <i>prefix byte</i>
+    may appear before the opcode, changing its meaning and causing the Z80
+    to look up the opcode in a different bank of instructions. The prefix
+    byte, if present, may have the values <b>CB</b>, <b>DD</b>, <b>ED</b>, or <b>FD</b>
+    (these are hexadecimal values). Although there are opcodes which have
+    these values too, there is no ambiguity: the first byte in the
+    instruction, if it has one of these values, is <u>always</u> a prefix byte.</p>
+        <p>The <i>displacement byte</i>
+    is a signed 8-bit integer (-128..+127) used in some instructions to
+    specifiy a displacement added to a given memory address. Its presence
+    or absence depends on the instruction at hand, therefore, after reading
+    the prefix and opcode, one has enough information to figure out whether
+    to expect a displacement byte or not.</p>
+        <p>Similarly, <i>immediate data</i>
+    consists of zero, one, or two bytes of additional information
+    specifying explicit parameters for certain instructions (memory
+    addresses, arithmetic operands, etc.). Its presence and number of bytes
+    are also completely determined by the instruction at hand.</p>
+        <p><b>Note</b>: Signed data is stored in 2's complement form. 16-bit data is stored LSB first.</p>
+        <p>A special class of instructions is accesed by using a <b>DD</b> or <b>FD</b> prefix, and then a <b>CB</b> byte. In this situation, the <b>CB</b> byte is also interpreted as a prefix, a <i>mandatory</i>
+    displacement byte follows, and, finally, the actual opcode occurs. This
+    is the situation that is described by the second byte pattern shown
+    above.</p>
+        <p>Not all (prefix, opcode) combinations map to valid
+    instructions. However, it is important to note that, unlike some other
+    processors, upon encountering an invalid instruction, the Z80 will not
+    'crash' or signal an error - it will simply appear to do nothing (as if
+    executing a <b>NOP</b> instruction), and continue with the next byte
+    sequence in memory. There may also be several subtle effects, such as
+    the temporary setting of some internal flags or the prevention of
+    interrupts immediately after the read instruction. Invalid instructions
+    are sometimes used to mark special commands and signals for emulators
+    (e.g. Gerton Lunter's 'Z80' ZX Spectrum emulator).</p>
+        <p>There may be
+    several combinations of bytes that map to the same instruction. The
+    sequences will usually have different execution times and memory
+    footprints. Additionally, there are many instructions (not necessarily
+    'invalid') which do virtually nothing meaningful, such as <b>LD A, A</b>, etc., and therefore are reasonable substitutes for <b>NOP</b>.</p>
+        <p>Some instructions and effects are <i>undocumented</i>
+    in that they usually do not appear in 'official' Z80 references.
+    However, by now, these have all been researched and described in
+    unofficial documents, and they are also used by several programs, so
+    emulator authors should strive to implement these too, with maximal
+    accuracy.</p>
+        <p>Finally, it is important to note that the disassembly
+    approach described in this document is a rather 'algorithmic one',
+    focused on understanding the functional structure of the instruction
+    matrix, and on how the Z80 figures out what to do upon reading the
+    bytes. If space isn't a concern, it is faster and easier to use
+    complete disassembly tables that cover all possible (prefix, opcode)
+    combinations - with text strings for the instruction display, and
+    microcode sequences for the actual execution.</p>
+        <h4>Notations used in this document</h4>
+        <div class="Figure">
+            <table>
+                <tbody><tr><td class="Fig1Text" colspan="8">Bits in opcode (MSB &#8594; LSB)</td></tr>
+                <tr>
+                    <td class="Fig1Bit"><span class="Fig1ColX">7</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColX">6</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColY">5</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColY">4</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColY">3</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColZ">2</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColZ">1</span></td>
+                    <td class="Fig1Bit"><span class="Fig1ColZ">0</span></td>
+                </tr>
+                <tr>
+                    <td class="Fig1BraceContainer" colspan="2"><div class="Fig1Brace"></div><span class="Fig1ColX"><i>x</i></span></td>
+                    <td class="Fig1BraceContainer" colspan="3"><div class="Fig1Brace"></div><span class="Fig1ColY"><i>y</i></span></td>
+                    <td class="Fig1BraceContainer" colspan="3"><div class="Fig1Brace"></div><span class="Fig1ColZ"><i>z</i></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="Fig1BraceContainer" colspan="2"><div class="Fig1Brace"></div><span class="Fig1ColP"><i>p</i></span></td>
+                    <td class="Fig1BraceContainer" colspan="1"><div class="Fig1Brace"></div><span class="Fig1ColQ"><i>q</i></span></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tbody></table>
+        </div>
+        <p>Upon establishing the opcode, the Z80's path of action is generally dictated by these values:</p>
+        <p>
+            <i>x</i> = the opcode's 1st octal digit (i.e. bits 7-6)<br>
+            <i>y</i> = the opcode's 2nd octal digit  (i.e. bits 5-3)<br>
+            <i>z</i> = the opcode's 3rd octal digit  (i.e. bits 2-0)<br>
+            <i>p</i> = <i>y</i> rightshifted one position (i.e. bits 5-4)<br>
+            <i>q</i> = <i>y</i> modulo 2 (i.e. bit 3)
+        </p>
+        <p>The following placeholders for instructions and operands are used:</p>
+        <p>
+            <i>d</i> = displacement byte (8-bit signed integer)<br>
+            <i>n</i> = 8-bit immediate operand (unsigned integer)<br>
+            <i>nn</i> = 16-bit immediate operand (unsigned integer)<br>
+            <i>tab[x]</i> = whatever is contained in the table named <i>tab</i> at index <i>x</i> (analogous for <i>y</i> and <i>z</i> and other table names)
+        </p>
+        <p>Operand
+    data may be interpreted as the programmer desires (either signed or
+    unsigned), but, in disassembly displays, is generally displayed in
+    unsigned integer format.</p>
+        <p>All instructions with <i>d</i>, <i>n</i> or <i>nn</i> in their expression are generally immediately followed by the displacement/operand (a byte or a word, respectively).</p>
+        <p>Although relative jump instructions are traditionally shown with a 16-bit address for an operand, here they will take the form <b>JR</b>/<b>DJNZ</b> <i>d</i>, where <i>d</i>
+    is the signed 8-bit displacement that follows (as this is how they are
+    actually stored). The jump's final address is obtained by adding the
+    displacement to the instruction's address plus 2.</p>
+        <p>In this document, the 'jump to the address contained in HL' instruction is written in its correct form <b>JP HL</b>, as opposed to the traditional <b>JP (HL)</b>.</p>
+        <p><b>IN (C)</b>/<b>OUT (C)</b> instructions are displayed using the traditional form, although they actually use the full 16-bit port address contained in BC.</p>
+        <p>In the expression of an instruction, everything in <b>bold</b> should be taken ad literam, everything in <i>italics</i> should be evaluated.</p>
+        <p>This document makes use of an imaginary instruction with the mnemonic <b>NONI</b>
+    (No Operation No Interrupts). Its interpretation is 'perform a
+    no-operation (wait 4 T-states) and do not allow interrupts to occur
+    immediately after this instruction'. The Z80 may actually do more than
+    just a simple NOP, but the effects are irrelevant assuming normal
+    operation of the processor.</p>
+        <h4>Disassembly tables</h4>
+        <p>These
+    tables enable us to represent blocks of similar instructions in a
+    compact form, taking advantage of the many obvious patterns in the
+    Z80's instruction matrix.</p>
+        <table style="width: 100%;"><tbody><tr>
+            <td style="width: 20%;"></td>
+            <td>
+                <table class="DissTable8">
+                    <tbody><tr><th class="TableName" colspan="9">Table "r"</th></tr>
+                    <tr><th class="TableDesc" colspan="9">8-bit registers</th></tr>
+                    <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                    <tr><td class="Left">Value</td><td>B</td><td>C</td><td>D</td><td>E</td><td>H</td><td>L</td><td>(HL)</td><td>A</td></tr>
+                </tbody></table>
+                <table style="width: 100%;"><tbody><tr>
+                    <td style="width: 47%;">
+                        <table class="DissTable4">
+                            <tbody><tr><th class="TableName" colspan="9">Table "rp"</th></tr>
+                            <tr><th class="TableDesc" colspan="9">Register pairs featuring SP</th></tr>
+                            <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+                            <tr><td class="Left">Value</td><td>BC</td><td>DE</td><td>HL</td><td>SP</td></tr>
+                        </tbody></table>
+                    </td>
+                    <td style="width: 6%;"></td>
+                    <td style="width: 47%;">
+                        <table class="DissTable4">
+                            <tbody><tr><th class="TableName" colspan="9">Table "rp2"</th></tr>
+                            <tr><th class="TableDesc" colspan="9">Register pairs featuring AF</th></tr>
+                            <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+                            <tr><td class="Left">Value</td><td>BC</td><td>DE</td><td>HL</td><td>AF</td></tr>
+                        </tbody></table>
+                    </td>
+                </tr></tbody></table>
+                <table class="DissTable8">
+                    <tbody><tr><th class="TableName" colspan="5">Table "cc"</th></tr>
+                    <tr><th class="TableDesc" colspan="5">Conditions</th></tr>
+                    <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+                    <tr><td class="Left">Value</td><td>NZ</td><td>Z</td><td>NC</td><td>C</td></tr>
+                </tbody></table>
+                <table class="DissTable8">
+                    <tbody><tr><th class="TableName" colspan="9">Table "alu"</th></tr>
+                    <tr><th class="TableDesc" colspan="9">Arithmetic/logic operations</th></tr>
+                    <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                    <tr><td class="Left">Value</td><td>ADD A,</td><td>ADC A,</td><td>SUB</td><td>SBC A,</td><td>AND</td><td>XOR</td><td>OR</td><td>CP</td></tr>
+                </tbody></table>
+                <table class="DissTable8">
+                    <tbody><tr><th class="TableName" colspan="9">Table "rot"</th></tr>
+                    <tr><th class="TableDesc" colspan="9">Rotation/shift operations</th></tr>
+                    <tr><td class="Left">Index</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                    <tr><td class="Left">Value</td><td>RLC</td><td>RRC</td><td>RL</td><td>RR</td><td>SLA</td><td>SRA</td><td>SWAP</td><td>SRL</td></tr>
+                </tbody></table>
+            </td>
+            <td style="width: 20%;"></td>
+        </tr></tbody></table>
+        <hr>
+        <a name="upfx"></a>
+        <h2>2. UNPREFIXED OPCODES</h2>
+        <table class="InsTableZ">
+            <tbody><tr><td class="XHeader" colspan="3">FOR x=0</td></tr>
+            <tr>
+                <td class="Z">z=0</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0</td><td>NOP</td><td class="Y">y=2</td><td>STOP</td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=1</td><td>LD (<span class="arg">nn</span>), SP</td><td class="Y">y=3</td><td>JR <span class="arg">d</span></td></tr>
+                    <tr><td class="Q"></td><td class="Y"></td><td></td><td class="Y">y=4..7</td><td>JR <span class="arg">cc[y-4]</span>, <span class="arg">d</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Relative jumps and assorted ops</td>
+            </tr>
+            <tr>
+                <td class="Z">z=1</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q">q=0</td><td class="P"></td><td class="Long">LD <span class="arg">rp[p]</span>, <span class="arg">nn</span></td></tr>
+                    <tr><td class="Q">q=1</td><td class="P"></td><td class="Long">ADD HL, <span class="arg">rp[p]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">16-bit load immediate/add</td>
+            </tr>
+            <tr>
+                <td class="Z">z=2</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q">q=0</td><td class="P">p=0</td><td>LD (BC), A</td><td class="P">p=2</td><td>LD (HL+), A</td></tr>
+                    <tr><td class="Q"></td><td class="P">p=1</td><td>LD (DE), A</td><td class="P">p=3</td><td>LD (HL-), A</td></tr>
+                    <tr><td class="Q">q=1</td><td class="P">p=0</td><td>LD A, (BC)</td><td class="P">p=2</td><td>LD A, (HL+)</td></tr>
+                    <tr><td class="Q"></td><td class="P">p=1</td><td>LD A, (DE)</td><td class="P">p=3</td><td>LD A, (HL-)</td></tr>
+                </tbody></table></td>
+                <td class="Comment">Indirect loading</td>
+            </tr>
+            <tr>
+                <td class="Z">z=3</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q">q=0</td><td class="P"></td><td class="Long">INC <span class="arg">rp[p]</span></td></tr>
+                    <tr><td class="Q">q=1</td><td class="P"></td><td class="Long">DEC <span class="arg">rp[p]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">16-bit INC/DEC</td>
+            </tr>
+            <tr>
+                <td class="Z">z=4</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">INC <span class="arg">r[y]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">8-bit INC</td>
+            </tr>
+            <tr>
+                <td class="Z">z=5</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">DEC <span class="arg">r[y]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">8-bit DEC</td>
+            </tr>
+            <tr>
+                <td class="Z">z=6</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">LD <span class="arg">r[y]</span>, <span class="arg">n</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">8-bit load immediate</td>
+            </tr>
+            <tr>
+                <td class="Z">z=7</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0</td><td>RLCA</td><td class="Y">y=4</td><td>DAA</td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=1</td><td>RRCA</td><td class="Y">y=5</td><td>CPL</td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=2</td><td>RLA</td><td class="Y">y=6</td><td>SCF</td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=3</td><td>RRA</td><td class="Y">y=7</td><td>CCF</td></tr>
+                </tbody></table></td>
+                <td class="Comment">Assorted operations on accumulator/flags</td>
+            </tr>
+            <tr><td class="XHeader" colspan="3">FOR x=1</td></tr>
+            <tr>
+                <td class="Z"></td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">LD <span class="arg">r[y]</span>, <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">8-bit loading</td>
+            </tr>
+            <tr>
+                <td class="Z">z=6</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=6</td><td class="Long">HALT</td></tr>
+                </tbody></table></td>
+                <td class="Comment"><b>Exception</b> (replaces <b>LD (HL), (HL)</b>)</td>
+            </tr>
+            <tr><td class="XHeader" colspan="3">FOR x=2</td></tr>
+            <tr>
+                <td class="Z"></td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long"><span class="arg">alu[y]</span> <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Operate on accumulator and register/memory location</td>
+            </tr>
+            <tr><td class="XHeader" colspan="3">FOR x=3</td></tr>
+            <tr>
+                <td class="Z">z=0</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0..3</td><td>RET <span class="arg">cc[y]</span></td></tr>
+     <tr><td class="Q"></td><td class="Y">y=4</td><td>LD (<span class="arg">0xFF00 + nn</span>), A</td>
+         <td class="Y">y=6</td><td>LD A, (<span class="arg">0xFF00 + n</span>)</td></tr>
+     <tr><td class="Q"></td><td class="Y">y=5</td><td>ADD SP, <span class="arg">d</span></td><td class="Y">y=7</td><td>LD HL, SP<span class="arg">+ d</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Conditional return, mem-mapped register loads and stack operations</td>
+            </tr>
+            <tr>
+                <td class="Z">z=1</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q">q=0</td><td class="P"></td><td class="Long" colspan="3">POP <span class="arg">rp2[p]</span></td></tr>
+                    <tr><td class="Q">q=1</td><td class="P">p=0</td><td>RET</td><td class="P">p=2</td><td>JP HL</td></tr>
+                    <tr><td class="Q"></td><td class="P">p=1</td><td>RETI</td><td class="P">p=3</td><td>LD SP, HL</td></tr>
+                </tbody></table></td>
+                <td class="Comment">POP &amp; various ops</td>
+            </tr>
+            <tr>
+                <td class="Z">z=2</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0..3</td><td>JP <span class="arg">cc[y]</span>, <span class="arg">nn</span></td></tr>
+     <tr><td class="Q"></td><td class="Y">y=4</td><td>LD (<span class="arg">0xFF00+C</span>), A</td><td class="Y">y=6</td><td>LD A, (<span class="arg">0xFF00+C</span>)</td></tr>
+     <tr><td class="Q"></td><td class="Y">y=5</td><td>LD (<span class="arg">nn</span>), A</td><td class="Y">y=7</td><td>LD A, (<span class="arg">nn</span>)</td></tr>
+                </tbody></table></td>
+                <td class="Comment">Conditional jump</td>
+            </tr>
+            <tr>
+                <td class="Z">z=3</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0</td><td>JP <span class="arg">nn</span></td><td class="Y">y=4</td><td><span class="arg">(removed)</span></td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=1</td><td><span class="arg">(CB prefix)</span></td><td class="Y">y=5</td><td><span class="arg">(removed)</span></td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=2</td><td><span class="arg">(removed)</span></td><td class="Y">y=6</td><td>DI</td></tr>
+                    <tr><td class="Q"></td><td class="Y">y=3</td><td><span class="arg">(removed)</span></td><td class="Y">y=7</td><td>EI</td></tr>
+                </tbody></table></td>
+                <td class="Comment">Assorted operations</td>
+            </tr>
+            <tr>
+                <td class="Z">z=4</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y">y=0..3</td><td>CALL <span class="arg">cc[y]</span>, <span class="arg">nn</span></td><td class="Y">y=4..7</td><td><span class="arg">(removed)</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Conditional call</td>
+            </tr>
+            <tr>
+                <td class="Z">z=5</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q">q=0</td><td class="P"></td><td class="Long" colspan="3">PUSH <span class="arg">rp2[p]</span></td></tr>
+                    <tr><td class="Q">q=1</td><td class="P">p=0</td><td>CALL <span class="arg">nn</span></td><td class="P">p=1..3</td><td><span class="arg">(removed)</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">PUSH &amp; various ops</td>
+            </tr>
+            <tr>
+                <td class="Z">z=6</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long"><span class="arg">alu[y]</span> <span class="arg">n</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Operate on accumulator and immediate operand</td>
+            </tr>
+            <tr>
+                <td class="Z">z=7</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">RST <span class="arg">y*8</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Restart</td>
+            </tr>
+            <tr><td class="XHeader" colspan="3">&nbsp;</td></tr>
+        </tbody></table>
+        <hr>
+        <a name="cb"></a>
+        <h2>3. CB-PREFIXED OPCODES</h2>
+        <table class="InsTableZ">
+            <tbody><tr><td class="XHeader" colspan="3">&nbsp;</td></tr>
+            <tr>
+                <td class="X">x=0</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long"><span class="arg">rot[y]</span> <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Roll/shift register or memory location</td>
+            </tr>
+            <tr>
+                <td class="X">x=1</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">BIT <span class="arg">y</span>, <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Test bit</td>
+            </tr>
+            <tr>
+                <td class="X">x=2</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">RES <span class="arg">y</span>, <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Reset bit</td>
+            </tr>
+            <tr>
+                <td class="X">x=3</td>
+                <td class="YTable"><table class="InsTableY">
+                    <tbody><tr><td class="Q"></td><td class="Y"></td><td class="Long">SET <span class="arg">y</span>, <span class="arg">r[z]</span></td></tr>
+                </tbody></table></td>
+                <td class="Comment">Set bit</td>
+            </tr>
+            <tr><td class="XHeader" colspan="3">&nbsp;</td></tr>
+        </tbody></table>
+        <hr>
+        <a name="ack"></a>
+        <h2>4. ACKNOWLEDGEMENTS</h2>
+        <p>The
+    original 'algorithm' described herein was constructed by studying an
+    "instruction/flags affected/binary form/effect" list in a Romanian book
+    called "Ghidul Programatorului ZX Spectrum" ("The ZX Spectrum
+    Programmer's Guide").</p>
+            <p>Later, the opcodes was modified to represent the opcodes of 
+    the LR35902, a Z80 workalike used in the gameboy.</p>
+        <p>The exact effects and quirks of the
+    CB/DD/ED/FD prefixes, as well as the undocumented ED and CB
+    instructions, were learnt from "The Undocumented Z80 Documented" by
+    Sean Young.</p>
+        <p>My sincere thanks to all those who have contributed
+    with suggestions or corrections. They are mentioned in the following
+    section.</p>
+        <hr>
+        <a name="rev"></a>
+        <h2>5. REVISION HISTORY</h2>
+        <dl>
+            <dt>Revision 1</dt>
+            <dd>Implemented a better representation for the <b>DDCB</b> instructions (thanks to Ven Reddy) and for certain "invalid" <b>ED</b> instructions, e.g. a more accurate <b>NOP</b>/<b>NONI</b> instead of an 8T <b>NOP</b> (thanks to Dr. Phillip Kendall). Fixed some typos.</dd>
+            <dt>Revision 2</dt>
+            <dd>Radically
+    altered the presentation. Added an intro section, some diagrams, more
+    comments and a Revision History section. Fixed some important typos and
+    changed the wording in some places to avoid misunderstandings (thanks
+    to BlueChip for his numerous and helpful suggestions; he also suggested
+    that I add info on the signed number format and byte order).</dd>
+                    <dt>Revison 3 (gameboy)</dt>
+                    <dd>Alot of opcodes were stripped out to better represent the state of the gameboy's Z80 cpu. A few new ones were added</dd>
+        </dl>
+        <hr>
+        <p style="text-align: center;">- EOF -</p>
+    </body></html>
