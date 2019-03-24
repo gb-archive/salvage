@@ -1,0 +1,392 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Steven Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>Advance Gameboy Development</title>
+</head>
+<body background="sky.jpg">
+
+<center><img SRC="gba.gif" height=122 width=210>
+<br><font color="#FF0000"><font size=+3><b><i>GameBoy </i></b><font face="Lucida Console">ADVANCE</font></font></font>
+<br><font color="#FF0000"><font size=+3>Development</font></font><img SRC="new.gif" height=12 width=31 align=ABSCENTER></center>
+
+<p><font color="#000000"><font size=+1>The GameBoy Advance has become the
+platform of choice for both software and hardware Gameboy development,
+offering many advanced features over it's three predecessors. Short of
+improving the <a href="#afterburner">screen contrast</a> it is hard to
+imagine what Nintendo will do next to enhance this excellent unit. The
+following table lists some of the key changes made to Gameboy over the
+last 12 years.</font></font>
+<br>&nbsp;
+<center><table BORDER COLS=5 WIDTH="90%" >
+<caption>
+<center><tbody></tbody></center>
+</caption>
+
+<tr>
+<td></td>
+
+<td>
+<center><img SRC="gbos.gif" height=78 width=48>
+<br><font size=-2>1989</font>
+<br><font color="#FF6666"><font size=+1>Original - GB</font></font></center>
+</td>
+
+<td>
+<center><img SRC="gbps.gif" height=75 width=46>
+<br><font size=-2>1996</font>
+<br><font color="#FF6666"><font size=+1>Pocket - GBP</font></font></center>
+</td>
+
+<td>
+<center><img SRC="gbcs.gif" height=74 width=45>
+<br><font size=-2>1998</font>
+<br><font color="#FF6666"><font size=+1>Colour - GBC</font></font></center>
+</td>
+
+<td>
+<center><img SRC="gbas.gif" height=80 width=102>
+<br><font size=-2>2001</font>
+<br><font color="#FF6666"><font size=+1>Advance - GBA</font></font></center>
+</td>
+</tr>
+
+<tr>
+<td><font size=+1>Screen size</font></td>
+
+<td>160*144 - 2.5"</td>
+
+<td>160*144 - 2.6"</td>
+
+<td>160*144 - 2.3"</td>
+
+<td>240*160 - 2.9"</td>
+</tr>
+
+<tr>
+<td><font color="#000000"><font size=+1>Screen type</font></font></td>
+
+<td>Mono 4 shades</td>
+
+<td>Mono 4 shades</td>
+
+<td>Colour 15bit palettes</td>
+
+<td>Colour 8 or 16bit</td>
+</tr>
+
+<tr>
+<td><font size=+1>CPU</font></td>
+
+<td>8bit (Z80 style)</td>
+
+<td>8bit (Z80 style)</td>
+
+<td>8bit (Z80 style)</td>
+
+<td>32bit ARM7</td>
+</tr>
+
+<tr>
+<td><font size=+1>CPU Clock</font></td>
+
+<td>4.194MHz*</td>
+
+<td>4.194MHz*</td>
+
+<td>4.194/8.38MHz*</td>
+
+<td>16.78MHz</td>
+</tr>
+
+<tr>
+<td><font size=+1>Video RAM</font></td>
+
+<td>8kB</td>
+
+<td>8kB</td>
+
+<td>16kB</td>
+
+<td>96kB</td>
+</tr>
+
+<tr>
+<td><font size=+1>Working RAM</font></td>
+
+<td>8kB</td>
+
+<td>8kB</td>
+
+<td>32kB</td>
+
+<td>32k + 256k</td>
+</tr>
+
+<tr>
+<td><font size=+1>Power</font></td>
+
+<td>4AA - 60mA</td>
+
+<td>2AAA - 100mA</td>
+
+<td>2AA - 65mA</td>
+
+<td>2AA - 80mA</td>
+</tr>
+
+<tr>
+<td><font size=+1>Sound</font></td>
+
+<td>4ch stereo</td>
+
+<td>4ch stereo</td>
+
+<td>4ch stereo</td>
+
+<td>4ch stereo + 2pcm</td>
+</tr>
+
+<tr>
+<td><font size=+1>Keys</font></td>
+
+<td>4 + Control pad</td>
+
+<td>4 + Control pad</td>
+
+<td>4 + Control pad</td>
+
+<td>6 + Control pad</td>
+</tr>
+
+<tr>
+<td><font size=+1>Link Port</font></td>
+
+<td>Serial I/O</td>
+
+<td>Serial I/O</td>
+
+<td>Serial I/O 8/256kHz</td>
+
+<td>&lt;2MHz, Bootloader</td>
+</tr>
+
+<tr>
+<td><font size=+1>Cartarige slot</font></td>
+
+<td>5V 16/8bit addr/data</td>
+
+<td>5V 16/8bit addr/data</td>
+
+<td>5V 16/8bit addr/data</td>
+
+<td>3V multiplexed bus</td>
+</tr>
+</table></center>
+
+<p><font color="#000000"><font size=-1>* System bus frequency is one quarter
+of the clock frequency</font></font>
+<p><font color="#000000"><font size=+1>The GBA maintains compatibility
+with older units by detecting the type of cartridge inserted on power up.
+Older cartridges will cause a mechanical switch to be enabled resulting
+in the unit switching over to a system similar to the GBC. It is not possible
+to switch between the two modes under software control.</font></font>
+<br>&nbsp;
+<p><img SRC="birdsbr.gif" height=51 width=639>
+<p><img SRC="chip02.gif" height=25 width=30><font color="#FF6666"><font size=+3>
+Hardware interface</font></font>
+<p><font color="#000000"><font size=+1>The GBA provides two methods for
+loading executable programs, the GamePack (parallel) ROM cartridge and
+the GameLink (serial) multiboot loader. The format of the GamePack and
+GameLink interfaces have changed from older units. The GamePack interface
+has the same physical connector as older units but the electrical connections
+have changed significantly.&nbsp; The GameLink interface has a slightly
+modified 6 pin connector that prevents older leads from being inserted
+correctly. Although the GameLink electrical interface uses similar signal
+functions, serial communications is supported by many more modes of operation.</font></font>
+<br><font color="#000000"><font size=+1></font></font>&nbsp;
+<p><br>
+<center>
+<p><img SRC="gbalpins.gif" HSPACE=10 height=130 width=130><img SRC="gbalink.gif" VSPACE=30 BORDER=2 height=47 width=50><img SRC="gbarpins.gif" HSPACE=10 height=130 width=200><img SRC="gbacart.gif" BORDER=2 height=114 width=191></center>
+
+<p><br>
+<p><font color="#000000"><font size=+1>The GamePack interface uses a multiplexed
+16bit data bus with a 24bit address bus. Because of this multiplexed interface
+method connecting a simple memory devices is not possible without some
+form of interface logic. As the external access results in a relatively
+slow data transfer rate two modes of operation are possible. Sequential
+access involves an initial start address followed by consecutive data reads
+until all data has been transferred. Random access involves an address
+write followed by a single data read. The following <a href="AGBmem.pdf">diagram</a>
+contains all the basic building blocks of a 'random' and 'sequential' access
+interface.&nbsp; It assumes the use of a separate FLASH programmer to write
+the development program into memory. Please note this is just an example
+and has never actually been built or tested so please don't ask me for
+more information on the design. If you don't want to build your own hardware
+then Lik Sang provides an off the shelf&nbsp; programmer known as the Flash
+Linker Advance which is ideal for GBA program development. For those interested
+in digital interfacing the Xport from CharmedLabs looks like and interesting
+method of interfacing digital hardware direct to the GBA GamePack connector.</font></font>
+<br>&nbsp;
+<table COLS=2 WIDTH="100%" >
+<caption><tbody></tbody></caption>
+
+<tr>
+<td>
+<center><a href="http://www.lik-sang.com"><img SRC="fal.gif" BORDER=0 height=128 width=165></a>
+<br><font size=+1><a href="http://www.lik-sang.com">Flash Linker Advance</a></font></center>
+</td>
+
+<td>
+<center><a href="http://www.charmedlabs.com/"><img SRC="xport.gif" BORDER=0 height=130 width=170></a>
+<br><font size=+1><a href="http://www.charmedlabs.com/">Xport from CharmedLabs</a></font></center>
+</td>
+</tr>
+</table>
+
+<p><img SRC="birdsbr.gif" height=51 width=639>
+<p><img SRC="diskett2.gif" height=30 width=30><font color="#FF6666"><font size=+3>
+Software development</font></font>
+<p><font color="#000000"><font size=+1>For many years Gameboy developers
+have debated over the various merits of Assembly or 'C' code development.&nbsp;
+With the GBA came the 16/32bit ARM7TDMI processor which enjoys a wealth
+of high quality development tools. As such the performance of 'C' compilers
+and linkers make high level code development very attractive to the hobby
+developer. But for the hardened Assembly programmer or when you need to
+squeeze every ounce of power from your program, in-line assembly can still
+be performed by most good compilers.</font></font>
+<p><font color="#000000"><font size=+1>Although there are many compilers
+available the GNU 'C/C++' ARM7 port is an excellent choice for the GBA
+and is available under GPL to the hobby developer. In order to use the
+GNU compiler it is necessary to use a port of this core code that has been
+targeted specifically at the GBA.&nbsp; Fortunately this tricky Job has
+been done for us by a number of dedicated GB developers and in particular
+the <a href="http://www.io.com/%7Efenix/devkitadv/">Dev-Kit Advance port</a>
+by Jason Wilkins has grown in popularity.</font></font>
+<p><font color="#000000"><font size=+1>To write and develop code you will
+need an Integrated Development Environment - IDE . In principle you could
+use a simple text editor but the project will normally involve several
+separate code files. Managing these files and providing an environment
+in which the project can be compiled and targeted at the programer is the
+job of the IDE.&nbsp; For those familiar with the MFC Visual Studio IDE
+you might like to try these
+<a href="vstudio-devkitadv.htm">MFC settings</a>
+suggested by <a href="http://www.matt-tighe.co.uk/gba/">Matt Tighe</a>.
+Alternatively you could try the Colour Gameboy IDE <a href="http://www.xmlhive.com/cgbide/CGBIDE.HTM">CGBIDE.</a>
+This has not been updated for some time and it is not clear if development
+has stopped as most of the links on the site are now broken. Nevertheless
+with a bit of <a href="gbcide.html">customisation</a> CGBIDE can be turned
+into a very useful GBA development environment.</font></font>
+<p><font color="#000000"><font size=+1>Although ultimately you will want
+to run your program on real hardware it is much faster to use an emulator
+during development. This will allow the program to be tested and program
+bugs to be fixed quickly. A number of emulators are available but <a href="http://boycottadvance.emuunlim.com/">Boycott
+Advance</a> by Julien Frelat is very simple to setup and use under Windows.</font></font>
+<p><font color="#000000"><font size=+1>Once the program compiles and is
+ready for loading into the emulator or programming into a Flash cart it
+is necessary to fix the ROM ready for the GBA system.&nbsp; This process
+performs a number of functions but in particular it ensures the CRC, Header
+and image size are correct. A great program for doing this is the GameBoy
+Advance ROM Manipulator <a href="../Apps/gbarm10.zip">Gbarm10.zip (30K)</a>
+which was developed by <a href="http://credo.resource.cx/">Credo</a>. Example
+command line arguments are given in my examples.</font></font>
+<br>&nbsp;
+<p><img SRC="birdsbr.gif" height=51 width=639>
+<p><img SRC="book08.gif" height=37 width=63><font color="#FF6666"><font size=+3>
+Example code</font></font>
+<p><font color="#000000"><font size=+1>The following examples assume that
+you have installed Dev-Kit Advance into C:\devkitadv and the ROM fixer
+Gbarm.exe into C:\devkitadv\utils\. The DOS path must be set to point at
+C:\devkitadv\bin. Unzip the examples into their default paths as specified
+in the zip file path (C:\devkitadv\MyProjects). All examples have been
+tested with Boycott Advance and on real hardware with Flash Linker.</font></font>
+<br>&nbsp;
+<table BORDER WIDTH="96%" >
+<tr>
+<td><font color="#FF6666"><font size=+1>File</font></font></td>
+
+<td><font color="#FF6666"><font size=+1>Version</font></font></td>
+
+<td><font color="#FF6666"><font size=+1>Date</font></font></td>
+
+<td><font color="#FF6666"><font size=+1>Description</font></font></td>
+
+<td><font color="#FF6666"><font size=+1>Size</font></font></td>
+</tr>
+
+<tr>
+<td><font size=+1><a href="exp1cgbide.zip">exp1cgbide.zip</a></font></td>
+
+<td><font size=+1>1.0</font></td>
+
+<td><font size=+1>3/5/2002</font></td>
+
+<td><font size=+1>Example 1 for the CGBIDE</font></td>
+
+<td><font size=+1>12K</font></td>
+</tr>
+
+<tr>
+<td><font size=+1><a href="exp1mfc.zip">exp1mfc.zip</a></font></td>
+
+<td><font size=+1>1.0</font></td>
+
+<td><font size=+1>3/5/2002</font></td>
+
+<td><font size=+1>Example 1 for the MFC IDE</font></td>
+
+<td><font size=+1>13K</font></td>
+</tr>
+
+<tr>
+<td><font size=+1><a href="exp2cgbide.zip">exp2cgbide.zip</a></font></td>
+
+<td><font size=+1>1.0</font></td>
+
+<td><font size=+1>3/5/2002</font></td>
+
+<td><font size=+1>Example 2 for the CGBIDE</font></td>
+
+<td><font size=+1>39K</font></td>
+</tr>
+
+<tr>
+<td><font size=+1><a href="exp2mfc.zip">exp2mfc.zip</a></font></td>
+
+<td><font size=+1>1.0</font></td>
+
+<td><font size=+1>3/5/2002</font></td>
+
+<td><font size=+1>Example 2 for the MFC IDE</font></td>
+
+<td><font size=+1>39K</font></td>
+</tr>
+</table>
+
+<p><font color="#000000"><font size=+1>Please do not redistribute these
+examples but feel free to link to my site.</font></font>
+<br>&nbsp;
+<p><img SRC="birdsbr.gif" height=51 width=639>
+<p><img SRC="whl.gif" height=57 width=77><font color="#FF6666"><font size=+3>Links</font></font>
+<p><font color="#000000"><font size=+1>Links to the latest GBA developments
+<a href="http://www.devrs.com/gba/">GameBoy
+Advance Dev'rs</a></font></font><img SRC="th_up.gif" height=19 width=25>
+<p><a NAME="afterburner"></a><font color="#000000"><font size=+1><a href="http://www.tritonlabs.com/">GBA
+AfterBurner</a> LCD backlight from <a href="http://www.lik-sang.com/">Lik
+Sang</a></font></font>
+<p><font color="#000000"><font size=+1><a href="http://www.io.com/%7Efenix/devkitadv/">Dev-Kit
+Advance</a> 'C' software development kit by Jason Wilkins</font></font>
+<p><font color="#000000"><font size=+1><a href="http://www.Gameboysites.biz"> Finding great Gameboy websites
+ fast.</a> Directory of Gameboy sites</font></font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><a href="../index.htm"><img SRC="homebutton.jpg" height=63 width=53></a>
+<br><font color="#000000"><font size=+1><a href="../index.htm">Back to
+Main Page</a></font></font></center>
+
+</body>
+</html>

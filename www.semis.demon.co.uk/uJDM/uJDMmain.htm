@@ -1,0 +1,288 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                                                                
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                                                                
+  <meta name="Author" content="S.G.Willis">
+                                                                
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>uJDM Simple PIC programmer</title>
+</head>
+  <body background="sky.jpg">
+                                
+<center><img src="head_0.gif" border="0" height="100" width="455">
+        <br>
+        <br>
+        </center>
+               
+<div align="center"><img src="uJDMtop.gif" alt="" width="393"
+ height="216">
+        <br>
+        </div>
+               
+<center>                       
+<p><img src="chip02.gif" border="0" height="25" width="30">
+               <font color="#ff0000"><font size="+3">&nbsp;&nbsp; uJDM a
+Simple    PIC   Programmer&nbsp;</font></font><img src="chip02.gif"
+ border="0" height="25" width="30">
+               </p>
+               </center>
+                                
+<p><font size="+1">The uJDM programmer is one of the simplest PIC programmers 
+       available. The design comes from the excellent <a
+ href="http://www.jdm.homepage.dk/newpics.htm">JDM low cost programmer</a> 
+      by </font><big>Jens Dyekj&aelig;r Madsen</big><font size="+1">.  It 
+connects      direct to the PC serial port using </font><font size="+1">Windows 
+driver     software</font><font size="+1"><font color="#000000"> <a
+ href="http://www.ic-prog.com/">IC-Prog</a> </font></font><font
+ size="+1">for easy programming</font><font size="+1">. No external power 
+     supply is required&nbsp;</font><font size="+1"> and a simple board layout 
+     is given requiring no special PCB manufacture. Note that the design is
+  limited   to the PIC16x84 series of chips and cannot be used for In System
+Programming   - ISP. If you need a more advanced programmer then try <a
+ href="../Pics/PICmain.htm">PPWIN</a>.<br>
+        </font></p>
+               
+<center></center>
+                        <img src="bombline.gif" height="19" width="739">
+                                     
+<p><img src="caps.gif" border="1" height="38" width="90"
+ align="absbottom">
+               <font color="#ff0000"><font size="+3">Parts</font></font>
+ </p>
+                         
+<p><font size="+1">The uJDM circuit connects to the computers   serial   
+ port through a DB9F female connector. R3 and the LED are optional but  are
+   very useful particularly when testing the circuit.</font></p>
+                         
+<div align="center"><img src="uJDMcct.GIF" alt="uJDMcircuit" width="400"
+ height="193" border="2">
+             <br>
+             <br>
+             </div>
+                         
+<p><font size="+1">Part list including <a
+ href="http://www.maplin.co.uk/">Maplin Electronics</a> part numbers :-<br>
+             </font></p>
+                         
+<table cellpadding="2" cellspacing="2" border="2" width="50%"
+ align="center">
+               <tbody>
+                 <tr>
+                   <td valign="top" align="center"><big>Item<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>Value<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>Part Number<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>R1<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>15k<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>M15k<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>R2<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>10k<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>M10k<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>R3*<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>3.3K<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>M3k3<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>D1<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>BZY5.1V Zener</big></td>
+                   <td valign="top" align="center"><big>QH07H<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>Q1<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>BC547B/C<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>QQ14Q<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>C1<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>100uF/16V Elec.<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>KQ69A<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>LED*<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>5mm LED<br>
+                   </big></td>
+                   <td valign="top" align="center"><big>WL84F<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>J1</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>DB9F 9way socket</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>FG25C<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>J2 </big><br>
+                   </td>
+                   <td valign="top" align="center"><big>18way DIL socket</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>FZ51F<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>PCB</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>VeroBoard 22*13</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>(JP51F)<br>
+                   </big></td>
+                 </tr>
+                 <tr>
+                   <td valign="top" align="center"><big>K1</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>Female to male serial 
+  lead</big><br>
+                   </td>
+                   <td valign="top" align="center"><big>VD73Q</big><br>
+             </td>
+                 </tr>
+                                                   
+  </tbody>             
+</table>
+                         
+<p><big>* Optional components</big><br>
+             </p>
+                         
+<p><img src="bombline.gif" height="19" width="742">
+                </p>
+                             
+<p><img src="caps.gif" border="1" height="38" width="90"
+ align="absbottom">
+               <font color="#ff0000"><font size="+3"> Building the Programmer</font></font>
+        </p>
+                               
+<div align="center">              
+<p align="left"><font size="+1">The uJDM programmer is built on VeroBoard
+       22*13 holes in size. The circuit layout shows the top (left) and bottom 
+   (right) side  of the board. The copper tracks are cut on the bottom side 
+  of the board as  shown using a PCB cutter or 3.5mm drill bit. Two 3mm holes 
+  are drilled through  the board for the DBF9F (J1) connector mounting pins.</font> 
+   </p>
+              <a href="uJDMveroboard.html"><img src="uJMDvero3.jpg"
+ alt="verotop" width="338" height="200" border="2" hspace="10">
+  <img src="uJMDveros3.jpg" alt="verobot" width="338" height="199"
+ border="2" hspace="10">
+    <br>
+     </a>         <a href="uJDMveroboard.html"><big>Click for high resolution 
+  images and photos</big></a><br>
+              </div>
+                           
+<p><big>The DBF9F serial socket is not on a 0.1" spacing as is the VeroBoard 
+   so it is necessary to bend and cut off some of the pins on the underside 
+  of the connector as shown.<br>
+       </big></p>
+             
+<p align="center"><big><img src="dbf9cut.bmp" alt="" width="350"
+ height="135" border="2">
+       <br>
+         </big></p>
+             
+<p><big>Solder the components starting with the two connectors to make it
+    easier to locate the smaller components. When complete a useful tip is
+  to  use Tipex (white correction pen) on </big><big>the top center of J2 
+to mark pin one of the PIC socket. If you also  do this on the PICs then you
+are less likely to plug them in upside-down.<br>
+       </big></p>
+           <img src="bombline.gif" height="19" width="747">
+       <br>
+                             
+<p><img src="tv.gif" height="40" width="47">
+               <font color="#ff0000"><font size="+3"> Hardware Testing</font></font>
+        </p>
+                             
+<p><font size="+1">I&nbsp; would strongly recommend that you build the programmer
+        using the VeroBoard layout provided as this will greatly reduce the
+  probability      of construction errors. Once you have made the board please
+  follow these     simple steps before you start programming.<br>
+         </font></p>
+                 
+<p><big>1. Connect the programmer to the PC serial port using the Female to
+ Male serial lead (K1).<br>
+         2. Start the IC-Prog software and under 'Settings - Hardware' select 
+  JDM   Programmer.<br>
+         3. Insert the PIC into the programming socket.<br>
+       4. Test the programmer is connected </big><big>with 'Settings  - Hardware 
+   Check - Enable Clock' this will allow the power and LED to be turned On 
+ or  Off. </big><big>If this does not work check the LED is the correct way 
+ round  (flat edge to top) and that there are no shorts on the board particularly 
+   around the cut tracks.<br>
+       <br>
+       </big>     </p>
+                             
+<p align="center"><font size="+1"><img src="ICProgset.JPG"
+ alt="IC-Prog set" width="266" height="228">
+         &nbsp;    &nbsp; &nbsp;<img src="ICProgtest.JPG"
+ alt="IC-Prog testing" width="308" height="229">
+            <br>
+         </font></p>
+                 
+<p><img src="bombline.gif" height="19" width="748">
+                </p>
+                             
+<p><img src="whl.gif" height="70" width="93">
+               <font color="#ff0000"><font size="+3"> Links</font></font> 
+</p>
+                             
+<p><big>Links to the latest PIC developments <a
+ href="http://www.devrs.com/pic/">PIC/Ubicom Dev'rs</a></big><br>
+<big>Jens Dyekj&aelig;r Madsen</big><font size="+1"> <a
+ href="http://www.jdm.homepage.dk/newpics.htm">JDM low cost    programmer</a></font><br>
+               <font size="+1">Microchip <a
+ href="http://www.microchip.com/">Home    Page</a></font>    <br>
+               &nbsp; &nbsp;</p>
+                             
+<center>                
+<p><a href="../index.htm"><img src="homebutton.jpg" height="63"
+ width="53">
+               </a> <br>
+               <font size="+1"><a href="../index.htm">Back to Main Page</a></font></p>
+               </center>
+                 <br>
+               <br>
+              <br>
+             <br>
+            <br>
+           <br>
+          <br>
+         <br>
+        <br>
+       <br>
+      <br>
+     <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

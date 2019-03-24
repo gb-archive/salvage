@@ -1,0 +1,1817 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./GBGPI11_files/filelist.xml">
+<link rel=Edit-Time-Data href="./GBGPI11_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>General Purpose Interface</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>S.Willis</o:Author>
+  <o:LastAuthor>S.Willis</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1302</o:TotalTime>
+  <o:LastPrinted>1999-12-02T13:49:00Z</o:LastPrinted>
+  <o:Created>2000-02-18T09:28:00Z</o:Created>
+  <o:LastSaved>2000-02-18T09:28:00Z</o:LastSaved>
+  <o:Pages>9</o:Pages>
+  <o:Words>1620</o:Words>
+  <o:Characters>9239</o:Characters>
+  <o:Company>Cavendish Labs</o:Company>
+  <o:Lines>76</o:Lines>
+  <o:Paragraphs>18</o:Paragraphs>
+  <o:CharactersWithSpaces>11346</o:CharactersWithSpaces>
+  <o:Version>9.2720</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:ActiveWritingStyle Lang="EN-US" VendorID="64" DLLVersion="131077"
+   NLCheck="1">1</w:ActiveWritingStyle>
+  <w:DrawingGridHorizontalSpacing>9.35 pt</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>6.25 pt</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+h1
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-font-kerning:0pt;
+	mso-ansi-language:EN-US;}
+h2
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:22.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	font-weight:normal;
+	font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 216.0pt right 432.0pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;
+	mso-header-margin:2.0cm;
+	mso-footer-margin:2.0cm;
+	mso-title-page:yes;
+	mso-header:url("./GBGPI11_files/header.htm") h1;
+	mso-footer:url("./GBGPI11_files/header.htm") f1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:150222518;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1512494682 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l1
+	{mso-list-id:212812843;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1854155364 652353806 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-start-at:12;
+	mso-level-text:%1;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l2
+	{mso-list-id:647829795;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1972728440 -862655880 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-start-at:12;
+	mso-level-text:%1;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l3
+	{mso-list-id:1292133845;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1224108564 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l3:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l4
+	{mso-list-id:1527910925;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-28931750 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l5
+	{mso-list-id:1776287959;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1088284532 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l5:level1
+	{mso-level-start-at:2;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050">
+  <o:colormenu v:ext="edit" fillcolor="none" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-GB style='tab-interval:36.0pt'>
+
+<div class=Section1>
+
+<h1><i><span lang=EN-US style='font-size:22.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></i></h1>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:203.25pt;
+ height:173.25pt'>
+ <v:imagedata src="./GBGPI11_files/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img width=271 height=231
+src="./GBGPI11_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]></span></p>
+
+<h1 align=center style='text-align:center'><i><span lang=EN-US
+style='font-size:28.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></i></h1>
+
+<h1 align=center style='text-align:center'><i><span lang=EN-US
+style='font-size:28.0pt;mso-bidi-font-size:10.0pt'>GameBoy</span></i><i><sup><span
+lang=EN-US style='font-size:28.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Symbol'>ã</span></span></sup></i><i><sup><span
+lang=EN-US style='font-size:28.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></sup></i></h1>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1 align=center style='text-align:center'><i><span lang=EN-US
+style='font-size:28.0pt;mso-bidi-font-size:10.0pt'>General Purpose Interface<o:p></o:p></span></i></h1>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><i><span
+lang=EN-US style='font-size:28.0pt;mso-bidi-font-size:10.0pt'>Designers Manual<o:p></o:p></span></i></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><i><span lang=EN-US
+style='font-size:20.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></i></p>
+
+<h2 align=center style='text-align:center'><span lang=EN-US>By S.G.Willis </span><span
+lang=EN-US style='font-size:8.0pt;mso-bidi-font-size:10.0pt'>Rev 1.1</span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>1.0 Introduction<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The GameBoy general purpose
+interface 'GBGPI' converts a GBpocket or GBcolour into a multipurpose
+programmable development platform. The software defined input and output ports
+interface enables connection to a wide variety of sensor and control devices.
+Making GBGPI ideal for robotics, home control or portable development projects.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The dual boot internal flash
+ROM allows you to develop and simulate programs on your PC, then download them
+via the game link port to the GBGPI cartridge, eliminating the need for a
+dedicated programmer. Once programmed simply flip the boot switch and your
+ready to go!<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>A library of interface
+modules are provided, these can be added to the 'C' compiler - GBDK allowing
+connection to analogue, logic, thermistor, RTC and many more sensor
+devices.<span style="mso-spacerun: yes">  </span>The use of a high level
+development language makes programming easier to understand and readable to
+others.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1.1 Key Features:<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes"> </span><span style="mso-spacerun: yes">    </span>12 Channel 8bit High
+Speed ADC<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>8 Channel 8bit Buffered DAC<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>32KB of Internal Flash Program ROM<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>4KB of Internal Flash Data Store<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>Dual Boot Mode for Reprogramming<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>No Programmer Required<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>Rail-to-Rail Inputs and Outputs (0 to 5V)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>Standard D25 Output Connector<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>6hrs Operation from NiMH Batteries<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>'C' Development Library for GBDK<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>Fits into standard games cartridge<o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.0 Hardware Interface<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>Pin connections to 25 way socket (D25F) :-<o:p></o:p></span></p>
+
+<p class=MsoNormal><!--[if gte vml 1]><o:wrapblock><v:group id="_x0000_s1085"
+  style='position:absolute;margin-left:71.8pt;margin-top:0;width:294.35pt;
+  height:114.3pt;z-index:1' coordorigin="2540,1851" coordsize="5887,2286">
+  <v:line id="_x0000_s1026" style='position:absolute' from="2630,2486" to="8053,2486"/>
+  <v:oval id="_x0000_s1027" style='position:absolute;left:3003;top:2740;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1028" style='position:absolute;left:3378;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1029" style='position:absolute;left:3752;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1030" style='position:absolute;left:4126;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1031" style='position:absolute;left:4499;top:2740;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1032" style='position:absolute;left:4874;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1033" style='position:absolute;left:5248;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1034" style='position:absolute;left:5622;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1035" style='position:absolute;left:5995;top:2740;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1036" style='position:absolute;left:6370;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1037" style='position:absolute;left:6744;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1038" style='position:absolute;left:7118;top:2740;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1039" style='position:absolute;left:3190;top:3121;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1040" style='position:absolute;left:3565;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1041" style='position:absolute;left:3939;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1042" style='position:absolute;left:4313;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1043" style='position:absolute;left:4686;top:3121;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1044" style='position:absolute;left:5061;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1045" style='position:absolute;left:5435;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1046" style='position:absolute;left:5809;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1047" style='position:absolute;left:6182;top:3121;
+   width:188;height:254'/>
+  <v:oval id="_x0000_s1048" style='position:absolute;left:6557;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1049" style='position:absolute;left:6931;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1050" style='position:absolute;left:7305;top:3121;
+   width:187;height:254'/>
+  <v:oval id="_x0000_s1051" style='position:absolute;left:7492;top:2740;
+   width:187;height:254'/>
+  <v:line id="_x0000_s1052" style='position:absolute' from="3004,3629" to="7679,3629"/>
+  <v:line id="_x0000_s1054" style='position:absolute;flip:x y' from="2630,2867"
+   to="3004,3629"/>
+  <v:line id="_x0000_s1055" style='position:absolute' from="2630,2486" to="2630,2867"/>
+  <v:line id="_x0000_s1056" style='position:absolute;flip:y' from="7679,2867"
+   to="8053,3629"/>
+  <v:line id="_x0000_s1057" style='position:absolute;flip:x' from="8053,2486"
+   to="8053,2867"/>
+  <v:shapetype id="_x0000_t202" coordsize="21600,21600" o:spt="202" path="m0,0l0,21600,21600,21600,21600,0xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path gradientshapeok="t" o:connecttype="rect"/>
+  </v:shapetype><v:shape id="_x0000_s1058" type="#_x0000_t202" style='position:absolute;
+   left:7679;top:2696;width:374;height:508' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1058'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><b><span lang=EN-US>1<o:p></o:p></span></b></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1059" type="#_x0000_t202" style='position:absolute;
+   left:2540;top:2666;width:561;height:508' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1059'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><b><span lang=EN-US>13<o:p></o:p></span></b></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1060" type="#_x0000_t202" style='position:absolute;
+   left:7455;top:3068;width:561;height:508' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1060'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><b><span lang=EN-US>14<o:p></o:p></span></b></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1061" type="#_x0000_t202" style='position:absolute;
+   left:2727;top:3098;width:561;height:508' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1061'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><b><span lang=EN-US>25<o:p></o:p></span></b></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1062" style='position:absolute;flip:y' from="2630,2359"
+   to="3004,2486"/>
+  <v:line id="_x0000_s1063" style='position:absolute;flip:y' from="8053,2232"
+   to="8427,2486"/>
+  <v:line id="_x0000_s1064" style='position:absolute;flip:y' from="8053,2613"
+   to="8427,2867"/>
+  <v:line id="_x0000_s1065" style='position:absolute;flip:y' from="7679,3375"
+   to="8053,3629"/>
+  <v:shape id="_x0000_s1072" type="#_x0000_t202" style='position:absolute;
+   left:2817;top:1851;width:5049;height:635' filled="f" stroked="f">
+   <v:textbox>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+      yes">                </span><b>Inputs</b><span style="mso-spacerun:
+      yes">                                               </span><b>Outputs</b></span></p>
+      <p class=MsoNormal><span lang=EN-US><span style="mso-spacerun:
+      yes"> </span>12<span style="mso-spacerun: yes">    </span>10<span
+      style="mso-spacerun: yes">    </span>8<span style="mso-spacerun:
+      yes">      </span>6<span style="mso-spacerun: yes">     </span>4<span
+      style="mso-spacerun: yes">     </span>2<span style="mso-spacerun: yes">  
+      </span>REF<span style="mso-spacerun: yes">  </span>5V<span
+      style="mso-spacerun: yes">   </span>0V<span style="mso-spacerun: yes">   
+      </span>7<span style="mso-spacerun: yes">     </span>5<span
+      style="mso-spacerun: yes">     </span>3<span style="mso-spacerun:
+      yes">      </span>1</span></p>
+      <p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:shape id="_x0000_s1074" type="#_x0000_t202" style='position:absolute;
+   left:2817;top:3756;width:5236;height:381' filled="f" stroked="f">
+   <v:textbox style='mso-next-textbox:#_x0000_s1074'>
+    <![if !mso]>
+    <table cellpadding=0 cellspacing=0 width="100%">
+     <tr>
+      <td><![endif]>
+      <div>
+      <p class=MsoNormal><span lang=EN-US><span style="mso-spacerun: yes">   
+      </span>11<span style="mso-spacerun: yes">     </span>9<span
+      style="mso-spacerun: yes">     </span>7<span style="mso-spacerun:
+      yes">      </span>5<span style="mso-spacerun: yes">      </span>3<span
+      style="mso-spacerun: yes">     </span>1<span style="mso-spacerun: yes"> 
+      </span>CLK<span style="mso-spacerun: yes">  </span>0V<span
+      style="mso-spacerun: yes">    </span>8<span style="mso-spacerun:
+      yes">     </span>6<span style="mso-spacerun: yes">    </span><span
+      style="mso-spacerun: yes">  </span>4<span style="mso-spacerun: yes">    
+      </span>2</span></p>
+      </div>
+      <![if !mso]></td>
+     </tr>
+    </table>
+    <![endif]></v:textbox>
+  </v:shape><v:line id="_x0000_s1077" style='position:absolute;flip:x y'
+   from="5061,2613" to="5435,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1078" style='position:absolute;flip:x y' from="2817,2609"
+   to="5061,2613">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1079" style='position:absolute;flip:x' from="3191,3502"
+   to="5435,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1080" style='position:absolute;flip:x y' from="2817,2613"
+   to="3191,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1081" style='position:absolute;flip:x' from="5996,2613"
+   to="6370,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1082" style='position:absolute' from="5996,3502"
+   to="7492,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1083" style='position:absolute;flip:y' from="7492,2620"
+   to="7911,3502">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><v:line id="_x0000_s1084" style='position:absolute' from="6370,2613"
+   to="7911,2613">
+   <v:stroke dashstyle="1 1"/>
+  </v:line><w:wrap type="topAndBottom"/>
+ </v:group><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=96 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=394 height=154 src="./GBGPI11_files/image003.gif" v:shapes="_x0000_s1085 _x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045 _x0000_s1046 _x0000_s1047 _x0000_s1048 _x0000_s1049 _x0000_s1050 _x0000_s1051 _x0000_s1052 _x0000_s1054 _x0000_s1055 _x0000_s1056 _x0000_s1057 _x0000_s1058 _x0000_s1059 _x0000_s1060 _x0000_s1061 _x0000_s1062 _x0000_s1063 _x0000_s1064 _x0000_s1065 _x0000_s1072 _x0000_s1074 _x0000_s1077 _x0000_s1078 _x0000_s1079 _x0000_s1080 _x0000_s1081 _x0000_s1082 _x0000_s1083 _x0000_s1084"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal><b><i><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>Figure 1,</span></i></b><b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'> D25 interface connector<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1 style='text-align:justify'><span lang=EN-US>Inputs</span></h1>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The 12 ADC input channels
+have an input voltage range of 0 to +5V and a resolution of<span
+style="mso-spacerun: yes">  </span>8bits<span style="mso-spacerun: yes"> 
+</span>(0 to 255), hence 1LSB represents a voltage change of 19.6mV (5V/255).
+The inputs should be driven by a source impedance of less than 10K</span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Symbol'>W</span></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'> to prevent errors due to
+input currents. Unused inputs should be connected to 0V.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The lower 4 channels connect
+directly to the GPI ADC while the upper 8bits are fed via multiplexer. For this
+reason inputs 0 to 3 are preferred for high speed/high impedance measurements.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes"> </span><o:p></o:p></span></p>
+
+<h1 style='text-align:justify'><span lang=EN-US>Outputs</span></h1>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The 8 DAC output channels
+have an output voltage range of 0 to +5V and a resolution of 8bits<span
+style="mso-spacerun: yes">  </span>(0 to 255) hence 1LSB represents a voltage
+change of 19.6mV (5V/255). The output load current should be no greater than </span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Symbol'>±</span></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1mA (analogue mode) or </span><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:Symbol;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+mso-char-type:symbol;mso-symbol-font-family:Symbol'><span style='mso-char-type:
+symbol;mso-symbol-font-family:Symbol'>±</span></span><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>5mA (digital mode) per
+channel.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Digital and analogue modes
+use the same hardware but the software emulates a digital output by producing
+either 0V (logic 0) or +5V (logic 1).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes"> </span><o:p></o:p></span></p>
+
+<h1 style='text-align:justify'><span lang=EN-US>REF (pin7)</span></h1>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The reference output is
+connected to the ADC/DAC reference supply pins and represents the true
+full-scale input/output levels (~5V).<span style="mso-spacerun: yes"> 
+</span>Use this pin to power low current devices (&lt;5mA) eg: potentiometers,
+thermistors etc. This pin should not be used as a power supply pin.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1 style='text-align:justify'><span lang=EN-US>5V (pin6)</span></h1>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The 5V supply pin is
+connected to the GameBoy power converter and can be used to power external
+circuits such as switches, Infrared sensors and real time clocks.<span
+style="mso-spacerun: yes">  </span>The current drawn from this pin should be no
+greater than 20mA.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>CLK (pin19)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The clock output pin
+produces a ~1MHz (976uS) logic signal that can be used to with external
+circuits such as counters.<span style="mso-spacerun: yes">  </span>The clock is
+actually derived from the GameBoy clock and is buffered to drive loads of less
+than 5mA.<o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3.0 Standard Software
+Commands<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The standard GBGPI software
+commands are located in \lib\GPI.H and \include\GPI.S, more advanced (specific)
+commands can be added to \lib\GPIA.H and \include\GPIA.S (see section 6.0).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>To add the standard command
+set to your C applications simply add the following statement to the include
+list: #include &lt;gpi.h&gt;. An example program can be found in section 5.0.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>read_adc(channel)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Read input <b>channel</b>
+and return analogue <b>value</b>.<span style="mso-spacerun: yes"> 
+</span>Channel is 0 to 11, value is 0 to 255.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>write_dac(channel, data);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Write to output <b>channel</b>
+with analogue <b>value</b>.<span style="mso-spacerun: yes">  </span>Channel is
+0 to 11, value is 0 to 255.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>reset_gpi();<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Resets GPI internal hardware
+and sets all outputs to zero.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>set_bit(channel);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Set output <b>channel</b> to
+logic 1 (analogue 255).<span style="mso-spacerun: yes">  </span>Channel is 0 to
+11.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>clear_bit(channel);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Clear output <b>channel</b>
+to logic 0 (analogue 0).<span style="mso-spacerun: yes">  </span>Channel is 0
+to 11.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>test_bit(channel,
+threshold);<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Read input <b>channel</b>
+and return logic <b>state</b>. <b>Threshold</b> defines the input voltage level
+required to produce a logic 1.<span style="mso-spacerun: yes">  </span>Channel
+is 0 to 11, threshold is 0 to 255, state is 0 or 1.<span style="mso-spacerun:
+yes">  </span>The threshold value should be set to 40 (0.8V) for TTL/HCT logic
+or 128 (2.5V) for CMOS/HC logic.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoHeader style='tab-stops:36.0pt'><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:12.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><b><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></b></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>All settings<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>ADC channel 0-3<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>ADC channel 4-11<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt'>read_adc()</span></b><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>100uS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>200uS<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt'>write_dac()</span></b><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>325uS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>reset_gpi()</span></b><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.5mS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt'>set_bit()</span></b><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>350uS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+  10.0pt'>clear_bit()</span></b><span lang=EN-US style='font-size:12.0pt;
+  mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>350uS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>test_bit()</span></b><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=123 valign=top style='width:92.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>120uS<o:p></o:p></span></p>
+  </td>
+  <td width=151 valign=top style='width:4.0cm;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>220uS<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><i><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>Figure 2,</span></i></b><b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'> Standard Command Execution Times<o:p></o:p></span></b></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>4.0 Flash Memory<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText><span lang=EN-US>Selection of the internal flash memory
+bank is controlled by a combination of hardware logic and a mechanical slide
+switch. Physically the flash memory is contained within a single device but the
+functions of the three memory banks are different,</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width="94%" style='width:94.94%;
+ margin-left:12.5pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width="6%" valign=top style='width:6.68%;border:solid windowtext 1.0pt;
+  border-right:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Bank<o:p></o:p></span></b></p>
+  </td>
+  <td width="10%" valign=top style='width:10.0%;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Size<o:p></o:p></span></b></p>
+  </td>
+  <td width="19%" valign=top style='width:19.72%;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Switch position<o:p></o:p></span></b></p>
+  </td>
+  <td width="24%" valign=top style='width:24.22%;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>GB memory map<o:p></o:p></span></b></p>
+  </td>
+  <td width="39%" valign=top style='width:39.38%;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Function<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="6%" valign=top style='width:6.68%;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>0<o:p></o:p></span></p>
+  </td>
+  <td width="10%" valign=top style='width:10.0%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>32KB<o:p></o:p></span></p>
+  </td>
+  <td width="19%" valign=top style='width:19.72%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>N<o:p></o:p></span></p>
+  </td>
+  <td width="24%" valign=top style='width:24.22%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>0000 to 7FFF<o:p></o:p></span></p>
+  </td>
+  <td width="39%" valign=top style='width:39.38%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>32K User Program Store<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="6%" valign=top style='width:6.68%;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1<o:p></o:p></span></p>
+  </td>
+  <td width="10%" valign=top style='width:10.0%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1KB<o:p></o:p></span></p>
+  </td>
+  <td width="19%" valign=top style='width:19.72%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>N<o:p></o:p></span></p>
+  </td>
+  <td width="24%" valign=top style='width:24.22%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>B000 to BFFF<o:p></o:p></span></p>
+  </td>
+  <td width="39%" valign=top style='width:39.38%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>4K User Data Store<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="6%" valign=top style='width:6.68%;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2<o:p></o:p></span></p>
+  </td>
+  <td width="10%" valign=top style='width:10.0%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>32KB<o:p></o:p></span></p>
+  </td>
+  <td width="19%" valign=top style='width:19.72%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>P<o:p></o:p></span></p>
+  </td>
+  <td width="24%" valign=top style='width:24.22%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>0000 to 7FFF<o:p></o:p></span></p>
+  </td>
+  <td width="39%" valign=top style='width:39.38%;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Boot loader for
+  reprogramming<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><i><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>Figure 3,</span></i></b><b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'> Flash Memory Banks<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><span lang=EN-US>Bank 0, User Program Store</span></h3>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The 32KB program store
+contains the compiled ROM image of your application program. Memory locations
+0000 to 014F are reserved (by the compiler) to tell the Gameboy what type of
+cartridge has been installed etc.<span style="mso-spacerun: yes">  </span>This
+reserved memory also holds the scrolling NINTENDO logo which appears on
+startup, this cannot be changed! The rest of bank 0 is free for development and
+should accommodate approximately 700 to 1000 lines of ‘C’ code.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><span lang=EN-US>Bank 1, User Data Store</span></h3>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The 4KB non-volatile
+programmable data store allows user-defined data parameters to be stored and
+retrieved even after the power has been switched off.<span style="mso-spacerun:
+yes">  </span>This is ideal for storing configuration or calibration data that
+cannot be defined when the program is written.<span style="mso-spacerun: yes"> 
+</span>A set of special programming commands are provided to enable the user
+program to write and read from the data store,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:12.5pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Command<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Execution Time<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Function<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>in_byte(aaaa)<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>35uS<span
+  style="mso-spacerun: yes">  </span>(RAM)<o:p></o:p></span></p>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>20mS (video)<o:p></o:p></span></p>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>35uS<span
+  style="mso-spacerun: yes">  </span>(data store)<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext 1.0pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Read a single byte from
+  any memory location<o:p></o:p></span></p>
+  <p class=MsoNormal style='text-align:justify'><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r=out_byte(aaaa)<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>35uS<span
+  style="mso-spacerun: yes">  </span>(RAM)<o:p></o:p></span></p>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>20mS (video)<o:p></o:p></span></p>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1mS<span
+  style="mso-spacerun: yes">   </span>(data store)<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Write a single byte to any
+  memory location (not ROM)<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r=read_store(*b,s)<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>s*3mS<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Read (s*256) bytes from
+  data store into array<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r=write_store(*b,s)<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>s*256mS typ.<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Write (s*256) bytes from
+  array into data store<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 valign=top style='width:103.25pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>r=erase_store()<o:p></o:p></span></p>
+  </td>
+  <td width=130 valign=top style='width:97.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1sec typ.<o:p></o:p></span></p>
+  </td>
+  <td width=372 valign=top style='width:279.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-align:justify'><span lang=EN-US
+  style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Erase all of the data
+  store (set to 0xFF)<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">  </span>aaaa = Absolute memory address (0x000 to 0xFFFF).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">     </span>*b = Pointer to array of (s*256) bytes.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">       </span>s = Size of data store used * 256 bytes (1 to 16).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><span style="mso-spacerun:
+yes">       </span>r<span style="mso-spacerun: yes">  </span>= return result,
+0=OK, 1=error.<o:p></o:p></span></p>
+
+<p class=MsoNormal><i><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></i></p>
+
+<p class=MsoNormal><b><i><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:
+10.0pt'>Figure 4,</span></i></b><b><span lang=EN-US style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt'> Bank1 programming commands<o:p></o:p></span></b></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The flash data store works
+like an EPROM in that you must first erase store setting all of the bytes to
+0xFF. It is then possible to program individual bytes by setting the data bits
+from 1 to 0, it is not possible to set a bit back to 1 without erasing <b>all</b>
+of the store.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>From figure 4 it is seen
+that there are two ways of writing to the data store, with the out_byte or the
+write_store commands the, choice of these commands will depend on your final
+application. The following examples illustrate this.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-36.0pt'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1.<span
+style='mso-tab-count:1'>         </span>If the application was a data logger
+then the program would start by erasing the data store. As each byte was logged
+it would be programmed into the data store using the out_byte command.<span
+style="mso-spacerun: yes">  </span>At the end of the run all the bytes would be
+read from the store before the program could restart.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-36.0pt'><span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2.<span
+style='mso-tab-count:1'>         </span>If the application was a temperature
+controller then the program would have to randomly update and save set-point
+and calibration values.<span style="mso-spacerun: yes">  </span>The only way of
+achieving this is to have a mirror of the data store in RAM (using an array),
+if a value is updated in the array a copy of the entire array would be made in
+the data store using the write_store command.<span style="mso-spacerun: yes"> 
+</span>At the start of the program the array would be initialised from the data
+store using the read_store command.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>The write_store
+command actually performs an erase, 256*s byte write, then checks the data was
+written correctly, this can be performed over 100,000 times.<span
+style="mso-spacerun: yes">  </span>If you do not wish to use all of the data
+store (s=16) then s can be reduced, this has the advantage of using less RAM
+memory which is limited to 8K.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h3><span lang=EN-US>Bank 2, Boot Loader Program</span></h3>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Set the manual switch to ‘P’
+before switching on the GB to enable the boot loader program.<span
+style="mso-spacerun: yes">  </span>The programming boot loader menu will appear
+which allows programming of Banks 0/1 and reading of Bank 1 via the Game Link
+port to a PC.<span style="mso-spacerun: yes">  </span>The PC software is
+windows 95/8 compatible and will download a 32KB image in about 30seconds.<span
+style="mso-spacerun: yes">  </span>Note: software protection will prevent games
+ROM’s from being loaded so development ROM’s must have the licensee code<span
+style="mso-spacerun: yes">  </span>(0x014B) set to zero before compiling.<o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>5.0 Example Program<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>/* GPI demo to read input channel 0 and
+output 0 to 255 to channel 0 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>#include &lt;gb.h&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>#include &lt;stdio.h&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>#include &lt;gpi.h&gt;<span style='mso-tab-count:
+4'>                    </span>/* standard GPI library */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>void main()<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>{<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>UBYTE din, dout;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>reset_gpi();<span style='mso-tab-count:4'>                      </span>/*
+reset GPI hardware */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>cls();<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>printf(&quot;GPI Demo\n\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>printf(&quot;GPI IP0=\n&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>printf(&quot;GPI OP0=&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">  </span>do<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">  </span>{<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>gotoxy(8,2);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>din=read_adc(0);<span style='mso-tab-count:3'>                </span>/*
+read input channel 0 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>printn(din, 10, UNSIGNED);<span style='mso-tab-count:1'>      </span>/*
+display in decimal */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>puts(&quot;<span style="mso-spacerun: yes">  </span>&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>write_dac(0, dout);<span style='mso-tab-count:3'>             </span>/*
+output value */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>gotoxy(8,3);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>printn(dout, 10, UNSIGNED);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>puts(&quot;<span style="mso-spacerun: yes">  </span>&quot;);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>dout++;<span style='mso-tab-count:5'>                         </span>/*
+dout=dout+1 */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes">   
+</span>delay(100);<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'><span style="mso-spacerun: yes"> 
+</span>}while(!0);<span style='mso-tab-count:1'>     </span><span
+style="mso-spacerun: yes">                </span><span style='mso-tab-count:
+1'>  </span>/* do forever */<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-family:"Courier New"'>}<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>To try this program out
+simply cut and past it into a new document within your text editor/compiler
+(e.g. GBDS).<span style="mso-spacerun: yes">  </span>Save it to a suitable
+directory e.g. C:\SDK\GBZ80-GB\2-1-0\DEMO\DEMO.C. Then compile and run it.<span
+style="mso-spacerun: yes">  </span>If you get a message like ‘undefined GLOBAL
+reset_gpi()’ you have probably not installed the standard GBGPI library
+properly, see section 6.0.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Courier New";mso-fareast-font-family:"Times New Roman";mso-ansi-language:EN-US;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New"'>6</span></b><b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.0 Software
+installation<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Before adding the GBGPI
+library’s you must have completed the following software installation step,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l4 level1 lfo3;tab-stops:list 36.0pt'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>1)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Unzip GBDK onto
+your hard drive, which should look something like this,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><!--[if gte vml 1]><o:wrapblock><v:shape
+  id="_x0000_s1140" type="#_x0000_t75" style='position:absolute;left:0;
+  text-align:left;margin-left:87.05pt;margin-top:0;width:111pt;height:169.5pt;
+  z-index:2'>
+  <v:imagedata src="./GBGPI11_files/image004.jpg" o:title="gpidir"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=116 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=148 height=226 src="./GBGPI11_files/image004.jpg" v:shapes="_x0000_s1140"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Note:
+subdirectories have been added for \gb97 (emulator), \gbdev (development
+studio), \gbtd (tile designer), gbmb (map builder), gbgpi (programmer).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l4 level1 lfo3;tab-stops:list 36.0pt'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>2)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>Make all the GBDK
+libraries by running \lib\MAKE.BAT and \examples\MAKE.BAT.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-align:justify'><!--[if gte vml 1]><o:wrapblock><v:shape
+  id="_x0000_s1141" type="#_x0000_t75" style='position:absolute;left:0;
+  text-align:left;margin-left:85.3pt;margin-top:0;width:255.75pt;height:238.5pt;
+  z-index:3'>
+  <v:imagedata src="./GBGPI11_files/image005.jpg" o:title="gpisetup"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+ <table cellpadding=0 cellspacing=0 align=left>
+  <tr>
+   <td width=114 height=0></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td><img width=341 height=318 src="./GBGPI11_files/image005.jpg" v:shapes="_x0000_s1141"></td>
+  </tr>
+ </table>
+ </span><![endif]><!--[if gte vml 1]></o:wrapblock><![endif]--><br
+style='mso-ignore:vglayout' clear=ALL>
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt;text-align:justify'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<br style='mso-ignore:vglayout' clear=ALL>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt;mso-list:l4 level1 lfo3;tab-stops:list 36.0pt'><![if !supportLists]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>3)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>If you are using
+the GB development studio then set the ‘code editor’ ‘options’ like this,<o:p></o:p></span></p>
+
+<span lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:
+"Times New Roman";mso-fareast-font-family:"Times New Roman";mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New"'>6</span></b><b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.1 Adding GPI
+Library Files<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>To add the standard GBGPI
+library commands to GBDK the following files must loaded.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\include\GPI.H<span
+style='mso-tab-count:1'>  </span>- parameter definition for commands<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\lib\GPI.S<span
+style='mso-tab-count:2'>                     </span>- source code for commands<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\lib\GPI.O<span
+style='mso-tab-count:2'>                    </span>- output file from GPI.S<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\lib\GPIA.S<span
+style='mso-tab-count:2'>                  </span>- source code for advanced
+commands<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\lib\GPIA.O<span
+style='mso-tab-count:2'>                  </span>- output file from GPIA.S<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;text-indent:36.0pt'><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>\lib\MAKEGPI.BAT<span
+style='mso-tab-count:1'>    </span>- make file for GPI.S and GPIA.S<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>It is also necessary to add
+a reference to GPI.O/GPIA.O in \lib\GB.LIB (add two lines to the end of the
+file GPI.O and GPIA.O).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>To simplify this process
+just unzip GBGPI.ZIP into a within your GBDK path e.g. C:\SDK\GBGPI\ and run
+SETUP.BAT.<span style="mso-spacerun: yes">  </span>If you get and error during
+this process then you have not put the directory in the correct place or you
+have not installed GBDK correctly.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New"'>6</span></b><b><span
+lang=EN-US style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>.2 Advanced
+Library Files - GPIA<o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'>This section is under
+development.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-US
+style='font-size:12.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

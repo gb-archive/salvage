@@ -1,0 +1,31 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Steve Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win95; I) [Netscape]">
+   <title>Untitled</title>
+</head>
+<body background="sky.jpg">
+<font color="#FF6666"><font size=+3>GamePack connector Pin 2&nbsp;</font></font><img SRC="new4.gif" height=18 width=30>
+<p><font size=+1>Some uncertainty exists as to the real purpose of the
+CLOCK signal - Pin 2 on the GamePack edge connector. It is actually the
+processor clock (4.194304 MHz) divided by four (1.048575MHz).&nbsp; However
+it serves a much more important role as it indicates when the address and
+data lines are stable when interfacing to external IO devices.&nbsp; For
+those of you that remember the Motorola 6809 this used to be called the
+'E line'.&nbsp; The timing diagram bellow shows that when the Pin 2 is
+low the address and data lines are valid.</font>
+<br>&nbsp;
+<p><br>
+<center>
+<p><img SRC="Pin2.JPG" BORDER=2 height=150 width=260></center>
+
+<p><br>
+<p><font size=+1>If the enable of an IO device uses just the Address and
+/RD lines and Pin 2 is not included then the device will be frequently
+enabled for short periods as the address lines stabilise. In many situations
+this may not be a problem but you should be aware of this condition.</font>
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,48 @@
+Fluffy2 parts list 29/8/2002
+============================
+
+Resistors
+---------
+2 * 100R
+2 * 470R
+2 * 4K7
+5 * 10K
+
+Capacitors
+----------
+2 * 10pF
+3 * 100nF
+8 * 10uF 25V Radial Electrolytic (5*5*2.5mm)
+
+Diodes
+------
+2 * 1N4148
+1 * BAT85 or BAT43 (Maplin VR19V)
+1 * LED red   5mm (VPP)
+1 * LED green 5mm (VCC)
+
+Crystal
+-------
+1 * 10HMz HC-49/4H
+    or three terminal ceramic resonator (remove 2*10pF)
+
+Semiconductors
+--------------
+1 * PIC16F84-10/P  Microchip PIC or PIC16F84A-20/P (Maplin RN49D)
+1 * MAX232CPE      RS232 driver
+1 * 78L05          100mA +5V regulator
+1 * 78L12          100mA +12V regulator
+1 * ZTX300         NPN transistor (pin view /CBE\) or BC547C (Maplin QQ14Q) rotated by 180 degrees (pin view /EBC\) 
+2 * ZTX500         PNP transistor (pin view /CBE\) or BC557C (Maplin QQ16S) rotated by 180 degrees (pin view /EBC\) 
+
+Connectors
+----------
+3 * 18pin DIL
+3 * 28pin DIL (0.3 wide)
+1 *  4pin molex
+1 * 15way Dtype connector
+1 * DC 2.1mm socket (single hole fixing)
+
+Box
+---
+1 * ABS type MB2 100*76*41mm

@@ -1,0 +1,65 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>SXtoPIC</title>
+</head>
+<body background="sky.jpg">
+<img SRC="picsx.gif" BORDER=2 height=70 width=150><font color="#FF0000"><font size=+3>
+PIC to SX conversion</font></font>
+<p><font size=+1><font color="#FF0000">Program Memory,</font> the 12bit
+wide instructions (opcode+operand) mean that jumps and calls can only operate
+within limited page boundaries unless you manually set the page bits in
+the status register or use the PAGE command. This is like the original
+PIC16C54 series of devices.&nbsp; Fortunately the stack is 11bits wide
+so the RETURN commands operate correctly, but you must remember to restore
+the PAGE bits before you make any further calls. You should also make sure
+the page bits are set correctly after reset. See section 2.6 of the user
+manual.</font>
+<p><font size=+1><font color="#FF0000">Data Memory,</font> a further consequence
+of the small instruction width is that only one SRAM file bank can be directly
+addressed at a time (eg: 10-1F).&nbsp; To access different file banks you
+must change bits 5-7 in the file select register – FSR. See section 2.3</font>
+<p><font size=+1><font color="#FF0000">Port Configuration,</font> Setting
+up PORTS is completely different as you must first use the MODE command
+to select the port function you want to change and then use the Wreg and
+TRIS command to configure the function.&nbsp; For PORTA/C there are three
+functions, 0D-TTL/CMOS inputs, 0E-Pin pull up enable,&nbsp; 0F-Pin direction.&nbsp;
+For PORTB there is also four additional registers. See section 2.4.7</font>
+<p><font size=+1>Example: to set port B pins to all inputs,</font>
+<p><font size=+1>&nbsp;&nbsp;&nbsp; MODE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0x0F</font>
+<br><font size=+1>&nbsp;&nbsp;&nbsp; MOVLW&nbsp;&nbsp;&nbsp;&nbsp; 0xFF</font>
+<br><font size=+1>&nbsp;&nbsp;&nbsp; TRIS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PORTB</font>
+<p><font size=+1><font color="#FF0000">Option Register,</font>&nbsp; when
+OPTIONX in the FUSEX word is cleared Bits 7/6 of the option register are
+enabled.&nbsp; Bit 6 enables RTCC interrupts, while Bit 7 determines what
+register is seen at address 01 (W or RTCC).&nbsp; Note that PORTB week
+pull-ups are set through the MODE and TRIS commands not OPTION Bit7.&nbsp;
+See section 4.3</font>
+<p><font size=+1><font color="#FF0000">Crystal/Ceramic Oscillator,</font>
+a parallel resistor is required across the oscillator pins to make the
+oscillator work unless the /IFBD=1 in the FUSE, also the capacitor values
+are different.</font>
+<p><font size=+1><font color="#FF0000">FUSE settings,</font>&nbsp; the
+FUSE and FUSEX words are set up in the assembler and then programmed in
+to configure the general device operation.&nbsp; FUSE is like the Configuration
+word but has additional bits such as RC divider/OPTIONX/TURBO, see section
+5.1.&nbsp; The FUSEX is completely new as it configures RAM/EEPROM size,
+ADD/SUB carry result and a brownout feature. See section 5.2</font>
+<p><font size=+1><font color="#FF0000">Data EPROM, </font>there is no data
+EEPROM available for storing values during power down.</font>
+<p><font size=+1><font color="#FF0000">RESET,</font> the reset address
+is to the top of memory eg: 0x07FF.</font>
+<p><font size=+1><font color="#FF0000">Assembler labels,</font> the fluffy
+assembler gets confused if it finds a label ending in 0, so always start
+from 1.</font>
+<p><font size=+1><font color="#FF0000">Turbo mode,</font><font color="#000000">
+be careful when using Turbo mode to also set /SYNC=0 in FUSE as this causes
+port access to be synchronous. Otherwise port read/writes can give unpredictable
+results.</font></font>
+<br>&nbsp;
+</body>
+</html>

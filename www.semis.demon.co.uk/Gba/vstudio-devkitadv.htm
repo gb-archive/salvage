@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>Setting up Devkit Advance and Visual Studio</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.directory {  font-family: "Courier New", Courier, mono; font-weight: bold}
+.source {  font-family: "Courier New", Courier, mono}
+.section {  font-family: Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold; color: #009900}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #006600}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<p class="section">Setting Up Devkit Advance and Visual Studio</p>
+<p>Devkit Advance sets the standard for Gameboy Advance software development. 
+  This quick tutorial just shows you how to setup Devkit Advance with Visual Studio.</p>
+<p>Installing Devkit Advance</p>
+<ul>
+  <li>First, download Devkit Advance, from Jason Wilkins page <a href="http://www.io.com/%7Efenix/devkitadv/">http://www.io.com/~fenix/devkitadv/</a></li>
+  <li>You need the following: <span class="source"><b>binutils, core, gcc and 
+    newlib</b></span> (For C development, there are more files if you require 
+    C++).</li>
+  <li>Unzip all the zips into the root of <b><span class="source">C:</span></b> 
+    (Make sure you use folder names when extracting the zips!).</li>
+</ul>
+<p>Now you will have Devkit Advance installed in <b><span class="source">C:\devkitadv</span></b></p>
+<p class="section">Setting up Visual Studio</p>
+<ul>
+  <li><span class="heading">Create a new Makefile project.</span><br>
+    <br>
+    <img src="setup.gif" width="477" height="387"> <br>
+    Change the output field to be the name of you desired gameboy advance rom 
+    image. The example seen here is sprite.bin.<br>
+    <br>
+    Hit finish. You will see this twice, once for debug and once for release. 
+    Just set both the same. You could use different makefiles, one including debug 
+    symbols but I haven't got a GBA debugger to use so there is no point. This 
+    means we will use Microsoft NMAKE instead of GNU make so I realise that this 
+    tutorial is not going to be of use for everyone.<br>
+    <br>
+  </li>
+  <li><span class="heading">Add a path to GCC in Visual Studio</span><br>
+    <br>
+    <img src="directory.gif" width="417" height="322"><br>
+    Go to the Tools menu, choose Options and select the directories tab.<br>
+    Show directories for Executable files and add an entry to the root of where 
+    you installed GCC in my case this is <span class="directory">C:\Devkitadv\bin</span> 
+    as seen above.<br>
+    <br>
+    This is required so the when you try and compile your project, Visual Studio 
+    can find GCC on your system. <br>
+    <br>
+  </li>
+  <li><span class="heading">Create your Makefile</span><br>
+    <br>
+    The make filename is refered to in the project setup dialog box above. In 
+    this case it is called sprite.mak. Its fairly simple and similar to the unix 
+    style make. I choose to use NMAKE because I can't seem to get a decent makefile 
+    to work with GNU make, it always crashes out? Anyway you could use GNU make 
+    by changing the command line in your project setup.<br>
+    <br>
+    Here is a sample make file for the sprite project:<br>
+    <br>
+    <span class="source">CFLAGS = -c -O3<br>
+    MODEL = -mthumb -mthumb-interwork </span> 
+    <p class="source">all : 3dsprite.bin</p>
+    <p class="source">3dsprite.bin : 3dsprite.elf<br>
+      objcopy -O binary 3dsprite.elf 3dsprite.bin</p>
+    <p class="source">3dsprite.elf : map.o sprite.o main.o savage.o<br>
+      gcc $(MODEL) -o 3dsprite.elf main.o map.o sprite.o savage.o</p>
+    <p class="source">main.o : main.c<br>
+      gcc $(CFLAGS) $(MODEL) main.c</p>
+    <p class="source">map.o : map.c<br>
+      gcc $(CFLAGS) $(MODEL) map.c</p>
+    <p class="source">sprite.o : sprite.c<br>
+      gcc $(CFLAGS) $(MODEL) sprite.c</p>
+    <p class="source">savage.o : savage.c<br>
+      gcc $(CFLAGS) $(MODEL) savage.c</p>
+    <p class="source">fixmath.o : fixmath.c<br>
+      gcc $(CFLAGS) $(MODEL) fixmath.c</p>
+    
+  </li>
+</ul>
+<p> <span class="section">What This Means...</span><br>
+  <br>
+  If you saw the old makefiles before devkit advance, you'll agree that this one 
+  is much simpler.</p>
+<p><b class="source">LD</b> the linker is also conspicous by its absense. This 
+  is because we now use GCC to spawn the linker as it will pass across the correct 
+  parameters.</p>
+<p>Everythings else is simple, Devkit advance takes care of all of the runtime 
+  library selections and include files so we don't bother about that anymore.</p>
+<p>Finally, the <b class="source">MODEL</b> variable is used to select which ARM 
+  mode we want to compile for:</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td width="19%"><b><span class="source">-mthumb</span></b> </td>
+    <td width="81%">Compiles 16bit THUMB opcodes</td>
+  </tr>
+  <tr> 
+    <td width="19%"><b><span class="source">-marm</span></b> </td>
+    <td width="81%">Compiles 32bit ARM opcodes</td>
+  </tr>
+  <tr>
+    <td width="19%"><b><span class="source">-mthumb-interwork</span></b></td>
+    <td width="81%">Tells the compiler to automatically handle the switch from 
+      <b class="source">THUMB</b> to <b class="source">ARM</b> mode if your code 
+      requires it. If you only use a single mode you can ommit this switch.<br>
+      (<b>NOTE: Roms will not run on IGBA UNLESS -mthumb-interwork is specified! 
+      Don't know why</b>).</td>
+  </tr>
+</table>
+
+<p class="section">Adding Files to Your Project</p>
+<p><img src="workspace.gif" width="186" height="219" align="right" border="1">Altough 
+  the makefile takes care of compliation, the Visual Studio project does not know 
+  which files belong to it. So you add files into the appropriate sections (source, 
+  header and resource files). Do this by right clicking on the section and choosing 
+  Add Files...<br>
+  <br>
+  The project view is not used to determine which files to compile. It only serves 
+  as an aid to you so you can see the files your working on more easily.<br>
+  <br>
+  On the right is an example of how the sprite project would be laid out. Remember 
+  to add the dependancies etc to the make file as well otherwise, they won't be 
+  compiled.</p>
+<p class="section">Conclusion</p>
+<p>Now, you can use Devkit Advance and a fairly nice IDE. Visual Studio is used 
+  to C syntax so you get source syntax highlighting and in Visual Studio 6.0 intellisense 
+  for your structures and objects!!! Very handy.<br>
+  <br>
+  Thanks must go to Jason Wilkins for finally providing GBA'ers with a proper 
+  compiler. Devkit advance handles all of the nitty gritty setup of GCC and leaves 
+  us free to think up amazing demos! WOW!</p>
+<p>And there is more to come, I know Jason has some other ideas for Devkit Advance 
+  which will help us squeeze even more speed from the GBA with ease.</p>
+<p>Matt Tighe</p>
+<p><a href="mailto:matt@matt-tighe.co.uk">matt@matt-tighe.co.uk</a></p>
+<p>Copyright (C)Savage Development<br>
+  This file was downloaded from <a href="http://www.matt-tighe.co.uk">www.matt-tighe.co.uk</a></p>
+</body>
+</html>

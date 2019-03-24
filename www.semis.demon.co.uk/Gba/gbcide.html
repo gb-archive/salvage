@@ -1,0 +1,58 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Steven Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>Setting up CGBIDE for the GBA</title>
+</head>
+<body background="sky.jpg">
+<b><i><font color="#FF0000"><font size=+3>Colour
+GameBoy IDE - CGBIDE</font></font></i></b>
+<br><b><i><font color="#FF0000"><font size=+3>Setting up for the GBA</font></font></i></b>
+<p><font color="#000000"><font size=+1>The following settings can be made
+to CGBIDE to turn it into a useful IDE for GBA code development and will
+look familiar to Visual Studio users.</font></font>
+<p><img SRC="cgbide1.jpg" BORDER=1 height=219 width=412>
+<p><font color="#000000"><font size=+1>1. Use 'Edit - Editor Colour' to
+adjust the text colour settings.</font></font>
+<br>&nbsp;
+<p><img SRC="cgbide2.jpg" BORDER=1 height=344 width=403>
+<p><font size=+1><font color="#000000">2. Use 'Edit - EditorFont' to adjust
+the t</font>ext font settings.</font>
+<br>&nbsp;
+<p><img SRC="cgbide3.jpg" BORDER=2 height=385 width=493>
+<p><font color="#000000"><font size=+1>3. Use 'Tools - Tools Settings'
+to configure the IDE button settings</font></font>
+<p><font color="#000000"><font size=+1>&nbsp; Use the User Tool button
+to build the project</font></font>
+<br><font color="#000000"><font size=+1>&nbsp; Use the Music button to
+run the Emulator</font></font>
+<br><font color="#000000"><font size=+1>&nbsp; Use the Image button to
+Program the Flash cart</font></font>
+<p><font color="#000000"><font size=+1>Unfortunately it does not seem to
+be possible to use CGBIDE to build the project using the 'Output Window'
+so a DOS window will appear containing any errors in compilation. It is
+also necessary to set the User Tool for each new project as this points
+to a project specific 'make.bat' file that will run the projects .mak file.
+The .mak file contains all of the information needed to tell the compiler
+how to build the project.</font></font>
+<p><img SRC="cgbide4.jpg" BORDER=2 height=189 width=153>
+<p><font size=+1>4. Directory setup</font>
+<p><font size=+1>Once the IDE is set up you must also add to the DOS path
+C:\devkitadv\bin so that Dev-Kit Advance can find all of its components.
+Also the utils directory should contain the following support tools,</font>
+<p><font size=+1>&nbsp; BoycottAdvance.exe&nbsp; (GBA emulator)</font>
+<br><font size=+1>&nbsp; faw1.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(Flash Programmer if available)</font>
+<br><font size=+1>&nbsp; Gbarm.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(ROM fixer)</font>
+<br>&nbsp;
+<p><br>
+<center>
+<p><a href="GBAmain.html"><img SRC="homebutton.jpg" height=63 width=53></a>
+<br><font size=+1><a href="GBAmain.html">Back to GBA</a></font></center>
+
+<p><br>
+</body>
+</html>

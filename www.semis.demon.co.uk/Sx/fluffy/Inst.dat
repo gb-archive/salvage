@@ -1,0 +1,84 @@
+nop			:	0000 0000 0000
+movwf	"!OPTION"	:	0000 0000 0010
+sleep			:	0000 0000 0011
+clrwdt			:	0000 0000 0100
+movwf	"!RA"		:	0000 0000 0101
+movwf	"!RB"		:	0000 0000 0110
+movwf	"!RC"		:	0000 0000 0111
+return			:	0000 0000 1100
+retp			:	0000 0000 1101
+reti			:	0000 0000 1110
+retiw			:	0000 0000 1111
+page	A12		:	0000 0001 0 A10-8
+bank	A8		:	0000 0001 1 A7-5
+movwf	A5		:	0000 001 A4-0
+clrw			:	0000 0100 0000
+iread			:	0000 0100 0001
+movf	"!MODE"	"0"	:	0000 0100 0010
+movf	"!MODE" "W"	:	0000 0100 0010
+movwf	"!MODE"		:	0000 0100 0011
+mode	L4		:	0000 0101 L3-0
+clrf	A5		:	0000 011 A4-0
+subwf	A5	B1	:	0000 10 B0 A4-0
+decf	A5	B1	:	0000 11 B0 A4-0
+
+iorwf	A5	B1	:	0001 00 B0 A4-0
+andwf	A5	B1	:	0001 01 B0 A4-0
+xorwf	A5	B1	:	0001 10 B0 A4-0
+addwf	A5	B1	:	0001 11 B0 A4-0
+
+movf	A5	B1	:	0010 00 B0 A4-0
+comf	A5	B1	:	0010 01 B0 A4-0
+incf	A5	B1	:	0010 10 B0 A4-0
+decfsz	A5	B1	:	0010 11 B0 A4-0
+
+rrf	A5	B1	:	0011 00 B0 A4-0
+rlf	A5	B1	:	0011 01 B0 A4-0
+swapf	A5	B1	:	0011 10 B0 A4-0
+incfsz	A5	B1	:	0011 11 B0 A4-0
+
+bcf	A5	B3	:	0100 B2-0 A4-0
+bsf	A5	B3	:	0101 B2-0 A4-0
+btfsc	A5	B3	:	0110 B2-0 A4-0
+btfss	A5	B3	:	0111 B2-0 A4-0
+
+retlw	L8		:	1000 L7-0
+call	L12		:	1001 L7-0
+goto	L12		:	101 L8-0
+
+movlw	L8		:	1100 L7-0
+iorlw	L8		:	1101 L7-0
+andlw	L8		:	1110 L7-0
+xorlw	L8		:	1111 L7-0
+
+movfw	A5		:	0010 000 A4-0
+movfw	"!MODE"		:	0000 0100 0010
+tstf	A5		:	0010 001 A4-0
+incf	A5		:	0010 101 A4-0
+decf	A5		:	0000 111 A4-0
+incfsz	A5		:	0011 111 A4-0
+decfsz	A5		:	0010 111 A4-0
+xorwf	A5		:	0001 101 A4-0
+rrf	A5		:	0011 001 A4-0
+rlf	A5		:	0011 011 A4-0
+iorwf	A5		:	0001 001 A4-0
+andwf	A5		:	0001 011 A4-0
+swapf	A5		:	0011 101 A4-0
+addwf	A5		:	0001 111 A4-0
+clrc			:	0100 0000 0011
+setc			:	0101 0000 0011
+clrdc			:	0100 0010 0011
+setdc			:	0101 0010 0011
+clrz			:	0100 0100 0011
+setz			:	0101 0100 0011
+skpc			:	0111 0000 0011
+skpnc			:	0110 0000 0011
+skpdc			:	0111 0010 0011
+skpndc			:	0110 0010 0011
+skpz			:	0111 0100 0011
+skpnz			:	0110 0100 0011
+tris	"PORTA"		:	0000 0000 0101
+tris	"PORTB"		:	0000 0000 0110
+tris	"PORTC"		:	0000 0000 0111
+option	        	:	0000 0000 0010
+

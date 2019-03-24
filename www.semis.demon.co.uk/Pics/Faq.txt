@@ -1,0 +1,141 @@
+FAQ list updated 6 May 2001, By S.G.Willis
+
+Listed bellow are the answers to some of your questions.
+
+
+How do I go about developing some pic84 code
+----------------------------------------------
+
+Q1. What is involved in developing and programming a pic84 ?
+
+A1. Follow these steps,
+
+1) Have a look at my demo file (PPTEST.ASM). Then write your assembler file 
+using DOS edit or PFE (programmers file editor) for windows etc.
+Make sure this line is included in your file,
+
+	LIST    P=PIC16C84, F=INHX8M
+
+2) Assemble the file :-
+
+        MPASM FILE.ASM
+
+	you can get a copy of the assembler from my site
+
+3) Then programme the pic using ICPROG
+
+	you must set the hardware as shown on my page
+        also make sure the fuse settings are correct
+
+
+
+PIC508/509 OSCCAL value
+-----------------------
+
+Q2. I am using your software pp875 and the hardware with an UV-erasable 
+PIC12c509. If you erase these chips, you loose the calibration word, which 
+Microchip programs at address $3FF ?
+
+A2. Read the value out before erasing the chip, and then place it within 
+your program code eg:-
+
+   	ORG 0x3FF
+	DW <CalibrationWord>
+
+Don't forget to remove it when using a OTP device !
+
+
+Message: OSCCAL value already programmed
+----------------------------------------
+
+Q3.Why do I get "Message: OSCCAL value already programmed" ?
+
+A3. When you are programming a OTP 508/509 the OSCCAL (internal RC 
+calibration value) is already programmed into 0x1FF (508) or 0x3FF (509) by
+Microchip. Make sure your code does not over write this value. If you get 
+this message with an eprom device it's because the chip has not been erased 
+properly.
+
+
+Flash PICS
+----------
+
+Q4. I am currently using pic 16C84-04 but find this part is now only 
+supplied as a FLASH ROM device (pic 16F84-04) instead of EEprom.
+Do you know if modifications are required to the parallel port programmer to 
+use this pic ?
+
+A4. I have down loaded the latest PIC16C84 and PIC16F84 programming specs 
+from microchip and at first glance they are very similar.
+
+A few timing changes have been made, but nothing drastic.  The configuration 
+word now has more 'code protect' features.
+
+
+Programming I2C EEPROMS
+-----------------------
+
+Q5. I'm wondering if your programmer supports I2C (24C0x) chips?
+
+A5. Yes with a simple adapter it is possible to program most I2C EEPROMS
+using IC-Prog. Connect the 8 pin EEPROM socket to the 18pin or ISP sockets
+as follows,
+
+8pin    18pin   ISP
+1       5       GND
+2       5       GND
+3       5       GND
+4       5       GND
+5       13      RB7
+6       12      RB6
+7       ---     ---
+8       14      VCC
+
+
+Protecting PIC12C508/9
+----------------------
+
+Q6. Why can I still read my 508 when the protect flag has been set ?
+
+A6. The protection flag on the 508/9 only stops ROM addresses > 0x3F from 
+being read (zero). Any data in address range 0-0x3F will read as normal
+
+
+Getting the transistors
+-----------------------
+
+Q7. I have some problems to get the transistor ZTX 500 !  Do you know 
+some compatible transistors ???
+
+A7. It's a PNP general purpose device (HFE 100,  IC 100mA) so anything 
+that fits should be ok. Try a BC557, BC558, BC640 or 2N3906. Note the BC557, 
+BC558, BC640  must be rotated by 180 degress to get the correct pinout.
+
+
+Multiple pic - parallel programming
+-----------------------------------
+
+Q8. Can I plug several pics ontop of each other and programme them all at 
+the same time - in parallel.
+
+A8. No you can't programme more than one pic at a time, for many reasons,
+
+The increased power supply current will overload the programmer.
+When the programmer verifies the pics it will not be able to 
+verify the pics individually - major confusion.
+etc...
+
+
+I can't write any PIC12c508 chips
+---------------------------------
+
+Q9. I cant write any PIC12c508 chips.
+
+A9. I always try a PIC16C84 first to test out the hardware. If this is ok 
+but the 508 still won't work check the two 1nF filter caps are correct on
+the port pins D0/1 and VPP is 13V. Also check the 508 has been fully erased
+I find they take a bit longer than other PIC's.
+
+That's it !!!!
+
+Steve... 

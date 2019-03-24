@@ -1,0 +1,206 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="S.G.Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>Steve's Gameboy Page</title>
+</head>
+<body background="sky.jpg">
+&nbsp;
+<table COLS=2 WIDTH="94%" >
+<tr>
+<td>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<div align=right><font color="#FF0000"><font size=+3>GameBoy</font></font>
+<br><font color="#FF0000"><font size=+3>Hardware and</font></font>
+<br><font color="#FF0000"><font size=+3>Programming</font></font></div>
+</td>
+
+<td><img SRC="iceblue.jpg" BORDER=0 height=199 width=175></td>
+</tr>
+</table>
+
+<p><font color="#000000"><font size=+1>What makes the gameboy attractive
+to the hobby designer (besides its slick look and low cost) is the great
+wealth of&nbsp; publicly available hardware and software support.&nbsp;
+Most games machines are black boxes containing custom made hardware with
+little if any information on their inner workings.&nbsp; But a few dedicated
+individuals have literally taken the gameboy apart and documented what
+they have found.</font></font>
+<p><font color="#000000"><font size=+1>My interest concentrate on hardware
+interface via the plug in ROM cartridge and software development using
+'C'.&nbsp; So I have collected all the documents and links that relate
+to these topics plus a few other useful bits.</font></font>
+<br>&nbsp;
+<p><img SRC="lemming.gif" height=26 width=602>
+<p><font color="#FF6666"><font size=+3>Latest updates&nbsp;</font></font><img SRC="new4.gif" height=18 width=30>
+<br>&nbsp;
+<table BORDER COLS=3 WIDTH="100%" >
+<tr>
+<td>
+<center><font size=-2>20/3/2000</font>
+<br><a href="mbc5.bmp"><img SRC="schip1.jpg" height=95 width=89></a>
+<br><font color="#3366FF"><font size=+3><a href="mbc5.bmp">MBC5</a></font></font>
+<br><font color="#3366FF"><font size=+1><a href="mbc5.bmp">Pin-Out</a></font></font></center>
+</td>
+
+<td>
+<center><font size=-2>11/1999</font>
+<br><a href="GBGPI/GBGPI.htm"><img SRC="gbgpi.jpg" BORDER=0 height=85 width=100></a>
+<br><font color="#FF6666"><font size=+3><a href="GBGPI/GBGPI.htm">GBGPI</a></font></font>
+<br><font size=+1><a href="GBGPI/GBGPI.htm">General Purpose Interface</a></font></center>
+</td>
+
+<td>
+<center><font size=-2>9/1999</font>
+<br><a href="DsoDemo/DsoDemo.htm"><img SRC="dso1.jpg" BORDER=0 height=91 width=63></a>
+<br><font color="#FF6666"><font size=+3><a href="DsoDemo/DsoDemo.htm">GBDSO</a></font></font>
+<br><font size=+1><a href="DsoDemo/DsoDemo.htm">Digital Sampling&nbsp;</a></font>
+<br><font size=+1><a href="DsoDemo/DsoDemo.htm">Oscilloscope</a></font></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font color="#000000"><font size=-2>4/1999</font></font>
+<br><font color="#000000"><font size=+1>The last unknown pin</font></font>
+<br><font color="#000000"><font size=+1>(pin 2) on the Gamepack edge connector
+<a href="newpin2.htm">defined</a>.</font></font></center>
+</td>
+
+<td>
+<br>&nbsp;
+<p>&nbsp;</td>
+
+<td>
+<center><font color="#000000"><font size=-2>3/1999</font></font>
+<br><font color="#000000"><font size=+1>Simple hardware IO address decoder
+using a single <a href="newhc138.bmp">74HC138</a> chip.</font></font></center>
+</td>
+</tr>
+</table>
+
+<p><img SRC="lemming.gif" height=26 width=602>
+<p><font color="#FF6666"><font size=+3>Hardware highlights</font></font>
+<p><font size=+1>CPU: 8-bit Z80 like processor</font>
+<br><font size=+1>Main ROM: up to 2M byte on plugin cartridge</font>
+<br><font size=+1>Main RAM: 8K Byte internal, 128K Byte on plugin cartridge</font>
+<br><font size=+1>Video RAM: 8K Byte</font>
+<br><font size=+1>LCD: 160x144 (20x18 tiles)</font>
+<br><font size=+1>Sound: 4 channels with stereo sound via headphones</font>
+<br><font size=+1>Power: GBclassic 4*AA cells 60mA, GBpocket 2*AAA cells
+100mA</font>
+<br>&nbsp;
+<p><img SRC="lemming.gif" height=26 width=602>
+<p><font color="#FF6666"><font size=+3>Introduction</font></font>
+<p><font size=+1>The Gameboy is controlled by an 8bit micro-processor which
+similar to the Zilog Z80.&nbsp; It contains six general purpose 8bit registers
+which can be paired to form three 16 registers 'BC DE HL'. There is also
+an 8bit accumulator 'A' for arithmetic calculations and data movement.
+The I/O ports and commands have been replaced with LCD, sound, joypad and
+serial gamelink interfaces. Dedicated memory locations (0xFF00 to 0xFF4B)
+enable control of these I/O interfaces through software see <a href="Gbspec.txt">GBspec.txt</a>.</font>
+<p><font size=+1>Internally the gameboy contains several RAM blocks :-</font>
+<p><font size=+1>8Kb of video RAM:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0x8000&nbsp; - 0x9FFF</font>
+<br><font size=+1>8Kb of user RAM:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0xC000 - 0xDFFF</font>
+<br><font size=+1>160bytes OAM (sprites): 0xFE00 - 0xFE9F</font>
+<br><font size=+1>127bytes of HIRAM:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0xFF80
+- 0xFFFE</font>
+<p><font size=+1>But all programs are loaded from an external ROM cartridge.</font>
+<br>&nbsp;
+<p><img SRC="lemming.gif" height=26 width=602>
+<p><font color="#FF6666"><font size=+3>The ROM cartridge interface</font></font>
+<p><font size=+1>To make the gameboy do anything useful you will have to
+attach a ROM cartridge containing your program.&nbsp; It is not possible
+to remotely boot the gameboy (eg: via the Gamelink) without a ROM cartridge
+to initiate communications.</font>
+<center>
+<p><img SRC="Gbpins.gif" height=119 width=333><img SRC="bm1.gif" BORDER=0 height=127 width=121></center>
+
+<p><font size=+1>Connections of a 32Kb EPROM (27C256) is relatively simple
+as it can be directly connected to the cartridge socket without additional
+logic <a href="Powerand.gif">27C256.gif</a></font>
+<p><font size=+1>If you need a ROM larger than 32Kb things get a little
+bit more complicated as the additional memory has to be paged into memory
+in blocks of 16Kb at address 0x4000 to 0x7FFF.&nbsp; The bottom 16Kb of
+the ROM (0x0000 to 0x3FFF) is fixed and cannot be paged as this is where
+code execution starts at switch on.</font>
+<br><font size=+1>The paging is done by a custom chip known as the MBC1
+(MBC2 and MBC3 are available but less common) which sits alongside the
+the ROM in the games cartridge interface.&nbsp; Selection of the current
+page is done in software by writing a page number to memory at address
+0x2000 see <a href="Mbc1.gif">Mbc1.gif</a>.&nbsp; It is possible to reproduce
+the hardware of the MBC1 using standard logic
+<a href="Mbc1ro.gif">Mbc1ro.gif</a>,
+but by far the easiest solution is to get one out of an old games cartridge.</font>
+<p><font size=+1>The first thing you will need to develop your own Gameboy
+hardware is a programmable ROM cartridge.&nbsp; If you love DIY and really
+want to develop your own hardware then have a look at <a href="http://www.reinerziegler.de/">Reiner
+Ziegler's cart reader/writer.</a></font>
+<p><font size=+1>If you are uneasy about making a PCB and soldering small
+components you could pick up a second hand commercial programmer if your
+lucky. Or check out one of the many high quality products available from
+<a href="http://www.lik-sang.com/catalog/product_list.php?category=51">liksang.com</a>.
+Please to not ask me about the different products which are available.&nbsp;</font><img SRC="roadkil2.gif" BORDER=0 height=23 width=23 align=ABSCENTER>
+<br>&nbsp;
+<p><img SRC="lemming.gif" height=26 width=602>
+<p><font color="#FF6666"><font size=+3>Documentation</font></font>
+<p><font size=+1>Bellow is a selection of documents that I have found essential,
+in particularly the latest document by Dr Pan which covers all the software
+controlled IO registers.</font>
+<p><font size=+1>The definitive reference by Dr. Pan: <a href="Gbspec.txt">GBspec.txt
+(58K)</a></font><img SRC="th_up.gif" height=19 width=25>
+<br><font size=+1>Gameboy assembler Opcodes:&nbsp; <a href="images/Opcodes.htm">Opcodes.htm
+(3K)</a></font>
+<br><font size=+1>Schematic overview of internals:</font>&nbsp; <font size=+1><a href="Gbguts.gif">Gbguts.gif
+(5K)</a></font>
+<br><font size=+1>Main circuit diagram with 32K ROM:&nbsp; <a href="Gbmain.gif">Gbmain.gif
+(30K)</a></font>
+<br><font size=+1>LCD circuit diagram:&nbsp; <a href="Gblcd.gif">Gblcd.gif
+(10K)</a></font>
+<br><font size=+1><a href="http://www.devrs.com/gb/">Jeff Frohwein's</a>
+Gameboy Tech Page lots of technical info.</font><img SRC="th_up.gif" BORDER=0 height=19 width=25>
+<br><font size=+1><a href="http://www.mixdown.org/gbdevnews/">Gameboy Development
+News.</a></font>
+<br>&nbsp;
+<p><img SRC="lemming.gif" height=26 width=602>
+<br>&nbsp;
+<p><font color="#FF6666"><font size=+3>Development Software</font></font>
+<p><font size=+1>Lots of great software is available including assemblers,
+high level language compilers, development environments and simulators.
+The software listed below is a selection of what I have found most useful
+and should work together reliably. Hopefully these are the latest versions
+but you should check the home pages for any updates.</font>
+<br>&nbsp;
+<p><font size=+1><a href="http://gbdk.sourceforge.net/">Pascal Faviours/Michael
+Hope's</a> C compiler GBDK: <a href="SDK-gbz80-gb-2_1_0.zip">GBDK Ver 2.1.0
+(922K)</a></font><img SRC="th_up.gif" height=19 width=25>
+<br><font size=+1><a href="http://www.geocities.com/Eureka/9827/">Ian James</a>
+Gameboy integrated development studio: <a href="gbdev063.zip">GBDS Ver
+0.63 (609K)</a></font>
+<br><font size=+1><a href="http://users.aol.com/autismuk/gameboy.htm">Paul
+Robson's</a> GB97 gameboy simulator for the PC: <a href="gb97_2937.zip">GB97
+Ver 2937 (69K)</a></font>
+<br>&nbsp;
+<p><font size=+1>If you install the software to their default locations
+in C:\ then the GBDS settings should look something like <a href="gbdsset.jpg">this</a>.</font>
+<p><font size=+1>The GBDK lib files must be compiled before you can build
+any programs. To do this go to the lib directory (eg: C:\SDK\gbz80-gb\2-1-0\lib)
+and run the MAKE.BAT file which will compile the lib files.&nbsp; You should
+also run the \examples\make.bat file to compile the examples.</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><a href="../index.htm"><img SRC="homebutton.jpg" height=63 width=53></a>
+<br><font size=+1>Back to Main Page</font>
+<br><img SRC="/cgi-bin/count" ALT="Counter" ></center>
+
+</body>
+</html>

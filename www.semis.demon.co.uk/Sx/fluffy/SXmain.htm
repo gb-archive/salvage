@@ -1,0 +1,118 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Steve Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>SXmain Scenix programmer</title>
+</head>
+<body background="sky.jpg">
+&nbsp;
+<center>
+<p><img SRC="sxlogo.gif" BORDER=0 height=99 width=166>
+<p><font color="#FF0000"><font size=+3>Scenix SX18/28 Programmer</font></font>
+<br>&nbsp;
+<p><img SRC="sxpcb.jpg" height=263 width=301></center>
+
+<p><br>
+<br><font size=+1></font>
+<p><font size=+2><font color="#000000">Fluffy has now been updated to </font><a href="../SXmain.htm">Fluffy2</a>.</font><font size=+1></font>
+<p><font size=+1>If you're considering a project that need's lots of processing
+power but battery consumption isn't a problem then the Scenix SX processors
+are for you. Ben's <a href="http://www.codepuppies.com/~ben/sens/pic/sx/">Fluffy
+programmer</a> is an ideal starting point if you already have a PIC16C84
+programmer.&nbsp; So I have put together some notes on building this programmer
+and guidelines if you're familiar with the PIC but your not sure what is
+different about the SX.</font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>Building A Programmer</font></font>
+<p><font color="#000000"><font size=+1>Once you have had a look at the
+Fluffy programmer home page you will need to build a printed circuit board.&nbsp;
+The diagram at the top of the page shows you what it should look like.&nbsp;
+Note that my design is for the Centronics port only and I have added 1K
+and 1nF filter networks to each input line (D0-D5) to reduce noise with
+long leads and changed some of the component values.&nbsp; Ben's original
+circuit can also be seen <a href="power.gif">here</a>.</font></font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+<center>
+<p><img SRC="scxsch.JPG" height=335 width=400></center>
+
+<p><font color="#000000"><font size=+1>Shown above is the component overlay
+for my Fluffy <a href="scxpcb.bmp">circuit board</a>. Wire the PCB to a
+36way Centronics socket using the pinouts shown on the component overlay
+(Pin 32 and the ground pins 19 to 29 are different if you use a D25).&nbsp;
+You will need to program a PIC16C84HS for the programmer to interface with
+the PC so if you don't have one then have a look at my programmer <a href="../../Pics/PICmain.htm">PP875</a>
+(no you don't need an SX chip to make this).&nbsp; If you want to make
+the programmer look a bit more professional then put it in a box with a
+front panel, the finished programmer should look something <a href="sxprog.jpg">like
+this</a>.</font></font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>Software</font></font>
+<p><font size=+1>To test the programmer use Ben's two test programs these
+can be found here in <a href="allnew.zip">allnew.zip (41K)</a>.&nbsp; If
+all goes well then you are ready to start programming the SX chips. You
+will need the fluffy <a href="flufasm.zip">assembler (32K)</a> which includes
+a demo program and&nbsp;<img SRC="new.gif" BORDER=0 height=14 width=31>the
+fuse settings for the new SX28A and SX52B parts.</font>
+<br><font color="#000000"><font size=+1>A really useful editor for constructing
+your code is Programmers File Editor 32bit Win95/8 <a href="../../Apps/pfe101i.zip">PFE
+Ver 1.01 (608K)</a>. This is by A.Phillips, you can find the latest updates
+at <a href="http://www.lancs.ac.uk/people/cpaap/pfe/">PFE home page</a>.
+Configure the <a href="sxpfeprg.JPG">'Launch Windows/DOS Application'</a>
+button to run the programmer.&nbsp; This is the quickest way I have found
+to develop code since you are not constantly hopping between different
+applications. You can also configure the <a href="sxpfeasm.JPG">'Execute
+DOS' command'</a> button to run the fluffy assembler.</font></font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>Documentation</font></font>
+<p><font color="#000000"><font size=+1>Two important documents you will
+need are the SX18/28 <a href="../../Docs/sx1828old.pdf">data sheet (359K)</a>
+and the
+<a href="../../Docs/scenixmanualold.pdf">Technical manual (1.3MB)</a>.&nbsp;
+Although the data sheet is easier to read I have found a few errors in
+it that have been corrected in the technical manual.</font></font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>PIC to SX conversion</font></font>
+<p><font size=+1>A common question asked by people familiar with the PIC
+series of micro controllers (in particular the 16C84) is what are the main
+differences with the SX processor.&nbsp; So after completing a couple of
+projects I have listed most of the important differences, I have also appended
+a number of common PIC instructions to the Fluffy <a href="Inst.dat">inst.dat</a>
+file which you should use, here is the full <a href="Inst.txt">instruction
+set</a>.</font>
+<p><font size=+1>The page containing the differences is <a href="SXtoPIC.htm">here.</a></font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>Hardware Problems</font></font>
+<p><font size=+1><font color="#FF0000">Interrupts,</font> in theory the
+interrupt controller can handle multiple interrupts.&nbsp; But I have found
+that if an interrupt occurs before the current one has been cleared (eg:
+during the interrupt service routine) the interrupt hardware becomes disabled.&nbsp;
+The only way of enabling further interrupts is to clear the WKEN_B register
+using the MODE and TRIS commands, problem is were do you do this ?</font>
+<p><font size=+1><font color="#FF0000">RTCC,</font> when clocking the RTCC
+using the external pin the counter will not count unless the pre-scalar
+is used, thus the minimum count is two input pulses.</font>
+<p>
+<hr WIDTH="100%">
+<p><font color="#FF0000"><font size=+3>Links</font></font>
+<p><font size=+1>SCENIX <a href="http://www.scenix.com/">Home Page</a></font>
+<br><font size=+1>Ben's <a href="http://www.codepuppies.com/~ben/sens/pic/sx/">"Fluffy"</a>
+- A Scenix (and PIC) Programmer</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><a href="../../index.htm"><img SRC="homebutton.jpg" height=63 width=53></a>
+<br><font size=+1><a href="../../index.htm">Back to Main Page</a></font></center>
+
+</body>
+</html>

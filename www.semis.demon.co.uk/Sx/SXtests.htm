@@ -1,0 +1,116 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+    
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+    
+  <meta name="Author" content="Steven Willis">
+    
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>SX Programmer hardware testing</title>
+</head>
+  <body background="sky.jpg">
+ <img src="tv.gif" height="80" width="94">
+<font color="#ff0000"><font size="+3"> Fluffy2 Hardware Testing and Problems</font></font> 
+<p><font size="+1">Start by testing your programmer with the PIC and SX removed. 
+Apply power to the programmer, ideally using a current limited power supply 
+(100mA) or with a 100R resistor in series with VIN. The resistor acts a bit
+like a fuse is it will quickly burn out if there is a serious problem but
+should provide enough current to power the programmer if it's working properly.</font> 
+</p>
+<p><font size="+1"><font color="#ff6666">1) </font>Using a Voltmeter measure 
+the Voltage between Pin5 (0V) and Pin14 (5V) on the PIC socket. This comes 
+straight from the 78L05 regulator so if it's not 5V check the Voltages on
+the regulators input and output. If the output Voltage is too high it could
+be the wrong way around or the wrong device. If the output Voltage is to
+low you could have a short on the PCB or one of the electrolytics may be
+upside down.</font> </p>
+<p><font size="+1"><font color="#ff6666">2) </font>Next measure the Voltage 
+between Pin5 (0V) of the PIC socket and the 78L12 output. This should be between
+13 to 13.5V, similar possible problems to 1) but also the output Voltage
+could be too high if the 1N4148 diodes are the wrong way around.</font> </p>
+<p><font size="+1"><font color="#ff6666">3) </font>Now test VDD by measuring 
+the Voltage between Pin5 (0V) and Pin14 (5V) on the SX18 socket. This should 
+be 0V and VDD LED should be OFF. Now turn ON VDD by shorting (link) Pin7 and
+Pin5 of PIC socket. The VDD LED should come ON and SX18 Voltage should be
+between 4.5 to 5.5V. If the Voltage is correct but the LED does not come
+on the LED is probably the wrong way around. If the Voltage is always ON
+or incorrect then the ZTX500 transistor could be upside down or there is
+a PCB short.</font> </p>
+<p><font size="+1"><font color="#ff6666">4) </font>Now test VPP by measuring 
+the voltage between Pin5 (0V) and Pin16 (OSC1) on the SX18 socket. This should
+be 0V and VPP LED should be OFF. Now turn ON VPP by shorting (link) Pin18
+and Pin14 of PIC socket. The VPP LED should come ON and SX18 Voltage should
+be between 13 to 13.5V. Similar problems to 3) but also the ZTX300 transistor
+should be checked.</font> </p>
+<p><font size="+1"><font color="#ff6666">5) </font><font color="#000000">Time 
+to plug in the pre programmed PIC. The VPP LED should not come on but the 
+VDD LED should flash twice (115KBS). The Voltage across the 100R input resistor
+should be less than 5V. If it's more than 5V you could have a PCB short on
+the PIC or one of the electrolytics may be upside down.</font></font> </p>
+<p><font size="+1"><font color="#ff6666">6) </font><font color="#000000">Remove 
+the 100R resistor and connect to the PC serial port, run the IC-Prog software 
+following the settings given in the software section.</font></font> </p>
+<p><font size="+1"><font color="#ff6666">7)</font> If you are having problems 
+connecting IC-Prog with errors like "error opening target" you should test 
+the serial link. To test the serial link use a serial coms program like teraterm
+(ttermp23.zip) and follow the steps below.</font><br>
+</p>
+<p><font color="#ff0000"><font size="+3">Old SX chips</font></font> <br>
+<font size="+1">To use OLD SX parts (Date Code yywwxx) firmware version 2.3
+or higher is required.&nbsp;</font><font size="+1">It is important that VPP
+is &gt;13V during programming otherwise it may not be possible to Erase or
+remove the chips Write protection. Test VPP as follows,</font></p>
+<p><font size="+1"><font color="#ff6666">1)</font> </font><font
+ size="+1"> Insert the SX chip and select 'Read' from IC-Prog. VCC and VPP
+LEDs should come ON. </font><br>
+<font size="+1"><font color="#ff6666">2)</font> </font><font size="+1"><font
+ size="+1">Measuring </font></font><font size="+1"><font size="+1">VPP between
+Pin5 (0V) and Pin16 (OSC1) on the SX18 socket. This should be &gt;13V and
+&lt;13.5V (typ. 13.2V)</font></font><font size="+1"><font size="+1">.</font></font></p>
+<p><font size="+1"><font color="#ff6666">3)</font> </font><font
+ size="+1"><font size="+1">If the voltage is &lt;13V check the power supply
+voltage (&gt;18V). Also check the voltage out of the 78L12 (</font></font><font
+ size="+1"><font size="+1">&gt;13V and &lt;13.5V</font></font><font
+ size="+1"><font size="+1">).</font></font></p>
+<p><font size="+1"><font color="#ff6666">4)</font> </font><font
+ size="+1"><font size="+1">If VPP is still &lt;13V change the PNP transistor
+(ZTX500) that drives OSC1.</font></font><br>
+ </p>
+<p><font color="#ff0000"><font size="+3">Serial link testing the with Tera 
+Term</font></font> <br>
+<font size="+1"><font color="#ff0000">1)</font> Start TeraTerm.</font> <br>
+<font size="+1"><font color="#ff0000">2)</font> Select 'Serial' and 'COMx' 
+port.</font> <br>
+<font size="+1"><font color="#ff0000">3)</font> The serial settings are not
+important as we are just trying to do a loop-back, but try,</font> <br>
+<font size="+1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Setup' -&gt; Serial
+port -&gt; COMx, Baud-9600, data-8, parity-none, stop-1, flow-none</font><font
+ color="#ff0000"><font size="+1"></font></font> </p>
+<p><font size="+1"><font color="#ff0000">4)</font> Plug the serial lead into 
+the COM port you are using (D9 connector) but NOT into Fluffy2.</font> <br>
+<font size="+1"><font color="#ff0000">5)</font> Link pins 2 and 3 on the
+serial lead 'loop-back'.</font> <br>
+<font size="+1"><font color="#ff0000">6)</font> Type at the keyboard and
+this should echo to the screen,</font> <br>
+<font size="+1">&nbsp;&nbsp;&nbsp; If this works remove the link and this
+should stop the screen echo.</font> <br>
+<font size="+1">&nbsp;&nbsp;&nbsp; If this does not work you have a port conflict
+or faulty lead and should try other ports/leads.</font><font
+ color="#ff0000"><font size="+1"></font></font> </p>
+<p><font size="+1"><font color="#ff0000">7)</font> Now plug the serial lead 
+into Fluffy2.</font> <br>
+<font size="+1"><font color="#ff0000">8)</font> Remove the PIC and link pins
+1 and 10 on the PIC socket. Power up Fluffy2.</font> <br>
+<font size="+1"><font color="#ff0000">9)</font> Type at the keyboard and
+this should echo to the screen,</font> <br>
+<font size="+1">&nbsp;&nbsp;&nbsp; If this works remove the link and this
+should stop the screen echo, the test is now complete...</font> <br>
+<font size="+1">&nbsp;&nbsp;&nbsp; If this does not work you have a problem 
+with the serial wiring or something around the MAX232.</font> <br>
+<font size="+1"></font>&nbsp; </p>
+<br>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+        
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+        
+  <meta name="Author" content="Steve Willis">
+        
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>DSPmain</title>
+</head>
+  <body background="sky.jpg">
+    
+<center><img src="sound08.gif" hspace="10" border="0" height="50"
+ width="50">
+ <font color="#ff0000"><font size="+3">Audio Digital Signal Processors</font></font><img
+ src="sound03.gif" hspace="10" height="50" width="50">
+ </center>
+    
+<p><font color="#ff0000"><font size="+1">Use a DSP, you must be joking ?</font></font>
+ <br>
+ <font size="+1">The field of digital signal processing 'DSP' is often considered 
+to be highly specialised and far to complicated.&nbsp; But while the underlying 
+mathematics may indeed involve an incomprehensible list of integrals and Z
+transforms the dedicated assembly programmer will often be able to piece together
+some quite usable code in no time at all.</font> </p>
+ 
+<p><font color="#ff0000"><font size="+1">So what is a DSP and why use it
+?</font></font>  <br>
+ <font size="+1">The DSP could be considered as a micro processor that has 
+been specifically designed to perform mathematical operations very quickly. 
+The DSP uses a separate bus for data and instructions known as the Harvard 
+architecture. This allows the processor to perform its operations very quickly 
+as the sequencing of instruction fetch and execution may be overlapped. Those 
+familiar with the PIC micro will recognise this feature. Typically a DSP will
+perform a 16/32bit multiply, accumulate and memory move in a single clock
+cycle.</font> </p>
+ 
+<p><font size="+1">The reason for all this optimisation is evident when you
+ study the main chunk of the DSP code or the 'Algorithm'.&nbsp; The algorithm
+ is the part of the code which does the real hard work such as filtering
+out noise from music, compression of video data or picture pattern recognition.&nbsp;
+ Most algorithms perform multiple calculations on small data sets (arrays),
+ the operations are well defined and repetitive.&nbsp; The goal in designing
+ a good algorithm is to define as many constants (coefficients) as possible
+ outside the main loop so that the repetitive operations are as compact and 
+fast as possible.</font> </p>
+ 
+<p><font size="+1">As an example of what is required consider a digital filter
+ (eg: IIR) that performed the equivalent function of a ten channel stereo
+audio graphic equaliser.&nbsp; The calculation of each equaliser channel
+would take about 10 instructions, make 6 multiplication's, 5 additions and
+6 data moves. In total a CD quality system would have to perform about 1,000,000 
+multiplication's, additions and data moves per second. So you can see that 
+even a simple system like this would be virtually impossible to implement 
+with a standard micro processor.</font> </p>
+ 
+<p><img src="birdsbr.gif" height="47" width="582">
+  </p>
+ 
+<p><font color="#ff0000"><font size="+3">GCP hardware</font></font> </p>
+ 
+<p><font color="#ff0000"><font size="+1">Ok enough, I've got a headache just
+ tell me how to get started</font></font> <br>
+ <font size="+1">As you can imagine many companies have developed some impressive 
+chips the best known is probably the Texas Instruments TMS320xx series with 
+development cards starting at around &pound;90. My main beef with these devices 
+is the utterly obscure set of instruction mnemonics which you seem to be as
+hard to remember as that joke you were told just yesterday. Alternatively 
+if you want to build your own system with a limited budget and can't face 
+learning another 200 instructions the Fujitsu Whispers Generic Control Processor 
+'GCP' could be for you.</font> </p>
+ 
+<p><font color="#ff0000"><font size="+1">Fujitsu Whispers GCP - MB86625</font></font>&nbsp;</p>
+ 
+<p><font size="+1" color="#ff0000">Please note that this DSP is no longer 
+available and has not been superseded. This information is for interest only.</font></p>
+ 
+<p><font size="+1">Bellow is an overview diagram of the GCP. The chip contains
+ a 16bit ADC with switchable inputs, gain control and filtering.&nbsp; The
+ 16bit DAC has a differential output and will directly drive a set of headphones.&nbsp;
+ The core processor is 16bits wide with a 36bit accumulator.&nbsp; All memory
+ (Data/Coefficients/Micro code) is RAM based and is loaded on power up from
+ an external serial EEPROM or Micro controller.&nbsp; This is done via a
+4 wire serial peripheral interface (SPI).&nbsp; The device operates from
+2.7-3.6V and will operate up to 40MHz (40MIPs) with an external clock.&nbsp;
+At 2.7V/4MHz the total supply current is around 5mA.</font> <br>
+ &nbsp; </p>
+ 
+<p><br>
+  </p>
+ 
+<center>  
+<p><img src="diag1.gif" height="174" width="300">
+ </p>
+ </center>
+    
+<p><br>
+  </p>
+ 
+<p><font size="+1">The chip comes in a tiny 24lead plastic flat package measuring
+ 16*6*1mm, so your eye site better be good if your planing to hand solder.&nbsp;
+ A data sheet containing most of the technical specifications is <a
+ href="latest.pdf">here (270K)</a>.&nbsp; There is also a full user manual 
+which is not currently available in PDF format but I will post it as soon 
+as it is.</font> </p>
+ 
+<p><font color="#ff0000"><font size="+1">GCP programmer hardware</font></font>
+ <br>
+ <font size="+1">So you want to make a programmer and develop some code.&nbsp;
+ The first thing you need is the programming interface hardware which converts
+ the outputs of the PC printer port into something suitable for the GCP SPI 
+bus. Well here is the circuit overlay <a href="GCPICP.gif">GCPICP.GIF</a>
+ . The <a href="gcppcb2.bmp">PCB</a> and <a href="gcpsch2.bmp">Schematic</a>
+ can be used if you have facilities to etch your own printed circuit boards.&nbsp;
+ The unit will look like <a href="GCPinsid.jpg">this</a> when it is wired
+up, and the final product should look like <a href="GCPbox.jpg">this</a>.</font>
+ </p>
+ 
+<p><img src="birdsbr.gif" height="47" width="582">
+  </p>
+ 
+<p><font color="#ff0000"><font size="+3">GCP software</font></font> </p>
+ 
+<p><font size="+1"><font color="#000000">My programmer interface software
+ for Win95 and the fugitsu assembler is all included in one file </font>GCPicp.zip
+<font color="#000000">(no longer available) which self extracts to the correct
+directory. You may have to move the two DLL's to your WINDOWS\SYSTEM directory
+if they are not already installed.</font></font>  </p>
+ 
+<p><font color="#000000"><font size="+1">A really useful editor for constructing
+ your code is Programmers File Editor 32bit Win95/8 <a
+ href="../Apps/pfe101i.zip">PFE Ver 1.01i (608K)</a>. This is by A.Phillips, 
+you can find the latest updates at <a
+ href="http://www.lancs.ac.uk/people/cpaap/pfe/">PFE home page</a>.</font></font>
+ </p>
+ 
+<p><font color="#ff0000"><font size="+1">Algorithms</font></font> <br>
+ <font size="+1">An ingenious filter based on the <a href="GCPlms.zip">Least
+ Mean Square</a> 'LMS' algorithm that automatically adapts and reduces noise
+ interference from wanted signals.&nbsp; I have put this together for the
+GCP with an MS Word document to introduce the subject.</font> </p>
+ 
+<p><font size="+1">A seven channel <a href="graphic.zip">Graphic equaliser</a>
+ which can be controlled from the GCPicp coefficient ram edit box.</font>
+</p>
+ 
+<p><img src="birdsbr.gif" height="47" width="582">
+  </p>
+ 
+<p><font color="#ff0000"><font size="+3">General information</font></font>
+ </p>
+ 
+<p><font size="+1">The fujitsu home page for the GCP processor can be found
+ <a href="http://www.fujitsu-ede.com/products/whispr/main.html">here.</a></font>
+ </p>
+ 
+<p><font size="+1">A great book on the subject of DSP's is 'Digital Signal
+ Processing a Practical Approach' By Ifeachor Jarvis, Addison Wesley publications.
+ ISBN 0-201-54413-X. Costs around &pound;25.</font> <br>
+ &nbsp; <br>
+ &nbsp; <br>
+  </p>
+ 
+<center>  
+<p><a href="../index.htm"><img src="homebutton.jpg" height="63"
+ width="53">
+ </a> <br>
+ <font size="+1">Back to Main Page</font></p>
+ </center>
+   <br>
+ <br>
+</body>
+</html>

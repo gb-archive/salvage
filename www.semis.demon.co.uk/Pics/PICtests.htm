@@ -1,0 +1,45 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Steven Willis">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>PIC Programmer hardware testing</title>
+</head>
+<body background="sky.jpg">
+<img SRC="tv.gif" height=80 width=94><font color="#FF0000"><font size=+3>
+PPWIN Hardware Testing and Problems</font></font>
+<p><font size=+1>Start by testing your programmer with the printer connector
+and PIC removed. Apply power to the programmer, ideally using a current
+limited power supply (100mA) or with a 100R resistor in series with VIN.
+The resistor acts a bit like a fuse is it will quickly burn out if there
+is a serious problem but should provide enough current to power the programmer
+if it's working properly.</font>
+<p><font size=+1><font color="#FF6666">1) </font><font color="#000000">Both
+the VCC and VPP LED's should be on. </font>Using a Voltmeter measure the
+Voltage between Pin5 (0V) and Pin14 (5V) on the 18pin PIC socket. This
+comes through a ZTX500 transistor from the 78L05 regulator so if it's not
+5V check the Voltages on the regulators input and output. If the output
+Voltage is too high it could be the wrong way around or the wrong device.
+If the output Voltage is to low you could have a short on the PCB or one
+of the electrolytics may be upside down. If the voltage out of the regulator
+is about right but the Voltage on Pin14 is to low then check the transistor
+is the correct device and the right way around. If this is right then see
+if Pin8 of the 7406 is nearly 0V as this drives the transistor on.</font>
+<p><font size=+1><font color="#FF6666">2) </font>Next measure the Voltage
+between Pin5 (0V) and Pin4 (13.2V) of the 18pin PIC socket. This should
+be between 13 to 13.5V, similar possible problems to 1) but also the output
+Voltage could be too high if the 1N4148 diodes are the wrong way around.</font>
+<p><font size=+1><font color="#FF6666">3) </font><font color="#000000">If
+both 5V and 13V supplies are now correct both LED's should be ON if not
+check they are the correct way around and the drive resistors are the correct
+value.</font></font>
+<p><font size=+1><font color="#FF6666">4) </font><font color="#000000">Remove
+the 100R resistor and connect to the printer port, run the ICPROG software
+following the settings given in the software section. Use the hardware
+check to make sure you can turn VCC/VDD (MCLRE) ON/OFF through software.
+Also make sure that when Data Out is ticked the Data In input&nbsp; becomes
+ticked.</font></font>
+<br>&nbsp;
+</body>
+</html>

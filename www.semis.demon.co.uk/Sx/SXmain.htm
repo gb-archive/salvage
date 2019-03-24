@@ -1,0 +1,384 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                    
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                    
+  <meta name="Author" content="Steve Willis">
+                    
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>Fluffy2 Scenix programmer</title>
+</head>
+  <body background="sky.jpg">
+          
+<center><img src="sxlogo.gif" hspace="10" border="0" height="70"
+ width="120">
+    <img src="Ubicom.jpg" hspace="10" height="70" width="208">
+         
+<p><img src="chip02.gif" height="25" width="30">
+    <font color="#ff0000"><font size="+3">&nbsp; Fluffy2 Scenix Programmer&nbsp;</font></font><img
+ src="chip02.gif" height="25" width="30">
+    </p>
+    </center>
+          
+<p><font size="+1">If you're considering a project that need's lots of processing 
+  power but power consumption isn't a big&nbsp; issue then the Scenix SX processors
+ are for you. The Fluffy2 programmer is an ideal starting point as it supports
+ all of the new SX18/28/48/52 parts.</font> </p>
+       
+<center>     
+<p><img src="sxprog.jpg" hspace="20" border="2" height="201" width="254">
+    <img src="sxpcb.jpg" hspace="20" border="2" height="201" width="269">
+    </p>
+    </center>
+          
+<p><font size="+1">This 'Fluffy2' programmer is based on Ben Stragnell's <a
+ href="fluffy/SXmain.htm">original Fluffy</a> programmer but has a number
+  of <a href="#enhancements">enhancements</a> for use with  the Windows programming 
+software IC-Prog by Bonny Gijzen. Fluffy differs from most DIY SX programmers 
+because it uses an onboard PIC to achieve the correct SX timing signals. Most
+DIY programmers use direct port control which can cause reliability problems
+when programming. This does mean however that you need a PIC programmer </font><font
+ size="+1"> <a href="../Pics/PICmain.htm">PPWIN</a> or <a
+ href="../uJDM/uJDMmain.htm">uJDM</a>.</font>  </p>
+       
+<p><img src="bombline.gif" height="19" width="736">
+     </p>
+       
+<p><img src="diskett2.gif" border="0" height="30" width="30">
+    <font color="#ff0000"><font size="+3"> Software</font></font> </p>
+       
+<p><font size="+1">Fluffy2 is designed to work with IC-Prog 1.04 or above. 
+  This is a great Windows based programmer interface by Bonny Gijzen. Set 
+the IC-Prog hardware to 'Fluffy Programmer' which uses a serial port interface 
+  to the programmer. IC-Prog also includes a simple hardware test that will 
+  allow you to check your hardware connections.</font> </p>
+       
+<p><font color="#000000"><font size="+1">I have updated the instruction set 
+  of Ben's Fluffy assembler which allows both SCENIX and Microchip commands 
+  to be assembled.&nbsp; Also added are the new SX18/28 and SX48/52 include 
+  files and Ben's tune 'demo' program, see demo.txt.&nbsp; I have tried porting 
+  several large PIC programs using this assembler and apart from some initial 
+  port settings very little work is required.&nbsp; Programmers File Editor 
+  by A.Phillips can be used to create programs. Configure the PFE <a
+ href="sxpfeasm.jpg">'Execute DOS command'</a> button to run the Fluffy2
+assembler directly.</font></font> <br>
+    &nbsp;     
+<table width="98%" border="1">
+     <tbody>
+        <tr>
+     <td><font color="#ff0000"><font size="+1">File</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+      <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Update Links</font></font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="../Apps/icprog.zip">icprog.zip</a></font></td>
+      <td><font size="+1">1.05C</font></td>
+      <td><font size="+1">11/7/2003</font></td>
+      <td><font size="+1">Windows software driver for the programmer</font></td>
+      <td><font size="+1">551K</font></td>
+      <td><font size="+1"><a href="http://www.ic-prog.com/">Bonny Gijzen</a></font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2asm.zip">fluf2asm.zip</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">SX assembler, include files and SX demo</font></td>
+      <td><font size="+1">39K</font></td>
+      <td><font size="+1">&nbsp;</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2drv.zip">fluf2drv.zip</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">19/5/2001</font></td>
+      <td><font size="+1">PIC .HEX file, alternative DOS based driver</font></td>
+      <td><font size="+1">34K</font></td>
+      <td><font size="+1">&nbsp;</font></td>
+     </tr>
+      <tr>
+     <td><big><a href="ICSxprog_23.zip">ICSxprog23.zip</a></big><br>
+         </td>
+      <td><font size="+1">2.3</font><br>
+         </td>
+      <td><font size="+1">22/6/2003</font><br>
+         </td>
+      <td><font size="+1">Ver 2.3 PIC .HEX file</font><big> for OLD/NEW chips</big><br>
+         </td>
+      <td><big>2K</big><br>
+         </td>
+      <td><img src="file:///C:/Steveweb/Sx/new.gif" alt="" width="31"
+ height="12">
+         <br>
+         </td>
+     </tr>
+       <tr>
+         <td valign="top"><font size="+1"><a
+ href="file:///C:/Steveweb/Apps/pfe101i.zip">pfe101i.zip</a></font><br>
+         </td>
+         <td valign="top"><font size="+1">1.01i</font><br>
+         </td>
+         <td valign="top"><font size="+1">22/4/2001</font><br>
+         </td>
+         <td valign="top"><font size="+1">Integrated code development environment</font><br>
+         </td>
+         <td valign="top"><font size="+1">608K</font><br>
+         </td>
+         <td valign="top"><font color="#000000"><font size="+1"><a
+ href="http://www.lancs.ac.uk/people/cpaap/pfe/">PFE home page</a></font></font><br>
+         </td>
+       </tr>
+                 
+  </tbody>    
+</table>
+      </p>
+       
+<p><img src="bombline.gif" height="19" width="749">
+     </p>
+       
+<p><img src="caps.gif" border="1" height="38" width="90"
+ align="absbottom">
+    <font color="#ff0000"><font size="+3"> Building the Programmer</font></font> 
+  </p>
+       
+<p><font size="+1">The fluffy2 programmer is built on a single sided PCB as
+shown at the top<font color="#000000"> of this page. </font>The PCB layout
+  is in a BoardMaker PCB, .BMP or dirrect and reverse Laser image file formats.
+  I would recommend you use the dirrect Laser print file 'flu2pcb.prn' and
+ follow these instruction showing <a href="../PCB/PCB.html">How to Make PCB's</a>
+  if you have not done so before.</font> </p>
+       
+<p><font size="+1">Obtain all the components shown on the parts list and populate
+the board using the PCB overlay and circuit diagram. It is advisable to solder
+the stacked programming sockets together to stop them from coming apart.
+Alternatively use wire rap connectors with long leads to get the correct
+  height above the PCB. <font color="#000000">If you want to make the programmer
+  look a bit more professional then c</font>onstruct the programmer using
+the  recommended plastic box.&nbsp; Print the box label onto sticky backed
+white  paper then cover with transposeal to finish of the design.</font>
+<br>
+    &nbsp;     
+<table border="1" width="66%">
+     <tbody>
+        <tr>
+     <td><font color="#ff0000"><font size="+1">File</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+      <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2part.txt">fluf2prt.txt</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">Parts list</font></td>
+      <td><font size="+1">1K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2cct.bmp">fluf2cct.bmp</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">Circuit diagram</font></td>
+      <td><font size="+1">59K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2cmp.bmp">fluf2cmp.bmp</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">PCB component overlay</font></td>
+      <td><font size="+1">20K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluf2pcb.zip">fluf2pcb.zip</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">PCB layouts, all formats. (<a href="#protel">also
+avilable Protel files</a>)</font></td>
+      <td><font size="+1">43K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="fluffy2lbl.doc">fluffy2lbl.doc</a></font></td>
+      <td><font size="+1">2.0</font></td>
+      <td><font size="+1">22/4/2001</font></td>
+      <td><font size="+1">Box label in Word6 format</font></td>
+      <td><font size="+1">46K</font></td>
+     </tr>
+                 
+  </tbody>    
+</table>
+      </p>
+       
+<p><img src="bombline.gif" height="19" width="747">
+     </p>
+       
+<p><img src="tv.gif" height="40" width="47">
+    <font color="#ff0000"><font size="+3"> Hardware Testing and Problems</font></font> 
+  </p>
+       
+<p><font size="+1">I&nbsp; would strongly recommend that you build the programmer 
+  using the PCB layout provided as this will greatly reduce the probability 
+  of construction errors. Once you have made the board please follow these 
+ <a href="SXtests.htm">simple steps</a> before you start programming.</font> 
+  </p>
+       
+<p><font size="+1">Fluffy2 has been tested with the following SCENIX parts:</font> 
+  </p>
+       
+<p><font size="+1">&nbsp;&nbsp;&nbsp; SX18/28 new (Date code Axyywwxx)</font> 
+  <br>
+    <font size="+1">&nbsp;&nbsp;&nbsp; SX52 new (Date code Ax00wwxx)</font> 
+ <br>
+    <font size="+1">&nbsp;&nbsp;&nbsp; SX18/28 old (Date code yywwxx 9812/9814)</font> 
+ </p>
+          
+<p><font size="+1">Unlike other SX programmers I have tried Fluffy2 has proven 
+  to be very reliable at programming. So if you are getting intermittent programming
+ first try a different SX chip then check the VDD and VPP Voltages are correct
+ as shown in the simple steps above.</font> <br>
+    &nbsp;<br>
+  <a name="enhancements"></a><font size="+1">A number of enhancements   have 
+been put into Fluffy2 to make it even easier to use:</font> </p>
+       
+<p><font size="+1">&nbsp;&nbsp;&nbsp; Programmable VPP ON/OFF means that you
+can remove chips without removing the power</font> <br>
+    <font size="+1">&nbsp;&nbsp;&nbsp; Dual 38400/115200 BPS com port speed 
+ and LED indicator</font> <br>
+    <font size="+1">&nbsp;&nbsp;&nbsp; High speed read (14sec) and write
+(46sec)   when using DOS software</font> <br>
+    <font size="+1">&nbsp;&nbsp;&nbsp; ISP connector for future SX48/SX52 
+devices<br>
+   &nbsp;&nbsp;&nbsp; </font><img src="file:///C:/Steveweb/Sx/new.gif"
+ alt="" width="31" height="12">
+   <font size="+1">Ver 2.3 firmware includes <a href="#sxfuse">better support</a> 
+ for old SX18/28 chips with an auto-sync function</font>  </p>
+     
+<p><font size="+1">Selection of the com speed is done through pin 13 (RB7) 
+  of the PIC16F84. Leave unconnected (internal pull-up) for 115200 BPS when
+ using  IC-Prog or DOS software.&nbsp; Link to 0V for slow speed DOS interface
+ at  38300 BPS. This can be useful with very long serial leads (&gt;5mtrs)
+ or old serial ports.</font> <br>
+    <font size="+1">The VPP LED will flash once on power up to indicate 38400 
+  com speed or twice to indicate 115200.</font> </p>
+       
+<p><img src="bombline.gif" height="19" width="749">
+     </p>
+       
+<p><img src="book08.gif" border="0" height="37" width="63">
+    <font color="#ff0000"><font size="+3"> Documentation</font></font> </p>
+       
+<p><font color="#000000"><font size="+1">Important documents that you will 
+  need are the SX data sheets which give hardware information on the chips 
+ and basic software control. The technical manual has more detailed information 
+  about software commands and programming considerations.</font></font> <br>
+    &nbsp;     
+<table border="1" width="79%">
+     <tbody>
+        <tr>
+     <td><font color="#ff0000"><font size="+1">File</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+      <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+      <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="../Docs/sx1828.pdf">sx1828.pdf</a></font></td>
+      <td>&nbsp;</td>
+      <td><font size="+1">1/12/2000</font></td>
+      <td><font size="+1">New SX18/20/28 data sheet</font></td>
+      <td><font size="+1">364K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="../Docs/sx4852.pdf">sx4852.pdf</a></font></td>
+      <td>&nbsp;</td>
+      <td><font size="+1">30/11/2000</font></td>
+      <td><font size="+1">New SX48/52 data sheet</font></td>
+      <td><font size="+1">444K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="../Docs/sx_usermanual.pdf">sx_usermanual.pdf&nbsp;</a></font></td>
+      <td><font size="+1">3.1</font></td>
+      <td><font size="+1">24/8/2000</font></td>
+      <td><font size="+1">New user manual</font></td>
+      <td><font size="+1">1129K</font></td>
+     </tr>
+      <tr>
+     <td><font size="+1"><a href="../Docs/sxisp.pdf">sxisp.pdf</a></font></td>
+      <td><font size="+1">2.2</font></td>
+      <td><font size="+1">6/10/2000</font></td>
+      <td><font size="+1">New in-circuit-programming specs</font></td>
+      <td><font size="+1">38K</font></td>
+     </tr>
+       <tr>
+     <td><font size="+1"><a href="../Docs/sx28_addendum.pdf">sx28_addendum.pdf</a></font></td>
+      <td><font size="+1">1.0</font></td>
+      <td><font size="+1">6/7/1999</font></td>
+      <td><font size="+1">Summary of Old/New differences</font></td>
+      <td><font size="+1">114K</font></td>
+     </tr>
+       <tr>
+         <td valign="top"><big><a href="../Docs/sxfuse.pdf">sxfuse.pdf</a></big><img
+ src="file:///C:/Steveweb/Sx/new.gif" alt="" width="31" height="12">
+         <br>
+         </td>
+         <td valign="top"><big>1.0<br>
+         </big></td>
+         <td valign="top"><big>22/6/2003<br>
+         </big></td>
+         <td valign="top"><big><a name="sxfuse"></a>Old/New</big><big> </big><big>FUSE/FUSEX 
+ settings<br>
+         </big></td>
+         <td valign="top"><big>38K<br>
+         </big></td>
+       </tr>
+                 
+  </tbody>    
+</table>
+      </p>
+       
+<p><img src="bombline.gif" height="19" width="750">
+     </p>
+       
+<p><img src="picsx.gif" border="2" height="41" width="89">
+    <font color="#ff0000"><font size="+3"> PIC to SX conversion</font></font> 
+  </p>
+       
+<p><font size="+1">A common question asked by people familiar with the PIC 
+  series of micro controllers (in particular the PIC16F84) is what are the
+ main  differences with the SX processor.&nbsp; So after completing a couple
+ of projects I have tried to list most of the <a href="SXtoPIC.htm">important 
+ differences</a>.</font>  </p>
+       
+<p><img src="bombline.gif" height="19" width="743">
+     </p>
+       
+<p><img src="whl.gif" height="60" width="79">
+    <font color="#ff0000"><font size="+3">Links</font></font> </p>
+       
+<p><font size="+1">SCENIX is now owned by <a
+ href="http://www.ubicom.com/">UBICOM</a></font> <br>
+    <font size="+1">Ben's original <a
+ href="http://www.codepuppies.com/%7Eben/sens/pic/sx/">"Fluffy"</a> Programmer</font> 
+  <br>
+<big><a name="protel"></a>Daniel Visser's <a href="Fluffy2_protel.zip">Protel
+PCB layouts</a> - Engineering and Physical Systems Central Queensland University</big><br>
+<br>
+    &nbsp; <br>
+     </p>
+       
+<center>     
+<p><a href="../index.htm"><img src="homebutton.jpg" height="63"
+ width="53">
+    </a> <br>
+    <font size="+1"><a href="../index.htm">Back to Main Page</a></font></p>
+    </center>
+      <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

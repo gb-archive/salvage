@@ -1,0 +1,42 @@
+PPWIN parts list 1/4/2001
+=========================
+
+Resistors
+---------
+2 * 100R
+1 * 470R
+1 * 2K2
+2 * 4K7
+6 * 10K
+
+Capacitors
+----------
+2 * 1nF
+2 * 100nF
+3 * 10uF 25V Tant
+
+Diodes
+------
+2 * 1N4148
+1 * LED red   5mm (VPP)
+1 * LED green 5mm (VCC)
+
+Semiconductors
+--------------
+1 * 7406    O/C Hex inverter
+1 * 78L05   100mA +5V regulator
+1 * 78L12   100mA +12V regulator
+2 * ZTX500  PNP transistor (pin view /CBE\)
+
+Connectors
+----------
+3 *  8pin DIL
+3 * 18pin DIL
+3 * 40pin DIL
+1 *  5pin molex
+1 * 36way centronics or 25way D-type socket
+1 * DC 2.1mm socket (single hole fixing)
+
+Box
+---
+1 * ABS type MB2 100*76*41mm

@@ -1,0 +1,240 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                                            
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                                            
+  <meta name="Author" content="S.G.Willis">
+                                            
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>PICcom PIC development tool</title>
+</head>
+  <body background="sky.jpg">
+                      
+<center>            
+<p><font color="#ff0000"><font size="+3"><font color="#330033"><img
+ src="PICcom.jpg" alt="" width="436" height="388">
+ &nbsp;        </font><br>
+         </font></font></p>
+                 
+<p><font color="#ff0000"><font size="+3">PICcom a RealTime PIC Development
+Tool</font></font>      </p>
+          </center>
+                      
+<p><big>PICcom is a general purpose serial port development tool designed
+    to aid debugging of standalone micro controllers such as Microchip's
+PIC    series. Data sent from the micro can be displayed in one of eight
+display    windows or the 'Terminal' window. The display 'Format' can be
+set to Binary,    Hex, Decimal or ASCII. Communications from the micro </big><big>controller</big><big>
+    to the PC is by the serial port and one way only (transmit) which can 
+be implemented using a single    I/O pin. A </big><big>simple </big><big>code 
+library is provided for addition    into your target firmware to implement 
+the serial port protocol. This means   that PICcom can be used with any device 
+in the PIC family range.<br>
+        </big></p>
+        <img src="birdsbr.gif" alt="" width="700" height="47">
+                        
+<p><img src="diskett2.gif" border="0" height="30" width="30" alt="">
+          <font color="#ff0000"><font size="+3"> Software</font></font> </p>
+                   
+<p><font size="+1">The software for implementing PICcom consists of the files 
+   listed below which is provided in a single install file. Run the installer 
+   and then create a Windows start icon for the PICcom.exe executable, setup 
+   files and example library code are installed to </font><big>C:\Program 
+Files\PICcom</big><font size="+1">.<br>
+        </font>&nbsp;           
+<table border="1" width="98%">
+           <tbody>
+              <tr>
+           <td><font color="#ff0000"><font size="+1">File</font></font></td>
+            <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+            <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+            <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+           </tr>
+            <tr>
+           <td rowspan="6" colspan="1" align="center"><a
+ href="../Apps/PICcomSetup.exe"><img src="PICcomSetup.JPG" alt=""
+ width="81" height="69">
+           <br>
+           <big> PICcomSetup<br>
+      Size: 200K</big></a><br>
+            </td>
+            <td><font size="+1">1.0</font></td>
+            <td><font size="+1">15/5/2003</font></td>
+            <td><font size="+1">PICcom self extracting installer</font></td>
+           </tr>
+            <tr>
+                 <td><font size="+1">1.1</font></td>
+            <td><font size="+1">15/5/2003</font></td>
+            <td><font size="+1">Windows software Win98/2000/XP</font></td>
+           </tr>
+            <tr>
+                 <td><font size="+1">1.0</font></td>
+            <td><font size="+1">15/5/2003</font></td>
+            <td><font size="+1">4MHz example code library</font></td>
+           </tr>
+            <tr>
+                 <td><big>1.0<br>
+       </big></td>
+            <td><big>15/3/2003<br>
+       </big></td>
+            <td><font size="+1">10MHz example code library</font></td>
+           </tr>
+            <tr>
+                 <td><big>1.0<br>
+       </big></td>
+            <td><big>15/5/2003<br>
+       </big></td>
+            <td><font size="+1">20MHz example code library</font></td>
+           </tr>
+            <tr>
+                 <td><font size="+1">1.0</font></td>
+            <td><font size="+1">27/4/2003</font></td>
+            <td><font size="+1">Demonstration&nbsp;code (4MHz)</font></td>
+           </tr>
+                                         
+  </tbody>          
+</table>
+            </p>
+                   
+<p><img src="birdsbr.gif" alt="" width="700" height="47">
+           </p>
+                   
+<p><img src="caps.gif" border="1" height="38" width="90" alt="">
+     <font color="#ff0000"><font size="+3"> Serial Interface Lead</font></font> 
+     </p>
+                   
+<p align="left"><big>Connect the serial lead DB9F female connector to the 
+  micro controller board with the following cable. Ideally the 2 pin connector 
+  should be a polarised 0.1" PCB connector. Unpolarised connectors such as 
+ those used on PC reset switches can also be used as they are unlikely to 
+cause damage to the PC or micro controller if plugged in upside-down.<br>
+     </big></p>
+         
+<div align="center"><big><img src="PICcomLead.bmp" alt="" width="437"
+ height="170" border="2">
+     </big></div>
+           
+<p><big><font color="#ff6666">Warning: </font>Failure to connect to the correct 
+  DB9F serial pins may result in permanent damage to the micro controller 
+or PC. Always measure the voltage across the two pin connector before connecting 
+  up. This should read less than 0.1V (floating input to PC). </big></p>
+         
+<p><big></big><img src="birdsbr.gif" alt="" width="700" height="47">
+           </p>
+                   
+<p><font size="+1"></font><img src="tv.gif" height="40" width="47"
+ alt="">
+          <font color="#ff0000"><font size="+3"> Hardware Testing</font></font> 
+     </p>
+                   
+<p><big>To test the serial port start the PICcom program, set Terminal to 
+  'CH1', set the Format of CH1 to 'ASC' and press 'Run'. With the lead <font
+ color="#ff0000">disconnected</font> from the micro controller short out pins
+2 and 3 on the DB9F connector (loopback test). This should result in a stream
+of 'S' characters being <a href="PICcomTest.JPG">displayed</a> in the terminal
+window and in CH1.<br>
+     </big></p>
+         
+<p><big>Now you need to test the interface. I would recommend starting with 
+  a board that contains a PIC16F84 and a 4MHz crystal.</big><big> Plug the
+  2 pin connector into the micro controller board.&nbsp; If you connect the
+  Ground to PIC-pin 5 and TX to PIC-pin 6 (PORTB,0) this will work with the 
+default  software settings. Program the 'Demonstration code' hex image into 
+the PIC,  press 'Run' on PICcom and power up the board. This should result 
+in the screen image shown at the top of this page. </big></p>
+           
+<p><img src="birdsbr.gif" alt="" width="700" height="47">
+           </p>
+         
+<p align="left"><img src="desktop.gif" alt="" width="34" height="34">
+    &nbsp; &nbsp;<font color="#ff0000"><font size="+3">Using PICcom</font></font></p>
+       
+<div align="center"> &nbsp;&nbsp;<img src="PICcomLink2.gif" alt=""
+ width="338" height="80">
+  </div>
+       
+<p align="left"><big>To add PICcom to your design it is necessary to select
+  the code library that matches the crystal or ceramic resonator frequency
+ being used (4/10/20MHz). This is because the serial bit rate is coded into
+ the library file as a function of the processor clock cycle. Note that external
+  or internal R/C oscillators may not be stable or accurate enough</big><big> 
+(better than 5%)</big><big> to achieve  reliable serial communications. The 
+code library is not interrupt driven  and is simply called with the data value
+in 'Wreg'. The call address 'SETCH0',  'SETCH1' etc. determines which one
+of the eight display windows will be updated.  The following steps describe 
+how to integrate the code library.<br>
+   </big></p>
+     
+<p align="left"><big>1. Add the three/four file registers: PICCOMT, PICCOMD 
+and  PICCOML (</big><big>PICCOMH</big><big>).<br>
+   2. Add the PICcom Port and Pin definitions: PCPORT, PCPIN.<br>
+   3. Add the main PICcom code segment.<br>
+   4. In the setup code after reset set the PICcom port pin direction and 
+call  </big><big>PCINIT</big><big> to initiate the interface.</big><br>
+   <big>5. Add calls to PICcom whenever you need to debug your code eg,</big><br>
+   </p>
+     
+<p align="left"><big> </big><big><small><tt>&nbsp; &nbsp; MOVLW&nbsp;&nbsp; 
+ 'M'&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ;Display </tt></small></big><big><small><tt>'M'</tt></small></big><big><small><tt> 
+ it window 2<br>
+   &nbsp;&nbsp;&nbsp; CALL&nbsp;&nbsp;&nbsp; SETCH2</tt></small><br>
+   </big></p>
+     
+<p align="left"><big><small><tt>&nbsp;&nbsp;&nbsp; MOVFW &nbsp; TEMP0&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;</tt></small></big><big><small><tt>;Display file register TEMP0</tt></small></big><big><small><tt> 
+ it window 7</tt></small></big><br>
+   <big><small><tt> &nbsp;&nbsp;&nbsp; CALL&nbsp;&nbsp;&nbsp; SETCH7</tt></small><br>
+    </big> </p>
+     
+<p align="left"><big>Since the call to SETCHx will result in a short software 
+ delay as the data is transferred to the PC it is important to add the calls 
+ carefully. &nbsp;Typically the transfer takes 220uS at 115200BPS so the best
+ place to make&nbsp;</big><big>SETCHx </big><big> calls is after a time crucial
+ action has completed or before a delay.<br>
+  </big></p>
+   
+<p align="left"><big>The PICcom 'Terminal window' allows multiple transfers
+ to be captured and displayed. &nbsp;One or more of the 'Display windows'
+can also be directed to the </big><big>'Terminal window' in any 'Format'.
+When the terminal window receives data in ASCII format (ASC)&nbsp; characters
+in the range '&nbsp; ' to '~' (0x20 to 0x7E) will be displayed. ASCII '0x0A'
+ will result in line feed, ASCII '0x7F' will result in the window being cleared.<br>
+  </big></p>
+   
+<p><img src="file:///C:/Steveweb/uJDM/bombline.gif" height="19"
+ width="748">
+                </p>
+                             
+<p><img src="file:///C:/Steveweb/uJDM/whl.gif" height="70" width="93">
+               <font color="#ff0000"><font size="+3"> Links</font></font> 
+</p>
+                             <big>Links to the latest PIC developments <a
+ href="http://www.devrs.com/pic/">PIC/Ubicom Dev'rs</a></big><br>
+ <font size="+1">Microchip <a href="http://www.microchip.com/">Home    Page</a></font>
+   <br>
+<br>
+<p align="left"><br>
+   </p>
+                   
+<center>           
+<p><a href="../index.htm"><big><img src="homebutton.jpg" height="63"
+ width="53" alt="">
+    </big>      </a> <br>
+          <font size="+1"><a href="../index.htm">Back to Main Page</a></font></p>
+          </center>
+            <br>
+          <br>
+         <br>
+        <br>
+       <br>
+      <br>
+     <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

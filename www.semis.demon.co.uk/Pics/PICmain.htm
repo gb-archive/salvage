@@ -1,0 +1,285 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+            
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+            
+  <meta name="Author" content="S.G.Willis">
+            
+  <meta name="GENERATOR"
+ content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+  <title>PPWIN parallel port PIC programmer</title>
+</head>
+  <body background="sky.jpg">
+      
+<center><img src="head_0.gif" border="0" height="100" width="455">
+     
+<p><img src="chip02.gif" border="0" height="25" width="30">
+  <font color="#ff0000"><font size="+3">&nbsp;&nbsp; PPWIN a Parallel Port
+ PIC Programmer&nbsp;</font></font><img src="chip02.gif" border="0"
+ height="25" width="30">
+  </p>
+  </center>
+      
+<p><font size="+1">A simple PC parallel port programmer for serial programming 
+ of MicroChips PIC micro'<font color="#000000">s and <a href="Faq.txt">I2C</a> 
+ EEPROMS. Specifically designed for use with IC-Prog an advanced Windows program,
+WINPP supports programming of most modern 8/18/28 and 40 PIC devices.</font></font> 
+ </p>
+   
+<center>   
+<p><img src="ppwinbox.jpg" hspace="20" border="2" height="220"
+ width="265">
+  <img src="ppwinpcb.jpg" hspace="20" border="2" height="220"
+ width="293">
+  </p>
+  </center>
+      
+<p><font size="+1">PPWIN is based on my<font color="#000000"> original tried 
+ and tested <a href="pp875/PP875main.htm">PP875 design</a></font>. Which has
+been used by over 500 PIC developers around the world. The PPWIN hardware 
+ is identical to PP875 apart from the programming sockets and a small component 
+ <a href="pp875mod.bmp">change</a>.&nbsp; So all of the original software,
+ documents and FAQ's are still relevant. If you need a very simple programmer 
+then have a look at the <a href="../uJDM/uJDMmain.htm">uJDM</a> programmer.</font> 
+</p>
+   
+<p><img src="bombline.gif" height="19" width="739">
+   </p>
+   
+<p><img src="diskett2.gif" border="0" height="30" width="30">
+  <font color="#ff0000"><font size="+3"> Software</font></font> </p>
+   
+<p><font size="+1">PPWIN is designed to work with IC-Prog 1.04 or above. This
+is a great Windows based programmer interface by Bonny Gijzen. Set the IC-Prog
+hardware to <a href="icproghw.jpg">TAIT serial programmer</a> with data out,
+data in and clock inverted. IC-Prog also includes a simple hardware test
+that will allow you to check your hardware connections.</font> </p>
+   
+<p><font color="#000000"><font size="+1">Programmers File Editor - PFE by 
+ A.Phillips or Microchip's MPLAB can be used to create programs. You can configure
+PFE <a href="pfeasm.jpg">'Execute DOS command'</a> button to run the microchip
+MPASM assembler directly.</font></font> <br>
+  &nbsp;   
+<table border="1" width="98%">
+   <tbody>
+      <tr>
+   <td><font color="#ff0000"><font size="+1">File</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+    <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Update Links</font></font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="winpp84.zip">winpp84.zip</a></font></td>
+    <td><font size="+1">1.00</font></td>
+    <td><font size="+1">07/5/2001</font></td>
+    <td><font size="+1">Example PIC16F84 code .asm and .hex</font></td>
+    <td><font size="+1">2K</font></td>
+    <td><font size="+1">&nbsp;</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="../Apps/icprog.zip">icprog.zip</a></font></td>
+    <td><font size="+1">1.05A</font></td>
+    <td><font size="+1">22/6/2003</font></td>
+    <td><font size="+1">Windows software driver for the programmer</font></td>
+    <td><font size="+1">535K</font></td>
+    <td><font size="+1"><a href="http://www.ic-prog.com/">Bonny Gijzen</a></font></td>
+   </tr>
+    <tr>
+   <td><big>MPLAB</big><br>
+        </td>
+    <td><br>
+        </td>
+    <td><br>
+        </td>
+    <td><font size="+1">Microchip MPASM assembler and IDE</font></td>
+    <td><br>
+        </td>
+    <td><font size="+1"><a href="http://www.microchip.com/">Microchip Home</a></font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="../Apps/pfe101i.zip">pfe101i.zip</a></font></td>
+    <td><font size="+1">1.01i</font></td>
+    <td><font size="+1">22/4/2001</font></td>
+    <td><font size="+1">Integrated code development environment</font></td>
+    <td><font size="+1">608K</font></td>
+    <td><font color="#000000"><font size="+1"><a
+ href="http://www.lancs.ac.uk/people/cpaap/pfe/">PFE home page</a></font></font></td>
+   </tr>
+         
+  </tbody>  
+</table>
+    </p>
+   
+<p><img src="bombline.gif" height="19" width="742">
+   </p>
+   
+<p><img src="caps.gif" border="1" height="38" width="90"
+ align="absbottom">
+  <font color="#ff0000"><font size="+3"> Building the Programmer</font></font> 
+ </p>
+   
+<p><font size="+1">The PPWIN programmer is built on a single sided PCB as 
+ shown at the top<font color="#000000"> of this page. </font>The PCB layout 
+ is in a BoardMaker PCB, .BMP or direct and reverse Laser image file formats. 
+ I would recommend you use the direct Laser print file 'ppwin.prn' and follow 
+ these instruction showing <a href="../PCB/PCB.html">How to Make PCB's</a> 
+ if you have not done so before.</font> </p>
+   
+<p><font size="+1">Obtain all the components shown on the parts list and populate
+the board using the PCB overlay and circuit diagram. All of the components
+are standard but if you can't find the ZTX transistors have a read of the
+<a href="Faq.txt">FAQ</a>. It is advisable to solder the stacked programming
+sockets together to stop them from coming apart. Alternatively use wire rap
+connectors with long leads to get the correct height above the PCB. <font
+ color="#000000">If you want to make the programmer look a bit more professional
+then c</font>onstruct the programmer using the recommended plastic box.&nbsp;
+Print the box label onto sticky backed white paper then cover with transposeal
+to finish of the design.</font> <br>
+  &nbsp;   
+<table border="1" width="66%">
+   <tbody>
+      <tr>
+   <td><font color="#ff0000"><font size="+1">File</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+    <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="ppwinparts.txt">ppwinparts.txt</a></font></td>
+    <td><font size="+1">1.0</font></td>
+    <td><font size="+1">22/4/2001</font></td>
+    <td><font size="+1">Parts list</font></td>
+    <td><font size="+1">1K</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="ppwincct.bmp">ppwincct.bmp</a></font></td>
+    <td><font size="+1">1.0</font></td>
+    <td><font size="+1">6/5/2001</font></td>
+    <td><font size="+1">Circuit diagram</font></td>
+    <td><font size="+1">38K</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="ppwincmp.bmp">ppwincmp.bmp</a></font></td>
+    <td><font size="+1">1.0</font></td>
+    <td><font size="+1">22/4/2001</font></td>
+    <td><font size="+1">PCB component overlay</font></td>
+    <td><font size="+1">20K</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="ppwinpcb.zip">ppwinpcb.zip</a></font></td>
+    <td><font size="+1">1.1</font></td>
+    <td><font size="+1">6/5/2001</font></td>
+    <td><font size="+1">PCB layouts, all formats</font></td>
+    <td><font size="+1">41K</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="ppwinlbl.doc">ppwinlbl.doc</a></font></td>
+    <td><font size="+1">1.0</font></td>
+    <td><font size="+1">22/4/2001</font></td>
+    <td><font size="+1">Box label in Word6 format</font></td>
+    <td><font size="+1">69K</font></td>
+   </tr>
+         
+  </tbody>  
+</table>
+    </p>
+   
+<p><img src="bombline.gif" height="19" width="747">
+   </p>
+   
+<p><img src="tv.gif" height="40" width="47">
+  <font color="#ff0000"><font size="+3"> Hardware Testing and Problems</font></font> 
+ </p>
+   
+<p><font size="+1">I&nbsp; would strongly recommend that you build the programmer 
+ using the PCB layout provided as this will greatly reduce the probability 
+ of construction errors. Once you have made the board please follow these 
+<a href="PICtests.htm">simple steps</a> before you start programming.</font> 
+ </p>
+   
+<p><font size="+1">PPWIN has been tested with the following Microchip parts:</font> 
+ </p>
+   
+<p><font size="+1">&nbsp;&nbsp;&nbsp; PIC16C508, 16CE673, 16C71, 16C84, 16F84, 
+ 16C877, <a href="Faq.txt">24LC256</a></font> </p>
+   
+<p><font size="+1">If you need help with the programmer PLEASE read the FAQ 
+ first as it contain information on testing, components, and software problems.&nbsp; 
+ There are now over 500 programmers in use so if you are having problems then
+you are probably doing something wrong: <a href="Faq.txt">Faq.txt (7K)</a></font><font
+ color="#33ccff">__</font><a href="Faq.txt"><img src="roadkil2.gif"
+ height="32" width="32" align="texttop">
+  </a> </p>
+   
+<p><img src="bombline.gif" height="19" width="744">
+   </p>
+   
+<p><img src="book08.gif" border="0" height="37" width="63">
+  <font color="#ff0000"><font size="+3"> Documentation</font></font> </p>
+   
+<p><font color="#000000"><font size="+1">Important documents that you will 
+ need are the PIC data sheet. There is a different data sheet for most PIC 
+ variants and you should download the latest document direct from the Microchip 
+ home site. I have included here the 16F84A data sheet as it covers most of
+the information you are likely to need in the first 34 pages. Unfortunately 
+ the standard 16F84 data sheet is now over 120 pages long.</font></font> <br>
+  &nbsp;   
+<table border="1" width="79%">
+   <tbody>
+      <tr>
+   <td><font color="#ff0000"><font size="+1">File</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Ver</font></font></td>
+    <td><font color="#ff6666"><font size="+1">Date</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Description</font></font></td>
+    <td><font color="#ff0000"><font size="+1">Size</font></font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="../Docs/PIC16F84A.pdf">PIC16F84A.pdf</a></font></td>
+    <td>&nbsp;</td>
+    <td><font size="+1">(c) 1998</font></td>
+    <td><font size="+1">PIC16F84A data sheet</font></td>
+    <td><font size="+1">495K</font></td>
+   </tr>
+    <tr>
+   <td><font size="+1"><a href="../Docs/16F8XXprg.pdf">PIC16F8XXprg.pdf</a></font></td>
+    <td>&nbsp;</td>
+    <td><font size="+1">(c) 1998</font></td>
+    <td><font size="+1">In-circuit-programming specs</font></td>
+    <td><font size="+1">355K</font></td>
+   </tr>
+         
+  </tbody>  
+</table>
+    </p>
+   
+<p><img src="bombline.gif" height="19" width="748">
+   </p>
+   
+<p><img src="whl.gif" height="70" width="93">
+  <font color="#ff0000"><font size="+3"> Links</font></font> </p>
+   
+<p><font size="+1">David Tait's <a
+ href="http://www.man.ac.uk/%7Embhstdj/piclinks.html">PIC Archive</a></font> 
+ <br>
+  <font size="+1">Microchip <a href="http://www.microchip.com/">Home Page</a></font> 
+ <br>
+  &nbsp; <br>
+  &nbsp; <br>
+   </p>
+   
+<center>   
+<p><a href="../index.htm"><img src="homebutton.jpg" height="63"
+ width="53">
+  </a> <br>
+  <font size="+1"><a href="../index.htm">Back to Main Page</a></font></p>
+  </center>
+    <br>
+  <br>
+ <br>
+</body>
+</html>

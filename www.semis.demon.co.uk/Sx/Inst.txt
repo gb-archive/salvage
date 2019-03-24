@@ -1,0 +1,95 @@
+Data Move
+---------
+movlw	k
+movfw	f
+movwf	f
+movf	f,d
+movf	!MODE,W
+movfw	!MODE
+movwf	!MODE
+movwf	!OPTION
+movwf	!RA
+movwf	!RB
+movwf	!RC
+clrf	f
+clrw
+
+
+Logical
+-------
+andlw	k
+andwf	f,d
+iorlw	k
+iorwf	f,d
+xorlw	k
+xorwf	f,d
+tstf	f,d
+
+
+Arithmetic and Shift
+--------------------
+addwf	f,d
+subwf	f,d
+swapf	f,d
+incfsz	f,d
+decfsz	f,d
+incf	f,d
+decf	f,d
+rrf	f,d
+rlf	f,d
+comf	f,d
+
+
+Bitwise and Test
+----------------
+bcf	f,b
+bsf	f,b
+btfsc	f,b
+btfss	f,b
+clrc
+setc
+clrdc
+setdc
+clrz
+setz
+skpc
+skpnc
+skpdc
+skpndc
+skpz
+skpnz
+
+
+Call and Jumps
+--------------
+return
+retp
+reti
+retiw
+retlw	k
+call	k
+goto	k
+
+
+Special Functions
+-----------------
+sleep
+clrwdt
+nop
+iread
+option
+mode	k
+page	k
+bank	k
+tris	PORTA
+tris	PORTB
+tris	PORTC
+
+
+KEY
+---
+k - literal/constant value or address
+d - Destination 0/W or 1/f
+f - file register
+b - bit number 0 to 7
+

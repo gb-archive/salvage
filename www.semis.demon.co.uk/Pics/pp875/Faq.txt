@@ -1,0 +1,217 @@
+FAQ list updated 25 Sept 1997, By S.G.Willis
+
+Listed bellow are the answers to some of your questions.
+
+
+Impossible address
+------------------
+
+Q1. When I try to program my PIC84 with your pic programmer pp875 I get the 
+error message "Impossible address". Why ?
+
+A1. This occurs when the program code file (.OBJ or .HEX) is being loaded, 
+and the assembler code address exceeds 1024 (0x3FF). Three possible reasons 
+for this are :-
+
+1) The assembly file contains 'FUSE/CONFIG/IDLOCS/COPYRIGHT' statements.
+If this is the case then remove these lines and use command line fuse 
+settings :-
+
+	eg:	PP875 TEST.HEX /85lm
+
+2) Your program code file may not be in the correct format eg: HEX8.
+try this definition in your assembler file :-
+
+	LIST    P=16C84,F=INHX8M
+
+	Re-assemble the file. Then program the pic using,
+
+	pp875 file.hex /8x etc.
+
+3) You really are exceeding the address range of the PIC (0x3FF) so check 
+you have a .ORG 0x000 at the start of your assembler file, and look at the 
+.lst output file to see if any code is outside this range (0x000 - 0x3ff).
+
+
+How do I go about developing some a pic84 code
+----------------------------------------------
+
+Q5. What is involved in developing and programming a pic84 ?
+
+A5. Follow these steps,
+
+1) Have a look at my demo file (PPTEST.ASM). Then write you assembler file 
+using DOS edit or PFE (programmers file editor) for windows etc.
+Make sure this line is included in your file,
+
+	LIST    P=PIC16C84, F=INHX8M
+
+2) Assemble the file :-
+
+      MPASM FILE.ASM
+
+	you can get a copy of the assembler from :-
+
+	http://www.microchip2.com/softupdt.htm
+
+3) Then programme the pic :-
+
+	PP875 FILE.HEX /8XP
+
+	(the X,P fuses may not be correct for your circuit)
+
+
+
+PIC508/509 OSCCAL value
+-----------------------
+
+Q2. I am using your software pp875 and the hardware with an UV-erasable 
+PIC12c509. If you erase these chips, you loose the calibration word, which 
+Microchip programs at $3FF ?
+
+A2. Read the value out before erasing the chip, and then place it within 
+your program code eg:-
+
+   	ORG 0x3FF
+	DW <CalibrationWord>
+
+Don't forget to remove it when using a OTP device !
+
+
+Message: OSCCAL value already programmed
+----------------------------------------
+
+Q3.Why do I get "Message: OSCCAL value already programmed" ?
+
+A3. When you are programming a OTP 508/509 the OSCCAL (internal RC 
+calibration value) is already programmed into 0x1FF (508) or 0x3FF (509) by 
+Microchip. Make sure your code does not over write this value. If you get 
+this message with an eprom device it's because the chip has not been erased 
+properly.
+
+
+Flash PICS
+----------
+
+Q4. I am currently using pic 16C84-04 but find this part is now only 
+supplied as a FLASH ROM device (pic 16F84-04) instead of EEprom.
+Do you know if modifications are required to the parallel port programmer to 
+use this pic ?
+
+A4. I have down loaded the latest PIC16C84 and PIC16F84 programming specs 
+from microchip and at first glance they are very similar.
+
+A few timing changes have been made, but nothing drastic.  The configuration 
+word now has more 'code protect' features so I'm not sure what effect this 
+will have on verification.  You could use PPREAD to look at the device after 
+programming.
+
+I do not have any of these devices so I don't know how well this works.
+
+
+Protecting PIC12C508/9
+----------------------
+
+Q6. Why can I still read my 508 when the protect flag has been set ?
+
+A6. The protection flag on the 508/9 only stops ROM addresses > 0x3F from 
+being read (zero). Any data in address range 0-0x3F will read as normal
+
+
+
+Getting the transistors
+-----------------------
+
+Q7. I have some problems to get the transistor ZTX 500 !  Do you know 
+some compatible transistors ???
+
+A7. It's a PNP general purpose device (HFE 100,  IC 100mA) so anything 
+that fits should be ok. Try a BC557, BC558, BC640 or 2N3906. Note the BC557, 
+BC558, BC640  must be rotated by 180 degress to get the correct pinout.
+
+
+Multiple pic - parallel programming
+-----------------------------------
+
+Q8. Can I plug several pics ontop of each other and programme them all at 
+the same time - in parallel.
+
+A8. No you can't programme more than one pic at a time, for many reasons,
+
+The increased power supply current will overload the programmer.
+When the programmer verifies the pics it will not be able to 
+verify the pics individually - major confusion.
+etc...
+
+
+I can't write any PIC12c508 chips
+---------------------------------
+
+Q9. I cant write any PIC12c508 chips. When I use :-
+
+  PP875.EXE /85XM PPTEST5.HEX
+
+  then the following happened :
+
+  pp875: 0001: 0fff != 0a05 
+  pp875: Verify failed during programming 
+
+A9. I always try a PIC16C84 first to test out the hardware. If this is ok 
+but the 508 still won't work, check the 508 header is wired correctly 
+(see .doc file) also check the two 1nF filter caps are correct (on D0/1).
+
+
+Steve... 
+
+
+
+That's it !!!!
+
+
+
+Your understanding of the osccal is correct.  But the programmer 
+needs to work with both EPROM and OTP devices, basically if you use otp 
+devices then leave osccal blank (0x1ff).  The programmer see's that 
+osccal was already programmed  (by Microchip) and gives message.
+
+With eprom device, osccal will be programmed from the .hex file and 
+you will not get a message unless the device was not erased 
+correctly.
+
+> But there is one thing, i do not understand. (508 OTP Pic)
+> 
+> What means "Message: OSCCAL value already programmed" ?
+> I've read your FAQ.TXT, but i could not find out, where is the problem.
+> 
+> Loc. 1FFh holds the osc.calibration value, which will not bis used until a
+> "movwf   OSCCAL"  (OSCCAL=05h) writes it to the osc -  isn't it ?
+> 
+> -> Always when using the corrected osc.frequency there is a Warning-
+> Message !?  Why ?
+
+
+The programming of the PIC508 is much more temperamental than the 
+PIC84,  but once you sort out the problems it works reliably.
+Make sure :-
+
+You are using Ver 0.8 software (attached)
+Use a short printer cable eg: 1.5mtr
+Run from DOS
+Always UV erase the PIC for at least 20mins
+Make sure the two filter capacitors on D0/D1 are 1nF
+Make sure that VPP is 13V
+
+> the tools. I use an Intel Pentium processor with 166 MHz and the
+> pp875: 0000: 0fff != 0fe9
+
+This means that no data has been programmed into the pic - bits still 
+0fff, so could be the VPP is not correct. 
+Try:
+
+PIC16C84 first
+Use a short printer cable - 1.5mtr
+Check VPP is 13V
+Check both leds come on
+Try running from DOS
+
+
