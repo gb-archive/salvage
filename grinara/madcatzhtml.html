@@ -1,0 +1,113 @@
+<script type="text/javascript" src="http://www.geocities.ws/js/policy.js"></script>
+<center><script language="javascript" type="text/javascript" src="http://ad.broadcaststation.net/ads/show_ad.php?width=728&amp;height=90"></script>
+</center>
+<!--script type="text/javascript" src="/js/AdBoxDiv.js"></script-->
+<script type="text/javascript">
+adserver();
+window.onload=function(){
+html = document.body.innerHTML;
+
+checkPolicy(html);
+if ((displayif == 0) && (adstring != null)) {
+document.getElementById("footeraddiv").innerHTML = adstring;
+}
+}
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26341965-1']);
+  _gaq.push(['_setDomainName', '.geocities.ws']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<script type="text/javascript">
+<!--
+ H4jewqpdjh6y = /geocities\.ws$|geocities\.ws\/$|geocities\.ws\/index\.php|geocities\.ws\/archive|geocities\.ws\/search|geocities\.ws\/terms-of-use\.php|geocities\.ws\/terms-of-service\.php|geocities\.ws\/about\.php/i;
+        t48193jfrdsswdsq = document.URL;
+        H4jewqpdjh6yfound = t48193jfrdsswdsq.search(H4jewqpdjh6y);
+	
+if(H4jewqpdjh6yfound == -1){
+	document.write("<center><ins data-revive-zoneid=\"1\" data-revive-id=\"249a85bd1b1946c71ef2de94958ed350\"><\/ins><script async src=\"\/\/147.135.187.149\/ads\/www\/delivery\/asyncjs.php\"><\/script><\/center><br>");
+}
+//-->
+</script>
+#include <stdio.h>
+#include <pc.h>
+
+#define lptbase 0x378 
+#define DATA	lptbase+0
+#define STATUS	lptbase+1
+#define CONTROL lptbase+2
+
+unsigned char buffer[0x1760];
+
+
+int main (int argc, char *argv[])
+{
+	int inbyte, count = 0;
+	
+
+	fprintf(stderr, "Resetting device.\n");
+	fflush(stderr);
+	do {	
+		outportb(CONTROL, 0x24);
+		while ((inportb(STATUS) & 0x20) == 0) { }
+		inbyte = inportw(DATA) & 0xF;
+		printf("%x\n",inbyte);
+	} while (inbyte != 4);	
+	outportb(CONTROL, 0x22);
+	while (inportb(STATUS) & 0x20 != 0) { }	
+	outportb(CONTROL, 0x26);
+	fprintf(stderr, "Receiving data:\n");
+	fflush(stderr);
+	do {	
+		outportb(CONTROL, 0x26);
+		while ((inportb(STATUS) & 0x20) == 0) { }
+		inbyte = inportw(DATA) & 0xF;
+		outportb(CONTROL, 0x22);
+		while ((inportb(STATUS) & 0x20) != 0) { }	
+		outportb(CONTROL, 0x26);
+		while ((inportb(STATUS) & 0x20) == 0) { }
+		inbyte |= (inportw(DATA) & 0xF) << 4;
+		printf("%2x  ",inbyte);
+		outportb(CONTROL, 0x22);
+		while ((inportb(STATUS) & 0x20) != 0) { }	
+		buffer[count++] = inbyte;
+#if 0
+	} while (count < 40);
+#endif
+	} while (1);
+	
+	printf("\n");
+	for (count = 0; count < 40; count++) printf("%2x  ", buffer[count]);
+	printf("\n");
+
+
+}
+<div id="footeraddiv" name="footeraddiv">Hosted by www.Geocities.ws</div>
+<br>	
+<center>
+        <div>
+<!--script language="javascript" type="text/javascript" src="http://ad.broadcaststation.net/ads/show_ad.php?width=728&height=90"></script-->
+<script type="text/javascript">
+	atOptions = {
+		'key' : '5046d8ab865606a85a55c357926403c9',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+	document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bcloudhost.com/5046d8ab865606a85a55c357926403c9/invoke.js"></scr' + 'ipt>');
+</script>
+        </div>
+
+</center>
