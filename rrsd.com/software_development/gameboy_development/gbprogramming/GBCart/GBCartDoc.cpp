@@ -1,0 +1,569 @@
+// GBCartDoc.cpp : implementation of the CGBCartDoc class
+
+#include "stdafx.h"
+#include "GBCart.h"
+#include "GBCartDoc.h"
+#include "Configuration.h"
+#include "ProgressBar.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+/* Programming algorithm defines */
+//#define AMD29FXXX     0
+//#define DATA_VALID    1
+
+#if 0
+char *cart_type[] = {"ROM ONLY", "ROM+MBC1", "ROM+MBC1+RAM", "ROM+MBC1+RAM+BATTERY",
+				"UNKNOWN", "ROM+MBC2", "ROM+MBC2+BATTERY", "UNKNOWN",
+				"ROM+RAM", "ROM+RAM+BATTERY"};
+
+int  rom[] = { 32, 64, 128, 256, 512, 1024, 2048 };
+int  ram[] = { 0, 2, 8, 32 };
+int  mbc[] = { NO_MBC, MBC1, MBC1, MBC1, MBC2, MBC2, MBC2, NO_MBC, NO_MBC, NO_MBC };
+int sram[] = { NO_SRAM, NO_SRAM, NO_SRAM, MBC1, NO_SRAM, NO_SRAM, MBC2, NO_SRAM, NO_SRAM, MBC1 };
+#endif
+
+void ProcessMessageLoop(unsigned int ms){
+    // Read all of the messages in this next loop, 
+    // removing each message as we read it.
+    MSG msg ; 
+    while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)){ 
+        // Otherwise, dispatch the message.
+        DispatchMessage(&msg); 
+    }
+     // let MFC do its idle processing
+    LONG lIdle = 0;
+    while ( AfxGetApp()->OnIdle(lIdle++ ) )
+
+    ::Sleep(ms);
+}
+
+// CGBCartDoc
+
+IMPLEMENT_DYNCREATE(CGBCartDoc, CDocument)
+
+BEGIN_MESSAGE_MAP(CGBCartDoc, CDocument)
+    ON_COMMAND(ID_PROGRAM_ERASE, Erase)
+    ON_COMMAND(ID_PROGRAM_BLANKCHECK, BlankCheck)
+    ON_COMMAND(ID_PROGRAM_PROGRAM, ProgramChip)
+    ON_COMMAND(ID_PROGRAM_VERIFY, Verify)
+    ON_COMMAND(ID_PROGRAM_READ, ReadData)
+    ON_COMMAND(ID_PROGRAM_HEADER, Header)
+    ON_COMMAND(ID_PROGRAM_STOP, OnProgramStop)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_ERASE, IsNotProgramming)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_BLANKCHECK, IsNotProgramming)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_ERASE, IsNotProgramming)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_READ, IsNotProgramming)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_HEADER, IsNotProgramming)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_PROGRAM, IsLoaded)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_VERIFY, IsLoaded)
+    ON_UPDATE_COMMAND_UI(ID_PROGRAM_STOP, IsProgramming)
+END_MESSAGE_MAP()
+
+// CGBCartDoc construction/destruction
+
+CGBCartDoc::CGBCartDoc() :
+    m_c(0x378),
+    m_Size(0),
+    m_loaded(false),
+    m_is_programming(false)
+{
+    m_c.SET_PORT_ADDRESS(CConfiguration::GetInstance().mPort);
+}
+
+CGBCartDoc::~CGBCartDoc()
+{
+}
+
+BOOL CGBCartDoc::OnNewDocument()
+{
+	if (!CDocument::OnNewDocument())
+		return FALSE;
+
+    memset(m_Buffer,0, sizeof(m_Buffer));
+    UpdateAllViews(NULL);
+
+	// TODO: add reinitialization code here
+	// (SDI documents will reuse this document)
+    m_loaded = false;
+	return TRUE;
+}
+
+// CGBCartDoc serialization
+
+void CGBCartDoc::Serialize(CArchive& ar)
+{
+	if (ar.IsStoring())
+	{
+		// TODO: add storing code here
+        ar.Write(m_Buffer, m_Size);
+	}
+	else
+	{
+		// TODO: add loading code here
+        m_Size = ar.Read(m_Buffer, sizeof(m_Buffer));
+        m_loaded = true;
+	}
+}
+
+// CGBCartDoc diagnostics
+
+#ifdef _DEBUG
+void CGBCartDoc::AssertValid() const
+{
+	CDocument::AssertValid();
+}
+
+void CGBCartDoc::Dump(CDumpContext& dc) const
+{
+	CDocument::Dump(dc);
+}
+#endif //_DEBUG
+
+// CGBCartDoc commands
+
+unsigned int CGBCartDoc::BankSet(unsigned int bank) const {
+    if(0 < bank
+    || CConfiguration::GetInstance().mBanked){
+        m_c.WRITE_BKSW(bank, 0x2100);
+        bank = 1;
+    }
+    return bank * 0x4000;
+}
+
+unsigned int CGBCartDoc::PageSize() const {
+    switch(CConfiguration::GetInstance().mMemoryType){
+    case AMD29FXXX:
+        return 64;
+    case AT2XCXXX:
+        return 128;
+    case EEPROM32K:
+        return 64;
+    }
+    return 256;
+}
+
+bool CGBCartDoc::CheckPageErase(
+    unsigned int address,
+    const unsigned int page_size
+) const {
+    /* read back page to see that it was written correctly */
+    for(unsigned int byte = 0; byte < page_size; ++byte){
+        m_c.ADDRESS_LOW(address & 0xff);
+        ++address;
+        if(m_c.READ(CartIO::ROM) != 0xff)
+            return false;
+    }
+    return true;
+}
+
+bool CGBCartDoc::CheckErase() const {
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Checking Erase");
+	unsigned int bank, nbbank;
+
+	/* One bank is 16k bytes */
+	nbbank = m_Size / (16 * 1024);
+    if(0 < nbbank){
+        const unsigned int page_size = PageSize();
+        const unsigned int total_pages = m_Size / page_size;
+        unsigned int total_page_count = 0;
+    	for(bank = 0; bank < nbbank ; bank++) {
+            unsigned int page_count = 0x4000 / page_size;
+            unsigned int address = BankSet(bank);
+            while(page_count-- > 0){
+                m_c.ADDRESS_HIGH(address >> 8);
+                if(!CheckPageErase(address, page_size))
+                    return false;
+                address += page_size;
+                ProcessMessageLoop(0);
+                cb.Set(100 * ++total_page_count / total_pages);
+            }
+        }
+    }
+    return true;
+}
+
+void CGBCartDoc::Erase(void){
+    BYTE Val  = 0;
+
+    /* Wait for erase to complete */
+    BankSet(1);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xAA);
+    m_c.ADDRESS_HIGH(0x2A); m_c.ADDRESS_LOW(0xAA); m_c.WRITE_FLASH(0x55);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0x80);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xAA);
+    m_c.ADDRESS_HIGH(0x2A); m_c.ADDRESS_LOW(0xAA); m_c.WRITE_FLASH(0x55);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0x10);
+
+    ProcessMessageLoop(20); // 20 ms
+
+    bool result;
+    if (CConfiguration::GetInstance().mMemoryType == AMD29FXXX){
+        m_c.ADDRESS_HIGH(0x00); m_c.ADDRESS_LOW(0x00); 
+        /* Wait for erase to complete */
+        while (((Val & 0x80)==0) && ((Val & 0x20)==0)){
+            Val = m_c.READ(CartIO::ROM);
+   	    }   
+        result = ((Val & 0xA0)==0xA0);
+    }
+    else
+        result = CheckErase();
+    if(! result){
+        ::AfxMessageBox(ID_ERASE_FAILED);
+    }
+    else{
+        CString s;
+        CString is;
+        is.Format("%i", m_fail_count);
+        ::AfxFormatString1(s, ID_ERASE_PASSED, is);
+        ::AfxMessageBox(s);
+    }
+    return;
+}
+
+void CGBCartDoc::WritePage(
+    const BYTE *bp,
+    unsigned int address,
+    const unsigned int page_size
+) const {
+    for(unsigned int byte = 0; byte < page_size; ++byte){
+        m_c.ADDRESS_LOW(address & 0xff);
+        ++address;
+        m_c.WRITE_FLASH(*bp++);
+    }
+}
+
+bool CGBCartDoc::CheckPage(
+    const BYTE *bp,
+    unsigned int address,
+    const unsigned int page_size
+) const {
+    /* read back page to see that it was written correctly */
+    for(unsigned int byte = 0; byte < page_size; ++byte){
+        m_c.ADDRESS_LOW(address & 0xff);
+        ++address;
+        if(m_c.READ(CartIO::ROM) != *bp++)
+            return false;
+    }
+    return true;
+}
+
+void CGBCartDoc::Verify(){
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Verifying");
+    const BYTE *bp = m_Buffer;
+	unsigned int bank, nbbank;
+    bool result = true;
+    m_is_programming = true;
+
+	/* One bank is 16k bytes */
+	nbbank = m_Size / (16 * 1024);
+    m_Addr = 0;
+    m_fail_count = 0;
+    if(0 < nbbank){
+    	for(bank = 0; bank < nbbank ; bank++) {
+            const unsigned int page_size = PageSize();
+            unsigned int page_count = 0x4000 / page_size;
+            unsigned int address = BankSet(bank); 
+            while(page_count-- > 0){
+                /* read back page to see that it was written correctly */
+                for(unsigned int byte = 0; byte < page_size; ){
+                    m_c.ADDRESS_HIGH(address >> 8);
+                    m_c.ADDRESS_LOW(address & 0xff);
+                    if(m_c.READ(CartIO::ROM) != *bp){
+                        CString s;
+                        CString hex;
+                        hex.Format("%04X", bp - m_Buffer);
+                        ::AfxFormatString1(s, ID_PROGRAM_VERIFY_FAIL2, hex);
+                        switch(::AfxMessageBox(s, MB_ABORTRETRYIGNORE)){
+                        case IDABORT:
+                            result = false;
+                            break;
+                        case IDRETRY:
+                            continue;
+                        case IDIGNORE:
+                            break;
+                        }
+                        if(!result)
+                            break;
+                    }
+                    ++bp;
+                    ++address;
+                    ++byte;
+                    m_Addr = bp - m_Buffer;
+                }
+                if(!result)
+                    break;
+                ProcessMessageLoop(5);
+                cb.Set((100 * m_Addr) / m_Size);
+            }
+            if(!result)
+                break;
+        }
+    }
+    if(result){
+        ::AfxMessageBox(ID_PROGRAM_VERIFY_PASS);
+    }
+    else{
+        ::AfxMessageBox(ID_PROGRAM_VERIFY_FAIL);
+    }
+    m_is_programming = false;
+}
+
+void CGBCartDoc::ReadPage(
+    BYTE *bp, 
+    unsigned int address,
+    const unsigned int page_size
+){
+    /* read back page to see that it was written correctly */
+    for(unsigned int byte = 0; byte < page_size; ++byte){
+        m_c.ADDRESS_LOW(address & 0xff);
+        ++address;
+        *bp++ = m_c.READ(CartIO::ROM);
+    }
+}
+
+void CGBCartDoc::ReadData(){
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Reading");
+    BYTE *bp = m_Buffer;
+	unsigned int bank, nbbank;
+
+	/* One bank is 16k bytes */
+	nbbank = m_Size / (16 * 1024);
+    m_Addr = 0;
+    m_fail_count = 0;
+    if(0 < nbbank){
+    	for(bank = 0; bank < nbbank ; bank++) {
+            const unsigned int page_size = PageSize();
+            unsigned int page_count = 0x4000 / page_size;
+            unsigned int address = BankSet(bank); 
+            while(page_count-- > 0){
+                m_c.ADDRESS_HIGH(address >> 8);
+                ReadPage(bp, address, page_size);
+                address += page_size;
+                bp += page_size;
+                m_Addr = bp - m_Buffer;
+                cb.Set((100 * m_Addr) / m_Size);
+                ProcessMessageLoop(0);
+            }
+        }
+    }
+    m_loaded = true;
+    SetModifiedFlag();
+    UpdateAllViews(NULL);
+}
+
+void CGBCartDoc::Protect(){
+    BankSet(1);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xAA);
+    m_c.ADDRESS_HIGH(0x2A); m_c.ADDRESS_LOW(0xAA); m_c.WRITE_FLASH(0x55);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xA0);
+}
+
+void CGBCartDoc::UnProtect(){
+    BankSet(1);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xAA);
+    m_c.ADDRESS_HIGH(0x2A); m_c.ADDRESS_LOW(0xAA); m_c.WRITE_FLASH(0x55);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0x80);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0xAA);
+    m_c.ADDRESS_HIGH(0x2A); m_c.ADDRESS_LOW(0xAA); m_c.WRITE_FLASH(0x55);
+    m_c.ADDRESS_HIGH(0x55); m_c.ADDRESS_LOW(0x55); m_c.WRITE_FLASH(0x20);
+}
+
+bool CGBCartDoc::ProgramAtMelFlash(){
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Programming");
+    const BYTE *bp = m_Buffer;
+	unsigned int bank, nbbank;
+
+	/* One bank is 16k bytes */
+	nbbank = m_Size / (16 * 1024);
+    m_Addr = 0;
+    m_fail_count = 0;
+    if(0 < nbbank){
+    	for(bank = 0; bank < nbbank ; bank++) {
+            const unsigned int page_size = PageSize();
+            unsigned int page_count = 0x4000 / page_size;
+            unsigned int address = BankSet(bank);
+            while(page_count-- > 0){
+                unsigned int retry_count = 10;
+                do{
+                    // now write page again leaving protection on if requested
+                    if(PROTECT == CConfiguration::GetInstance().mProtection)
+                        Protect();
+                    else
+                    if(UNPROTECT == CConfiguration::GetInstance().mProtection)
+                        UnProtect();
+                    BankSet(bank);
+                    m_c.ADDRESS_HIGH(address >> 8);
+                    WritePage(bp, address, page_size);
+                    ProcessMessageLoop(20);
+                    if(CheckPage(bp, address, page_size))
+                        break;
+                    ++m_fail_count;
+                }while(--retry_count > 0);
+                if(0 == retry_count
+                || ! m_is_programming)
+                    return false;
+                address += page_size;
+                bp += page_size;
+                m_Addr = bp - m_Buffer;
+                cb.Set((100 * m_Addr) / m_Size);
+            }
+        }
+    }
+    return true;
+}
+
+bool CGBCartDoc::ProgramDefaultChip(){
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Programming");
+    const BYTE *bp = m_Buffer;
+
+	/* One bank is 16k bytes */
+	const unsigned int nbbank = m_Size / (16 * 1024);
+    m_Addr = 0;
+    m_fail_count = 0;
+    if(0 < nbbank){
+    	for(unsigned int bank = 0; bank < nbbank ; bank++) {
+            unsigned int address = BankSet(bank);
+            for(unsigned int page = 0; page < 0x40; ++page){
+                m_c.ADDRESS_HIGH(address >> 8);
+                for(unsigned int byte = 0; byte < 0x100; ++byte){
+                    unsigned int retry_count = 10;
+                    m_c.ADDRESS_LOW(byte);
+                    do{
+                        m_c.WRITE_FLASH(*bp);
+                        unsigned int retry_count = 10;
+                        do{
+                            ProcessMessageLoop(1);
+                            BYTE x = m_c.READ(CartIO::ROM);
+                            if(*bp == x)
+                                break;
+                        }while(--retry_count > 0);
+                        if(0 == retry_count)
+                            ++m_fail_count;
+                        else
+                            break;
+                    }while(--retry_count > 0);
+                    if(0 == retry_count
+                    || ! m_is_programming)
+                        return false;
+                    ++m_Addr;
+                    ++bp;
+                }
+                cb.Set((100 * m_Addr) / m_Size);
+            }
+        }
+    }
+    return true;
+}
+
+bool CGBCartDoc::ProgramAMDChip(){
+    CFrameWnd *pF = (CFrameWnd *)::AfxGetMainWnd();
+    CProgressBar cb(pF, "Programming");
+    const BYTE *bp = m_Buffer;
+
+	/* One bank is 16k bytes */
+	const unsigned int nbbank = m_Size / (16 * 1024);
+    m_Addr = 0;
+    m_fail_count = 0;
+    if(0 < nbbank){
+    	for(unsigned int bank = 0; bank < nbbank ; bank++) {
+            for(unsigned int page = 0; page < 0x40; ++page){
+                for(unsigned int byte = 0; byte < 0x100; ++byte){
+                    unsigned int retry_count = 10;
+                    do{
+                        unsigned int address;
+                        BankSet(1);
+                        m_c.ADDRESS_LOW(0x55); m_c.ADDRESS_HIGH(0x55); m_c.WRITE_FLASH(0xAA);
+                        m_c.ADDRESS_LOW(0xAA); m_c.ADDRESS_HIGH(0x2A); m_c.WRITE_FLASH(0x55);
+                        m_c.ADDRESS_LOW(0x55); m_c.ADDRESS_HIGH(0x55); m_c.WRITE_FLASH(0xA0);
+                        address = BankSet(bank);
+                        m_c.ADDRESS_HIGH(address >> 8);
+                        m_c.ADDRESS_LOW(byte);
+                        m_c.WRITE_FLASH(*bp);
+                        unsigned int retry_count = 10;
+                        do{
+                            ProcessMessageLoop(10);
+                            BYTE x = m_c.READ(CartIO::ROM);
+                            if(*bp == x)
+                                break;
+                        }while(--retry_count > 0);
+                        if(0 == retry_count)
+                            ++m_fail_count;
+                        else
+                            break;
+                    }while(--retry_count > 0);
+                    if(0 == retry_count
+                    || ! m_is_programming)
+                        return false;
+                    ++m_Addr;
+                    ++bp;
+                }
+                cb.Set((100 * m_Addr) / m_Size);
+            }
+        }
+    }
+    return true;
+}
+
+/* Begin chip programming */
+void CGBCartDoc::ProgramChip(){
+    bool result;
+
+    m_is_programming = true;
+    if(CConfiguration::GetInstance().mMemoryType == AT2XCXXX)
+        result = ProgramAtMelFlash();
+    else
+    if(CConfiguration::GetInstance().mMemoryType == AMD29FXXX)
+        result = ProgramAMDChip();
+    else
+        result = ProgramDefaultChip();
+    m_is_programming = false;
+
+    ::Beep(750, 1000);
+    if(! result){
+        CString s;
+        CString hex;
+        hex.Format("%04X", m_Addr);
+        ::AfxFormatString1(s, ID_PROGRAM_FAILED, hex);
+        ::AfxMessageBox(s);
+    }
+    else{
+        CString s;
+        CString is;
+        is.Format("%i", m_fail_count);
+        ::AfxFormatString1(s, ID_PROGRAM_SUCCEED, is);
+        ::AfxMessageBox(s);
+    }
+}
+
+void CGBCartDoc::OnProgramStop()
+{
+    // TODO: Add your command handler code here
+    m_is_programming = false;
+}
+
+void CGBCartDoc::IsLoaded(CCmdUI *pCmdUI)
+{
+    // TODO: Add your command update UI handler code here
+    pCmdUI->Enable(m_loaded && !m_is_programming);
+}
+
+void CGBCartDoc::IsProgramming(CCmdUI *pCmdUI)
+{
+    // TODO: Add your command update UI handler code here
+    pCmdUI->Enable(m_is_programming);
+}
+
+void CGBCartDoc::IsNotProgramming(CCmdUI *pCmdUI)
+{
+    // TODO: Add your command update UI handler code here
+    pCmdUI->Enable(!m_is_programming);
+}
+

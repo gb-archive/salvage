@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.hytherion.com/beattidp/comput/pport.htm -->
+<HTML><HEAD><TITLE>Parallel Port Interfacing (''roll-your-own'')</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR><!-- Copyright (C) 2003 Douglas Beattie Jr. --></HEAD>
+<BODY text=#00f000 vLink=#ffff00 link=#ffffff bgColor=#666666><BR>&nbsp; 
+<H3>Parallel port interfacing in Win32</H3>In the newer versions of 
+Windows<SUP>(R)</SUP> I was left wondering how, if at all, I could read and 
+write my parallel port. Even Borland had dropped support for direct I/O to the 
+hardware. 
+<P>But now there's inpout32.dll -- which works on Win98SE, Win2K and WinXP. This 
+DLL provides hardware I/O to your computer's parallel port. 
+<P>Using Borland's Free C++ Command-line Compiler, I wrote a test program which 
+demostrates I/O to a printer port using inpout32.DLL -- Now you can do port I/O 
+directly from a C program, and compile everything in a DOS console. 
+<P>
+<UL>
+  <LI>The test program builds with Borland's Command-line C Compiler, which is 
+  free for public download from Borland.com, at <A 
+  href="http://www.borland.com/bcppbuilder/freecompiler">http://www.borland.com/bcppbuilder/freecompiler</A> 
+
+  <P></P>
+  <LI>Download the Inpout32 package at <A 
+  href="http://www.logix4u.net/inpout32.htm">http://www.logix4u.net/inpout32.htm</A> 
+
+  <P></P>
+  <LI>Download the <A 
+  href="http://www.hytherion.com/beattidp/comput/pport/test.c">source code for 
+  TEST.C</A>, and you'll be up-and-running quickly. 
+  <P></P>
+  <LI>Also, get the book, ''Parallel Port Complete,'' all about parallel port 
+  interfacing, and program examples that work with Inpout32.dll from <A 
+  href="http://www.lvr.com/">Jan Axelson's Lakeview Research</A>. </LI></UL>
+<P>Please let me know what you discover, and if it also works with other I/O 
+devices too (I haven't checked if it does yet...) 
+<P><BR><BR><I>Don't forget to visit <B><A 
+href="http://www.hytherion.com/beattidp/">My Home Page</A></B> for other things 
+of interest!</I> <BR><BR><BR>EOF</P></BODY></HTML>

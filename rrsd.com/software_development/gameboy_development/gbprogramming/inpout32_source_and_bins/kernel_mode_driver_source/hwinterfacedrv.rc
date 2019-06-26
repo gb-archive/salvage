@@ -1,0 +1,14 @@
+#include <windows.h>
+
+#include <ntverp.h>
+
+#define VER_FILETYPE				VFT_DRV
+#define VER_FILESUBTYPE				VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR     	"hwinterface.sys"
+#define VER_INTERNALNAME_STR        	"hwinterface.sys"
+#define VER_ORIGINALFILENAME_STR    	"hwinterface.sys"
+#define VER_LEGALCOPYRIGHT_STR      	"Copyrighted by Logix4u"
+#define VER_COMPANYNAME_STR         	"Logix4u"
+#define VER_PRODUCTNAME_STR         	"hwinterface Driver Version 1.1"
+
+#include "common.ver"

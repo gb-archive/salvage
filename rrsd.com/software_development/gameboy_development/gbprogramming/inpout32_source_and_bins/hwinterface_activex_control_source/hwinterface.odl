@@ -1,0 +1,71 @@
+// hwinterface.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (hwinterface.tlb) that will become a resource in
+// hwinterface.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(BD6BB71B-5C9A-4FB3-877E-8B513D28B951), version(1.0),
+  helpfile("hwinterface.hlp"),
+  helpstring("hwinterface ActiveX Control module"),
+  control ]
+library HWINTERFACELib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CHwinterfaceCtrl
+
+	[ uuid(39F91450-46FA-41A9-910B-66273D105EBB),
+	  helpstring("Dispatch interface for Hwinterface Control"), hidden ]
+	dispinterface _DHwinterface
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CHwinterfaceCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CHwinterfaceCtrl)
+			[id(1)] short InPort(short Address);
+			[id(2)] void OutPort(short Address, short Data);
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CHwinterfaceCtrl
+
+	[ uuid(D7A782FE-F757-4C7C-9A29-8CF022760AD6),
+	  helpstring("Event interface for Hwinterface Control") ]
+	dispinterface _DHwinterfaceEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CHwinterfaceCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CHwinterfaceCtrl
+
+	[ uuid(B9022892-EA92-4F94-8101-B9CDE30E667D),
+	  helpstring("Hwinterface Control"), control ]
+	coclass Hwinterface
+	{
+		[default] dispinterface _DHwinterface;
+		[default, source] dispinterface _DHwinterfaceEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

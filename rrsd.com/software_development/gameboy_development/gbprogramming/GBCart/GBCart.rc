@@ -1,0 +1,491 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\GBCart.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\GBCart.ico"
+IDR_GBCART_TYPE         ICON                    "res\\GBCartridge.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_FILE_SAVE
+    BUTTON      ID_PROGRAM_PROGRAM
+    BUTTON      ID_PROGRAM_VERIFY
+    BUTTON      ID_PROGRAM_READ
+    BUTTON      ID_PROGRAM_BLANCKCHECK
+    BUTTON      ID_PROGRAM_ERASE
+    BUTTON      ID_PROGRAM_STOP
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                        ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Show Hex &Data",              ID_SHOW_HEX_DATA
+    END
+    MENUITEM "&Configure",                  ID_CONFIGURE
+    POPUP "&Program"
+    BEGIN
+        MENUITEM "&Program",                    ID_PROGRAM_PROGRAM
+        MENUITEM "&Verify",                     ID_PROGRAM_VERIFY
+        MENUITEM "&Read",                       ID_PROGRAM_READ
+        MENUITEM "&Blank Check",                ID_PROGRAM_BLANKCHECK
+        MENUITEM "&Erase",                      ID_PROGRAM_ERASE
+        MENUITEM "&Header",                     ID_PROGRAM_HEADER
+        MENUITEM "&Stop",                       ID_PROGRAM_STOP
+    END
+    MENUITEM "Test",                        ID_TEST
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About GBCart...",            ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About GBCart"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "GBCart Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_TEST DIALOGEX 0, 0, 148, 130
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Cartridge I/O"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "D0-D7",IDC_D0_D7,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    6,24,36,10
+    CONTROL         "A0-A7",IDC_A0_A7,"Button",BS_AUTORADIOBUTTON,6,36,36,10
+    CONTROL         "A8-A15",IDC_A8_A15,"Button",BS_AUTORADIOBUTTON,6,48,40,
+                    10
+    CONTROL         "CTRL",IDC_CTRL,"Button",BS_AUTORADIOBUTTON,6,60,33,10
+    CONTROL         "READ",IDC_READ,"Button",BS_AUTORADIOBUTTON,6,72,34,10
+    CONTROL         "WRITE",IDC_WRITE,"Button",BS_AUTORADIOBUTTON,6,84,38,10
+    CONTROL         "AUDIO IN",IDC_AUDIO_IN,"Button",BS_AUTORADIOBUTTON,6,96,
+                    47,10
+    RTEXT           "22-29",IDC_STATIC,60,24,30,8
+    RTEXT           "6-13",IDC_STATIC,60,36,30,8
+    RTEXT           "14-21",IDC_STATIC,60,48,30,8
+    RTEXT           "5",IDC_STATIC,60,60,30,8
+    RTEXT           "4",IDC_STATIC,60,72,30,8
+    RTEXT           "3",IDC_STATIC,60,84,30,8
+    RTEXT           "31",IDC_STATIC,60,96,30,8
+    LTEXT           "Signal",IDC_STATIC,6,6,24,8
+    RTEXT           "GB Pin",IDC_STATIC,66,6,24,8
+    EDITTEXT        IDC_BYTE,6,114,24,12,ES_RIGHT | ES_UPPERCASE | 
+                    ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "Read",IDC_READ_BYTE,36,114,24,12
+    PUSHBUTTON      "Write",IDC_WRITE_BYTE,66,114,24,12
+    CONTROL         "Low",IDC_LOW,"Button",BS_AUTORADIOBUTTON | WS_GROUP,102,
+                    24,29,10
+    CONTROL         "High",IDC_HIGH,"Button",BS_AUTORADIOBUTTON,102,36,30,10
+    PUSHBUTTON      "Set Signals",IDC_SET_SIGNALS,102,114,42,12
+END
+
+IDD_CONFIGURE DIALOGEX 0, 0, 132, 231
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Configuration"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_MEMORY_TYPE,7,21,86,60,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Not Banked",IDC_NOT_BANKED,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,64,62,10
+    CONTROL         "Banked",IDC_BANKED,"Button",BS_AUTORADIOBUTTON,7,80,46,
+                    10
+    CONTROL         "Protected",IDC_PROTECT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,7,116,47,10
+    CONTROL         "Unprotected",IDC_UNPROTECT,"Button",BS_AUTORADIOBUTTON,
+                    7,132,56,10
+    CONTROL         "Unchanged",IDC_UNCHANGED,"Button",BS_AUTORADIOBUTTON,7,
+                    148,52,10
+    COMBOBOX        IDC_PORT_ADDRESS,7,182,83,46,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,57,210,32,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,210,34,14
+    LTEXT           "Memory Type",IDC_STATIC,7,7,44,8
+    LTEXT           "Preferred Access",IDC_STATIC,7,50,70,10
+    LTEXT           "Parallel Port Address",IDC_STATIC,7,166,84,8
+    LTEXT           "Leave Data Protection:",IDC_STATIC,7,97,75,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "GBCart.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "GBCart.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_TEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 141
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 123
+    END
+
+    IDD_CONFIGURE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 224
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CONFIGURE DLGINIT
+BEGIN
+    IDC_MEMORY_TYPE, 0x403, 11, 0
+0x3233, 0x204b, 0x4545, 0x5250, 0x4d4f, "\000" 
+    IDC_MEMORY_TYPE, 0x403, 13, 0
+0x7441, 0x654d, 0x206c, 0x3932, 0x5843, 0x5858, "\000" 
+    IDC_MEMORY_TYPE, 0x403, 11, 0
+0x4d41, 0x2044, 0x3932, 0x5846, 0x5858, "\000" 
+    IDC_PORT_ADDRESS, 0x403, 4, 0
+0x3733, 0x0038, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "GBCart\n\nGBCart\nGBCart Files (*.gb)\n.gb\nGBCart.Binary\nGBCart.Binary"
+    ID_PROGRAM_FAILED       "Program cartride failed"
+    ID_PROGRAM_VERIFY_FAIL  "Cartride verify failed"
+    ID_PROGRAM_SUCCEED      "Program cartride succeeded with %1 pages retried"
+    ID_PROGRAM_VERIFY_PASS  "Cartridge verify passed"
+    ID_ERASE_PASSED         "Erase OK"
+    ID_ERASE_FAILED         "Erase Failed"
+    ID_PROGRAM_VERIFY_FAIL2 "Cartride verify failed at address %1"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "GBCart"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_PROGRAM_BLANCKCHECK  "Blank Check"
+    ID_PROGRAM_PROGRAM      "Program Cartridge"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_PROGRAM_VERIFY       "Verify Cartridge Programming"
+    ID_PROGRAM_READ         "Read Cartridge"
+    ID_PROGRAM_ERASE        "Erase Cartridge"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\GBCart.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
