@@ -1,0 +1,88 @@
+Low-resource, Lossless Decompression Tests v1.0305
+  by Jeff F. - http://www.devrs.com
+
+NOTE: When looking at the following results keep in
+ mind that 10 bytes of PuCrunch, 17 bytes of RNC1,
+ 18 bytes of RNC2, and 1 byte of C64Pack packed
+ data files contain unused header bytes that could
+ be stripped to increase compression.
+
+TIMES ONLY APPLY FOR OLDER GB/GBC. NOT FOR GBA.
+THEY ARE INCLUDED FOR RELATIVE PERFORMANCE INDICATION ONLY.
+
+    Method  Decomp Time*  Comp UIC
+                          Size Size
+
+hs1.til (4096 bytes)
+
+  PuCrunch     -  0.525 - 2840 2612
+  JCALG1                - 2862
+  RNC method 1 -  1.120 - 2865 2691
+  RNC method 2 -  0.088 - 2938 2730  (v1.0 time 0.094)
+  ZXHrustv2.03 -        - 2956
+  C64Pack      -  0.193 - 3091 2837
+  AGBComp LZ77          - 3240
+  AGBComp Huff4         - 3292
+  AGBComp Huff8         - 3440
+  GB Comp v1.4 -  0.043 - 3470 3204
+  GB Comp v1.3 -  0.048 - 3486 3210
+
+km1.til (4096 bytes)
+
+  RNC method 1 -  0.766 - 3125 3132
+  PuCrunch     -  0.547 - 3128 3080
+  JCALG1       -        - 3194
+  RNC method 2 -  0.072 - 3202 3193  (v1.0 time 0.077)
+  ZXHrustv2.03 -        - 3245
+  C64Pack      -  0.186 - 3246 3184
+  GB Comp v1.4 -  0.037 - 3441 3452
+  GB Comp v1.3 -  0.041 - 3441 3452
+  AGBComp Huff4         - 3452
+  AGBComp LZ77          - 3476
+  AGBComp Huff8         - 3660
+
+font1.til (896 bytes)
+
+  JCALG1       -        -  558 
+  ZXHrustv2.03 -        -  588
+  PuCrunch     -  0.104 -  564  605
+  RNC method 1 -  0.230 -  567  635
+  RNC method 2 -  0.018 -  594  657  (v1.0 time 0.019)
+  C64Pack      -  0.038 -  599  663
+  AGBComp LZ77 -        -  656
+  GB Comp v1.4 -  0.011 -  701  786
+  GB Comp v1.3 -  0.011 -  705  787
+  AGBComp Huff4         -  732
+  AGBComp Huff8         -  780
+
+  AGBComp is official AGB compressor tool from Nintendo to
+ support the built-in decompression in BIOS rom.
+
+ JCALG1,RNC1,C64Pack, GB Comp, & ZXHrust are not currently ported
+ to GBA. Only RNC1 & RNC2 require a license to use commercially.
+
+ JCALG1   - http://www.collakesoftware.com
+ RNC2     - http://www.devrs.com/gba/
+ C64Pack  - http://www.devrs.com/gb/  (Link to package.)
+ GB Comp  - http://www.devrs.com/gb/  (Link to Sam Nova's site.)
+ PUCrunch - http://www.devrs.com/gba/ (Link to package.)
+
+ All measurements in seconds on the GB in single-speed mode.
+
+ Only default compressor optimizations used.
+
+ hs1. til & km1.til are large dithered graphic tile sets
+   that were extracted from several games.
+ font1.til is a small dithered alphanumeric font set.
+
+ Comp Size = compressed size
+ UIC Size = undo interleave compressed size
+
+ UIC is where you separate the even from the odd bytes
+and then join these two data sets end to end in a file.
+The idea being that often UIC files compress better if
+the original files contained colorful tiles. (UIC was
+helpful for the original GB/GBC. It may or may not be
+a useful technique for GBA dev.)
+
+*EOF*

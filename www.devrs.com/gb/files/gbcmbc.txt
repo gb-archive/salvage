@@ -1,0 +1,44 @@
+GameBoy Color ROM Statistics
+
+Type = ROM Type
+ 1 = Sharp LH538, 2 = Samsung SEC KM23C16120DT, 3 = Macronix MX23C8005
+
+Internal Name    Cart Type             RAM ROM Type   Name of Game
+                                   (in K bytes)
+BASS POCKET 3    ROM+MBC5+RAM+BAT      8 1024     Bass Pocket 3
+BUGS BUNNY       ROM+MBC5                1024     Operation Carrot Patch
+BUGSBUNNY CC 3   ROM+MBC5                1024     Bugs Bunny's Crazy Castle 3
+BUGS LIFE        ROM+MBC5                1024     Bug's Life
+CENTIPEDE        ROM+MBC5                1024     Centipede
+DQ/MONSTERS      ROM+MBC1+RAM+BAT      8 2048     Dragon Quest Monsters (jap)
+FROGGER          ROM+MBC5                1024     Frogger
+G&W GALLERY2     ROM+MBC5+RAM+BAT      8 1024  1  Game & Watch Gallery 2 GBC
+GEX GECKO        ROM+MBC5                1024     Gex: Enter The Gecko World
+GLOCAL HEXCITE   ROM+MBC5+RAM+BAT     32 1024     Glocal Hexcite (jap)
+HARVEST-MOON GB  ROM+MBC3+TMR+RAM+BAT  8 1024     Harvest Moon GBC
+LODOSS WAR GB    ROM+MBC5                1024  1  Eiyu Kisiden (jap)
+GB-MONOPOLY      ROM+MBC5                1024     Monopoly
+MEN IN BLACK     ROM+MBC5                1024     Men In Black
+MONTEZUMA        ROM+MBC5                 512     Montezuma's Return
+MORTAL KOMBAT 4  ROM+MBC5                1024     Mortal Kombat 4
+NFL BLITZ        ROM+MBC5                1024     NFL Blitz
+PITFALL BTJ      ROM+MBC5                1024     Pitfall: Beyond The Jungle
+POCKET PUYOSUN   ROM+MBC5+RAM+BAT      8 1024     Pocket Puyosun (jap)
+POKEBOM USA      ROM+MBC5                1024     Pocket Bomberman GBC
+POKEMON CARD GB  ROM+HuC1+RAM+BAT     32 1024     Pokemon Card GB (jap)
+POWER QUEST      ROM+MBC5                1024     Power Quest
+QUESTFORCAMELOT  ROM+MBC5+RAM+BAT      8 1024     Quest for Camelot
+RAMPAGE WT       ROM+MBC5                1024     Rampage World Tour
+RATS!            ROM+MBC5                 512     Rats!
+ROBOPON STAR     Hudson HuC-3         32 1024     Robopon Star (jap)
+ROBOPON SUN      Hudson HuC-3         32 1024     Robopon Sun (jap)
+SUPER BREAKOUT   ROM+MBC5                1024     Super Breakout
+SYLVESTER        ROM+MBC5                1024     Sylvester & Tweety
+TETRIS DX        ROM+MBC1+RAM+BAT      8  512     Tetris DX
+THE SMURFS 3     ROM+MBC5                1024     Smurfs
+TIMENETFUTURE    ROM+MBC5+RAM+BAT     32 1024     Sanrio Time Net Future (jap)
+TIMENETPAST      ROM+MBC5+RAM+BAT     32 1024     Sanrio Time Net Past (jap)
+TUROK 2: SEEDS   ROM+MBC5                1024     Turok 2: Seeds of Destruction
+CGBWARIOLAND2    ROM+MBC5+RAM+BAT     32 2048     Warioland 2 GBC (jap)
+ZELDA            ROM+MBC5+RAM+BAT     32 1024 2/3 Zelda DX
+

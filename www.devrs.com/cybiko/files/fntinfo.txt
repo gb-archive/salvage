@@ -1,0 +1,46 @@
+Cybiko Fonts File Format v1.0 by Jeff F.
+---------------------------------------
+ All info from Ernest S. Pazera.
+
+Offset 0x00:  0x01 //indicates this is a font file
+Offset 0x01:  charcount //number of characters in the file
+Offset 0x02:  maxwidth //maximum width of the characters
+Offset 0x03:  maxheight //maximum height of the characters
+
+starting with offset 0x04, and continuing to the end of file are each of
+the characters.  each of the character records look like this:
+
+(offsets based on the beginning of the character record)
+Offset 0x00: left //left coordinate of the image
+Offset 0x01: top //top coordinae of the image
+Offset 0x02: width //width of the image
+Offset 0x03: height //height of the image
+
+offsets 4 and above are the character bitmap information. a font is
+monochrome, and the bits read from msb to lsb, so a typical letter A in 8x8
+would look like:
+
+00110000=0x30
+01111000=0x78
+11001100=0xCC
+11001100=0xCC
+11111100=0xFC
+11001100=0xCC
+00000000=0x00
+
+so, the character record for this letter would look like:
+
+... 00 00 08 08 30 78 CC CC FC CC 00 ...
+
+from experiments, i've determined that the first character record
+corresponds to character 0x20 (the space character).
+
+i have found that 2pic.exe doesnt like too many input files, so using it to
+make fonts probably won't work.  
+
+i figure 60 character records should be about the minimum for a font (to
+encompass the characters 0x20 through 0x7F and thus getting all of the
+ASCII characters). i imagine that cybiko's built in fonts probably go
+higher, since they have the (c) character.  i'll have to play around some
+more...
+

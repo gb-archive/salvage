@@ -1,0 +1,34 @@
+ObjCopyRoda.EXE
+---------------
+
+ Here is a version of GCC objcopy for Windows that when importing
+binary files & exporting object files, the exported section is
+.roda instead of .data. This allows you to easily assign binary
+data to be put into ROM rather than into RAM.
+
+ Ideally, the exported section probably should be .rodata but
+this version of objcopy was hacked rather than recompiled and
+there was only room for 4 characters. To have .roda sections
+included in .rodata (read-only data/ROM) sections you need to
+make the following modifications to your "lnkscript" file.
+
+Change this part:
+
+  .rodata    :
+  {
+    *(.rodata)
+    *(.rodata.*)
+    *(.gnu.linkonce.r*)
+  }
+
+
+to this, instead, so that .roda data goes into .rodata data section:
+
+  .rodata    :
+  {
+    *(.rodata .roda)
+    *(.rodata.*)
+    *(.gnu.linkonce.r*)
+  }
+
+That's all there is to it.

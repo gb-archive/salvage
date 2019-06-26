@@ -1,0 +1,30 @@
+.gxe - Binary info file : title, company, icon, encrypted stuff, ...
+
+.gxc - Encrypted binary file. Usually only the first X bytes of a
+       commercial gxc is encrypted. The percentage of the file that
+       is encrypted is controlled by the encryption program. (But
+       often it is a very low percentage.) Here is the format
+
+       Header (20 bytes long)
+       Encypted binary data (X% of file)
+       Unencrypted binary data (100-X% of file)
+
+       If you remove the 20 byte header and unencrypt the file, then the
+       resulting data is identical in all other respects with a .gxb file.
+       
+.gxb - Non-encrypted binary file. This is placed in gp32 ram starting
+       at location 0xc000000. The entry point is the starting location
+       and the entry is performed in ARM (not thumb) mode. Here is the
+       header format:
+
+       b SkipHeader
+        DCD Start Of Rom Code(?)
+        DCD End Of Rom Code(?)
+        DCD Start Of BSS Section(?)
+        DCD End Of RAM Sections(?)
+        DCD Start Of DATA Section(?)
+        DCD End Of RAM Sections(?)
+        DCD 0x44450011
+        ... sometimes more info here...
+       SkipHeader:
+        b C_Entry

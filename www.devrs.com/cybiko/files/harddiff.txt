@@ -1,0 +1,183 @@
+Cybiko Model Technical Differences
+----------------------------------
+  by Jeff Frohwein, v1.0124
+
+ There currently are two different cybiko models.
+Version 1 has a power switch on the side.
+Version 2 uses the Esc key to power up.
+Besides this difference, the other main difference
+is that you have ~80KBytes more file space for
+games on Version 2 units.
+
+ Below are more differences between the two.
+
+ CyOS Boot Loader is the actual boot ROM in the
+cybiko itself. It resides in non-upgradeable memory.
+The version of Boot Loader that is installed in your
+system can be viewed by looking at the SDK Console
+window as you power up your cybiko. (Assuming the
+cable is in place and the COM port setting is correct.)
+
+ CyOS is the actual operating system that gets loaded
+by the Boot Loader. It resides in flash and can be
+upgraded.
+
+
+Version 1
+---------
+  512KBytes Internal RAM
+  512KBytes File Flash
+  No CyOS Flash. (comp1.2.XXr.boot stored in file Flash.)
+  4KBytes CPU RAM
+  32KBytes CPU (BootLoader) ROM
+  32Kbits Video RAM (Hitachi HD66421)
+  Comes with CyOS Boot Loader v1.1.5 or less.
+  Uses CyOS v1.2.xx versions.
+  CyWIG uses the file 'CyRS_115.boot' to put the
+  base cybiko unit into CyWIG server mode.
+
+
+Version 2
+---------
+  256KBytes Internal RAM
+  512KBytes File Flash
+  256KBytes CyOS Flash (System packs are stored here.)
+  4KBytes CPU RAM
+  32KBytes CPU (BootLoader) ROM
+  32Kbits Video RAM (Hitachi HD66421)
+  Has a reset button instead of a power button.
+  Comes with CyOS Boot Loader v1.1.6 or greater.
+  Uses CyOS v1.3.xx versions.
+  CyWIG uses the file 'CyRS_119.boot' to put the
+  base cybiko unit into CyWIG server mode.
+
+
+   Below is example boot information that you can
+  view when powering up your cybiko while using SDK Console:
+
+BootLoader v1.1.2
+-----------------
+  Starting CyOS boot loader v1.1.2
+
+  Testing 512k of memory @200000
+  Data register test passed
+  Address bus test passed, memory ok
+
+  Preparing to load CyOS
+
+  Detected flash device model 3 [1019 blocks of 254 bytes]
+  OS loaded
+  Got header: magic 1C0FFAB (valid) LZSS compressed image
+  boot header size 12
+  Compressed size 80716 decompressed size 142230
+  decompressing...
+  Got header: magic 1234ABCD (valid) plain image
+  Starting...
+
+  Initializing dispatcher...
+  Initializing names list...
+  Initializing flash device...
+  Initializing memmgr...
+  Checking cartridge...
+  Starting rfdriver
+  Starting rfmonitor
+  Starting messenger
+  Starting receiver
+  Boot ROM CRC: FF000D
+  Flash device model 3 blocks 2043, 254 bytes each
+
+  Memory pool constructed @(22B210 - 27FD60)
+
+  Cartridge: RAM 0 bytes, flash disk 0 blocks, 0 bytes each
+
+  Press [Enter] to select special OS loading mode
+
+  Initializing standard file devices+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++OK
+
+  Initializing .tors...
+  calling constructor at 222A0C [ptr 222788]
+  calling constructor at 222A08 [ptr 21EBFC]
+  calling constructor at 222A04 [ptr 21DDFA]
+  calling constructor at 222A00 [ptr 21D262]
+  calling constructor at 2229FC [ptr 21CBBA]
+  calling constructor at 2229F8 [ptr 21A3A8]
+  calling constructor at 2229F4 [ptr 212782]
+  calling constructor at 2229F0 [ptr 2096F8]
+  calling constructor at 2229EC [ptr 207C06]
+  calling constructor at 2229E8 [ptr 2077F4]
+  calling constructor at 2229E4 [ptr 20599E]
+
+
+  Initializing extern file devices
+  Starting CyOS console
+
+  OS version 1.2.55 built Dec 25 2000 21:23:24
+
+   - OK - OK - OK - OK
+
+  Processing autostart.cmd
+  >> keybd.app int_113.kbd
+  kbd layout loaded
+  >> servers.app
+  Ready >
+
+  scheduling startup tasks
+
+BootLoader v1.1.7
+-----------------
+
+  Starting CyOS boot loader v1.1.7
+
+  Scanning RAM...  128k  256k
+
+  256K RAM detected
+
+  NMI skipped: 0; lost interrupts: 0
+
+  Preparing to load CyOS
+
+  Detected flash device model 3 [2043 blocks of 254 bytes]
+  OS loaded
+  Got header: magic 1234ABCD : valid plain image plain image
+  Starting...
+
+  Found valid bootable section at 0x100000, starting it
+
+  Initializing dispatcher...
+  Initializing names list...
+  Initializing flash device...
+  Initializing memmgr...
+  Starting rfdriver
+  Starting rfmonitor
+  Starting messenger
+  Starting receiver
+  Boot ROM CRC: FFFFFFFF
+  Flash device model 3 blocks 2043, 254 bytes each
+
+  Memory pool constructed @(20AEE0 - 23FD50)
+  Press [Enter] to select special OS loading mode
+  Now starting the file system...
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++OK
+  Initializing .tors...
+  calling constructor at 123972 [ptr 121F12]
+  calling constructor at 12396E [ptr 11F488]
+  calling constructor at 12396A [ptr 11E65E]
+  calling constructor at 123966 [ptr 11DADC]
+  calling constructor at 123962 [ptr 11ACF0]
+  calling constructor at 12395E [ptr 112E28]
+  calling constructor at 12395A [ptr 10AFB2]
+  calling constructor at 123956 [ptr 1098F6]
+  calling constructor at 123952 [ptr 10948E]
+  calling constructor at 12394E [ptr 10799E]
+
+  Starting CyOS console
+
+  OS version 1.3.51 built Jul 14 2000 19:59:34
+
+   - OK - OK - OK - OK
+
+  Processing autostart.cmd
+  >> keybd.app int_113.kbd
+  kbd layout loaded
+  >> servers.app
+  Ready >

@@ -1,0 +1,136 @@
+SDK Console Commands, v1.0118
+-----------------------------
+[ Info from CyBuilder, HunkPapa, & rael. ]
+
+
+ These are commands that are used to read or control the cybiko
+from the SDK Console. Consider NOT using the ones marked DANGER.
+
+[filename.ext] - Execute a file if it's executable.
+
+avr        - Coprocessor Control/Read
+
+     avr ?             - command help
+     avr compare <filename_against>
+     avr read <filename_to>
+     avr write <filename_from> ***DANGER***
+     avr eeread [address]
+     avr eewrite <address> <data> ***DANGER***
+     avr eewrite16 <datastring> ***DANGER***
+
+boot       - Sets Boot File ***DANGER***
+
+     boot [filename] - Ex: boot comp1.2.55r.boot
+
+cfg        - Display Current Configuration
+
+     cfg ?                   - Lists the different functions and how to use
+     cfg                     - Displays the current configuration on the Cybiko
+     cfg dump                - Same as 'cfg' but shows cfg file version as well
+     cfg [function] [action] - list a device name and device size info
+
+channel    - Sets/Returns Current RF Channel
+
+     channel       - Report current setting
+     channel [0-9] - Set the RF channel
+
+cp         - Copy File
+
+     cp { -f | -v } source_file    destination_file
+     cp { -f | -v } source_file(s) destination_directory
+     -f -- overwrite without confirmation
+     -v -- verbose (say what is going on)
+
+     Examples: cp test.txt testbak.txt    - Copy file to another file.
+               cp test.txt /a/testbak.txt - Copy file to expansion card.
+
+fdoctor    - Flash Repair ***DANGER***
+
+     fdoctor ? - command help
+     fdoctor v - verbose mode - more comments
+     fdoctor i - inspection mode - fast scanning, no attempts to modify flash
+
+format     - Used to format flash device on the Cybiko
+
+     *** DANGER - DO NOT USE ***
+
+id         - Report Cybiko ID
+
+imgrcv     - Receive an Image File (PC -> Cybiko)
+
+     imgrcv [filename.ext] [file_size]
+
+keyboard   - Set keyboard Driver ***DANGER***
+
+     keyboard [filename.ext]
+
+lcd params - Sets each color value ***DANGER***
+
+     Ex: lcd params 3 0 12 18 31     <- Normal Contrast, Normal Brightness
+                    | |  |  |  |
+          Contrast -+ |  |  |  |
+          Color[0] ---+  |  |  |
+          Color[1] ------+  |  |
+          Color[2] ---------+  |
+          Color[3] ------------+
+
+      DO NOT USE UNLESS YOU KNOW WHAT YOU ARE DOING. YOUR DISPLAY WILL
+     TURN ALL WHITE AND YOU WILL SEE NOTHING WITH THE WRONG SETTINGS.
+
+ls         - List File(s) (Use -l option for detailed list
+
+     ls [filename.ext]    - list a file or files on the Cybiko no file size info
+     ls -l [filename.ext] - list a file or files on the Cybiko with file size info
+     ls -l /*             - list boot flash space data only
+     ls -l /default/*     - list files on main boot flash
+     ls -l /a/*           - list files on expansion card
+
+os_kind    - Displays OS Information (release/debug?)
+
+pc         - PC / Local Select
+
+     pc on   - "Connected to PC..." mode
+     pc off  - Regular mode
+     pc root - Regular mode & Refresh Desktop
+
+rcv        - Receive a File (PC -> Cybiko)
+
+     rcv [filename.ext] [file_size] -     Ex: rcv my.app 600
+
+     NOTE: To get the cybiko to receive a boot file and execute it
+           immediately, (i.e. Don't save it to the file system.)
+           it needs to be sent immediately upon power up or reset.
+           The first 4 bytes of any boot file MUST be 12,34,AB,CD
+           (plain file) or 01,C0,FF,AB (LZSS compressed file.
+
+           CyWIG uses this technique to boot a cybiko as a server.
+
+reboot     - Reboot the cybiko
+
+rm         - Remove File ***DANGER***
+
+     rm  [filename.ext] - DO NOT USE UNLESS YOU KNOW WHAT YOU'RE DOING!
+
+rootinfo    - Displays file attribute info (Only available in PC ON mode.)
+
+     rootinfo                - Show root info for all files
+     rootinfo [filename.ext] - Show root info for a file
+
+sformat    - Used to soft format flash device on the Cybiko
+
+     *** DANGER - DO NOT USE ***
+
+sysinfo    - System Info
+
+     sysinfo ?     - command help
+     sysinfo flash - Report info about the flash
+
+tsync      - Time Synchronization (Only available in PC ON mode.)
+
+     tsync [number] - Set "trusted time" to [number].
+
+upl        - Upload a file (Only available in PC ON mode.) (Cybiko -> PC)
+
+     upl [filename.ext]
+
+ver        - Display OS Version

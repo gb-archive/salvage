@@ -1,0 +1,79 @@
+GB Save Ram
+Written by Guy Savoie
+nmisoft@tiac.net
+
+If I have some details wrong here, please let me know. FWIW, it all works
+when I use it. Your mileage may vary. If this doesn't exist in a GBDK faq
+somewhere, it SHOULD.
+
+The BEST way I know to handle accessing the non-volatile ram is to have the
+linker map variables in a separate C file over the non volatile RAM
+address - so when you read or write to your variables, it goes directly into
+or out of the NV RAM.
+
+Here is a sample set of contents for a file called savevars.c:
+======================
+UBYTE playername[24];
+UBYTE highscoredigits[12];
+======================
+
+Then, in your make.bat file, you tell the linker that these variables are to
+reside at the nv RAM address:
+
+lcc -Wa-l -Wf-ba0 -c -o savevars.o savevars.c
+
+the -Wf-ba0 tells the linker the area base address for these variables will
+be BA00 - the start of nv ram.
+
+Just be sure the structures aren't larger than your desired nv RAM size.
+Now in your main C file, or any file that references these values, you need
+the following:
+
+==========================
+extern UBYTE playername[24];
+extern UBYTE highscoredigits[12];
+==========================
+
+You can save that in a "savevars.h" and #include that in any source file
+where you will use the variables, if you wish.
+
+In your program, just read to and write to the variables as you want to - no
+special handling in your code - easy as pie! The values will be there the
+next time you run your program. (in non-volatile RAM on the GB or in a SAV
+file on your emulator.)
+
+Oh, and the final creation of your gameboy file should include something
+like:
+
+lcc -Wl-m -Wl-yt2 -Wl-yo4 -Wl-ya4 -Wl-yp0x143=0x80 -o gb_file.gbc main.o
+savevars.o
+
+Here are the important linker commands:
+
+  -Wl-yo#  Number of rom banks (default: 2)
+  -Wl-ya#  Number of ram banks (default: 0)
+  -Wl-yt#  MBC type (default: no MBC)
+
+Here are the MBC types (stolen from RGBDS sources) - I dunno if all are
+supported by GBDK, but the one I use, #2, is:
+   ;--------
+   ;0 - ROM ONLY
+   ;1 - ROM+MBC1
+   ;2 - ROM+MBC1+RAM
+   ;3 - ROM+MBC1+RAM+BATTERY
+   ;5 - ROM+MBC2
+   ;6 - ROM+MBC2+BATTERY
+
+So, in the above example,
+
+-Wl-yt2     Tells the linker that we want ROM+MBC1+RAM (that's the NV RAM)
+
+-Wl-yo4   Tells the linker we are using 4 ROM banks X 16K --- This is a 64K
+gb ROM
+
+-Wl-ya4  Tells the linker we are using 4 RAM banks X 8K --- 32K of nv RAM -
+The max, I believe...
+
+Good luck. To learn more about all of the options available by linking and
+such, try typing all of the EXE names in the GBDK \bin directory all alone
+and hit enter - they will respond back with the switches they know...

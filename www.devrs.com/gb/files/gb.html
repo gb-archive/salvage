@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<HTML>
+
+<!-- Mirrored from www.devrs.com/gb/files/gb.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:51 GMT -->
+<HEAD>
+<TITLE>GB.html</TITLE> 
+</HEAD> 
+<BODY BACKGROUND="../backgrnd/pbbg.html">
+<H1>Gameboy cartridges </H1> 
+<P>Here is how the Gameboy cartridges look like internally (two different types
+ of cartridges):</P> 
+<P>
+
+<IMG SRC="gb1.gif" WIDTH="464" HEIGHT="307"></P> 
+<P>
+
+<IMG SRC="gb2.gif" WIDTH="401" HEIGHT="280"></P> 
+<P>
+  
+</P> 
+<H1>Gameboy MBCs </H1> 
+<P>Memory bank controllers (MBCs) allow to switch banks and control back-up 
+RAM.</P> 
+<P>
+ MBCs contain registers (5 bits for MBC1, 4 bits for MBC2) in which you load the
+ value  of a memory bank before accessing it.</P> 
+<P>
+ MBC1 can control up to 4 Mbits (32 banks * 128 kbits) together with RAM. Games 
+which  need more RAM that the limited internal RAM use MBC1. External RAM is 
+generally backed-up  with a battery.</P> 
+<P>
+ MBC2 has 512 * 4 bit of internal memory used as back-up memory. It is accessed 
+using  A8..A0 and D3..D0.</P> 
+<P>
+ MBC1 is controlled by the A15..A13 address lines, MBC2 by A15,A14,A8. Banks are
+ written  in D0..D4 (D0..D3 for MBC2). When controlling both RAM and ROM, ROM is
+ selected when  A15 is low (addresses 0x0000 to 0x7FFF).</P> 
+<P>
+ The back-up memory is preserved by a 3V lithium battery together with a NV-RAM 
+controller.</P> 
+<P>
+ The ~MREQ line is low each time the processor makes a memory access (e.g. with 
+the  LD operation), but not when it fetches instructions.</P> 
+<P>
+ Here are the different operations which can be performed with MBCs.</P> 
+<P>
+  
+</P> 
+<H3>MBC1</H3> 
+<P>
+
+<IMG SRC="gb3.gif" WIDTH="380" HEIGHT="116"></P> 
+<P>
+  
+</P> 
+<H3>MBC2</H3> 
+<P>
+
+<IMG SRC="gb4.gif" WIDTH="380" HEIGHT="102"></P> 
+<P>
+ If you have have any question or remark, e-mail at <CITE><A
+HREF="mailto:felber@di.epfl.ch">felber@di.epfl.ch</A></CITE> . 
+</P> 
+</BODY>
+<!-- Mirrored from www.devrs.com/gb/files/gb.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:55 GMT -->
+</HTML>

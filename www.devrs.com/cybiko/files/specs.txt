@@ -1,0 +1,54 @@
+CYBIKO MODEL CY6411.
+
+V1 = Version 1 cybiko (Power button on side)
+V2 = Version 2 cybiko (Reset button on side)
+
+ Hardware specifications
+   Main Processor: 32 bit, 11.059MHz Hitachi H8S/2241
+   RF Link Coprocessor: Atmel AT90S2313, 4 MHz
+   RAM: 512 KBytes (V1) / 256 KBytes (V2)
+   File Flash: 512 KBytes, extendable up to 1 MByte
+     V2 units effectively have more File Flash space (~80K more)
+     because the CyOS is stored in CyOS Flash.
+   CyOS Flash: None (V1) / 256 KBytes (V2)
+   LCD display: 160x100 dots, 59x40 mm, 4 level grayscale
+   RF transceiver: RF2915
+   Expansion cartridge slot: 68-pin
+   PC connection socket: RS232 serial port
+   Size: 5.7" x 2.8" x 0.86"
+   Weight: 4.3 oz
+
+ Software specifications
+   Operating System: CyOS v.1.3.55
+   Software: CyOS v.1.3 compatible apps
+   Communication Protocol: CyDP x.30 (Cybiko RF Digital Protocol)
+   Dynamic Wireless Local Network: Automatically provided by CyOS v.1.2 and CyDP x.30
+   RF communication features
+   Frequency: 902-928 MHz
+   Number of channels: 30 digital channels
+   Communication Rate: 19200 bps each channel
+   Transmission and Receiving Range: 150 ft. indoors, 300 ft. outdoors (environment dependent)
+   Max. online Cybiko units: 3000 (100 units on each of 30 channels)
+
+ Items included in the box
+   Cybiko
+   Two high-capacity F6 size Ni-MH prismatic type 700ma rechargeable batteries
+   UL approved 120V recharging unit
+   RS232 serial PC connection cable
+   Plastic stylus
+   User Guide
+
+ 1 MEG Expansion Card (Sold separately)
+   File Flash: 1 MBytes
+   RAM: 256 KBytes
+
+ System requirements
+   IBM-compatible Pentium 90 PC or higher
+   Microsoft Windows 95
+   Microsoft Windows 98/NT 4.0 (SP5)
+   32MB RAM
+   Mouse
+   Microsoft Explorer 4.0 or Netscape Navigator 4.0 or later
+   One available RS232 port
+   20MB of available hard disk space
+   Internet

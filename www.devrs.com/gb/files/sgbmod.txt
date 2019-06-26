@@ -1,0 +1,132 @@
+
+Adding a Link Port to Super Gameboy - Joshua Neal (V.1 10/16/1999)
+-----------------------------------------------------------------------------
+Warning: This is the documentation of the my own project.  There is the
+potential to damage your hardware, so if you attempt to do this, know what
+you are doing before attempting this.  I specifically disclaim any
+responsibility for injury or damages caused.
+-----------------------------------------------------------------------------
+
+THE IDEA
+--------
+The idea came from a web page in Japanese, so the original credit goes to
+the authors of that page, Papa and Shaora, as they are the ones who figured
+out that it would work.  That page is at the following URL, you may want to
+check it out for the pictures:
+
+http://www.bomber.co.jp/chaola/labo/SGB_comm/
+
+THEORY
+------
+Basically the SGB-CPU in the Super Gameboy is the same as the one in the
+gameboy itself, including the pinout.  This means that the hardware for
+link port communications exists, it just isn't connected to anything.
+Nintendo makes a Super Gameboy 2 for the famicon that has the link port.
+This would have cost me a bunch of $$$, so I chose to try to add one to my
+original SGB.
+
+INSIDE THE SGB
+--------------
+The first task was opening the Super Gameboy.  This required a special tool
+that I don't have.  After attempting futiley to remove them without that
+tool, I took the game to a local used game store and asked them to open it
+for me.  They thought it was strange, but they did it anyways...
+
+Comparing the circuit board inside with the pictures on the japanese page, I
+determined that the circuit board of the Famicon version of the SGB was
+identical to the Super Nintendo version.  I located the three pins on the
+circuit board that would have to be soldered to, on the chip marked SGB-CPU.
+
+These pins were really tiny, so I decided I needed some soldering practice.
+I found a non-working PC device with a chip that had the same pin spacing,
+and practiced soldering leads to that until I felt confident enough to do it
+on the SGB.
+
+I found it worked best if I scraped the pin with a knife to remove any
+coating, put a small bit of solder on the pin, then prepare the wire and
+reflow the solder on the pin and stick the wire on.
+
+SCHEMATIC
+---------
+The schematic on the Japanese page used only a resistor for each data line,
+comparing Jeff Frohwein's GB and SGB schematics, it looked like an
+additional pair of diodes and a capacitor for each data line would provide
+the same protection and noise filtering as the gameboy.  I decided to include
+these in my project.  The schematics are located at:
+
+http://home.hiwaay.net/~jfrohwei/gameboy/gameboy1.gif  -- Gameboy Schematic
+http://home.hiwaay.net/~jfrohwei/gameboy/sgb.gif       -- SGB Schematic
+
+PARTS
+-----
+7 germanium diodes 
+3 100 picofarad ceramic capacitors
+3 220 ohm resistors
+spool 30ga wire-wrap wire
+1 gameboy link port connector (female)
+
+I used wire-wrap wire to make all the connections, only with solder joints
+instead of wire wrapping.
+
+The japanese page shows using a link cable cut in half for the connector,
+while I had one of these lying around, I used a female port from an adapter
+that came with a link cable that would allow it to connect to a classic
+gameboy with the larger link port size.  This was inside a nice black
+connector shell, that was held together with a small screw.  Once opened,
+it turned out to be possible to cut the larger connector off and have a nice
+female port that would accomodate a standard link cable.
+
+I used this connector in my project, also using the black shell, which I
+epoxied inside the SGB after cutting a matching hole in the side, leaving
+it such that I could still unscrew and open the connector shell.  This made
+the connector sturdy, and look somewhat attractive as well.
+
+SCHEMATIC
+---------
+I soldered together a point-to-point circuit for this, roughly in the shape
+of the following diagram.  It might have also been possible to make a small
+circuit board that fits inside the SGB.  With this circuit, operation should
+be identical to that of the gameboy.
+
+Key:
+-|<-    germanium diode
+-)|-    100pF ceramic capacitor
+-/\/\/- 220 ohm resistor
+
+
+VCC ----+--------------------+-------------------+---->|----- to link pin1
+        |                    |                   |         
+        +-|<-+--o     to     +-|<-+--o           +-|<-+--o 
+ SGB         |        SGB         +       SGB         +    
+ pin o-/\/\/-+  to    pin o-/\/\/-+ to    pin o-/\/\/-+ to 
+ 68          | link   69          | link  70          | link
+        +-)|-+ pin5          +-)|-+ pin3         +-)|-+ pin2
+        |    |               |    |              |    | 
+        +->|-+               +->|-+              +->|-+ 
+        |                    |                   |
+GND ----+--------------------+-------------------+----------- to link pin6 
+
+Link Port Pins (looking at external female connector)
+ _____
+/     \
+|5 3 1|
+|6 4 2|
++-----+
+
+The VCC lead I soldered to a plated-thru hole in the SGB circuit board
+near the 5v pins (27 and 58) of the snes connector. The ground lead I
+soldered to a plated-thru hole in the large ground plane area.
+
+ASSEMBLY
+--------
+Once I got this circuit built and connected to all the necessary pins, I
+hotglued down anything that might shift around, cleaned up my soldering
+mess with flux remover, and put the SGB back together, only using screws
+with phillips heads instead of the original screws.
+
+TESTING
+-------
+I made several picture transfers with a gameboy camera, and tested operation
+of the printer, all of which worked.  I deemed the project a success!
+
+- Joshua Neal <tinara@goodnet.com>

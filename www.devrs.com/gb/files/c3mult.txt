@@ -1,0 +1,88 @@
+
+       3-in-1 Multicart C3 Mod, 28-Sept-97
+       -----------------------------------
+
+ This circuit allows you to use up to three .GB rom
+files (plus menu program and any utilities it contains)
+on a single C3 cart. One 512K byte rom image or up to
+three 128K byte rom images may be placed on this cart.
+These are maximum sizes. Smaller sizes may be substituted.
+
+ In addition to these mods, if the standard 8K byte
+cart ram is replaced with a 32K byte chip (connecting
+the extra address pins to MBC1 pins 6 & 7) then each
+rom image will have it's own 8K save ram and rom image
+#2 will even have TWO different 8K save rams in which
+to select!
+
+ Only 8Kbytes of RAM are available per rom image even
+if a 32K RAM chip is installed and even if only one
+rom image is loaded.
+
+ A C3 cart with these mods may be programmed normally
+if a single rom image is to be loaded. These mods
+appear transparent in this instance.
+
+ In order to put several rom images on a C3 cart a
+composite 512K byte rom image should be generated
+that is composed of all of the rom images to load.
+If this composite rom image is written to a file the
+file extension might be .MC1 (for MultiCart type 1)
+to distinguish it from a standard .GB format file.
+Here is the oranization of a possible composite image:
+
+00000
+  ROM Image #1
+20000
+  Menu Program
+40000
+  ROM Image #2
+60000
+  ROM Image #3
+80000
+
+ The program used to generate this composite rom image
+should also locate the JMP in the first rom image. This
+JMP will be located at 100h or 101h. This JMP will be
+patched to change the jump location to the cart name
+location of the first rom image. The first rom image
+cart name will be patched with bank switch code and a
+jump to the menu program at 20000. These patches will
+allow the Menu program to run first.
+
+ When a menu program is written, it should allow up to
+10 seconds for a user to select a rom image to execute.
+If none selected in this time then it should execute
+the first rom image displayed on the screen. This is
+useful for programs such GB Basic that sometimes need
+to auto-run on power up.
+
+ The code to actually enable the rom image to be executed
+will need to be transfered to GB internal ram since
+the menu program code will "disappear" once MBC1
+pins 6 and 7 are set to enable rom images #2 or #3.
+
+ It is important that a menu program restore as many
+hardware registers as possible to original condition
+or else rom images that assume certain values will
+not run properly.
+
+
+Theory of Operation
+
+ When the MBC1 is reset by power up pins 6 and 7 are a
+logic low making these mods invisible to normal operation.
+Setting pin 6 or 7 (by writing a byte to 4000 after 4MbitROM/
+32KbyteRAM mode has been enabled by writing 01 to 6000.)
+high forces the upper-half only of the flash to be used by
+forcing A18 high. Setting pin 6 high forces A17 high and
+setting pin 7 high takes priority over pin 6 and forces A17 low.
+
++-------+-------+--------------------------------------------------+
+| Pin 7 | Pin 6 |      Resulting Action                            |
++-------+-------+--------------------------------------------------+
+|   0   |   0   | Mods have no effect (512K Image #1, save RAM #0) |
+|   0   |   1   | 128K ROM Image #3 active, save RAM #1            |
+|   1   |   0   | 128K ROM Image #2 active, save RAM #2            |
+|   1   |   1   | 128K ROM Image #2 active, save RAM #3            |
++-------+-------+--------------------------------------------------+

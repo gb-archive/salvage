@@ -1,0 +1,116 @@
+
+Building a 32mbit flash cart for the C3 Programmer v1.0118
+----------------------------------------------------------
+
+ Here's the wiring diagram for putting a AMD AM29F032B
+32mbit flash ROM into a GameBoy Color cart. You can
+get a AM29F032B-xxEx (x = don't care) from
+http://www.marshall.com for about US$34 + shipping.
+
+ I recommend using a Zelda DX cart as it is one of
+the few non-Japanese carts that contains 32k bytes
+of cart RAM.
+
+ Game & Watch Gallery 2 or Quest for Camelot can be
+used but they only have 8k bytes of cart RAM.
+
+ To program the finished cart you need ReadPlus V3.25 or later.
+
+ Finished 32mbit cart: http://www.devrs.com/gb/files/32mbit.jpg
+ MBC5 Pinouts:         http://www.devrs.com/gb/files/mbc5.gif
+ 23C16120 Pinouts:     http://www.devrs.com/gb/files/23c64000.gif
+ LH537 Pinouts:        http://www.devrs.com/gb/files/23c64000.gif
+ LH538 Pinouts:        http://www.devrs.com/gb/files/lh534.gif
+ Published GBC carts:  http://www.devrs.com/gb/files/gbcmbc.txt
+
+
+AM29F032B-xxEx (x = don't care)
+ |
+ |	SEC KM23C16120 ROM (Zelda DX for GBC)
+ |      Sharp LH537 ROM
+ |       |
+
+Pin	Pin
+1	2
+2	3
+3	34
+4	35
+5	36
+6	37
+7	38
+8	39
+9	12
+10	23
+12	Cart Pin 30
+13	40
+14	41
+15	42
+16	4
+17	5
+18	6
+19	7
+20	8
+21	9
+22	10
+23	11
+24	31
+25	15
+26	17
+27	19
+28	21
+29	13
+30	32
+31	23
+32	24
+33	26
+34	28
+35	30
+37	14
+38	Cart pin 3
+39	44
+40	43
+
+AM29F032B-xxEx (x = don't care)
+ |
+ |      Sharp LH538 ROM
+ |	 |
+
+Pin	Pin
+1	1
+2	31
+3	30
+4	2
+5	3
+6	29
+7	28
+8	4
+9	22
+10	32
+12	Cart Pin 30
+13	25
+14	23
+15	26
+16	27
+17	5
+18	6
+19	7
+20	8
+21	9
+22	10
+23	11
+24	12
+25	13
+26	14
+27	15
+28	17
+29	16
+30	16
+31	32
+32	18
+33	19
+34	20
+35	21
+37	24
+38	Cart pin 3
+39	MBC5-RA21
+40	MBC5-RA20

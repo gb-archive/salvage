@@ -1,0 +1,136 @@
+From: Morgan Olsson <morgans.rt@TELIA.COM>
+To: <PICLIST@MITVMA.MIT.EDU>
+Sent: Tuesday, November 14, 2000 2:54 PM
+Subject: [PIC]:Fast way of forcing master Reset!
+
+
+* Now working * !
+
+I have found a way of immediately trigging a watchdog reset!
+(About what use it has, see previous postings)
+
+I abandoned the idea of clocking the prescaler with clk/4.
+Simon Neid, your last suggestion is interesting, but as this now works, and
+is fast, i now had enough experimenting...  thank you anyway :)
+
+Instead I here use clocking by program control by means of RA4 pin state and
+T0SE bit in OPTION_REG.
+
+The attached file is directly compileable using MPLAB/MPASM and runs on a
+F877 (tested on an F877 datecode 9921BSL) with ICD.  (If no ICD edit config
+line)
+Note: Wdog must be enabled. (btw, why do the ICD not obey that statement
+info in the config line?  And also forgets until next time MPLAB is started)
+
+The code initiates PortE and outputs it´s state there so we can see it
+works.  (edit if you want to use another port.)
+
+The processor resets and initiates 40 000 times per second at 4MHz clock.
+
+The reset operation itself is only ten instructions!
+(including disabling of interrupts)
+
+I have not tested how many cycles after reset it starts executing from
+adress 0, but it seem to be one or a very few cycles.
+
+It would be interesitng to know if it works on other PICs too.  (just edit
+config line and output signals)
+
+The code is heavily commented as the operaiton is a little "strange"...
+But to understand you also need the schematics of the TMR0+Watchdog module
+from a PIC datasheet.
+
+
+Regards
+/Morgan
+--------------------
+        LIST
+        messg "  * FAST FORCED RESET * prototyping file "
+        messg " This program resets the PIC 40k times/second  @ 4MHz Xtal "
+        messg " Tested on an PIC16F877 datecode 9921BSL "
+        messg " AUTHOR: Morgan Olsson, morgans.rt@telia.com "
+        NOLIST
+;******************************* KONFIGURERA **********************************
+        list      p=16f877
+        __CONFIG _CP_OFF & _WDT_ON & _BODEN_ON & _PWRTE_ON & _HS_OSC & _WRT_ENABLE_ON & _LVP_OFF & _DEBUG_ON & _CPD_OFF
+        errorlevel      -306 ;no Crossing page boundary warnings
+        errorlevel      -302 ;no bank warnings
+        radix           dec
+;********************************** DEFINITIONSFILER *************************
+        include p16f877.inc
+        LIST
+;********************************** RESET ************************************
+        ORG     0x000
+        nop             ;ICD
+        clrf    PCLATH
+        goto    Init
+;********************************* INTERRUPT *********************************
+        ORG     0x004
+        goto $  ;if false interrupt stop here to indicate
+;********************************* INIT *********************************
+Init
+        clrf    STATUS
+
+;Use watchdog as normal
+        clrwdt
+        movlw   b'11011101'; TMR0 on fosc/4, prescaler  /32 to Watchdog
+        movwf   OPTION_REG
+
+;FastReset needa a low on RA4, which is tied to GND
+;On a Power-on Reset, pins are configured inputs
+
+;PortE is used for monitoring
+        clrf    PORTE
+        bsf     STATUS,RP0      ;Bank 1
+        movlw   b'111'
+        movwf   TRISE
+
+;********************************* FAST RESET *********************************
+;Design Morgan Olsson, morgans.rt@telia.com
+;-indicate beginning of FastReset on PortE
+        bcf     STATUS,RP0      ;Bank 0
+        bsf     PORTE,1
+
+;-Prepare
+        clrf INTCON     ;disable interrupts
+                        ;(Just to avoid spending time in an int)
+
+        clrwdt  ;without this line the reset fails peridically -with the
+                ;wdog freqency- probably depending on Wdog OSC output phase.
+                ;-some undocumented connection.
+
+;-Setup registers
+        bsf     STATUS,RP0      ;Bank 1
+        movlw   b'11110000' ;#  ;prescaler in from RA4 XOR T0SE,
+        movwf   OPTION_REG      ;T0SE (bit 5):1=High, prescale select /2
+        bcf     STATUS,RP0      ;Bank 0
+        clrf    TMR0            ;clear prescaler (also TMR0, but irrelevant)
+        bsf     STATUS,RP0      ;Bank 1
+
+;-Now clock the prescaler manually, by toggling T0SE! *1)
+        bcf     OPTION_REG,T0SE ;#
+
+;-Now the prescaler output apparently is "1", because...
+        bsf     OPTION_REG,PSA  ;...assigning it to wdt cause immediate reset!
+
+;...test if it did not work...
+
+;-Failure catcher of personal taste:
+        bcf     STATUS,RP0      ;Bank 0
+        bsf     PORTE,2         ;indicate if we ever get here
+
+;-And wait for normal watchdog timer as last resort! I have not seen this
+; happen, but who knows about chip revisions using  undocumented functions..
+        goto $
+
+;*1):
+;This solution depends on RA4 to be low, i.e set as input, connected to GND.
+;If RA4 is high then invert the setting of T0SE in both places marked #.
+;Of course if RA4 is an output, use it High or Low as convenient,
+;and use T0SE acordingly.
+
+;WATCHDOG NEED TO BE ENABLED IN CONFIG DIRECTIVE (AND/OR PROGRAMMER)
+;I´ not sure why....  I think it should not be needed according to
+;schematics in the datasheets where it only stops the Wdog OSC.
+
+        END

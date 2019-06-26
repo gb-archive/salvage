@@ -1,0 +1,53 @@
+SDK Console Problems v1.01023 by Jeff F.
+---------------------------------------
+
+ The Console in the SDK is used to send unofficial games/apps to the Cybiko.
+These are solutions for those that can't get the SDK Console to send a file
+to their Cybiko. (i.e. When you select Send File, nothing happens.)
+
+**********************************************************************
+* NOTICE: With CyberLoad v1.16 build 121 (and later versions) you no *
+* longer need to use the SDK Console to send unofficial games/apps   *
+* to the Cybiko. (FOR BOOT LOGO'S YOU YOU MUST USE SDK CONSOLE.)     *
+* Copy these games/apps to the "CyberLoad\local_files\user_files"    *
+* folder. The complete folder path is usually:                       *
+*     c:\Program Files\Cybiko\CyberLoad\local_files\user_files       *
+* You can use Windows explorer to drap and drop unofficial games/apps*
+* into this folder. (NOTE: The game file name must end with .app     *
+* If the game/app file name ends with .zip then you must first UnZip *
+* it. To do that, download WinZip from http://www.winzip.com.)       *
+* Restart CyberLoad and it will now show these games/apps. To locate *
+* them, start up CyberLoad and look for the "MyComputer" box on the  *
+* left side of the CyberLoad windows. If there is a + on the left of *
+* text "My Computer" then click on the +. This will show you         *
+* "User Files". If there is a + to the left of "User Files" then     *
+* click on it. This will show you all of the games/apps in the       *
+* "CyberLoad\local_files\user_files" folder.                         *
+**********************************************************************
+
+  1)    Start the SDK Console.
+        Open Windows Explorer and drag MyProgram.app
+        (Replace MyProgram with the real file name)
+        file to the Console window at which time a
+        progress dialog is displayed indicating that
+        the .app is being transferred to  your Cybiko.
+
+        -Tog
+
+  2)    Run REGEDIT (registry editor) from your
+        Start->Run menu. Then do a find for Cybiko.
+        Under Cybiko->CyConsole you will find
+        Instance0 Instance1, etc... Delete all of them
+        and rerun the SDK Console. I don't know why this
+        works, but it works perfectly everytime for me.
+
+        -alcor
+
+ 3)     Start the console. Click on New.
+        This will start a New console.
+        Check you COM port setting on the first console.
+        Close the first console.
+        On the New console set the COM port same as the
+        old console. Click on File Send.
+
+        -HunkPapa

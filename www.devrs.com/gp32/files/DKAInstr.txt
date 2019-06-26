@@ -1,0 +1,289 @@
+ ARM GCC is probably the ideal, low cost C/C++ compiler
+for gp32 dev. It's not the fastest ARM compiler available,
+but it is free. Here is v1.1 of a crt0.S and lnkscript
+that I wrote for gcc for the gp32
+
+  http://www.devrs.com/gp32/files/gcc/
+
+ It is designed to work with ported official libs or with a
+setup that uses no official libs.
+ You should be able to use this with GCC 2.9x for
+ARM but it was tested with Dev Kit Advance (GCC 3.0.2)
+from here:
+
+  http://www.io.com/~fenix/devkitadv
+
+ Dev Kit Advance is basically a generic ARM C/C++ compiler
+for windows. It is not optimized for ARM9 by default but you
+can get around this by adding the following command line option
+when compiling files: -mtune=arm920
+ If you want to compile and try out the 'crossfade' demo
+for gp32, here are the steps that you need to do if you want
+to use Dev Kit Advance:
+
+1) Get the following DevKitAdvance packages and install them:
+  agb-win-core-r5.zip
+  agb-win-binutils-r4.zip
+  agb-win-gcc-r4.zip
+  agb-win-newlib-r4.zip
+
+2) Try out the installation by compiling the following 'game.c'
+  test program:
+
+ int main (void)
+    {
+    int x;
+    x++;
+    }
+
+ By using the following:
+
+  gcc -o game.elf game.c
+  objcopy -O binary game.elf game.bin
+
+  If it compiles ok and produces a game.bin file then proceed to
+ the next step. If you get a "Virtual Memory Exhausted" error
+ message then get the following v1.3.10 cygwin1.dll or get the
+ latest from cygwin.com:
+
+   http://www.devrs.com/gba/files/cygwin1.3.10.zip
+
+3) Next you need to install a version of crt0.S for the gp32
+  and compile it. The crt0.S is initialization code for the gp32
+  that gets executed before any other code gets executed. (It is
+  similar to the init.o of ARM SDT in that aspect.) Get the
+  crtls.zip package above and unzip it. For this example we have
+  no official libs so we need to modify the crt0.S to tell it that
+  we don't want any fancy stuff linked into our init code. Using a
+  code editor modify the following line in the crt0.S:
+
+   .equ __OfficialInits, 1
+
+  to look like this instead:
+
+   @ .equ __OfficialInits, 1
+
+  Next, if you plan to use Dev Kit Advance exclusively for the GP32
+  then only do step A. If you wish to use it for GameBoy Advance or
+  GP32 then only do step B. 
+
+  A)  Either add the following lines to a makecrt.bat (or makecrt.cmd
+     for win2k/xp) file or type them at a command line. The following
+     allows you to install crt0.o and forget anout it:
+
+       as -o crt0.o crt0.s
+       copy crt0.o c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\crt0.o
+       copy crt0.o c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\interwork\crt0.o
+       copy crt0.o c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\thumb\crt0.o
+       copy crt0.o c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\thumb\interwork\crt0.o
+
+  B)  Make a backup of crt0.o in each of the following directories and then
+     delete them as shown here. (You will still need these files for GBA development.)
+     When you go to compile a project you must use the gp32 crt0.o or the gba crt0.o.
+     To do this, you will need to place the crt0.o that you want to use in the local
+     project directory.
+
+       del c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\crt0.o
+       del c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\interwork\crt0.o
+       del c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\thumb\crt0.o
+       del c:\bin\devkitadv\lib\gcc-lib\arm-agb-elf\3.0.2\thumb\interwork\crt0.o
+
+   (Substitute the path you used to install DevKitAdvance if you
+   used something different.)
+
+4) Get the crossfade demo and unzip it in a directory:
+
+   http://emuholic.emulous.com/~costis/1crossfade.zip
+
+  This is the only public link. The author decided he was getting too
+ many hits for the file so he renamed it to the above. :P He gave me
+ permission to post it here.
+
+5) You will need to convert the data files to a format useable by gcc.
+  Get b2x from here if you don't have it and put it in your path. If you
+  don't know what "put it in your path means" then just unzip it and copy
+  b2x.exe to c:\windows:
+
+   http://www.devrs.com/gb/files/b2x.zip
+
+  Now, type the following to convert the data files:
+
+   b2x -a -d <bk.bin >bk.s
+   b2x -a -d <bk2.bin >bk2.s
+
+5) Create a data.s text file that contains the following:
+
+  .global BK_Pic,BK2_Pic
+
+BK_Pic:
+    .include "bk.s"
+BK2_Pic:
+    .include "bk2.s"
+
+6) Substitute the crossfade.c at the end of this email with
+  the existing crossfade.c.
+
+7) Compile the project with the following:
+
+  as -o data.o data.s
+  gcc -Wl,-T lnkscript -o crossfade.elf data.o crossfade.c
+  objcopy -O binary crossfade.elf crossfade.gxb
+
+8) If you got no compile errors then try the resulting crossfade.gxb
+  it in the gp32 emulator. If you'd rather try it on real hardware
+  then download the b2fxe package from here:
+
+   http://www.devrs.com/gp32/software.php#comp
+
+  Convert it to a .fxe file with the following:
+
+   b2fxe crossfade.gxb crossfade.fxe
+
+  Try it on the gp32 with the GP32 Free Launcher. If you don't have
+ the free launcher installed then go to the next step.
+
+9) Check out the FAQs here for info on getting the GP32 Free Launcher:
+   http://www.devrs.com/gp32/files/gp32devfaqs.php#File
+
+10) Have fun! ... but don't make the rest of us look bad by
+   creating code that looks much better than ours. :P
+
+----------------------crossfade.c--------------------
+------ Converted from ARM SDT to GCC by Jeff F ------
+
+#include "crossfade.h"
+
+const extern unsigned short BK_Pic[ ];
+const extern unsigned short BK2_Pic[ ];
+
+typedef void (*tGpSurfaceSet)(GPDRAWSURFACE2* ptgpds);
+tGpSurfaceSet gpSurfaceSet;
+
+GPDRAWSURFACE2 surface;
+
+int i,x; // these need to be globals for some weird reason :) :)
+
+int Main (void)
+   {
+   int chk,chk2;
+   unsigned short r,g,b,r2,g2,b2;
+
+   // Initialize (get an address where the screen buffer should be located at)0
+   asm volatile
+      (
+      " stmfd r13!,{r0-r3,r14}\n"
+      " mov r0,#0\n"      // sub functiom
+      " swi 0xb\n"
+      " ldr r1,=gpSurfaceSet\n"
+      " str r0,[r1]\n"
+      " ldmfd r13!,{r0-r3,r14}\n"
+      );
+
+    // Set up the screen buffer
+
+    surface.buf_w = GPC_LCD_WIDTH;
+    surface.buf_h = GPC_LCD_HEIGHT;
+    surface.ox=surface.oy=0;
+
+    // 'Create' the screen buffer
+    asm volatile
+       (
+       " stmfd r13!,{r0-r3,r14}\n"
+       " ldr r0,=surface\n" //r0=pointer to surface
+       " mov r1,# 0\n"       // surface number
+       " mov r2,# 1\n"       // sub function
+       " swi 8\n"
+       " ldmfd r13!,{r0-r3,r14}\n"
+       );
+
+    // Set the screen buffer to the correct memory address
+    gpSurfaceSet(&surface);
+
+    //Set the display to 16bpp Color Mode (if you change the 16 to an 8, it'll be 8bpp mode)
+    asm volatile
+       (
+       " stmfd r13!,{r0-r3,r14}\n"
+       " mov r0,#16\n"
+       " mov r2, #0\n"
+       " swi 0x8\n"
+       " ldmfd r13!,{r0-r3,r14}\n"
+       );
+
+    //Make it so odd and even lines are displayed correctly
+    (*(unsigned int*)0x14A00010) |= 1;
+
+    // Turn the LCD display on
+    asm volatile
+       (
+       " stmfd r13!,{r0-r3,r14}\n"
+       " mov r2, #3\n"  // sub function
+       " swi 0x8\n"
+       " ldmfd r13!,{r0-r3,r14}\n"
+       );
+
+    // Draw the first picture to the screen buffer
+    for (x=0; x<320*240*2; x++)   *(unsigned short*)(surface.ptbuffer+x+1) = (unsigned short)BK_Pic[x];
+
+    // Do a 'flip-flop' loop
+    i=0;
+    while (1)
+    {
+        if (i==0)
+        {
+            // Keep on looping until the other picture is fully drawn
+            while(1)
+            {
+                chk2=0;
+                // Loop through every screen pixel doing a cross fade
+                for (x=0; x<320*240; x++)
+                {
+                    r=((*(unsigned short*)(surface.ptbuffer+x)) & 0xF800) >> 11;
+                    g=((*(unsigned short*)(surface.ptbuffer+x)) & 0x7C0) >> 6;
+                    b=((*(unsigned short*)(surface.ptbuffer+x)) & 0x3E) >> 1;
+
+                    r2=((unsigned short)BK2_Pic[x] & 0xF800) >> 11;
+                    g2=((unsigned short)BK2_Pic[x] & 0x7C0) >> 6;
+                    b2=((unsigned short)BK2_Pic[x] & 0x3E) >> 1;
+
+                    chk=3;
+                    if (r>r2) r-=1; else if (r<r2) r+=1; else chk--;
+                    if (g>g2) g-=1; else if (g<g2) g+=1; else chk--;
+                    if (b>b2) b-=1; else if (b<b2) b+=1; else chk--;
+                    if (chk!=0) chk2=1;
+
+                    *(unsigned short*)(surface.ptbuffer+x) = ((r << 11) | (g<<6) | (b<<1));
+                }
+                if (chk2==0) break;
+            }
+            i=1;
+        } else {
+            // Keep on looping until the other picture is fully drawn
+            while(1)
+            {
+                chk2=0;
+                // Loop through every screen pixel doing a cross fade
+                for (x=0;x<320*240;x++)
+                {
+                    r=((*(unsigned short*)(surface.ptbuffer+x)) & 0xF800) >> 11;
+                    g=((*(unsigned short*)(surface.ptbuffer+x)) & 0x7C0) >> 6;
+                    b=((*(unsigned short*)(surface.ptbuffer+x)) & 0x3E) >> 1;
+
+                    r2=((unsigned short)BK_Pic[x] & 0xF800) >> 11;
+                    g2=((unsigned short)BK_Pic[x] & 0x7C0) >> 6;
+                    b2=((unsigned short)BK_Pic[x] & 0x3E) >> 1;
+
+                    chk=3;
+                    if (r>r2) r-=1; else if (r<r2) r+=1; else chk--;
+                    if (g>g2) g-=1; else if (g<g2) g+=1; else chk--;
+                    if (b>b2) b-=1; else if (b<b2) b+=1; else chk--;
+                    if (chk!=0) chk2=1;
+
+                    *(unsigned short*)(surface.ptbuffer+x) = ((r << 11) | (g<<6) | (b<<1));
+                }
+                if (chk2==0) break;
+            }
+            i=0;
+        }
+    }
+
+   }

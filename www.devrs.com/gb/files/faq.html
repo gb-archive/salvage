@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<HTML>
+<!-- Mirrored from www.devrs.com/gb/files/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:20 GMT -->
+<HEAD><TITLE>GameBoy FAQs</TITLE></HEAD>
+<BODY BACKGROUND="../backgrnd/pbbg.html"><H3>GameBoy FAQs</H3>
+<PRE><STRONG>I need more information on X. Can you post it?</STRONG>
+
+ Most all info I have for GameBoy I have posted. Anything I don't
+have posted you can possibly get from my 'Links' web page.
+
+
+<STRONG>Where can I find some programming</STRONG>
+<STRONG>information for the GameBoy, GBC, or SGB?</STRONG>
+
+ Check Marc Rawer's GB page on my 'Links' web page.
+
+
+<STRONG>Do you know where I can find programming or other</STRONG>
+<STRONG>info on the GB Printer or GB Camera ? Or have you</STRONG>
+<STRONG>heard of anyone interfacing these to a PC ?</STRONG>
+
+ I have no idea &amp; no. It is possible, though, to read the RAM
+on the GB Camera and save this to disk using ReadPlus v3.2 or
+later software. To do this you need CARTIO hardware with pin 2
+of the GB cart connector (on the programmer) connected to ground.
+The 30 photos in the resulting .sav file may be viewed with
+GB Camera Dump (for win95) or similar programs. 
+
+
+<STRONG>Can I use the GameBoy-to-Parallel Port cable to download</STRONG>
+<STRONG>games or rom images to my GameBoy?</STRONG>
+
+ No. When you turn your GameBoy on, it has no idea that there is
+a cable plugged into it. It is the job of custom software on the
+GameBoy to make use of this cable. Only GB Basic currently supports
+this cable.
+
+
+<STRONG>Can I use the GameBoy-to-Parallel Port cable to copy</STRONG>
+<STRONG>games or rom images to my PC?</STRONG>
+
+ No. When you turn your GameBoy on, it has no idea that there is
+a cable plugged into it. It is the job of custom software on the
+GameBoy to make use of this cable. Only GB Basic currently supports
+this cable.
+
+
+<STRONG>I want a programmable cartridge for GameBoy</STRONG>
+<STRONG>that I can use to try ROMs. Where do I get one?</STRONG>
+
+<A HREF="http://www.bung.com.hk/">Bung - Flash carts &amp; cart programmers</A>
+<A HREF="http://members.xoom.com/neshk/">Hong Kong distributor for Bung products</A>
+<A HREF="http://www.lik-sang.com/">Another Hong Kong distributor for Bung products</A>
+<A HREF="http://www.mrbackup-z64.com/">Belgium distributor for Bung products</A>
+<A HREF="http://www.upstategames.com/">USA distributor for Bung products</A>
+<A HREF="http://www.madeiragames.com/">UK distributor for Bung products</A>
+
+
+<STRONG>I want to build a simple cartridge and can program</STRONG>
+<STRONG>an EPROM myself. How do I go about doing it?</STRONG>
+
+ I'd recommend getting a cartridge for GameBoy that
+contains a ROM, RAM, battery-backed SRAM, and MBC1
+bank-switching circuits. Replace the ROM with your own
+EPROM. Any size EPROM can be used up to a 4Mbit EPROM.
+You may not need all of this other stuff but it is the
+most versatile and should support anything you wish to do.
+
+ Examples of these cartridges include: Donkey Kong,
+Donkey Kong Land, Donkey Kong Land 2, FFL 2, FFL 3,
+Kirby Blockball, Kirby Dreamland II, Kirby Star Stacker,
+Lucle, Mario's Picross, Metroid II, Mole Mania, Super Mario
+Land II: 6 Golden Coins, Super Mario Land III: WarioLand,
+World Cup USA 94, Vegas Stakes, Zelda, and others.
+
+
+<STRONG>Is there a simpler way of connecting an EPROM to GameBoy?</STRONG>
+<STRONG>Do you really need all that extra stuff?</STRONG>
+
+ Any EPROM up to 256Kbits may be used alone connected to
+the cartridge pins as shown in the <A HREF="gameboy3.gif">GameBoy Power &amp; 
+Cartridge Schematic</A>. If you want to use a larger EPROM
+then you'll need an MBC1 (proprietary Nintendo part) chip
+or an <A HREF="mbc1ro.gif">MBC1 Circuit Equivalent</A> in order to
+bank-switch larger chips into GameBoy memory space.
+
+
+<STRONG>Could you give explicit instructions for removing</STRONG>
+<STRONG>a ROM from a cartridge and installing an EPROM?</STRONG>
+
+ The problem here is that different cartridges have different
+ROMS with different packages and pinouts. I don't have the time
+to try to document every possible cartridge and how it should
+be modified. Once you remove the old ROM, you can figure out what
+most of the pads under that ROM were used for by tracing them
+to the cartridge edge connector.
+
+
+<STRONG>What steps are needed to compile a program to run</STRONG>
+<STRONG>on VGB or the real GameBoy?</STRONG>
+
+ The file size must 32768 or a doubling multiple thereof.
+(i.e. 32768,65536,131072,262144, or 524288) The complement
+byte must be calculated. The checksum should be calculated
+for some GB emulators even though the real GameBoy ignores
+this value. (You can use RGBFIX.EXE in the RGBDS Assembler
+package to calculate all of these.) For an example of all
+of these steps, download GB Basic Source Code.
+
+
+<STRONG>I've heard about a Super Smart Card</STRONG>
+<STRONG>programmable cart for GameBoy. Where</STRONG>
+<STRONG>can I order one ?</STRONG>
+
+ They are no longer produced by China Coach Limited.
+
+
+<STRONG>How much power is required by the GameBoy?</STRONG>
+
+ Total current for a cartridge &amp; a full-size GameBoy are
+listed below:
+
+     Cartridge       Size   Current
+
+     Tetris        256kbit   57mA
+     F1Race          1mbit   61mA
+     DoubleDragonII  1mbit   61mA
+     WarioLand       4mbit   64mA
+     SuperSmartCard  4mbit  105mA
+
+
+<STRONG>How is the Pocket GameBoy different than GameBoy?</STRONG>
+
+ It's all cosmetic differences. Electrically and software
+wise they are identical. Even the game link port is identical
+even though it uses a physically smaller connector. With the
+proper adapter, you can connect these different systems. The
+only place I know of to get this adapter is through Nintendo.
+
+
+<STRONG>I would like to use the external link port to control</STRONG>
+<STRONG>external RS-232 devices or hookup an IBM-PC keyboard</STRONG>
+<STRONG>directly.  Do you have info on this?</STRONG>
+
+ The external link port on the GameBoy is a serial port but
+it is NOT compatible with any known serial format. Direct
+control of the output pins and reading of the input pins also
+is not possible on this port because of the design. There are
+example circuits on my web pages that show how to do I/O with
+this port.
+
+
+<STRONG>Is it possible to somehow hook up a GameBoy to a TV?</STRONG>
+
+ It is possible and has been done. Many people have seen these
+as the demo machines that are often found where GameBoys are sold.
+These are no longer made but they were know as Demo Boy II's.
+There is no further information available on this device.
+
+ The main problem is that the horizontal sync in the GameBoy is
+~9.2KHz where TVs require ~15.7KHz. This lower frequency sync can
+possibly overheat &amp; burnout components of a standard TV. So there
+is no simple circuit for connecting a GameBoy to a TV.
+
+ No hobbiest has designed any circuit to connect a GB to a TV.
+If they have then they certainly haven't shared it.
+
+
+<STRONG>I'd like to drive the GameBoy LCD with my own electronics.</STRONG>
+<STRONG>Do you have any info on how to do this?</STRONG>
+
+ It is possible but complicated. The LCD interface to GameBoy is
+very similar to other large screen LCDs in that a CRT controller
+is really required. The reason for this is that all 23,040 pixels
+(160x144) have to be written or &quot;refreshed&quot; 60 times a second the
+same way that a TV has to constantly redraw or else there won't
+be any picture. This is required even if what your trying to display
+is static and never changes. This is all the info I have at the
+moment.
+
+
+<STRONG>What schematic layout program do you use? I need one.</STRONG>
+
+ If you need a schematic layout program you might try<A
+HREF="http://www.protel.com/">Protel</A>. They
+have a free EasyTrax program for DOS and the demo version of
+of their Windows version online. The Windows version doesn't
+allow you to save a drawing but you CAN save changes made to
+the libraries. I know one person that drew his whole schematic
+inside of a library macro.
+
+ I personally use a very old version of Orcad that is DOS based
+and a pain to convert to GIF format. Unfortunately it isn't
+public domain so I can't share it.
+
+
+<STRONG>I notice you have many schematics on your web page but</STRONG>
+<STRONG>little or no documents on what they are for. Explain?</STRONG>
+
+ The schematics for the GameBoy and Super GameBoy are just for
+curiosity sake. There is no other reason they are there. The other
+schematics assume that you have some level of engineering background
+and that you can figure out how they might or might not be useful
+to you.</PRE></BODY>
+<!-- Mirrored from www.devrs.com/gb/files/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:21 GMT -->
+</HTML>

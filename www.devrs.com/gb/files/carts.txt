@@ -1,0 +1,61 @@
+
+Jeff's Modified GB Cart Collection, 12-Dec-97
+---------------------------------------------
+
+ All of the modifications below involve carts
+that originally contained ROM (Any size) +
+RAM + MBC1 + Battery. (Except where indicated.)
+
+Title: C3
+---------
+  Advantages:
+    Flash allows easy programming of code to cart.
+    Allows running MBC1 or MBC2 specific code.
+    Pins 6 & 7 of MBC1 are general purpose
+    digital outputs.
+  Disadvantages:
+    None.
+  Modifications:
+    ROM removed and replaced with 29F040.
+
+Title: C3 MBC2
+--------------
+  Advantages:
+    Allows testing real MBC2 hardware.
+  Disadvantages:
+    Can't run some MBC1 software.
+    Maximum of 2MBit of flash is useable.
+  Modifications:
+    Same as C3.
+    Modifications done to a cart containing MBC2.
+
+Title: 3-in-1
+-------------
+  Advantages:
+    Same as C3.
+    Up to 3 programs may be programmed to cart.
+    Menu program itself could be considered
+    program #4 and could contain user code.
+  Disadvantages:
+    32K RAM installed but only 8K is useable
+    by any one program.
+    Can't use pins 6 & 7 of MBC1 for general
+    purpose digital outputs.
+  Modifications:
+    Same as C3 32K.
+    Extra 74HC02 bank switch circuitry.
+
+Title: C3 32K
+-------------
+  Advantages:
+    Same as C3.
+    Program can access up to 32K cart RAM.
+  Disadvantages:
+    Can't be modified for 3-in-1 operation
+    with out adding more logic or switches.
+    Can't use pins 6 & 7 of MBC1 for general
+    purpose digital outputs.
+  Modificactions:
+    Same as C3.
+    8K RAM replaced with a 32K version.
+    RAM CS disable circuitry added.

@@ -1,0 +1,1915 @@
+<!DOCTYPE HTML PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<HTML>
+<!-- Mirrored from www.devrs.com/gb/files/faqs.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:19 GMT -->
+<HEAD><TITLE>GB DEV FAQs</TITLE></HEAD>
+<BODY><P><STRONG>Note#1</STRONG>: Any reference below to GameBoy (GB) is also
+a generic reference to GameBoy Colo(u)r (GBC), Super GameBoy (SGB), GameBoy
+Pocket (GBP), and GameBoy Classic unless otherwise specified. Any references to
+registers in example code use the official GB register names in uppercase with a
+small 'r' in front of them.</P>
+<H3>Short Cuts</H3>
+<DL>
+<DT></DT>
+<DD><A HREF="#ImportantWebLinks">Take me to Important Web Links!</A><BR></DD>
+</DL>
+<HR>
+<H3>GB DEV FAQs by GeeBee - Last update 00-Jan-05</H3>
+<DL>
+<DT><STRONG>General FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#JoinLeave">How do I join or leave the GB development mailing
+list ?</A><BR><A HREF="#Acronyms">What are the commonly used acronyms in GB
+development ?</A><BR><A HREF="#Software">What software do I need to get
+started in GB development ?</A><BR><A HREF="#Hardware">What hardware do I need
+to get started in GB development ?</A><BR><A HREF="#Docs">Where can I find
+programming specification documents ?</A><BR><A HREF="#CorASM">Which is better
+C or Assembly Language (ASM) for development ?</A><BR><A HREF="#Tutorials">Are
+there any tutorials for writing software for GB ?</A><BR><A HREF="#FlashCart">What
+is a flash cart &amp; do I need one ?</A><BR><A HREF="#ProSoftware">What
+software tools do official developers use ?</A><BR><A HREF="#ProHardware">What
+hardware tools do official developers use ?</A><BR><A HREF="#GBandGBC">What
+are .GB and .GBC files ?</A><BR><A HREF="#ISX">What are .ISX files ?</A><BR><A
+HREF="#ISX2GB">How do I convert .ISX files to .GB/.GBC files ?</A><BR><A
+HREF="#ISDongle">Are some of the files on Intelligent Systems web page dongle
+protected ?</A><BR><A HREF="#GBCFeatures">What capabilities are specific to
+the GBC ?</A><BR><A HREF="#MBC">What is an MBC, when is one needed, and what
+are the differences between them ?</A><BR><A HREF="#Developer">How do I become
+a licensed GB developer ?</A><BR><A HREF="#Pokemon">Is there any way to
+connect my GB to the internet so that I can play Pokemon with a friend ?</A><BR><A
+HREF="#Default">Why is it that most older GB games when run on a GBC have blue &amp;
+green backgrounds with red sprites but a few games have different default colors
+?</A><BR><A HREF="#IRCChannel">Is there an IRC channel for GB development ?</A><BR><A
+HREF="#RomHeader">What is the ROM header info in ROMs used for ?</A><BR><A
+HREF="#LCDProb">What can you do if some of the lines of the LCD display quit
+working ?</A><BR><A HREF="#SellCarts">Do you have to be licensed by Nintendo
+to make / sell carts ?</A><BR><A HREF="#GBC2">Is there really going to be a
+GBC2 next generation handheld ?</A><BR><A HREF="#GBCBugs">What games written
+for GB will not work correctly on GBC &amp; why ?</A><BR><A HREF="#SellGame">How
+do I go about trying to sell my game/demo to a company ?</A><BR><A
+HREF="#3SidedTool">Where can a three-sided tool to open the GB be obtained ?</A><BR><BR></DD>
+ 
+</DL>
+<HR>
+<DL>
+<DT><STRONG>Bung FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#BungDist">Where all can I order Bung products ?</A><BR><A
+HREF="#BungShip">How long does it take for them to ship ?</A><BR><A
+HREF="#BungOrder">What do I need to order from Bung or a distributor ?</A><BR><A
+HREF="#BungCarts">What type of flash carts do Bung sell and what are the
+specifications for these carts ?</A><BR><A HREF="#BungCurrent">What kind of
+battery life can I expect using their flash carts ?</A><BR><A
+HREF="#BungNewOld">How can I tell if I have newer or older Bung flash carts ?</A><BR><A
+HREF="#BungGBW">Is it possible to write to the flash chip using code on the GB
+?</A><BR><A HREF="#DGBCamera">Is it possible to use the GB Xchanger to
+download GB camera pictures ?</A><BR><A HREF="#BungNT">Do the Bung tools work
+on Windows NT ?</A><BR><A HREF="#BungSpd">How do I improve write-to-cart times
+during program development ?</A><BR><A HREF="#BungProblem">The GB Xchanger
+doesn't work with my parallel port. What's the problem ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Camera FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#CameraSpecs">What are the specifications of the GB Camera ?</A><BR><A
+HREF="#CameraTransfer">How do I transfer pictures from my GB Camera to a PC ?</A><BR><A
+HREF="#CameraMod">Has anyone modified a GB camera to allow real-time transfer
+of photos to a PC using the GB link port ?</A><BR></DD>  
+</DL>
+<DL> 
+  <DT><STRONG>Cart FAQs</STRONG><BR>
+  </DT>
+  <DD><BR>
+  </DD>
+  <DD><A HREF="#CartRamEnable">How do I enable cart RAM using software ?</A><BR>
+    <A
+HREF="#CartMax">What is the maximum amount of ROM &amp; RAM that you can put in 
+    a cart ?</A><BR>
+    <A HREF="#CartBattery">Which carts containing RAM also contain a battery to 
+    preserve the contents of this RAM during power off ?</A><BR>
+    <A
+HREF="#CartList">Is there a list of commercial GB &amp; GBC carts somewhere and 
+    what they contain as far as ROM, RAM, &amp; MBC type ?</A><BR>
+    <A
+HREF="#CartUnique">What commercial GB &amp; GBC games have unusual or unique features 
+    ?</A><BR>
+    <A HREF="#CartGBDK">What commercial carts have been written using the GBDK 
+    C compiler ?</A><BR>
+    <A HREF="#CartGBA">Will a GB cart work on a GBA ?</A><BR>
+    <a href="#CartVoltage">What voltage is present on the cart interface ?</a><br>
+    <a href="#CartClock"></a><A HREF="#CartClock">What are the specs for the clock 
+    signal (pin 2) on the cart slot ?</A><BR>
+    <A HREF="#CartWrite">Is it possible to design a flash cart that would allow 
+    you to program it using GB code ?</A><BR>
+    <A HREF="#CartLogo">Is it possible to design a cart that displays something 
+    other than the Nintendo logo on power up ?</A><BR>
+    <A
+HREF="#RPvsBung">What are the advantages of using a cart reader with ReadPlus 
+    software over using the Bung xchanger with their flash carts ?</A><BR>
+    <A
+HREF="#CartParts">Where can a cart connector and the tool to open GB carts be 
+    obtained ?</A><BR>
+  </DD>
+</DL>
+<DL>
+<DT><STRONG>Emulator FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#Emulator">What are GB, EPROM, and IS emulators ?</A><BR><A
+HREF="#EMU2GB">Why does my code that runs on a GB emulator not run on a real GB
+?</A><BR><A HREF="#EmuCol">Why do colo(u)rs look washed out on some GB
+emulators (i.e. no$gmb, etc) but not on others ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Graphics FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#TileBased">I have read that the GB screen is tile based. What
+exactly does this mean ?</A><BR><A HREF="#Magic">I have heard that the GBC can
+do more than 4 colo(u)rs per tile, has a secret high resolution mode, and can do
+3D graphics in hardware. Is this true ?</A><BR><A HREF="#APAGraphics">How do I
+turn individual pixels on &amp; off (i.e. APA graphics) instead of drawing with
+tiles ?</A><BR><A HREF="#ManyClrs">How do some games put more than 56
+colo(u)rs on the screen ?</A><BR><A HREF="#GBCSetPal">Can GBC palettes be set
+at any time ?</A><BR><A HREF="#GBCvsSGB">The GBC &amp; SGB both support
+colo(u)r. Is graphics programming for them similar ?</A><BR><A HREF="#WinBack">What
+is the difference between the GB window and the GB background ?</A><BR><A
+HREF="#Trans">Can any part of the window be made transparent ?</A><BR><A
+HREF="#GBVRAM">What precautions should I use when reading/writing video RAM ?</A><BR><A
+HREF="#GBCHDMA">What precautions should I use when doing HDMA on a GBC ?</A><BR><A
+HREF="#HDMADone">How do I know when an HDMA on the GBC has completed ?</A><BR><A
+HREF="#GBCGDMA">What precautions should I use when doing GDMA on a GBC ?</A><BR><A
+HREF="#GDMATime">How long does it take for a GDMA to execute on a GBC ?</A><BR><A
+HREF="#GBCAttrib">I read somewhere that you must set GBC tile attributes before
+setting the GBC tile map. Is this true ?</A><BR><A HREF="#LYCTrash">I'm using
+the LYC interrupt as a trigger to modify the SCX and/or SCY scroll registers. I
+get some graphic &quot;trash&quot; on the screen line where the LYC occurs. Why?
+And how do I fix it ?</A><BR><A HREF="#VideoTiming">What are the video timing
+specs for the GB &amp; GBC ?</A><BR><A HREF="#Interlace">Why do pictures in
+the background or window often appear distorted if you scroll them up or down 1
+pixel each V-blank ?</A><BR><A HREF="#LCDOff">Can the screen be turned off at
+any time &amp; what assembly code should be used ?</A><BR><A HREF="#Blanks">Why
+does the GB have H-blank &amp; V-blank periods in the video timing ?</A><BR></DD>
+ 
+</DL>
+<DL>
+<DT><STRONG>Interrupt FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#IntWhat">What is an interrupt ?</A><BR><A HREF="#IntCaution">What
+precautions should I use when writing interrupt code ?</A><BR><A HREF="#IntInt">Can
+an interrupt interrupt another interrupt ?</A><BR><A HREF="#RET&RETI">What is
+the difference between assembly commands RET &amp; RETI ?</A><BR><A
+HREF="#HILOWork">I can't get the HI/LO (joypad) interrupt to work. Ideas ?</A><BR><A
+HREF="#HILOInt">Should a HI/LO interrupt occur when a button is released ?</A><BR><A
+HREF="#IntEnDis">Can interrupts occur if I enable interrupts &amp; then quickly
+disable them ?</A><BR><A HREF="#IntLCDC">Is there anything I should know when
+using the LCDC interrupt ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Link Port FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#LinkPin4">What does pin 4 of the link port do ?</A><BR><A
+HREF="#LinkSerial">Can the serial link port be used to connect to other serial
+devices ?</A><BR><A HREF="#GBCLink">I'm trying to write code to communicate
+with another GB using the link port. Are there any suggested algorithms for
+doing this ?</A><BR><A HREF="#GBCDMG">I get an unreliable game link connection
+when connecting a GB Pocket or Classic to a GBC. What might cause this ?</A><BR><A
+HREF="#LinkConn">Is the GB link connector available anywhere ?</A><BR><A
+HREF="#LinkSize">With the introduction of the GB Pocket the link port connector
+is smaller than it was on the GB Classic. Are the changes only physical ?</A><BR><A
+HREF="#LinkDirect">Is there any direct way to read or write any of the pins on
+the link port ?</A><BR><A HREF="#LinkData">What kind of serial input data
+should I expect if no GB is connected on the other end or the other unit is
+turned off ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Misc Programming FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#MiscDouble">Are there any disadvantages to running the GBC in
+double-speed mode ?</A><BR><A HREF="#MiscBoot">I read somewhere that there is
+a boot rom in the GB &amp; GBC. Has anyone been able to read this rom ?</A><BR><A
+HREF="#CPUSpeeds">Are the GB &amp; GBC 1 &amp; 2MHz systems or 4 &amp; 8MHz
+systems ?</A><BR><A HREF="#DMAModes">What are all of the DMA modes &amp; what
+are they used for ?</A><BR><A HREF="#Endian">Is the GB a big or little endian
+system ?</A><BR><A HREF="#IRRemote">Is it possible to use the Infrared
+capability of the GBC for a IR remote control ?</A><BR><A HREF="#GBCProb1">I
+have written a program for the GBC. Normal GB functions work but I can't get any
+of the GBC additional registers to work. What am I doing wrong ?</A><BR><A
+HREF="#GBCTitle">With the introduction of the GBC, the internal cart name has
+been made smaller. Is this correct ?</A><BR><A HREF="#GBCDed">So why did
+Nintendo change rom address $143 from $80 to $c0 for a GBC dedicated game ?</A><BR><A
+HREF="#HALT">What is the assembly language command HALT used for ?</A><BR><A
+HREF="#STOP">What is the assembly language command STOP and how/when should it
+be used ?</A><BR><A HREF="#GBBugs">Are there any undocumented bugs in the GB ?</A><BR><A
+HREF="#GBCUndoc">Are there any undocumented features of the GBC ?</A><BR><A
+HREF="#GBCLCDC0">Does the GBC register LCDC ($ff40) bit 0 do anything ?</A><BR><A
+HREF="#GBCInitSpd">Does the GBC start in single or double speed mode ?</A><BR><A
+HREF="#AsmToggle">What assembly code is needed to toggle CPU speed on GBC ?</A><BR><A
+HREF="#Uzi">Has anyone tried to port Unix to a GB ?</A><BR><A
+HREF="#UndocOpcodes">What do the undocumented assembly opcodes do ?</A><BR><A
+HREF="#HighLowRAM">What is high RAM ($ff80-$fffe) useful for ? If used for the
+GB stack, does it provide better performance ?</A><BR><A HREF="#Metatiles">What
+does the term Metatile mean ?</A><BR><A HREF="#PowerUsage">Is it possible to
+drain the batteries quicker through poor code ?</A><BR><A HREF="#PadROM">Is it
+important to pad a ROM with a specific value ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Off Topic FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#NeoGeoPC">What are the specs of the Neo Geo Pocket Color ?</A><BR></DD>
+ 
+</DL>
+<DL>
+<DT><STRONG>Sound FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#SndDiffs">Are there any differences in the sound hardware on the
+GB, GBC, &amp; SGB ?</A><BR><A HREF="#SndOrder">Does it matter in which order
+I set the sound registers ?</A><BR><A HREF="#SndWaves">What all techniques are
+used to play WAV files on a GB ?</A><BR><A HREF="#SndVolume">I get very low
+volume when playing WAVs. What can I do ?</A><BR><A HREF="#SndDisable">Should
+I disable sound if I am not using it ?</A><BR><A HREF="#SndEnv">Can I
+dynamically modulate the volume envelope of a sound channel while it is playing
+?</A><BR><A HREF="#WaveRamMod">Can Wave Pattern RAM ($ff30-ff3f) be modified
+at any time ?</A><BR><A HREF="#Sweep">Is there anything I need to know about
+the &quot;sweep&quot; register ?</A><BR><A HREF="#GBSndBugs">Are there any
+bugs in the GB sound hardware ?</A><BR></DD>  
+</DL>
+<DL>
+<DT><STRONG>Sprite FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#SpriteSize">What size sprites does the GB support ?</A><BR><A
+HREF="#SpriteMix">Can 8*8 sprites &amp; 8*16 sprites be used at the same time ?</A><BR><A
+HREF="#SpriteLimit">What happens if you exceed the GBs limit of 10 sprites per
+line ?</A><BR><A HREF="#SpriteBetween">Can you have a sprite appear above the
+background but below the window ?</A><BR><A HREF="#SpritePri">What happens if
+you have one sprite appear above the background and another sprite with higher
+priority appear below the background ?</A><BR><A HREF="#SpriteImp">Software-wise,
+how do most games implement sprites  ?</A><BR><A HREF="#SpriteBug">What
+precautions should I use when writing assembly code &amp; using sprites ?</A><BR><A
+HREF="#SpriteDMA">What precautions should I use when doing Sprite DMA ?</A><BR><A
+HREF="#SpriteBack">I have read somewhere someone mentioning &quot;background&quot;
+sprites. What are these and how do I use them ?</A><BR><A HREF="#Sprite40">Is
+it possible to display more than 40 sprites at one time ?</A><BR><A
+HREF="#SpritePri2">How do sprite priority settings work on the GBC ?</A><BR></DD>
+ 
+</DL>
+<DL>
+<DT><STRONG>Tool FAQs</STRONG><BR></DT>
+<DD><BR></DD>
+<DD><A HREF="#Assemblers">What assemblers are available ?</A><BR><A
+HREF="#Gfx2GB">Where can I get bmp/pcx/gif/jpg -&gt; GB picture converters ?</A><BR><A
+HREF="#TileEdit">What is a tile editor and why do I need one ?</A><BR><A
+HREF="#MapEdit">What is a map editor and why do I need one ?</A><BR><A
+HREF="#TMEditors">What map or tile editors are available ?</A><BR><A
+HREF="#Wav2GB">Where can I get a .WAV -&gt; GB converter ?</A><BR></DD>  
+</DL>
+<HR>
+<DL><DT><STRONG><A NAME="JoinLeave">How do I join or leave the GB
+development mailing list ?</A></STRONG></DT>
+<DD><BR>Follow the instructions on the
+<A HREF="http://www.ip.co.za/people/kalle/gb/list.htm">GB Mailing List Page</A>.<BR><BR>This
+mailing list is only designed for GB/GBC development related discussions.
+Discussions of other platforms or other hand-helds should be kept to a minimum
+when possible.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Acronyms">What are the commonly used acronyms in GB
+development ?</A></STRONG></DT>
+<DD><BR>ADSR - Attack, Decay, Sustain, Release (Used to define audio waveform
+envelopes.)<BR>AdvGBIDE    - GB IDE assembler by MegaMan_X.<BR>AI          -
+Artificial Intelligence<BR>API         - Application Program Interface<BR> C3 
+        - Carbon Copy Card<BR>CPU         - Central Processing Unit<BR>GB     
+    - GameBoy<BR>GBA - GameBoy Advanced (Code name for the next generation
+GameBoy in development.)<BR>GBC - GameBoy Color<BR>GBDK        - C compiler
+for GB by Pascal Felber.<BR>GBP         - Game Boy Pocket<BR>GBTD        -
+Tile editor for GB by Harry Mulder.<BR>GG          - Game Genie<BR>DMA        
+- Direct Memory Access<BR>EPROM       - A chip that works like a ROM but is
+reprogrammable and requires an ultaviolet light source in order to be erased.<BR>
+Flash       - A chip that works like a ROM but that can be reprogrammed many
+times easily.<BR>Flash EPROM - Same as Flash.<BR>Flash Cart  - Any cart that
+has had the original ROM removed and a Flash installed in its place as shown in
+the ReadPlus cart reader/writer docs.<BR>FMV         - Full Motion Video<BR>FPS
+- Frames Per Second<BR>GBX - GB Xchanger made by Bung Enterprises Limited.<BR>GDMA
+       - General Purpose DMA<BR>GUI         - Graphical User Interface<BR>H-blank
+- Horizontal video blank<BR> HDMA        - Horizontal Blanking DMA<BR>Hicolor
+- A generic term referring to dynamically updating colo(u)r palettes to render a
+picture with up to 2048 colo(u)rs.<BR>HuC         - Hudson Controller (selects
+memory banks + other features)<BR>HUD - Heads Up Display (Often refers to on
+screen game information at the top, bottom, or side of screen.)<BR>IDE        
+- Integrated Development Environment<BR>IME - Interrupt Master Enable<BR>LCD  
+      - Liquid Crystal Display<BR>LSB         - Least Significant Bit (or Byte)<BR>MBC
+        - Memory Bank Controller
+<BR>MSB         - Most Significant Bit (or Byte)<BR>NDA         -
+Non-Disclosure Agreement<BR>OAM         - Object (Sprite) Attribute Memory<BR>OOP
+- Object Oriented Programming<BR>RAM         - Random Access Memory (read /
+write memory)<BR>RGBDS       - Powerful GB assembler by Carsten Sorensen.<BR>ROM
+        - Read Only Memory (new carts contain this)<BR>SGB         - Super Game
+Boy<BR>SMC - Self Modifying Code<BR>  SSC         - Super Smart Card
+(programmable cart, no longer made)<BR>TASM        - Table assembler for GB
+(not related to Turbo Assembler)<BR>V-blank - Vertical video blank<BR>VBK -
+Video Bank select register in the GBC.<BR>VRAM        - Video RAM
+<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Software">What software do I need to get started in GB
+development ?</A></STRONG></DT>
+<DD><BR>First, you need to get an Assembly Language (ASM) compiler (often also
+referred to as an assembler) or GBDK compiler if you wish to program in C
+language instead of ASM.<BR><BR>Next, if you are programming in ASM you need
+to get a conversion program that will convert the output of the assembler into a
+format that is useable by the GB. (<A HREF="#ImportantWebLinks">RGBFIX</A> is a
+popular DOS program that many use to do this conversion.) A conversion program
+does such things as fix the ROM checksums &amp; pad the ROM file to a correct
+size.<BR><BR>To test your program you will either need a <A HREF="#Emulator">gb
+emulator</A> or a <A HREF="#FlashCart">flash cart.</A><BR><BR><BR></DD>
+<DT><STRONG><A NAME="Hardware">What hardware do I need to get started in GB
+development ?</A></STRONG></DT>
+<DD><BR>Theoretically you can use a <A HREF="#Emulator">gb emulator</A> for
+development and not require any hardware. The reality though is that no emulator
+is 100% like the real GB hardware and emulators will often run code that real
+hardware will not.<BR><BR>To guarantee that your code will run on real GB
+hardware you need to put your code into a GB cart and try it on the real GB
+handheld unit. To do this you can wire an EPROM into a GB cart (yourself) or buy
+or build a <A HREF="#FlashCart">flash cart</A>. EPROM's require an ultraviolet
+light source to erase them so flash carts are often a simpler solution.<BR><BR>Another
+method that some use is to connect an <A HREF="#Emulator">EPROM emulator</A> to
+a GB cart. <BR><BR><BR></DD>
+<DT><STRONG><A NAME="Docs">Where can I find programming specification
+documents?</A></STRONG></DT>
+<DD><BR>Check the <A HREF="#ImportantWebLinks">Important Web Links</A>
+section.<BR><BR>The best document (arguably) for GBC development information
+is the abc409 document. Any information that you can not locate on the GBC is
+usually always exactly the same as information for the older GB series. As a
+result, use the document described next as a GBC reference as well.<BR><BR>The
+best document for GB development is the updated Pan/kOOPa document (otherwise
+known as the GB Manual.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="CorASM">Which is better C or Assembly Language (ASM) for
+development ?</A></STRONG></DT>
+<DD><BR>Assembly language is what the majority of commercial GB games use. One
+reason for this is that no serious C compiler has been available for the GB
+until GBDK was released. Another reason is that C is terribly inefficient. A C
+compiler can often generate 8 to 10 times more code compared to optimized
+assembly code. As GB ROM cart sizes get larger this makes less of a difference
+unless you are talking about ROM bank 0. ROM bank 0 is a major bottle neck for
+many commercial games. Some code must reside in ROM bank 0. Often the amount of
+code that must reside in ROM bank 0 is larger than a person expects until he
+gets deep into a large project. Commercial GB programmers often have a hard time
+fitting all the code required in ROM bank 0 when using highly optimised assembly
+code so using C provides even more of a challenge.<BR>Assembly code that uses
+the HALT command can save up to 5% battery power compared to a similar program
+written in GBDK even if the GBDK program uses HALT as well. The reason for more
+power being required is due to the larger code generated by GBDK thus causing
+the CPU to stay awake longer each game loop.<BR><BR>C for use in commercial
+applications is becoming more popular. It often requires less of a learning
+curve for development for those that already know C fairly well. With many key
+subroutines written in assembly language and called from C, many of the issues
+of code size &amp; execution speed start to disappear. It's also an excellent
+means for porting C code from another platform to the GB. <BR><BR>To be able
+to do many special effects you will probably need to learn assembly enough to at
+least code time-critical interrupts &amp; other code.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Tutorials">Are there any tutorials for writing software
+for GB ?</A></STRONG></DT>
+<DD><BR>Check every page on the GB Dev web ring first. Many good sources of
+info can be found on the ring.<BR><BR>If you are programming in C using GBDK
+check out the GBDoK tutorial. Also check out the
+<A HREF="http://www.gbdev.org/GBDK/">GBDK page</A> &amp;
+<A HREF="http://www.gbdev.org/news/">420 Studios</A> while you are at it.<BR><BR>If
+you are programming in GB assembly language then locate Gameboy Assembly
+Language Primer (GALP) v1.0 on a web page on the GB dev web ring.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="FlashCart">What is a flash cart &amp; do I need one ?</A></STRONG></DT>
+<DD><BR>Flash carts allow you to test your custom GB code on a GB. You can
+also use them to play commercial GB ROMs that you might obtain from the internet
+but this is illegal. Especially if the commercial ROM is still available for
+sale.<BR><BR>Flash carts are more ideal for testing custom code than
+<A HREF="#Emulator">gb emulators</A> because emulators often allow you to do
+things that real GB hardware does not allow due to hardware limitations.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="FlashCart">Where can I get a commercial flash cart ?</A></STRONG></DT>
+<DD><BR>There is currently only one place that publically sells flash carts
+and that is Bung Enterprises Limited. Nintendo sells a 32mbit flash cart (one
+with &amp; one without rumble support) but this is only available for sale to
+licensed developers. The Super Smart Card made by China Coach Limited is no
+longer available and the company itself is out of business. The C3 cart made by
+Jeff Frohwein is no longer available.<BR><BR>Here are some links to
+<A HREF="#BungDist">Bung product distributors</A>.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="ProSoftware">What software tools do official developers
+use ?</A></STRONG></DT>
+<DD><BR>  ISAS is the official gameboy assembler that Nintendo recommends.
+ISAS is short for <A HREF="http://www.intsys.co.jp/">Intelligent Systems</A>
+ASsembler.<BR><BR>  However, this assembler isn't required for official
+development. Some official developers use RGBDS, TASM, and probably GBDK as
+well.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="ProHardware">What hardware tools do official developers
+use ?</A></STRONG></DT>
+<DD><BR>  The <A HREF="http://www.intsys.co.jp/">Intelligent Systems</A>
+Debugger (US$4000) or Emulator (US$3000) are the most common hardware
+development  tools. They connect to the SCSI port of an IBM-PC and allow
+downloading 8mbit files in just a few seconds to a GB or GBC. They both support
+development for projects as large as 64mbits. A special cart with a cable
+connecting the cart to the ISAS hardware  is used to allow running the
+downloaded program on a GB. Both of these units also allow programming Nintendo
+flash carts. (These flash carts are only available to licensed developers as
+well.)<BR><BR>  Other official developers use a
+<A HREF="#Emulator">gb emulator</A> program that runs on an IBM-PC to do most
+testing and occasionally test their programs on the real GB hardware by using a
+<A HREF="#FlashCart">flash cart</A>.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBandGBC">What are .GB and .GBC files ?</A></STRONG></DT>
+<DD><BR>These files are raw ROM files. There is no header or trailer
+information in these files. This is the exact data that is contained in cart
+ROMs. Also, this is the file format required by Bung <A HREF="#FlashCart">flash
+carts</A>.<BR><BR>The .GB indicates that the rom contains GB but no GBC code.
+The .GBC indicates that the ROM supports GB &amp; GBC or GBC only.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="ISX">What are .ISX files ?</A></STRONG></DT>
+<DD><BR>These are compact ROM files that are generated by the ISAS assembler.
+They must be converted to .GB/.GBC format before they can be programmed to most
+flash carts and all GB emulators.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="ISX2GB">How do I convert .ISX files to .GB/.GBC files ?</A></STRONG></DT>
+<DD><BR>To convert a .ISX file to a .GB file go to the
+<A HREF="http://www.intsys.co.jp/tool/cgb/sdk/">Intelligent Systems ISAS/ISLK</A>
+web page and download CVTISX and then do the following steps in DOS (Check here
+for <A HREF="#ImportantWebLinks">RGBFIX</A>.) :<BR><BR><STRONG>cvtisx
+-b0,32k -mdmg filename.isx filename.gb</STRONG><BR><STRONG>rgbfix -v -p
+filename.gb</STRONG><BR><BR><BR></DD>
+<DT><STRONG><A NAME="ISDongle">Are some of the files on Intelligent Systems
+web page dongle protected ?</A></STRONG></DT>
+<DD><BR>No. You have to have the SCSI interface Emulator or Debugger that
+<A HREF="http://www.intsys.co.jp/">Intelligent Systems</A> sells in order to
+use some of the files.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCFeatures">What capabilities are specific to the GBC ?</A></STRONG></DT>
+<DD><BR>The GBC is basically a GB with these extra features:<BR><BR>*
+Colo(u)r capability including 8 sprite palettes &amp; 8 background palettes<BR><BR>*
+Background tile attributes which include X/Y flipping<BR><BR>* Twice as much
+video RAM (16K) &amp; four times more main RAM (32K)<BR><BR>* InfraRed (IR)
+send / receive interface<BR><BR>* Two new DMA modes for more powerful graphics
+capabilities<BR><BR>* Single-speed (same as GB) or double-speed CPU clock mode<BR><BR>*
+Link port pin 4 is an unrestricted digital input<BR><BR><BR></DD>
+<DT><STRONG><A NAME="MBC">What is an MBC, when is one needed, and what are
+the differences between them ?</A></STRONG></DT>
+<DD><BR>An MBC is a Memory Bank Controller. It is required any time time you
+have more than 32k bytes (256kbits) of cart ROM or more than 8k bytes (64kbits)
+of cart RAM because the GB &amp; GBC can only access up to this amount of cart
+ROM &amp; RAM at any one time. <BR><BR>Here are brief descriptions of each
+MBC. Listed values are the maximum supported ROM &amp; RAM. Many/most carts do
+not use the maximum ROM &amp; RAM that the MBC type is capable of supporting.
+For the complete &amp; most accurate differences check <A HREF="#Docs">here</A>:<BR><BR>MBC1
+- 2M bytes ROM/8k bytes RAM -or- 512k bytes ROM/32k bytes RAM<BR>MBC2 - 256k
+bytes ROM/512 nybbles RAM (nybble = 4 bits)<BR>MBC3 - 32M bytes ROM/32k bytes
+RAM, Real Time Clock support (not available in all MBC3 carts)<BR>MBC5 - 64M
+bytes ROM/128K bytes RAM (First MBC guaranteed to handle GBC double speed mode.
+Other MBCs handle double speed even though there is no guarantee.)<BR>HuC1 - An
+MBC similar to MBC1 but with InfraRed (IR) transmit &amp; receive capability.<BR>TAMA5
+- This is a special MBC that Bandai put out for for Tamagotchi 3 (Japanese).
+This is the only cart capable of making simple sounds while the GB itself is
+turned off.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Developer">How do I become a licensed GB developer ?</A></STRONG></DT>
+<DD><BR> This usually requires that you submit samples of your work to
+Nintendo. Often this even means submitting a game that is nearly complete in
+order that Nintendo might better realize your potential for code, graphics, &amp;
+sound. Without them having something to see there is no real incentive for them
+to seriously listen to your objectives. But that's just one opinion....<BR><BR>Check
+this page for info on how to get licensed: <A HREF="https://www.warioworld.com/">WarioWorld</A><BR><BR><BR></DD>
+<DT><STRONG><A NAME="Pokemon">Is there any way to connect my GB to the
+internet so that I can play Pokemon with a friend ?</A></STRONG></DT>
+<DD><BR>No one has yet proven whether this is possible.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Default">Why is it that most older GB games when run on 
+a GBC have blue &amp; green backgrounds with red sprites but a few games have
+different default colo(u)rs ?</A></STRONG></DT>
+<DD><BR>The GBC has a built-in list of older GB games for which it has default
+colo(u)rs. If the internal cart name matches up with any of the names in the GBC
+built-in list then these custom colo(u)rs are used instead of the default
+colo(u)rs.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IRCChannel">Is there an IRC channel for GB development ?</A></STRONG></DT>
+<DD><BR>Yes. Channels #gbdev, #gameboy, and #pocketdev on efnet. Many have
+been abandoning #gbdev, though, due to the number of bots in that channel.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="RomHeader">What is the ROM header info in ROMs used for
+?</A></STRONG></DT>
+<DD><BR>The Nintendo graphic area &amp; the complement byte are the only
+things that the GB Classic &amp; GB Pocket care about and check. These bytes
+must be set correctly or a game will lockup after scrolling the Nintendo power
+up logo.<BR><BR>On the Super GB, rom addresses $146 &amp; $14b must be set
+correctly for SGB features to work.<BR><BR>On the GBC, rom address $143 must
+be set correctly for GBC features to work.<BR><BR>Nintendo has a special piece
+of equipment that they use to test returned carts. It reads the ROM size, RAM
+size, MBC type, Checksum, and other information in order to know what hardware
+is present for testing. This is the reason for the other data fields in the ROM
+header area. This information is not used by games themselves.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LCDProb">What can you do if some of the lines of the LCD
+display quit working ?</A></STRONG></DT>
+<DD><BR>Many early GameBoy Classic units had LCD display driver chips that
+would go bad over time. The solution would be to replace the bad chip or get a
+new GB. Replacing the chip is beyond the scope of these FAQs.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SellCarts">Do you have to be licensed by Nintendo to
+make / sell carts ?</A></STRONG></DT>
+<DD><BR>It is not necessary to be an official Nintendo publisher to sell
+Gameboy format games. <A HREF="http://www.christianlink.com/media/wisdom/">Wisdom
+Tree</A> is not an official Gameboy publisher and has been sued by Nintendo
+before. However, they won the case and is currently selling Gameboy format
+software without license from Nintendo.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBC2">Is there really going to be a GBC2 next generation
+handheld ?</A></STRONG></DT>
+<DD><BR>Yes, according to NCL (Nintendo of Japan). A next generation GBC is in
+development.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCBugs">What games written for GB will not work
+correctly on GBC &amp; why ?</A></STRONG></DT>
+<DD><BR><STRONG>Legend of Zerd</STRONG> - See &quot;<A HREF="#GBBugs">Are
+there any undocumented bugs in the GB ?</A>&quot;.<BR><BR><STRONG>Road Rash</STRONG>
+- See &quot;<A HREF="#GBBugs">Are there any undocumented bugs in the GB ?</A>&quot;.<BR><BR><STRONG>Rtype</STRONG>
+- The GBC sets sound wave RAM to a square wave on power up (even in GB mode)
+while the GB had random data in the wave RAM that &quot;tended&quot; to be the
+same values (but not always) on power up. Rtype never specifically sets wave RAM
+to known values so as a result some sounds in this game sound different. (Info
+from Martin Korth.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SellGame">How do I go about trying to sell my game/demo
+to a company ?
+</A></STRONG></DT>
+<DD><BR> (The following information is very subjective and should be treated
+as such.)<BR><BR>From a collective feedback from many people it appears that
+it takes a special publisher to publish an original work. Many publishers don't
+want original work but rather would prefer to tell you what to port from an
+Arcade,N64,PC,PSX, or motion picture to GBC.<BR> One reason might be that few
+people want to take responsibility if an original title does not do well. If a
+game that is ported to GBC doesn't sell well then they can say &quot;That's
+strange, the version for XYZ sold well so this one should have done well in
+sales.&quot; If an original game doesn't sell well there is always some guy in
+the company (if the company is large enough) that will say &quot;told you so, I
+thought it was a dumb idea.&quot;<BR>Another reason might be that no one has
+heard of original titles and so they are less likely to buy it on the shelves. I
+know there have been cases where parents have come up to me in stores and asked
+me what they should buy for their kid even though they don't know me. It seems
+that very often people want to surprise their kids or their relatives kids with
+a game rather then ask them what they want. They often pick any game title they
+recognize. The recognition is often due to the fact that the game is a
+conversion from another game or a movie.<BR><BR>   On the other hand, if you
+have already done some GBC titles then some companies are willing to sit down
+and discuss your original ideas once they have some confidence in your proven
+programming ability, project reliability, and demonstrated speed.<BR><BR>If
+you have never done work for the company you are talking with, your game often
+must be complete (or 99.9% anyway) before they can make any decisions on whether
+to publish it or not. (On incomplete games they have no idea what sound or
+graphics that you might add later that they might find offensive or annoying so
+it's rare to get any decisions until a game is complete or until they have
+experience working with you.)<BR><BR> Don't expect people that don't know you
+extremely well to hand out email addresses or other contact information to
+companies. No one wants to get an email that says, &quot;Why did you refer this
+guy to me? He has minimal talent and he harasses me contantly with ROMs by
+email!&quot; To get games to the right people you generally have to go to large
+game industry shows and meet as many people as you can. You need to take your
+completed game with you to the show. Make appointments with every GBC publisher
+at the show if possible. If the game looks promising and is &quot;flashy&quot;
+that might get them to look at it. If the game is good and has depth then that
+might even get them to publish it.<BR><BR>A game that you have done yourself
+needs to look atleast as good as the average GBC game available. Often it has to
+look better or do something unique that no other game does to keep a publishers
+attention long enough for them to consider publishing it. (Get someone that
+doesn't know you to judge it to get an honest opinion.) Some publishers won't
+publish it even if it's the best game they've seen if it isn't the type of game
+that they &quot;typically&quot; publish. Some companies only publish movie
+conversions, some only publish sports titles, etc...<BR><BR>Here is what Doug
+Tennapel (creator of Earthworm Jim) had to say in a interview on gamasutra.com:<BR><BLOCKQUOTE>
+<P><I>Have you any advice for developers starting out on their own and looking
+to land publishing deals ?</I></P></BLOCKQUOTE><BLOCKQUOTE>
+<P>Get a great lawyer, do the best work in the industry and you will get a
+publishing deal. Most developers don't pay attention to the &quot;best work in
+the industry&quot; part so I'll repeat it: if you don't do the best work in the
+industry, nobody will or should take a chance on                    you.</P></BLOCKQUOTE><BR><STRONG>Small
+Publishers</STRONG> -  Be very careful about sending your game to a small
+publisher even if they sign an NDA first. There often is a reason they are
+small. They often are honest and trying to break into the market or they can be
+corrupt. It doesn't take much for a small company to get your game ROM, have
+their own hackers modify it slightly, copyright it in their own country, and
+then sell it to some foreign country for a profit. With you receiving nothing in
+return except them giving you a notice, &quot;We don't think your game is
+suitable for publication but please submit any future complete games to us for
+consideration.&quot;<BR><BR>   Do NOT sent your complete game to a small
+publisher unless they can give you references to people for which they have
+published work. If they can't give you references this should set off some major
+alarms in your head. Either you are their first &quot;experiment&quot; at
+entering into publishing or they could be corrupt. Keep in mind as well that 9
+out of 10 companies fail in their first year of business.<BR><BR><BR><STRONG>Large
+Publishers</STRONG> -  The larger a company gets, the more that company can get
+to a point where the left hand doesn't know what the right hand is doing. (A
+case in point is that Nintendo of America has made some announcements before
+about products to be introduced or not introduced and Nintendo of Japan [the
+main location] soon after made a decision that basically reversed the
+announcement made by NOA.)<BR><BR>In other words, you can't just expect to
+send your brand new, state-of-the-art, best-graphics-in-the-world GBC game to
+anyone in the company and expect them to forward it to the actual decision
+makers. Many people in large companies could care less about what you have done.
+Many would not know what to do with a ROM even if you sent it to them. Often,
+your email goes directly to the trash if it is sent to the wrong person. Meeting
+people at game industry shows is probably the best method for meeting the right
+people. 
+<BR><BR>Keep in mind as well that fast decisions or any decisions at all are
+often harder to get from large publishers. Their main way of doing things is to
+let their market research department decide what to publish next.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="3SidedTool">Where can a three-sided tool to open the GB
+be obtained ?</A></STRONG></DT>
+<DD><BR>A company named City Tools makes a 33 piece security bit set that
+contains a bit that will work.<BR><BR>Also, if you get a flat-head screwdriver
+that is just small enough to fit inside the head of the screw you probably can
+remove the screws that way.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="BungDist">Where all can I order Bung products ?</A></STRONG></DT>
+<DD><BR><A HREF="http://www.bung.com.hk/">Bung Enterprises Limited - Flash
+carts &amp; cart programmers</A><BR>
+<A HREF="http://www.imerchants.com/">www.imerchants.com</A><BR><A
+HREF="http://www.visoly.com/">Austria distributor for Bung products</A><BR><A
+HREF="http://www.mrbackup-z64.com/">Belgium distributor for Bung products</A><BR>
+
+<A HREF="http://members.xoom.com/neshk/">Hong Kong distributor for Bung
+products</A>
+<BR><A HREF="http://www.lik-sang.com/">Another Hong Kong distributor for Bung
+products</A><BR>
+<A HREF="http://www.upstategames.com/">USA distributor for Bung products</A>
+<BR><A HREF="http://www.expressgames.com/">Another USA distributor for Bung
+products</A>
+<BR><A HREF="http://www.madeiragames.com/">UK distributor for Bung products</A><BR><A
+HREF="http://freespace.virgin.net/stephen.blanksby/gb.htm">Another UK
+distributor for Bung products (free Europe shipping)</A><BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungShip">How long does it take for them to ship ?</A></STRONG></DT>
+<DD><BR>It depends on who you order from. If you order direct from Bung or
+most of its distributors, expect 1 to 2 weeks for the order to arrive.<BR><BR>
+If you order from Upstate Games in the USA, expect 2 to 4 weeks for shipment.
+They often ignore email inquiries about an order status so don't panic if they
+don't respond. There have been few (if any) complaints from anyone about their
+service other than the fact that they take so long.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungOrder">What do I need to order from Bung or a
+distributor ?</A></STRONG></DT>
+<DD><BR>You need a Doctor GB Card (flash cart) 4Mbit, 16Mbit, or 64Mbit, GB
+XChanger (required to program the flash cart), a parallel cable, and an adapter
+or batteries to power the GB Xchanger.<BR><BR>Make sure when you order you get
+the newer version flash carts as these require much less battery power. (Expect
+about 1-2 hours battery life with older flash carts, ~10 hours with newer flash
+carts.)<BR><BR>If you order direct from Bung then get their male-to-male DB25
+parallel cable. Some of their distributors don't carry this cable but it is
+required in order to program a cart. You can order this cable elsewhere as long
+as it is a &quot;straight-through&quot; cable not longer than 6 foot. Not all
+male-to-male DB25 cables are &quot;straight-through&quot; so make sure you know
+what you are getting. (A lap-link cable will not work.) If it is longer than 6
+foot you may encounter some reliability problems.<BR><BR>You can use 6 AAA
+batteries or any 8-12 volt DC negative-center adapter for power.
+<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungCarts">What type of flash carts do Bung sell and
+what are the specifications for these carts ?
+</A></STRONG></DT>
+<DD><BR>Bung sells a 4Mbit cart with 32k bytes of SRAM, a 16MBit cart with
+128k bytes of SRAM, and a 64Mbit cart with 128k bytes of SRAM. Each of these
+carts has a battery to backup the SRAM.<BR><BR>Make sure when you order you
+get the newer version flash carts as these require much less battery power.
+(Expect about 1-2 hours battery life with older flash carts, ~20 hours with
+newer flash carts.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungCurrent">What kind of battery life can I expect
+using their flash carts ?</A></STRONG></DT>
+<DD><BR>Somewhere between 1-2 hours of battery life if you have older version
+flash carts.<BR>Newer Bung flash carts draw power typical to commercial carts
+which usually allow ~10 hours battery life on a GB Pocket and ~20 hours on a
+GBC.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungNewOld">How can I tell if I have newer or older Bung
+flash carts ?</A></STRONG></DT>
+<DD><BR> You have to take the flash cart apart which may void any warranty for
+it. If the chip <STRONG>farthest</STRONG> from the gold edge connector is a
+Altera EPM70xxSLC44 then you have an older version Bung flash cart. This chip
+draws massive amounts of battery power so don't expect more than 1-2 hours
+battery life.<BR>Newer Bung flash carts draw power typical to commercial carts
+which usually allow ~10 hours battery life on a GB Pocket and ~20 hours on a
+GBC.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungGBW">Is it possible to write to the flash chip using
+code on the GB ?</A></STRONG></DT>
+<DD><BR> No. They use pin 31 of the cart interface as a flash write line
+instead of the standard cart write line. 
+<BR><BR><BR></DD>
+<DT><STRONG><A NAME="DGBCamera">Is it possible to use the GB Xchanger to
+download GB camera pictures ?</A></STRONG></DT>
+<DD><BR> Yes. Get GBT v1.4 software or later from
+<A HREF="http://www.bung.com.hk/">Bung</A>. Old versions of GBT don't allow you
+to read the GB camera.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungNT">Do the Bung tools work on Windows NT ?</A></STRONG></DT>
+<DD><BR> Yes. Both GangaBoy and Bung's GB Xchanger software work correctly
+under NT4, as long as you install GIVEIO.SYS correctly. Check
+<A HREF="#ImportantWebLinks">Important Web Links</A> for installation on WinNT.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungSpd">How do I improve write-to-cart times during
+program development ?</A></STRONG></DT>
+<DD><BR> Check the related question <A HREF="#PadROM">here</A>.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="BungProblem">The GB Xchanger doesn't work with my
+parallel port. What's the problem ?</A></STRONG></DT>
+<DD><BR> There seem to be many programs that allow you to control the GB
+Xchanger but try the GBT program by Bung first. GBT v1.4 or later should allow
+you to interface with the GB Xchanger in nearly every parallel port mode.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="CameraSpecs">What are the specifications of the GB
+Camera ?</A></STRONG></DT>
+<DD><BR>GB Camera Specifications:<BR><BR>- 128 x 112 pixel, 4 grey-scale
+photos<BR>- Up to 30 photos saved in 128k Byte battery-backed SRAM.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="CameraTransfer">How do I transfer pictures from my GB
+Camera to a PC ?</A></STRONG></DT>
+<DD><BR>GBT v1.4 software or later from
+<A HREF="http://www.bung.com.hk/">Bung</A> allows transfering GB camera save RAM
+to the IBM-PC using the GB XChanger. GB Camera software for Win95 can be found
+<A HREF="../index.html">here</A> for viewing GB camera save RAM
+pictures.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="CameraMod">Has anyone modified a GB camera to allow
+real-time transfer of photos to a PC using the GB link port ?</A></STRONG></DT>
+<DD><BR>No.<BR><BR><BR></DD></DL>
+<HR>
+<DL> 
+  <DT><STRONG><A NAME="CartRamEnable">How do I enable cart RAM using software 
+    ?</A></STRONG></DT>
+  <DD><BR>
+    On power up, cart RAM access is disabled. If you are using GBDK, however, 
+    cart RAM may be enabled as part of the power up sequence but don't assume 
+    this to always be true in every version of GBDK.<BR>
+    <BR>
+    Cart RAM should only be enabled when you are actively reading from or writing 
+    to it if you wish to preserve data during power off. Cart RAM contents can 
+    possibly be partially or totally lost if a power off occurs while cart RAM 
+    is enabled.<BR>
+    <BR>
+    Write $0a to address $0000 to enable cart RAM. Write $00 to address $0000 
+    to disable cart RAM.<BR>
+    <BR>
+    Once cart RAM is enabled the address space between $a000 and $bfff may be 
+    treated as standard RAM.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartMax">What is the maximum amount of ROM &amp; RAM that 
+    you can put in a cart ?</A></STRONG></DT>
+  <DD><BR>
+    The GB &amp; GBC can only access 32K bytes ROM &amp; 8K bytes cart RAM at 
+    one time. As a result, this is all you can access unless you use a Memory 
+    Bank Controller (MBC) or design something similar yourself that does the same 
+    function. The total amount of ROM or RAM accessible then becomes a function 
+    of the limitation of the MBC itself. Yon can have virtually unlimited ROM 
+    or RAM in a cart if you design your own MBC from scratch. If you use a Nintendo 
+    MBC, then here are the <A HREF="#MBC">Nintendo MBC limits</A>.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartBattery">Which carts containing RAM also contain a 
+    battery to preserve the contents of this RAM during power off ?</A></STRONG></DT>
+  <DD><BR>
+    They all do.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartList"> Is there a list of commercial GB &amp; GBC carts 
+    somewhere and what they contain ?</A></STRONG></DT>
+  <DD><BR>
+    Yes. Check the links near the bottom of this <A HREF="doxs.html">doxs 
+    page</A>.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartUnique">What commercial GB &amp; GBC games have unusual 
+    or unique features ?</A></STRONG></DT>
+  <DD><BR>
+    <STRONG>Isometric graphics:</STRONG> Altered Space, Monster Max, Super R.C. 
+    Pro-AM, Twouble<BR>
+    <STRONG>Real time Clock:</STRONG> Harvest Moon GB (Japanese version), Harvest 
+    Moon GBC (US &amp; Japanese)<BR>
+    <STRONG>Rumble support:</STRONG> Top Gear Pocket<BR>
+    <STRONG>4-Player adapter support:</STRONG> F1-Race, Tennis, Tetris, TetrisAttack, 
+    Waverace<BR>
+    <STRONG>SNES/Super Famicon code:</STRONG> Space Invaders (4Mbit version)<BR>
+    <STRONG>Wire-frame 3D games:</STRONG> Battlezone/Super Breakout, Ray Thunder 
+    (Japanese), Xekkusu (Japanese)<BR>
+    <STRONG>Filled-surface 3D games:</STRONG> Faceball 2000, Race Drivin' <BR>
+    <STRONG>Non-licensed GB carts:</STRONG> <A HREF="http://www.christianlink.com/media/wisdom/">religion 
+    carts</A>, <A HREF="http://www.icenet.com.au/~amarch/sachen.htm">Sachen of 
+    Taiwan</A><BR>
+    <STRONG>Totally redesigned carts:</STRONG> GB Camera, <A HREF="http://www.icenet.com.au/~amarch/gbsonar.htm">Bandai's 
+    Fishing Sonar</A><BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartGBDK">What commercial carts have been written using 
+    the GBDK C compiler ?</A></STRONG></DT>
+  <DD><BR>
+    Logical, Mahjong King, Meta Mode, Pro Darts, Qix Adventure, Sweet Ange, and 
+    some others.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartGBA">Will a GB cart work on a GBA ?</A></STRONG></DT>
+  <DD><BR>
+    Yes, but you can only run GB/GBC games. You can not run GBA games on a GB 
+    cart. The cart interface uses a different voltage and the cart address and 
+    data lines are layed out totally differently. An autodetect circuit is used 
+    to tell what type of cart is installed and you are then forced into GB or 
+    GBA mode.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <dt><strong><a name="CartUnique">What voltage is present on the cart interface 
+    ?</a></strong></dt>
+  <dd><br>
+    5 volts is present on all versions of GB. The GB pocket &amp; GBC use voltage 
+    converters to convert battery voltage to 5 volts.</dd>
+  <dt>&nbsp;</dt>
+  <dd>The GBA uses 3.3 volts for GBA carts and 5 volts for GB carts on its cart 
+    interface. It uses an autodetect circuit to decide what type of cart is installed. 
+    You can not use a GB cart to run native GBA code.<br>
+    <br>
+    <br>
+  </dd>
+  <dt><strong></strong></dt>
+  <DT><STRONG><A NAME="CartClock">What are the specs for the clock signal (pin 
+    2) on the cart slot ?</A></STRONG></DT>
+  <DD><BR>
+    On the GB classic, pocket &amp; GBC this clock is 1.048576 MHz. On the SGB 
+    this is 1.0738635 MHz. In GBC double speed mode only it is 2.097152 MHz. In 
+    all cases the signal is a square wave.<BR>
+    <BR>
+    This signal is present except when assembly commands STOP &amp; HALT are active. 
+    When these commands are active this signal stays high.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartWrite">Is it possible to design &amp; build a flash 
+    cart that would allow you to program it using GB code ?</A></STRONG></DT>
+  <DD><BR>
+    Yes. Check Reiner Ziegler's web page on the GB Dev web ring for plans.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartLogo">Is it possible to design a cart that displays 
+    something other than the Nintendo logo on power up ?</A></STRONG></DT>
+  <DD><BR>
+    The GB Pocket &amp; GB Classic at power up would display the graphic logo 
+    in the ROM and then test to make sure that the logo was accurate. For these 
+    units you could do some ROM hardware tricks that would swap the graphic logo 
+    ROM contents after the logo was displayed and then the game would boot properly.<BR>
+    <BR>
+    The GBC has more sophisticated testing. In order to display your own logo 
+    on the GBC you need to alternate your logo and the Nintendo logo as follows: 
+    powerup with "Nintendo", "Nintendo" logo present for 19.2ms after reset, Custom 
+    logo present for 89.6ms, "Nintendo" logo present for 46.4ms, Custom logo present 
+    for 262.7ms, "Nintendo" logo present forever. (Info from Ken Kaarvik.) <BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="RPvsBung"> What are the advantages of using a cart reader 
+    with ReadPlus software over using the Bung xchanger with their flash carts 
+    ?</A></STRONG></DT>
+  <DD><BR>
+    Probably the only advantage is that some of the carts designed to work with 
+    ReadPlus allow you to write to the cart flash chip using software on the GB.<BR>
+    <BR>
+    <BR>
+  </DD>
+  <DT><STRONG><A NAME="CartParts"> Where can a cart connector and the tool to 
+    open GB carts be obtained ?</A></STRONG></DT>
+  <DD><BR>
+    From <A HREF="http://www.mcmelectronics.com/">MCM Electronics</A>. The only 
+    connector they have is the one that was used in the no longer available GB 
+    classic (MCM part# 83-2285). The tool to open carts is MCM part#22-1145. They 
+    are located in the USA and their phone number is 1-800-543-4330.<BR>
+    <BR>
+    <BR>
+  </DD>
+</DL>
+<HR>
+<DL><DT><STRONG><A NAME="Emulator">What are GB, EPROM, and IS emulators ?</A></STRONG></DT>
+<DD><BR>Emulator can be a confusing word because it have several meanings
+depending on where it is used:<BR><BR>A GB emulator is a piece of software
+that runs on a computer and emulates a GB and/or GBC. The reality is that none
+of the GB emulators available perfectly emulate the real hardware but some come
+close. Many think that NO$GMB has the current best GB/GBC/SGB emulation &amp; it
+also has a powerful debugger for helping developers with coding. SMYGB for Win95
+currently is thought by many to have the best sound emulation but it can't play
+channel 3 sound samples very well.<BR><BR>An EPROM emulator is a piece of
+hardware that perfectly emulates a ROM or EPROM chip. They often connect to the
+parallel port of a PC and connect to a ROM socket. Software code changes can
+often be downloaded in seconds to the ROM socket. EPROM emulators are not very
+practical for most as they tend to be very expensive &amp; require that you
+physically solder a socket onto a GB cart to allow connecting an EPROM emulator
+to the cart.<BR><BR>The emulator that
+<A HREF="#ProHardware">Intelligent Systems</A> sells is basically an expensive
+EPROM emulator. The debugger they sell is the same thing along with hardware
+break points, trace history buffer, and other debug features. They both program
+Nintendo flash carts as well.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="EMU2GB">Why does my code that runs on an emulator not
+run on a real GB ?</A></STRONG></DT>
+<DD><BR> * Emulators tend to set all of RAM to $00 on power up. Real GBs do
+NOT initialize RAM on power up. RAM is filled with random values on power up.
+You must clear it yourself if you wish it to be set to some known value.<BR><BR>*
+The real hardware could care less about the ROM checksum ($14e,$14f) but the
+complement check ($14d) MUST be correct or programs will &quot;lock up&quot;
+after scrolling the Nintendo logo. (Use RGBFIX -V if you are coding in
+assembly.)<BR><BR>* The Nintendo scrolling graphic from $104 - $133 must be
+accurate. If one byte of it is changed then your programs will &quot;lock up&quot;
+after scrolling this graphic logo.<BR><BR>* When the LCD display is off (bit 7
+of $ff40 set to 0) you can write to video memory at any time with out
+restrictions. While it is on you can only write to video memory during H-Blank
+and V-Blank. Emulators tend to allow you to write to video memory at any time.<BR><BR>*
+The LCD display is on at reset (bit 7 of $ff40 set to 1). Before the LCD display
+can be turned off you must wait for V-Blank. If you don't wait for V-Blank, once
+in a while SGB code will just lock up and possibly some GBC will not operate
+correctly.<BR><BR>* Normally you should only make changes to Sprite RAM during
+V-Blank unless you know exactly what you are doing. The common way to do this is
+to use the Sprite DMA register ($ff46) to do a fast copy from your sprite table
+to sprite RAM at $fe00-$fe9f.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="EmuCol">Why do colo(u)rs look washed out on some GB
+emulators (i.e. no$gmb, etc) but not on others ?</A></STRONG></DT>
+<DD><BR>This is because code has been added to in order to do &quot;colo(u)r
+correction&quot; . This &quot;correction&quot; code creates washed out colo(u)rs
+to better simulate how the game appears (or would appear) on the real GBC
+hardware.<BR><BR>Often, GB emulators (such as no$gmb) have a configuration
+option to enable or disable this &quot;auto correction&quot; feature.<BR><BR>The
+consensus seems to be that greens and blues reproduce well on the GBC but the
+reds seem to be faded.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="TileBased">I have read that the GB screen is tile
+based. What exactly does this mean ?</A></STRONG></DT>
+<DD><BR>It means that in order to draw images into the GB background you must
+design 8x8 tiles and then write these tiles to background tile map memory.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Magic">I have heard that the GBC can do more than 4
+colo(u)rs per tile, has a secret high resolution mode, and can do 3D graphics in
+hardware. Is this true ?</A></STRONG></DT>
+<DD><BR>None of this is true except possibly the first one. You might can do
+more than 4 colo(u)rs but only through creative palette manipulation during
+H-Blank. This is not practical for many things and is only achievable if you
+know exactly what you are doing.<BR><BR>Read the GBC Specification in the Web
+Links Section for what video modes the GBC supports.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="APAGraphics">How do I turn individual pixels on &amp;
+off (i.e. APA graphics) instead of drawing with tiles ?</A></STRONG></DT>
+<DD><BR>The ability to turn individual pixels on &amp; off on the screen is
+often called APA (or All Points Addressable) graphics.<BR><BR>On the GBC you
+can do this by putting a unique tile at each screen map location. Since the GBC
+can have 512 unique tiles, 360 of these are enough to cover the entire screen
+(20x18 tiles.) Then you can set individual screen pixels to any colo(u)r by
+writing to tile memory.<BR><BR>On the other GBs (pocket, classic, super) you
+only have access to 256 tiles at one time which is less than the 360 unique
+tiles required to fill the screen. But, by using a LYC interrupt you can switch
+from tile set #1 to tile set #2 midscreen. This effectively allows you access to
+up to 384 unique tiles (since tile set #1 &amp; #2 half overlap each other)
+which is enough to fill the screen to allow APA graphics.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="ManyClrs">How do some GBC games put more than 56
+colo(u)rs on the screen ?</A></STRONG></DT>
+<DD><BR>By dynamically changing the colo(u)r palettes while the screen is
+being drawn.<BR><BR>Check <A HREF="#ASMCode">here</A> for assembly demo code.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCSetPal">Can GBC palettes be set at any time ?</A></STRONG></DT>
+<DD><BR>No. Specifically, you can write to GBC palettes at any time except
+during video mode 3. While the screen is off you can write to the palettes at
+any time.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCvsSGB">The GBC &amp; SGB both support colo(u)r. Is
+graphics programming for them similar ?</A></STRONG></DT>
+<DD><BR>Not really. They both have in common the ability to display graphics
+written for GB pocket &amp; GB classic but that is where the similarities end.<BR><BR>The
+SGB is able to colo(u)rize GB games using primitive techniques that involve
+sending information to the SNES/Super Famicon. As such, if you attempt to scroll
+the screen it is sometimes a slow process to send new information to the SNES so
+colo(u)rized, scrolling screens are difficult to implement.<BR><BR>The GBC, on
+the other hand, does all colo(u)rizing itself using totally different methods.
+As a result, colo(u)rized games written for the GBC will not work on the SGB &amp;
+vice versa.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="WinBack">What is the difference between the GB window
+and the GB background ?</A></STRONG></DT>
+<DD><BR>The GB background map is often used as the &quot;main&quot; game
+screen map. You can scroll the background in any direction without limitations.<BR><BR>The
+GB window map appears on top of the background and can only be scrolled to the
+right and down from the upper left screen coordinate. You can scroll it up as
+long as the Y coordinate is &gt;=0. You can scroll it left as long as X
+coordinate is &gt;=-7. The window is often used as a status bar on the right or
+bottom of the screen. No part of the window can ever be made transparent to the
+background under it.<BR><BR>If you set a sprite &amp; it's priority to appear
+below the background &amp; the window, you can see the sprite under window
+colo(u)r 0 but you can't see the background under window colo(u)r 0. It is as if
+the window has replaced the background at all points that it appears on screen.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Trans">Can any part of the window be made transparent ?</A></STRONG></DT>
+<DD><BR>No part of the window can be made transparent to display the
+background.<BR><BR>You can make the window transparent to sprites under the
+window anywhere that you use window colo(u)r 0 and also set the sprite priority
+to appear behind the window / background.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBVRAM">What precautions should I use when
+reading/writing video RAM ?</A></STRONG></DT>
+<DD><BR>When the display is off you may read or write video RAM without
+restrictions.<BR><BR>When the display is on and not in vblank, you have to
+check to see if video RAM is available before you can write to it. If video RAM
+is not available you will read $ff and writes will be ignored.<BR><BR>If you
+read STAT ($ff41) and bitwise AND the result with 2, the result will be 0 when
+VRAM is available.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCHDMA">What precautions should I use when doing HDMA
+on a GBC ?</A></STRONG></DT>
+<DD><BR>- If you initiate an HDMA from a ROM bank ($4000-$7fff) to VRAM you
+can not change the ROM bank until the HDMA has completed. (You can change ROM
+banks during HDMA ONLY if you are not using a ROM bank as a source for the HDMA
+data being transferred.)<BR><BR>- If you initiate an HDMA from a RAM bank
+($d000-$dfff) to VRAM you can not change the RAM bank until the HDMA has
+completed.  (You can change RAM banks during HDMA ONLY if you are not using a
+RAM bank as a source for the HDMA data being transferred.)<BR><BR>- Once you
+initiate an HDMA you can not change the Video RAM bank ($8000-$9fff) until HDMA
+has completed.<BR><BR>- Source &amp; destination addresses of the HDMA must be
+16 byte aligned. (i.e. Source &amp; destination addresses must have a hex value
+of $xxx0. )<BR><BR>- It will not work if the screen is off.  Nothing will
+happen.
+<BR><BR>- It will not work if you use the assembly command HALT in your main
+loop.<BR><BR>- It will not work properly if you try to set up another send
+while it is still sending the last one. HDMA only takes place during H-blank on
+screen lines 1-144 (lines 0-143 if using LY numbering system). During other
+times (including V-blank) HDMA is paused.<BR><BR>- Make sure your transfer
+length is correct. (i.e. HDMA5 [$ff55]: $80 = 16 bytes, $81 = 32 bytes, .... ,
+$ff = 2048 bytes)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="HDMADone">How do I know when an HDMA on the GBC has
+completed ?</A></STRONG></DT>
+<DD><BR>Once you initiate an HDMA, reading bit 7 of HDMA5 ($ff55) will return
+a value of 0. Upon completion of HDMA this bit will be set to 1.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCGDMA">What precautions should I use when doing GDMA
+on a GBC ?</A></STRONG></DT>
+<DD><BR>- GDMA can only reliably be performed in V-blank while the screen is
+on. While the screen is off it can be performed at any time. Turn the LCD screen
+on only AFTER enabling an interrupt if that interrupt is used to service GDMA.
+That way any pending GDMA will not occur during screen drawing (non-vblank).<BR><BR>-
+During the execution of GDMA the CPU is devoted to DMA only and no other
+processing can take place. <BR><BR>- If you plan to transfer more than ~1600
+bytes (~100 tiles) in one V-blank while the screen is on then you probably will
+need to use double-speed mode. GDMA is slightly faster in double-speed mode and
+will allow transfers up to 2048 bytes in this mode. If your V-blank interrupt
+code is exceptionally long then large GDMA transfers are not feasible if they
+overrun the end of V-blank.<BR><BR>- Make sure your source &amp; destination
+addresses are 16 byte aligned (same as HDMA) and that your transfer length is
+correct. (i.e. HDMA5 [$ff55]: $00 = 16 bytes, $01 = 32 bytes, .... , $7f = 2048
+bytes)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GDMATime">How long does it take for a GDMA to execute on
+a GBC ?</A></STRONG></DT>
+<DD><BR>It takes (220 + (n * 7.63)) microseconds in single speed and (110 + (n
+* 7.63)) microseconds in double speed mode. (Where n = 0 is 16 bytes, n = 1 is
+32 bytes, n=2 is 48 bytes, etc... ) This translates to a transfer rate of
+2097152 bytes/sec if you don't consider the initial startup delay of 220uS
+(110uS in double speed mode.) The value 110uS is accurate within +/-5uS. The
+value 220uS is accurate within +/- 10uS. <BR><BR> One of the Nintendos docs
+says, &quot;The new DMA transfer operates at a constant speed, regardless of
+whether the CPU is in Normal or Double Speed Mode&quot; but this is not exactly
+correct information.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCAttrib">I read somewhere that you must set GBC tile
+attributes before setting the GBC tile map. Is this true ?</A></STRONG></DT>
+<DD><BR>Setting the tile attributes directly after setting the map tiles can
+lead to errors. At least a NOP should be placed between. This problem doesn't
+occur often and probably only occurs in double speed mode.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LYCTrash">I'm using the LYC interrupt as a trigger to
+modify the SCX and/or SCY scroll registers. I get some graphic &quot;trash&quot;
+on the screen line where the LYC occurs. Why ? And how do I fix it ?</A></STRONG></DT>
+<DD><BR>The reason you often will get graphic trash is because the LYC
+interrupt, itself, is getting delayed from occurring perfectly on time due to
+some other interrupt (usually due to a timer, serial, or hi/lo interrupt.)<BR><BR>One
+way to fix this is to make sure that the screen line that this occurs on is
+always one solid colo(u)r. In this way, the problem still occurs but isn't
+visibly noticeable so for all practical purposes the problem is &quot;fixed&quot;.<BR><BR>Another
+way to fix this problem is to have the LYC interrupt occur one line before you
+actually need it. Then, use a tight loop waiting for the LY register to equal
+the next line. If the other interrupt code (that is causing this problem) is
+extremely long then you may need to set the LYC interrupt to occur several lines
+or more before it is actually needed. Mortal Kombat 3 &amp; 4 for GB use this
+technique to prevent graphic trash.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="VideoTiming"> What are the video timing specs for the GB
+&amp; GBC ?</A></STRONG></DT>
+<DD><BR>Both the GB &amp; the GBC have the same video timing specs. For more
+info on the various video modes refer to a reference for register STAT ($ff41).
+Horizontal lines which contain sprites have less H-Blank time available than
+lines with no sprites. No H-Blank time is available during an active HDMA:<BR><BR>Complete
+horizontal line timing = 108.7 &#181;sec<BR>V-Blank = 1.09 msec<BR>Mode 2 =
+19.31 &#181;sec (~20 machine cycles)<BR>Mode 3 = Variable between 41.37 &#181;sec
+- 70.69 &#181;sec<BR>Mode 0 = H-Blank = 108.7 &#181;sec - 19.31 - Mode 3<BR><BR>Mode
+0 minimum = 18.72 &#181;sec (10 sprites on a line)<BR>Mode 0 maximum = 48.64 &#181;sec
+(no sprites on a line)<BR><BR>Each video line contains mode 2, mode 3 and mode
+0 in that order. GBC palettes can be written during every mode except mode 3. An
+LYC interrupt occurs at the start of mode 2. An H-Blank interrupt occurs at the
+start of mode 0.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Interlace">Why do pictures in the background or window
+often appear distorted if you scroll them up or down 1 pixel each V-Blank ?</A></STRONG></DT>
+<DD><BR>This is because all versions of GB (i.e. GB,GBC,GBP,SGB,...) have
+interlaced screens and are redrawn 30 times a second. (i.e. All odd lines are
+drawn in one screen refresh, all even lines are drawn in the next screen
+refresh.) As a result, if you scroll a picture up or down 1 pixel each V-Blank
+you are seeing every other line twice during scrolling. (Info of GBC interlace
+from Pan of Anthrox.)<BR><BR>The GB screen isn't a true interlaced screen. It
+appears that every line is redrawn with every screen redraw but every other line
+is just much dimmer.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LCDOff">Can the screen be turned off at any time &amp;
+what assembly code should be used ?</A></STRONG></DT>
+<DD><BR>It's not a good idea to turn off the screen unless you are in V-blank
+for the following reasons:<BR><BR>- Code written for the Super GameBoy will
+not always work if you don't wait until V-blank to switch off the screen. The
+screen &quot;glitch&quot; caused by turning the screen off during redraw can
+sometimes cause the Super GameBoy screen to &quot;lockup&quot; until reset is
+pressed.<BR><BR>- It has been reported that Nintendo rejects game titles
+during the acceptance phase if they don't wait until V-blank to turn off the
+screen. It has also been reported by Nintendo Acceptance that some code can
+physically damage the GBC screen circuitry over time. It is believed (but not
+verified) that this damage occurs due to not waiting until V-blank to turn off
+the screen.<BR><BR>Here is assembly code that is similar to what Nintendo
+suggests:<BR><BR><PRE><STRONG>ScreenOff:
+        ld      hl,rLCDC
+        bit     7,[hl]          ; Is LCD already off?
+        ret     z               ; yes, exit
+
+        ld      a,[rIE]
+        push    af
+        res     0,a
+        ld      [rIE],a         ; Disable vblank interrupt if enabled
+
+.loop:  ld      a,[rLY]         ; Loop until in first part of vblank
+        cp      145
+        jr      nz,.loop
+
+        res     7,[hl]          ; Turn the screen off
+
+        pop     af
+        ld      [rIE],a         ; Restore the state of vblank interrupt
+        ret</STRONG></PRE><BR><BR><BR></DD>
+<DT><STRONG><A NAME="Blanks">Why does the GB have H-blank &amp; V-blank
+periods in the video timing ?</A></STRONG></DT>
+<DD><BR>The terms H-blank &amp; V-blank are a part of Cathode Ray Tube (CRT)
+based video games and as a result they have carried over to some LCD-based
+games. The H-blank period is the amount of time it takes the scanning electron
+beam to return to the left part of the screen and the V-blank period is the
+amount of time it takes the scanning electron beam to return to the top of the
+screen for CRT displays.<BR><BR> Since the Liquid Crystal Display (LCD) of the
+GB doesn't have an electron beam there are no lag times that require an H-blank
+or a V-blank period. Since the GB doesn't have dual-port video RAM, allocating
+these times anyway provides a convenient time for writes to video RAM since the
+video circuits aren't updating the screen during these periods (and as such
+aren't preventing access to video RAM during these periods.)<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="IntWhat">What is an interrupt ?</A></STRONG></DT>
+<DD><BR>An interrupt is a piece of code that starts executing automatically
+when an event occurs. To do this it has to interrupt whatever code was running
+before the event occurred. As part of this, the Program Counter (PC) is saved on
+the GB stack and interrupts are turned off as soon as the interrupt code starts
+executing. At the end of the interrupt, a RETI assembly instruction is usually
+executed which returns to executing code that was running before the interrupt
+occurred and enables interrupts again.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IntCaution">What precautions should I use when writing
+interrupt code ?</A></STRONG></DT>
+<DD><BR>You should often try to keep your interrupt code as short &amp; fast
+as possible. In many cases, no other interrupt can take place while you are
+servicing an interrupt so shorter interrupt code can be helpful.<BR><BR>Usually
+you should enable interrupts before turning on the screen. This way, any old
+vblank or hblank interrupt that is still pending but never got serviced will
+occur before screen drawing starts. For instance, many people write vblank code
+that must only occur in vblank or while the screen is off or else problems will
+result while attempting to execute this code during the screen refresh phase.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IntInt">Can an interrupt interrupt another interrupt ?</A></STRONG></DT>
+<DD><BR>Normally, no. When an interrupt occurs it automatically executes a
+Disable Interrupts (DI) command. As a result, no other interrupt can be serviced
+until servicing of that interrupt is complete and the assembly instruction RETI
+is executed.<BR><BR>To allow an interrupt to interrupt an interrupt you need
+to put an Enable Interrupt (EI) instruction at the beginning of each interrupt
+routine where interrupting will be allowed.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="RET&RETI">What is the difference between assembly
+commands RET &amp; RETI ?</A></STRONG></DT>
+<DD><BR>RET is just a return from subroutine. RETI is two commands in one.
+RETI is EI / RET in that order. The command EI doesn't take effect immediately
+but DI does. EI takes effect following the instruction that follows it.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="HILOWork">I can't get the HI/LO (joypad) interrupt to
+work. Ideas ?</A></STRONG></DT>
+<DD><BR>You must set the P1 register ($ff00) in order to do this:<BR>P1_REG =
+$20 ; Cause U,D,L,R to joypad interrupt<BR>P1_REG = $10 ; Cause
+A,B,SELECT,START to joypad interrupt<BR>P1_REG = $00 ; Cause any button to
+joypad interrupt<BR><BR>After calling any function which reads the joypad you
+will need to reset this register since most of these functions set this register
+to $30 upon completion.
+<BR><BR><BR></DD>
+<DT><STRONG><A NAME="HILOInt">Should a HI/LO interrupt occur when a button is
+released ?</A></STRONG></DT>
+<DD><BR>The HI/LO interrupt occurs (if enabled) when a button on the GB is
+pressed. The reality is that this interrupt can occur several times during the
+process of pressing a button and several times while releasing a button due to
+button &quot;bounce&quot; that often occurs but few realize it.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IntEnDis">Can interrupts occur if I enable interrupts &amp;
+then quickly disable them ?</A></STRONG></DT>
+<DD><BR>No. Specifically, when working in assembly you need a small delay
+between EI &amp; DI. If you insert a NOP command between EI &amp; DI then this
+allows the interrupt enable command to complete before DI takes effect. Thus
+allowing all pending interrupts to be serviced before interrupts are disabled.
+Any pending interrupts will be serviced in the order of their priority and they
+all will be serviced at once before control is returned to non-interrupt code.<BR><BR>The
+reason this delay is needed is because the assembly command EI doesn't take
+effect immediately but DI does. EI takes effect following the instruction that
+follows it.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IntLCDC">Is there anything I should know when using the
+LCDC interrupt ?</A></STRONG></DT>
+<DD><BR>There is one Int $48 signal. When this signal goes from &quot;off&quot;
+to &quot;on&quot; the LCDC flag in the register IF ($ff0f) gets set, and ONLY on
+off-to-on transitions.
+<BR><BR> If the signal is already &quot;on&quot;, say by a true (and enabled)
+LYC=LY condition, then a further interrupt in the same line (say HBLANK int is
+enabled as well) would set the int48 signal as well, but it's already set so no
+off-to-on transition, no further interrupt generated.<BR><BR> But the HBLANK
+interrupt could occur if LYC=LY would get disabled or false (lyc changed) within
+the line, ie. if int48 signal gets off for a short moment. (Info from M.K.)<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="LinkPin4">What does pin 4 of the link port do ?</A></STRONG></DT>
+<DD><BR>On the GB/GB Pocket/GB Classic:<BR>This pin connects to the front
+panel button array and is a digital output line from register P1 ($ff00) bit 4.<BR><BR>On
+the GBC:<BR> This pin connects to register RP ($ff56) bit 4 and is a digital
+input pin. (Info from Ken Kaarvik.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LinkSerial">Can the serial link port be used to connect
+to other serial devices ?</A></STRONG></DT>
+<DD><BR>You possibly could use pin 4 of the link port on the GBC as a serial
+input. You would need to write a software UART to handle the input data. Since
+there would be no interrupt involved in monitoring this input pin you would need
+to devote a good bit of CPU time to monitoring this pin &amp; probably no
+interrupts would be feasible while looking for serial data.<BR><BR>As far as
+the GB Pocket or GB Classic goes, the standard serial in &amp; out pins on the
+GB have a serial format that is not compatible with any known serial standard.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCLink">I'm trying to write code to communicate with
+another GB using the link port. Are there any suggested algorithms for doing
+this ?</A></STRONG></DT>
+<DD><BR> This might possibly be the single most difficult thing on the GB to
+program: GB-to-GB link code. First, get chapters 4 &amp; 5 of the official GB
+development manual. You might even can locate these somewhere on the internet.
+You have 2 different options. The chapter 4 (simple code) or chapter 5
+(complicated code). If you wish to transfer more than 1 byte per vblank then you
+MUST use chapter 5 code for reliability<BR><BR> Chapter 4 has two different
+modes. The first mode is synchronization (before the game starts) and this
+flowchart is shown on the first page. The second mode is &quot;after the game
+starts&quot; flowchart which is shown on page 2.
+<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCDMG">I get an unreliable game link connection when
+connecting a GB Pocket or Classic to a GBC. What might cause this ?</A></STRONG></DT>
+<DD><BR>When a DMG (GB Pocket or Classic) and CGB are linked together, and an
+AC Adaptor is used, line noise may occur.  This noise can cause communication
+problems with the SCK (link clock), which could bit-shift received data. This
+seems to occur mainly when the DMG is the Master mode (using its internal
+clock.) This problem doesn't seem to occur when the GBC is the master.<BR><BR>There
+are two ways to solve this. You can forcibly make the GBC the master, or you can
+create better error checking routines to correct this problem. Nintendo
+recommends using the latter option.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LinkConn">Is the GB link connector available anywhere ?</A></STRONG></DT>
+<DD><BR>The original (larger) GB Classic and the newer (smaller) GB Pocket /
+GBC link connectors are each custom designs by Nintendo that are not available
+elsewhere. You need to modify existing cables in order to use these connectors.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LinkSize">With the introduction of the GB Pocket the
+link port connector is smaller than it was on the GB Classic. Are the changes
+only physical ?</A></STRONG></DT>
+<DD><BR>Yes. With the proper conversion connector you can link different size
+link port units together.<BR><BR>With the introduction of the GBC, link port
+pin 4 now has a new function but the official Nintendo game link cable for
+connecting two different game units has never supported pin 4 so this change has
+no immediate impact. Pin 4 might possibly be used by some future Nintendo
+peripheral but currently it is not used.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LinkDirect">Is there any direct way to read or write any
+of the pins on the link port ?</A></STRONG></DT>
+<DD><BR><A HREF="#LinkPin4">Pin 4 of the link port</A> is the only one. The
+other pins are Serial IN, Serial OUT, Clock, 5 volts, and ground. None of these
+other pins are usable as &quot;direct&quot; digital I/O lines in the traditional
+sense.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="LinkData">What kind of serial input data should I expect
+if no GB is connected on the other end or the other unit is turned off ?</A></STRONG></DT>
+<DD><BR>If no GB is connected on the other end of the link cable then you will
+receive data = $ff.<BR><BR>If a GB is connected but it is turned off then you
+will receive data = $00.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="MiscDouble">Are there any disadvantages to running
+the GBC in double speed mode ?</A></STRONG></DT>
+<DD><BR>Yes. Check the information <A HREF="#PowerUsage">here</A>.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="MiscBoot">I read somewhere that there is a boot rom in
+the GB &amp; GBC. Has anyone been able to read this rom ?</A></STRONG></DT>
+<DD><BR>No.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="CPUSpeeds">Are the GB &amp; GBC 1 &amp; 2MHz systems or
+4 &amp; 8MHz systems ?</A></STRONG></DT>
+<DD><BR>This depends on whether you are talking about clock cycles or machine
+cycles. Nintendo specifications list machine cycles. Many internet document
+specifications list clock cycles.<BR><BR>The GB &amp; GBC can operate at ~1
+million machine cycles/sec or ~4 million clock cycles/sec. The GBC in
+double-speed mode can operate at ~2 million machine cycles/sec or ~8 million
+clock cycles/sec.<BR><BR>The simplest assembly instruction in the GB &amp; GBC
+is a NOP. It takes 1 machine cycle or 4 clock cycles for this instruction to
+execute.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="DMAModes">What are all of the DMA modes &amp; what are
+they used for ?</A></STRONG></DT>
+<DD><BR><STRONG> Sprite DMA</STRONG> -<BR>This is the original DMA that is
+available on all models of GB. It is used to do a fast copy of sprite attribute
+data to Object (sprite) Attribute Memory (OAM) located at $fe00-$fe9f. Sprite
+attribute data includes sprite X &amp; Y coordinates, tile number, palette
+number, horizontal flip, vertical flip, and sprite priority. No tile graphics
+are transferred using this method of DMA.<BR>This method of DMA usually is only
+performed in high RAM ($ff80-$fffe) due to its <A HREF="#SpriteDMA">limitations</A>.<BR><BR><STRONG>HDMA</STRONG>
+-<BR>Otherwise known as Horizontal Blank DMA. It is only available on the GBC.
+Similar to GDMA, this method of DMA is useful for copying tile graphics or tile
+maps to video RAM. There are many restrictions to using HDMA listed
+<A HREF="#GBCHDMA">here</A> but it can be powerful if used carefully. Unlike
+the other two methods of DMA, this one is most practical for allowing other
+processing to take place while HDMA is occurring. More specifically, the CPU is
+used completely during H-blank to process HDMA but at all other times user code
+may be doing other things.<BR><BR><STRONG>GDMA</STRONG> -<BR>Otherwise known
+as General Purpose DMA. It is only available on the GBC. Similar to HDMA, this
+method of DMA is useful for copying tile graphics or tile maps to video RAM.
+There are some restrictions listed <A HREF="#GBCGDMA">here</A> for using GDMA
+but far less than for HDMA. While GDMA is active, the CPU is completely devoted
+to DMA and no other processing takes place until GDMA is done.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Endian">Is the GB a big or little endian system ?</A></STRONG></DT>
+<DD><BR> The GB, GBC, &amp; Z80 are all evolutions of the original Intel 8080
+and all of these are little endian systems. When pushing data on the stack or
+using the assembly command LD [xxxx],SP the low byte is stored lower in RAM.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="IRRemote">Is it possible to use the Infrared capability
+of the GBC for a IR remote control ?</A></STRONG></DT>
+<DD><BR>Yes.The GBC IR transmitter can even operate at over 100kHz. But,
+transmit distance drops off dramatically at 100kHz and higher.<BR><BR>One
+person was able to code an IR remote that would transmit to a TV reliably up to
+3 metres (10 feet) and unreliably up to 5 metres (15 feet).<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCProb1">I have written a program for the GBC. Normal
+GB functions work but I can't get any of the GBC additional registers to work.
+What am I doing wrong ?</A></STRONG></DT>
+<DD><BR>You must set rom address $143 to $80 for a GB/GBC game or to $c0 for a
+GBC-only game.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCTitle"> With the introduction of the GBC, the
+internal cart name has been made smaller. Is this correct ?</A></STRONG></DT>
+<DD><BR>Yes. Rom location $143 was turned into a flag that indicated a GBC
+game so the internal cart name was reduced in size from 16 to 15 characters. The
+GBC flag is $80 for a GBC compatible or dedicated game. Any other value
+signifies a non-GBC game.<BR><BR>As of 1-Mar-99, all GBC games have an even
+smaller internal cart name of 11 characters. The four ascii characters following
+the internal cart name are now dedicated to the game product code. As part of
+this change, the GBC flag byte was changed: $80 = GBC compatible game, $c0 = GBC
+dedicated game. Any other values signify a non-GBC game.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCDed">So why did Nintendo change rom address $143 from
+$80 to $c0 for a GBC dedicated game ?</A></STRONG></DT>
+<DD><BR>Because they wanted a method of distinguishing a GBC-compatible game
+from a GBC-dedicated game. There is no hardware reason for this change.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="HALT">What is the assembly language command HALT used
+for ?</A></STRONG></DT>
+<DD><BR>This stops the CPU until an interrupt occurs. Nintendo recommends
+using this command in your main game loop in order to save battery power while
+the CPU has nothing else to do.<BR><BR>When an interrupt occurs while in HALT,
+the CPU starts back up and pushes the Program Counter onto the stack before
+servicing the interrupt(s). Except it doesn't push the address after HALT as one
+might expect but rather the address of HALT itself.<BR><BR>HALT operates
+differently depending on whether the Interrupt Master Enable (IME) is set or
+reset. Assembly command EI sets IME to 1. Assembly command DI resets IME to 0.<BR><BR><PRE><STRONG>IME = 1 -</STRONG>
+
+     HALT stops the CPU until the register IF ($ff0f) &amp;
+    register IE ($ffff) when logically ANDed together
+    have a non-zero result.
+
+     HALT will only start the CPU upon a 0 to 1 transition
+    of one of the bits of the non-zero result. (i.e. Pending
+    interrupts that occurred before HALT was executed will
+    not terminate HALT.)
+
+
+<STRONG>IME = 0 -</STRONG>
+
+    <STRONG>[$ff0f].AND.[$ffff] = 0 :</STRONG>
+
+        HALT is aborted. Next instruction is executed normally.
+
+         If IME is set to 1 at a later time then a halt condition
+        will occur one instruction after IME is set to 1 to complete
+        the halt that was not allowed to finish earlier.
+
+    <STRONG>[$ff0f].AND.[$ffff] &gt; 0 :</STRONG>
+
+         HALT is aborted. The first byte of the next instruction
+        after HALT is read. The Program Counter (PC) fails to
+        increment to the next memory location. As a results, the
+        first byte after HALT is read again. From this point on
+        the Program Counter once again operates normally.
+
+         If IME is set to 1 at a later time then a halt condition
+        will occur one instruction after IME is set to 1 to complete
+        the halt that was not allowed to finish earlier.
+</PRE><BR>Nintendo also recommends that you put a NOP after HALT commands. The
+reason for this is that the Program Counter will not increment properly (CPU
+bug) if you try to do a HALT while IME = 0 and an interrupt is pending. A
+single-byte instruction immediately following HALT will get executed twice if
+IME = 0 and an interrupt is pending. If the instruction following HALT is a
+multi-byte instruction then the game could hang or registers could get
+scrambled.<BR><BR>IME is set to 1 even if the assembly instruction EI is
+executed immediately before the HALT instruction.<BR><BR>Later versions of the
+RGBASM compiler automatically add a NOP after HALT.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="STOP">What is the assembly language command STOP and
+how/when should it be used ?</A></STRONG></DT>
+<DD><BR>This stops the CPU &amp; turns off the display until a button is
+pressed.<BR><BR>In addition, STOP can be used to <A HREF="#AsmToggle">toggle
+CPU speed</A> on the GBC.<BR><BR>If a game is idle for 5 minutes or longer you
+should possibly consider using STOP to stop the CPU &amp; turn off the display
+to conserve power. Everything is restored after a STOP just by pressing a
+button. If you use STOP for conversing power you should also consider disabling
+sound (reset bit 7 of NR52) as the sound circuits seem to draw the most amount
+of power.<BR><BR>The value in register P1 ($ff00) determines which buttons
+will terminate the STOP condition. These values are as follows and apply to both
+the GB &amp; GBC:<BR><BR>$00 - Any button will terminate STOP.<BR>$10 - Only
+A, B, Select, or Start will terminate STOP.<BR>$20 - Only the direction buttons
+will terminate STOP.<BR>$30 - No button will terminate STOP.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBBugs">Are there any undocumented bugs of the GB ?</A></STRONG></DT>
+<DD><BR>Yes. If the windows X ($ff4b) is set to 0, and you scroll the
+background map horizontally (via $ff43), the window scrolls horizontally with it
+for 8 pixel, then &quot;hops&quot; back to were it should be. This occurs on the
+original GB, pocket GB, and GBC.<BR><BR>There is the <A HREF="#SpriteBug">sprites
+bug</A> that was fixed in the GBC and also the following that doesn't apply to
+the GBC.<BR><BR>In certain situations, writing to the STAT register ($ff41)
+seems to cause bit 1 of the IF register ($ff0f) to be set (and thus cause
+interrupt $48 to occur, if it is enabled). Due to programming bugs, at least two
+games (Roadrash, Legend of Zerd) insist on this quirk, and are incompatible with
+the GBC.
+<BR><BR> As far as has been figured out, the bug happens everytime ANYTHING
+(including 00) is written to the STAT register ($ff41) while the gameboy is
+either in HBLANK or VBLANK mode. It doesn't seem to happen when the gameboy is
+in OAM or VRAM mode, or when the display is disabled. (Info from Martin Korth.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCUndoc">Are there any undocumented features of the GBC
+?</A></STRONG></DT>
+<DD><BR> Yes. The byte at location $143 in a ROM determines whether the GBC
+operates in GBC mode ($80 or $c0) or 4-color GB mode (any other value.) That is
+the official info anyway. Martin Korth has found that any of the following
+binary values at $143 cause strange sprite colors &amp; white-only background
+colors always (X = don't care):<BR><BR>   1XXX01XX<BR>  1XXX10XX<BR> 
+1XXX11XX<BR><BR>It is as if bits 2 and/or 3 being set cause the colo(u)r
+palette registers to be write-protected. On power up, the sprite palettes tend
+to be random pastel colo(u)rs &amp; the background palettes are white.<BR><BR><BR>If
+you read HDMA5 ($ff55) after starting an HDMA you will read back the tile count
+you wrote except the high bit will be 0. Every H-blank this count will
+decrement. After reaching $00 it will change to $ff indicating that HDMA has
+completed. (i.e. If bit 7 is 0 HDMA is busy, otherwise HDMA is done.)<BR><BR><BR>There
+are also several undocumented registers (info from Dark Fader):<BR><BR>$FF6C -
+bit 0 can be read/written<BR> $FF72-$FF74 - whole byte can be read/written<BR>
+$FF75 - bit 4-6 can be read/written<BR> $FF76-$FF77 - Read only &amp; set to
+$00<BR><BR><BR>For the record, Nintendo recommends against using undocumented
+registers in order that your code will work properly with future releases of
+hardware. It is not clear whether the bit that tells you that HDMA is done was
+accidentally undocumented or undocumented on purpose.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCLCDC0">Does the GBC register LCDC ($ff40) bit 0 do
+anything ?</A></STRONG></DT>
+<DD><BR> When the GBC is in GBC mode, this bit does not disable the background
+or window. When this bit is 0 sprites will always appear above the background &amp;
+window regardless of any sprite priority settings or tile attribute background
+priority settings.<BR><BR>   When the GBC is in GB mode, this bit operates
+properly.<BR><BR>If rom location $143 is $80 or $c0 the GBC is in GBC mode.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBCInitSpd">Does the GBC start in single or double speed
+mode ?</A></STRONG></DT>
+<DD><BR> Single speed mode.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="AsmToggle">What assembly code is needed to toggle CPU
+speed on GBC ?</A></STRONG></DT>
+<DD><BR>Use the following code. You must set register P1 ($ff00) to $30 or
+else a button held down can cause STOP to not complete the process of changing
+speeds. Register KEY1 ($ff4d) bit 0 is used as a flag to determine if STOP
+should turn off the display &amp; wait for a button or toggle the CPU speed:<BR><BR><PRE><STRONG>ToggleCPUSpeed:
+        di
+
+        ld      hl,rIE
+        ld      a,[hl]
+        push    af
+
+        xor     a
+        ld      [hl],a         ;disable interrupts
+        ld      [rIF],a
+
+        ld      a,$30
+        ld      [rP1],a
+
+        ld      a,1
+        ld      [rKEY1],a
+
+        stop
+
+        pop     af
+        ld      [hl],a
+
+        ei
+        ret</STRONG></PRE><BR><BR><BR></DD>
+<DT><STRONG><A NAME="Uzi">Has anyone tried to port Unix to a GB ?</A></STRONG></DT>
+<DD><BR> No, but <A HREF="ftp://ftp.barc.org/pub/cpm/uzi/">UZI</A> is a port
+of Unix for Z80. If someone was willing to put enough effort into the project
+they could probably port UZI to GB.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="UndocOpcodes">What do the undocumented assembly opcodes
+do ?</A></STRONG></DT>
+<DD><BR> D3,DB,DD,E3,E4,EB,EC,ED,F4,FC, and FD are all undocumented GameBoy
+assembly language opcodes. Executing any one of these cause every version of the
+GB to permanently halt operation until power down / power up.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="HighLowRAM">What is high RAM ($ff80-$fffe) useful for ?
+If used for the GB stack, does it provide better performance ?</A></STRONG></DT>
+<DD><BR>No better performance can be obtained by using high RAM for the GB
+stack. But, if you are coding in assembly language, some opcodes are optimized
+(and hence operate faster) when using high RAM for data storage. For high
+performance code it is actually better to put the GB stack in lower RAM and use
+high RAM for data storage instead.<BR><BR>Sprite DMA code must be performed in
+high RAM because all other memory is disabled during Sprite DMA.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Metatiles">What does the term Metatile mean ?</A></STRONG></DT>
+<DD><BR>In the world of GB, Metatiles are virtual tiles that are larger than
+8x8 pixels. In many/most cases, metatiles are 16x16 pixel virtual tiles. In some
+cases they are 8x16, 16x8, 32x32, or even larger. Metatiles are most often used
+anywhere that you have large scrolling maps.<BR><BR>Games such as Donkey Kong
+Land 3, Mortal Kombat 3, Mortal Kombat 4, and Tarzan all use 16x16 metatiles.
+These games use a metatile map as well. Each position of this map usually
+contains 1 or 2 bytes. If each position has one byte then up to 256 unique
+metatiles can be used by the map. These metatile maps can be nearly 4 (or 8 for
+the GBC) times smaller (ROM space wise) than a similar tile map that doesn't use
+metatiles. If each position of the map uses 2 bytes then the map can support
+many unique metatiles. These metatile maps can be 2 (or 4 for the GBC) times
+smaller (ROM space wise) than a similar tile map that doesn't use metatiles.<BR><BR>Each
+position of a metatile map has an index into a metatile lookup table. Each
+position in the metatile lookup table often has 4 bytes (assuming 16x16
+metatiles) that index 4 different 8x8 tiles in the tile table and there are
+often 4 more bytes (assuming 16x16 metatiles) that hold the tile attributes for
+these tiles for GBC support.<BR><BR>When using metatiles, you lose some ROM
+space due to the addition of a metatile table but you often gain much more ROM
+space than you lose due to the much smaller map(s). The space savings often
+means that you can put a much larger map (pixel-wise) into a single ROM bank
+which can make things easier programming wise.<BR><BR>The concept of metatiles
+often assumes as well that 8x8 tiles will be used in multiple metatiles. This is
+often a very good assumption because the GB &amp; GBC just don't have enough 8x8
+tiles available to provide unique tiles at every screen location in large,
+scrolling maps. It is possible to dynamically load unique tiles at the edges of
+a scrolling screen (in order to have all unique tiles) but the ROM space
+required for all of these unique tiles can often be prohibitive.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="PowerUsage">Is it possible to drain the batteries
+quicker through poor code ?</A></STRONG></DT>
+<DD><BR> Yes. The following table illustrates power usage by the GBC. Sound is
+enabled by setting bit 7 of register NR52 ($ff26). Using assembly language
+command HALT in your main game loop saves power. 2X Spd is double speed mode.
+Infrared Receive is enabled by setting bits 6 &amp; 7 of register RP ($ff56).
+Infrared Transmit is turned on by setting bit 0 of register RP ($$ff56).<BR><BR>These
+measurements are for total current (cart &amp; GBC) drawn from the batteries.
+The cart used for testing was an original MBC5 cart with the ROM replaced with a
+low-power flash chip. As a result, these measurements should compare to a
+Nintendo published ROM cart within 1-2 milliamps. The code in this example used
+about 85% of the clock cycles available each game loop. (With low power
+consumption for 15% of each game loop when HALT was used.) This probably closely
+resembles many games.<BR><BR>As can be seen by the results, the best results
+are obtained by using none of the special features available, sound disabled,
+and using HALT in the main game loop. Ideally, your game should use as little
+battery power as is necessary. In other words, do NOT use features that require
+more battery power unless you can not accomplish what you are trying to do
+without using them.<BR><BR>For those that are confused by the values below,
+consider that a game that uses 55 milliamps will run on batteries for twice as
+many hours as a game that uses 110 milliamps. Actually, it will run for a little
+over twice as long but this gets into battery physics that are beyond the scope
+of these FAQs.<BR><BR><TABLE BORDER="2"><TR><TD COLSTART="1">Milliamps</TD><TD
+COLSTART="2"></TD><TD COLSTART="3">Enable Sound</TD><TD COLSTART="4">No HALT</TD><TD
+ COLSTART="5">2X Spd</TD><TD COLSTART="6">Enable IR Rx</TD><TD COLSTART="7">IR
+Tx On</TD></TR><TR><TD COLSTART="1"></TD><TD COLSTART="2"></TD><TD
+COLSTART="3"></TD><TD COLSTART="4"></TD><TD COLSTART="5"></TD><TD
+COLSTART="6"></TD><TD COLSTART="7"></TD></TR><TR><TD
+ALIGN="CENTER" COLSTART="1">55</TD><TD COLSTART="2"></TD><TD
+ALIGN="CENTER" COLSTART="3">-</TD><TD ALIGN="CENTER" COLSTART="4">-</TD><TD
+ALIGN="CENTER" COLSTART="5">-</TD><TD ALIGN="CENTER" COLSTART="6">-</TD><TD
+ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD ALIGN="CENTER" COLSTART="1">70</TD>
+<TD COLSTART="2"></TD><TD ALIGN="CENTER" COLSTART="3">X</TD><TD
+ALIGN="CENTER" COLSTART="4">-</TD><TD ALIGN="CENTER" COLSTART="5">-</TD><TD
+ALIGN="CENTER" COLSTART="6">-</TD><TD ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD
+ ALIGN="CENTER" COLSTART="1">58</TD><TD COLSTART="2"></TD><TD
+ALIGN="CENTER" COLSTART="3">-</TD><TD ALIGN="CENTER" COLSTART="4">X</TD><TD
+ALIGN="CENTER" COLSTART="5">-</TD><TD ALIGN="CENTER" COLSTART="6">-</TD><TD
+ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD ALIGN="CENTER" COLSTART="1">62</TD>
+<TD COLSTART="2"></TD><TD ALIGN="CENTER" COLSTART="3">-</TD><TD
+ALIGN="CENTER" COLSTART="4">-</TD><TD ALIGN="CENTER" COLSTART="5">X</TD><TD
+ALIGN="CENTER" COLSTART="6">-</TD><TD ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD
+ ALIGN="CENTER" COLSTART="1">57</TD><TD COLSTART="2"></TD><TD
+ALIGN="CENTER" COLSTART="3">-</TD><TD ALIGN="CENTER" COLSTART="4">-</TD><TD
+ALIGN="CENTER" COLSTART="5">-</TD><TD ALIGN="CENTER" COLSTART="6">X</TD><TD
+ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD ALIGN="CENTER" COLSTART="1">128</TD>
+<TD COLSTART="2"></TD><TD ALIGN="CENTER" COLSTART="3">-</TD><TD
+ALIGN="CENTER" COLSTART="4">-</TD><TD ALIGN="CENTER" COLSTART="5">-</TD><TD
+ALIGN="CENTER" COLSTART="6">-</TD><TD ALIGN="CENTER" COLSTART="7">X</TD></TR><TR><TD
+ ALIGN="CENTER" COLSTART="1">74</TD><TD COLSTART="2"></TD><TD
+ALIGN="CENTER" COLSTART="3">X</TD><TD ALIGN="CENTER" COLSTART="4">X</TD><TD
+ALIGN="CENTER" COLSTART="5">-</TD><TD ALIGN="CENTER" COLSTART="6">-</TD><TD
+ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD ALIGN="CENTER" COLSTART="1">78</TD>
+<TD COLSTART="2"></TD><TD ALIGN="CENTER" COLSTART="3">X</TD><TD
+ALIGN="CENTER" COLSTART="4">-</TD><TD ALIGN="CENTER" COLSTART="5">X</TD><TD
+ALIGN="CENTER" COLSTART="6">-</TD><TD ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD
+ ALIGN="CENTER" COLSTART="1">83</TD><TD COLSTART="2"></TD><TD
+ALIGN="CENTER" COLSTART="3">X</TD><TD ALIGN="CENTER" COLSTART="4">X</TD><TD
+ALIGN="CENTER" COLSTART="5">X</TD><TD ALIGN="CENTER" COLSTART="6">-</TD><TD
+ALIGN="CENTER" COLSTART="7">-</TD></TR><TR><TD ALIGN="CENTER" COLSTART="1">162</TD>
+<TD COLSTART="2"></TD><TD ALIGN="CENTER" COLSTART="3">X</TD><TD
+ALIGN="CENTER" COLSTART="4">X</TD><TD ALIGN="CENTER" COLSTART="5">X</TD><TD
+ALIGN="CENTER" COLSTART="6">X</TD><TD ALIGN="CENTER" COLSTART="7">X</TD></TR></TABLE><BR><BR><BR></DD>
+<DT><STRONG><A NAME="PadROM">Is it important to pad a ROM with a specific
+value ?</A></STRONG></DT>
+<DD><BR> Yes, for three reasons:<BR><BR>- Some flash carts program much more
+quickly when unused spaces in the ROM are padded with $ff.<BR><BR>- ROMs that
+have unused areas padded with a known value (rather than random data) compress
+much better. This is good when you need to send a ROM by email or for smaller,
+compressed, backup archives.<BR><BR>- Padding makes sure that unused sections
+of the ROM are filled with a known value rather than random data in your PC RAM.
+If you don't use padding sometimes source code or other information that you
+would rather not make public can be included in your ROM without your even
+knowing about it.
+<BR><BR><BR> To test code on a GB you often have to pad your ROM size to a
+multiple of 2 in order for most flash programming tools to use the file. Padding
+is just unused bytes that are added to fill empty spaces in a ROM or at the end
+of a ROM. The type of padding you choose can greatly vary the amount of time it
+takes to program a Bung (and probably other) flash cart. With padding values of
+$00 being the worst and $ff being the best. Sometimes it can take up to 50%
+longer (maybe even longer) to flash a cart with pad values of $00. Here are
+command line switches for properly padding assembly files:<BR><BR>For RGBASM:
+<STRONG>-zff</STRONG><BR><BR>For XLINK (RGBASM linker): <STRONG>-zff</STRONG><BR><BR>For
+RGBFIX (Version by Otaku): <STRONG>-pff</STRONG><BR><BR>For TASM: <STRONG>-fff</STRONG><BR><BR>(Bung
+cart programming sensitivity to padding values info from Sam Nova.)<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="NeoGeoPC">What are the specs of the Neo Geo Pocket
+Color ?</A></STRONG></DT>
+<DD><BR><STRONG>Screen Size:</STRONG> 160[wide] x 152[high] pixels<BR><STRONG>Colo(u)rs:</STRONG>
+146 out of 4096 (simultaneous display)<BR><STRONG>Sprites:</STRONG> 64 8x8
+characters (Up to 64 sprites in one line.)<BR><STRONG>Scrollable planes:</STRONG>
+2 planes<BR><STRONG>Tiles available:</STRONG> 512<BR><STRONG>Cart Specs:</STRONG>
+Up to 16 Mbits linear ROM. (bankswitching required for ROMs over 16 Mbits.)<BR><STRONG>Other
+features:</STRONG> Internal clock/calendar chip (with 3V clock battery), Game
+Link Port, hardware multiply/divide instructions<BR><STRONG>Main Processor:</STRONG>
+Toshiba TLCS-900<BR><STRONG>Sound Processor:</STRONG> Zilog Z80, 6 channel PSG
+&amp; 12 bit sample channel<BR><STRONG>Battery Life:</STRONG> 40 hours on 2xAA
+batteries.<BR><BR>There are no known publically available technical documents
+on this unit except for the
+<A HREF="http://doc.semicon.toshiba.co.jp/pdf_e/micon/900h_1/chap3.htm">main
+processor</A> and the <A HREF="http://www.zilog.com/">sound processor</A>.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="SndDiffs">Are there any differences in the sound
+hardware on the GB, GBC, &amp; SGB ?</A></STRONG></DT>
+<DD><BR>The GB Classic, GB Pocket, SGB, &amp; GBC all use the same sound
+hardware so programmming is identical for them all.<BR><BR>The SGB, however,
+has access to some SNES/Super Famicon sound effects as well. SGB games that have
+specifically been written to use these sound effects can have better sound, as a
+result, than average GB games.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SndOrder">Does it matter in which order I set the sound
+registers ?</A></STRONG></DT>
+<DD><BR>Yes. Sound must be turned on before you can set any other sound
+registers. You do this by writing $80 to NR52 ($ff26).<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SndWaves"> What all techniques are used to play WAV
+files on a GB ?</A></STRONG></DT>
+<DD><BR>Four bit wave playback - Sound channel 3 has a 4-bit 32 sample long
+wave RAM that you can set for playing a 32 sample waveform repeatedly. It wasn't
+specifically designed to handle continuously new samples but you can refill the
+wave RAM each time 32 samples have been sent to the speaker. This reload of RAM
+process causes the first sample to always be 0 which shows up in sample playback
+as a low frequency buzz sound. Depending on what sounds you are playing back
+this buzz is more or less noticeable.<BR><BR>Your samples will sound a lot
+clearer (and even louder, apparently) if you heavily optimize your sample
+playback routine. (Info from Jeremy Evers.)<BR><BR> One bit wave playback -
+Some games use volume modulation of register NR51 ($ff25) to do one bit wave
+playback. This involves setting, say for instance, sound channel 3 wave RAM to
+all $FF's and then just modulating bits 2 &amp; 6 of NR51 to do the sound
+playback.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SndVolume">I get very low volume when playing WAVs. What
+can I do ?</A></STRONG></DT>
+<DD><BR>This is a major problem and as a result it requires careful
+consideration.<BR><BR>For one, use compression (audio, not data) to make the
+sample &quot;stronger&quot;.<BR><BR>Also, make sure that the original sound
+sample files are recorded very strongly. If you have to, use a sound editor
+program to increase the volume of each sample. Keep doing this even if the
+signal starts to clip if you want to get more volume.<BR><BR>It is a matter of
+personal preference as to how much clipping you wish to do to the sample. The
+more clipping you do the louder the sample will be with the trade off of adding
+more distortion. Some samples will be more tolerant of distortion than others so
+keep this in mind.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SndDisable"> Should I disable sound if I am not using it
+?</A></STRONG></DT>
+<DD><BR>Yes. The sound circuits cause your game to use 10-15% more battery
+power even if you aren't actively playing a sound. Write $00 to NR52 ($ff26) to
+disable sound.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SndEnv">Can I dynamically modulate the volume envelope
+of a sound channel while it is playing ?</A></STRONG></DT>
+<DD><BR>If you alter the envelope, the envelope may restart (or at least
+jump), and there are some things you need to take into account. However, if you
+force the envelope to be off (direction up, speed 0), you can easily make
+software envelopes by modulating the high nybble.  Sometimes there is some small
+noise associated with this technique, however... (Info from Jeremy Evers.)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="WaveRamMod">Can Wave Pattern RAM ($ff30-ff3f) be
+modified at any time ?</A></STRONG></DT>
+<DD><BR>No. Sound channel 3 must be disabled before you can write data to Wave
+Pattern RAM ($ff30-ff3f). Sound channel 3 is disabled by writing $00 to NR30
+($ff1a).<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Sweep">Is there anything I need to know about using &quot;sweep&quot;
+?</A></STRONG></DT>
+<DD><BR>Yes. Using the sweep function on sound channel 1 will destroy the
+contents of the frequency registers NR13 ($ff13) &amp; NR14 ($ff14).<BR><BR><BR></DD>
+<DT><STRONG><A NAME="GBSndBugs">Are there any bugs in the GB sound hardware ?</A></STRONG></DT>
+<DD><BR>Yes. A problem with sound being cut off prematurely can occur when
+several conditions are met. The conditions are the following:<BR><BR> - the
+sound length registers, NR11, NR21 or NR31 - bits 0~6 are non-zero<BR>- the
+continuous bit of sound registers NR14, NR24 or NR34 is set to 0 (continuous)<BR>-
+and the initial bit of sound registers NR14, NR24 or NR34 is changed from 1 to 0
+while the upper frequency is incremented or decremented.<BR><BR>This problem
+seems to be dependent on the value in the sound length registers, NR11, NR21 or
+NR31 - bits 0~6.  The larger the value, the sooner it stops.<BR><BR>To get
+around this sound bug, set the duration again after the frequency high byte. 
+<BR><BR><BR></DD></DL>
+<HR>
+<DL>
+<DT><STRONG><A NAME="SpriteSize">What size sprites does the GB support ?</A></STRONG></DT>
+<DD><BR>8 x 8 or 8 x 16 pixels. If you use 8 x 16 size sprites then you can
+only have an even sprite number. (i.e. First sprite number = 0, second sprite
+number = 2, third sprite number = 4, ...) The lowest bit of the sprite number in
+8 x 16 sprite mode is always 0 no matter what. (i.e. Selecting sprite number 3
+gives you sprite number 2 instead.) <BR><BR>Several sprites side-by-side can
+be used to display a larger, virtual sprite. Several sprites on top of each
+other can be used to add more colo(u)rs to a sprite.<BR><BR>There are 40
+sprites total available regardless of whether you are in 8 x 8 or 8 x 16 sprite
+mode.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteMix">Can 8 x 8 sprites &amp; 8 x 16 sprites be
+used at the same time ?</A></STRONG></DT>
+<DD><BR>Possibly so if you use the LYC interrupt carefully but you can't mix
+different sized sprites on the same line. Unless you really know what you're
+doing the answer is probably no to this question.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteLimit">What happens if you exceed the GBs limit of
+10 sprites per line ? </A></STRONG></DT>
+<DD><BR>When you exceed 10 sprites per horizontal pixel line, only the sprites
+with the highest priorities will completely appear in that pixel line. (Sprite
+#0 has highest priority, sprite #1 next highest, etc.) The other sprites will
+partially or totally disappear (depending on how many of lines of each sprite
+break the 10 sprites-per-line limit.)<BR><BR>If you plan to have more than 10
+sprites that at some time will share the same lines, then continuously alternate
+some of the sprite priorities with each vblank. This will cause them to blink
+annoyingly (but only when the 10 sprites-per-line limit is exceeded) but this is
+often better then them disappearing partially or completely.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteBetween">Can you have a sprite appear above the
+background but below the window ?</A></STRONG></DT>
+<DD><BR>On the GBC, yes. You might can do it on the other GBs as well but only
+with creative use of the LYC interrupt.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpritePri">What happens if you have one sprite appear
+above the background and another sprite with higher priority appear below the
+background ?</A></STRONG></DT>
+<DD><BR>In the case where two sprites such as these overlap, the sprite above
+the background will take on the colo(u)rs of the background pixels directly
+under it.<BR><BR>Some have said that the Amiga has a similar response under
+these conditions.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteImp">Software-wise, how do most games implement
+sprites ?</A></STRONG></DT>
+<DD><BR>Sprite RAM is located from $fe00-$febf. You can write directly to
+sprite RAM to modify the sprite attribute table but you should only do this
+during V-blank for reliability.<BR><BR>Most commercial games don't write
+directly to sprite RAM. Instead, they use sprite DMA ($ff46). You can just setup
+a sprite attribute table that is 256 byte aligned ($xx00), in RAM for instance,
+and then use sprite DMA to transfer this table to sprite RAM. Often, sprite DMA
+is put at the start of a V-blank interrupt. As a result, your sprite attribute
+table is copied to sprite RAM automatically each V-blank.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteBug">What precautions should I use when writing
+assembly code &amp; using sprites ?</A></STRONG></DT>
+<DD><BR>If your writing GBC dedicated code then the following info doesn't
+apply.<BR><BR>If you are writing GB or GBC compatible assembly code then you
+need to make sure that the following instructions don't occur while their double
+register values are in the range $fe00-$feff or else sprite RAM will once in a
+while get trashed causing sprite flicker &amp; other strange sprite behaviour:<BR><BR><STRONG>inc</STRONG>
+xx<BR><STRONG>dec</STRONG> xx<BR><BR>(xx = bc, de, hl, or sp)<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteDMA"> What precautions should I use when doing
+Sprite DMA ?</A></STRONG></DT>
+<DD><BR>In order to do a sprite DMA you have to have a sprite table with
+address $xx00. (x = don't care) Depending on the address of this sprite table
+you have several options:<BR><BR> <STRONG>Sprite table not in video RAM
+($8000-$9fff)</STRONG> - Most games do not put their sprite table in video RAM
+but rather usually use low RAM ($c000-$dfff). The reason for this is because you
+can write to low RAM at any time but video RAM is picky about writes when the
+screen is on.<BR><BR>When using sprite DMA ($ff46) with a sprite table that is
+not in video RAM, the code which performs this DMA function must be located in
+high RAM ($ff80-$fffe) because, except for video RAM, all other memory areas are
+disabled. The duration of sprite DMA is ~160 (80 in double speed) microseconds.<BR><BR>In
+order to do this you have to copy a small routine to high RAM containing the DMA
+command, a small delay loop, and a RET instruction to return to the main routine
+that called it. Interrupts MUST be disabled during non-video RAM sprite table
+DMAs. Example assembly code (rDMA=$ff46):<BR><BR><PRE><STRONG>; $c000 ~ c09f --&gt; OAM
+        ld      a,$c0
+        ld      [rDMA],a
+        ld      a,40
+.loop:
+        dec     a
+        jr      nz,.loop
+        ret</STRONG></PRE><BR><BR><STRONG>Sprite table in video RAM
+($8000-$9fff)</STRONG> - If you choose to put your sprite table in video RAM
+then you can perform sprite DMA using code in ROM (no need to call high RAM) and
+you don't have to wait for DMA completion. Also, interrupts don't have to be
+disabled to use sprite DMA in this case. Example assembly code (rDMA=$ff46):<BR><BR><PRE><STRONG>; $9f00 ~ 9f9f --&gt; OAM
+        ld      a,$9f
+        ld      [rDMA],a</STRONG></PRE><BR><BR></DD>
+<DT><STRONG><A NAME="SpriteBack"> I have read somewhere someone mentioning &quot;background&quot;
+sprites. What are these and how do I use them ?</A></STRONG></DT>
+<DD><BR>The terminology &quot;background&quot; sprite is in reference to a
+virtual sprite, not a physical sprite. It is a software technique that is used
+that makes it appear that you are using sprite hardware but in reality you are
+not.<BR><BR>This was a popular technique that was used in such games as Mortal
+Kombat 2 in order to draw the actors. It involves writing directly into the
+background map. You can even do smooth, single pixel scrolls of &quot;background&quot;
+sprites that contain transparent pixels if your code is advanced enough to
+handle that.<BR><BR>Since the release of the GBC, this technique is not as
+feasible to implement due to limitations of the GBC background colo(u)r
+palettes.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Sprite40"> Is it possible to display more than 40
+sprites at one time ?</A></STRONG></DT>
+<DD><BR>Yes, but it is tricky. Ferrari for GB does this. You have to use an
+LYC interrupt to modify the OAM (sprite RAM) while the screen is drawing.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="SpritePri2"> How do sprite priority settings work on the
+GBC ?</A></STRONG></DT>
+<DD><BR>Among sprites themselves, sprite #0 has highest priority, sprite #1
+has next highest priority, etc.(i.e. Sprite #0 will always appear over sprite
+#1.)<BR><BR>Bit 7 of the sprite attribute flags determines that a sprite will
+appear above the background &amp; window if it is 0 and below them both (visible
+only through colo(u)r 0 of background &amp; window) if it is 1.<BR><BR>When
+bit 7 of bank 1 of tile attribute memory ($9800-$9fff) is set to 1 it will force
+the background and/or window to have priority over the sprite attribute flags
+and to appear over sprites no matter what the setting of the sprite attribute
+flags.<BR><BR>If bit 0 of register LCDC ($ff40) is 0 then sprites will always
+appear above the background &amp; window regardless of the settings of sprite
+attribute flags &amp; tile attribute memory.<BR><BR><BR></DD></DL>
+<HR>
+<DL><DT><STRONG><A NAME="Assemblers">What assemblers are available ?</A></STRONG></DT>
+<DD><BR>RGBDS, TASM (Table ASseMbler, not Turbo ASseMbler), ADVancedGBIDE,
+ISAS, and the assembler which is provided with GBDK. ISAS is only available to
+licensed developers. Many people use RGBDS and it is probably the most powerful
+assembler available. Quite a few people use TASM due to it's simplicity. For
+serious work, though, RGBDS or ISAS are probably the best choices. <BR><BR>Here
+are the main differences between the two most popular &amp; easily available
+assemblers:<BR><BR><BR><STRONG>TASM Advantages:</STRONG>
+<BR><BR>* Allows quick development for short programs because it's a &quot;simple&quot;
+compiler with linker built in.<BR><BR>* Supports 0xh (hex) &amp; 0xb (binary)
+formats preferred by some that don't like using $x for hex &amp; %x for binary
+numbers.<BR><BR>* Has a nice listing output for the compiler results.<BR><BR>*
+Allows using '[]' or '()' to reference memory. (If you are using the latest TASM
+table...)<BR><BR><BR> 
+<STRONG>RGBASM Advantages:</STRONG><BR><BR>* Allows development of GameBoy
+programs up to 4Mbytes in size. To develop a ROM larger    than 32kbytes in size
+using TASM you have to paste files together using DOS &quot;copy /b f1+f2 f3&quot;
+   or something similar. If you plan on calling code in 2 or more different ROM
+banks you have to assemble these files separately and manually make sure that
+CALLs or JPs to these banks are valid as the assembler is incapable of catching
+errors in this case.<BR><BR>   * Allows including all or part of a raw binary
+data file into your program. Often this means data such as a tileset, tile map,
+etc. To do this with TASM you have to convert the binary data to the format
+.byte $xx,$xx,$xx,$xx,.... using a program such as 'dump' by Jens Ch.
+Restemeier.<BR><BR>   * Has a macro language which blows tasm away. Period.<BR><BR>
+  * Automatically optimizes 'LD' instructions. A 'LD' from $ff00-$ffff takes two
+bytes. A 'LD' from    the rest of memory takes three bytes. TASM isn't capable
+enough to auto-optimize.<BR><BR>   * Allows local labels between standard
+labels:<BR><BR><PRE><STRONG>Test1:
+        ld      a,[x]
+.loop:
+        dec     a
+        jr      nz,.loop
+
+Test2:
+        ld      a,[x]
+.loop:
+        dec     a
+        jr      nz,.loop</STRONG></PRE><BR><BR>(Local labels start with .) You
+can not do this with TASM. Local labels are very helpful in large code projects.<BR><BR>
+  * Has a compiler directive BANK(x) that returns the bank number in which label
+'x' resides. As a    result, it is easy to build a macro such as 'lcall x' that
+does a call from bank-to-bank and you don't have to specifically state which
+bank you wish to call. (The macro will figure this out for you by using
+BANK(x).) With TASM you'd have to do something like 'lcall 5,x' in which you
+specify the bank and the address in the bank you wish to CALL.<BR><BR>* Uses
+an Assembler / Linker setup so you can use Borland or GNU MAKE. Therefore don't
+have to recompile your whole project when making a minor change.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Gfx2GB">Where can I get bmp/pcx/gif/jpg -&gt; GB picture
+converters ?</A></STRONG></DT>
+<DD><BR>For the GB check...<BR><BR>- MegaMan_X's web page on the GB Dev web
+ring for a PCX2GB converter.<BR>- <A HREF="#ImportantWebLinks">Jens Ch.
+Restemeier's web page</A> for a GIF2GB converter which includes C source code.<BR>
+- <A HREF="http://home.hiwaay.net/~jfrohwei/gameboy/">Jeff's GIF2GB converter</A>
+which includes DJGPP C source code.<BR><BR><BR>For the GB &amp; GBC check...<BR><BR>
+- 'gcgen' in the download section of Bung's web page. Your screen resolution has
+to be 24 or 32 bit colo(u)r depth for it to work properly.<BR>- BMP2GB
+converter in GB Development Studio for GBDK. Check some pages on the GB Dev web
+ring for this software package.<BR>-
+<A HREF="http://www.interbytes.com/convert.html">Educa's Gfx2GBC converter </A>
+- No SAVE feature currently.<BR>-
+<A HREF="http://home.hiwaay.net/~jfrohwei/gameboy/">Paul Stapley's Gfx2GBC
+converter</A><BR><BR><BR></DD>
+<DT><STRONG><A NAME="TileEdit">What is a tile editor and why do I need one ?</A></STRONG></DT>
+<DD><BR>The basic building blocks of the GB display are tiles. As such, it is
+handy to have a tile editor to allow you to design tiles that are to be
+displayed on the GB screen.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="MapEdit">What is a map editor and why do I need one ?</A></STRONG></DT>
+<DD><BR>A map editor allows you to take tiles that you have designed and
+arrange these into a 2 dimensional map of arbitrary X and Y size. The GB has a
+built-in hardware tile map that is composed of 8x8 pixel tiles and the map
+itself is 32x32 tiles wide/high. As such, tile maps of 32x32 tiles are popular.<BR><BR>Even
+though the tile map in the GB is limited to 32x32 tiles, you can display maps
+larger than this by dynamically updating the hardware tile map during screen
+scrolling.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="TMEditors">What map or tile editors are available ?</A></STRONG></DT>
+<DD><BR>Tile Buddy by <A HREF="http://www.gamebrains.com/">GameBrains</A> is a
+very powerful Win95 app for Tile/Map/Animation editing.<BR><BR>GB Tile
+Designer (GBTD) &amp; GB Map Builder (GBMB) by
+<A HREF="http://www.casema.net/~hpmulder/">Harry Mulder</A> are excellent Win95
+editors.<BR><BR>TILE256 is a nice DOS tile/map editor.<BR><BR><BR></DD>
+<DT><STRONG><A NAME="Wav2GB">Where can I get a .WAV -&gt; GB converter  ?</A></STRONG></DT>
+<DD><BR>Check MegaMan_X's web page on the GB Dev web ring.<BR><BR><BR></DD></DL>
+<HR>
+<H3><A NAME="ImportantWebLinks">Important Web Links</A></H3>
+<P><STRONG>GB Specification Information</STRONG> -
+<A HREF="http://www.fh-karlsruhe.de/fbnw/html/Gameboy/Docs/no_link/GBSpec.pdf">PDF*
+Format</A> -
+<A HREF="http://www.fh-karlsruhe.de/fbnw/html/Gameboy/Docs/Gbspec.txt">Text
+Format</A><BR>(Also known as the updated pan/kOOPa document. Latest version is
+12-Mar-98. Also contains a fairly complete reference of the Memory Bank
+Controllers (MBC) used by the GB &amp; GBC. )</P>
+<P><STRONG>GameBoy CPU Manual</STRONG> -
+<A HREF="http://www.fh-karlsruhe.de/fbnw/html/Gameboy/Docs/no_link/GBCPUman.pdf">PDF*
+Format</A> -
+<A
+HREF="http://www.fh-karlsruhe.de/fbnw/html/Gameboy/Docs/no_link/GBCPUman_book.zip">PDF*
+Zipped</A><BR>This contains info from the GB specification above plus GB
+opcodes &amp; timings all in one reference.</P>
+<P><STRONG>GB Printer Specification Information</STRONG> -
+<A HREF="http://gbcam.cjb.net/">MS Word Format</A><BR>Information on the data
+format that is sent to the GB Printer.</P>
+<P><STRONG><A
+HREF="http://www.webring.org/cgi-bin/webring?ring=gameboydev;list">GB
+Development Web Ring List</A></STRONG> - Most of the web pages involved in
+GB/GBC development can be found linked here.</P>
+<P><STRONG><A HREF="http://www.otakunozoku.com/">RGBDS &amp; RGBFIX</A></STRONG>
+- Check  Otaku's page for the latest versions of these programs.</P>
+<P><STRONG><A HREF="http://www.geocities.com/SiliconValley/Way/3340/">Jen Ch.
+Restemeier's Page</A></STRONG> - Good place for a GIF2GB converter &amp; GB data
+compression tools.</P>
+<P><STRONG><A HREF="http://www.ganga.demon.co.uk/gboydoc.htm">Windows NT
+GIVEIO.SYS Installation</A></STRONG> - For using Bung's GB Xchanger on WinNT you
+will need to install GIVEIO.SYS on you system. On this web page scroll down
+until you locate 'Windows NT Support'.</P>
+<P>* For a free PDF document viewer try <A HREF="http://www.adobe.com/">Adobe
+Acrobat Reader</A>.</P> 
+<HR></BODY>
+<!-- Mirrored from www.devrs.com/gb/files/faqs.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:20 GMT -->
+</HTML>

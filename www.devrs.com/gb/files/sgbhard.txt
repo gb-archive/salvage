@@ -1,0 +1,74 @@
+
+        Super GameBoy Hardware Description
+            by Jeff Frohwein, 2-Oct-97
+
+ Since few people understand how the Super GameBoy (SGB)
+works internally I have decided to write this document.
+Here's how a normal GB is layed out:
+
+                GameBoy or Pocket GB Internals
+
+                       +--------------+
+                       | GB game cart |
+                       +--------------+
+                              |
+                              V
+                Keypad  +-------------+ video
+      +------+  control |             |  out  +-----------+
+      |Button|--------->| GameBoy CPU |------>|LCD Display|
+      |Inputs|<---------|             |       +-----------+
+      +------+          +-------------+     
+                       
+ Here's how a SGB is layed out:
+
+      + - - - - - - - - - - - - - - - - - - - - - - - +  
+                        +--------------+               
+      |  SGB            | GB game cart |              |
+        package         +--------------+               
+      |                        |                      |
+                               V                       
+      |         Keypad  +-------------+ video         |
+                control |             |  out           
+      |    +----------->| GameBoy CPU |----------+    |
+           | +----------|             |          |     
+      |    | |          +-------------+          |    |
+      + - -|-|- - - - - - - - - - - - - - - - - -|- - +
+           | |          +--------------+         |
+           | |          |              |         |
+           | +--------->| SNES Console |<--------+
+           +------------|              |
+                        +--------------+
+
+ The GB CPU in a SGB cartridge is stamped SGB CPU but
+for all practical purposes it appears to be identical
+to a standard GB CPU.
+
+ For the most part, the main function of the SGB
+cartridge is to supply video signals from the GB CPU
+to the SNES console. The SNES basically has to do a
+screen capture of raw video signal from the GB CPU
+in order to write this data to SNES video ram so that
+this data is viewable on a television screen.
+
+ In order to do SGB borders, SNES sounds, and SGB
+extended colors, these enhanced SGB features are
+enabled/disabled over the keypad control interface.
+
+ Major data exchanges from the SGB CPU to the SNES
+(for such things as SGB border picture data and
+native SNES code and data) are performed by doing
+special screen captures. The data to be transfered is
+moved to SGB CPU video memory and then is displayed.
+The SNES is then informed (over the keypad control
+lines) to capture the data on the SGB CPU video out.
+
+ The video out interface (shown above) on the SGB
+CPU is the same as the video out interface on a
+standard GB. There are only 4 shades of grey at
+this point. Extended colo(u)rs in a SGB game that
+appear to be coming from this video interface are
+really caused by the SNES. Every 8x8 position on
+the SNES screen can be set for different colo(u)r
+palettes to map the 4 shades of grey in that
+position to actual Colo(u)rs.
+

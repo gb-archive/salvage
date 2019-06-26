@@ -1,0 +1,99 @@
+Gameboy Power-On Title Screen Format
+------------------------------------
+
+
+NOTE: I have found no way of making a program run on the gameboy
+if the power-on title screen is modified. I have even used a logic
+analyzer to basically prove that a program WON'T run if this area
+is modified. The only way it would be possible is if the first
+time the area is read it is customized. This would be shown on the
+screen. The next time it's read it has to be exact Nintendo or
+the verify test will fail. To do this would require bank-switching
+methods not covered on any of these web pages.
+
+ It appears the GameBoy Color only reads this area once so
+customization is probably not possible.
+
+
+
+This is the Nintendo Character Area decode. In order to facilitate
+generating a picture for this area, I have written a pascal program
+that I have compiled to an .EXE file that converts an ascii text
+file such as the following:
+
+.....00..........0000...........................
+..000......0..0..0.........0....................
+00.0......0..0...000.......0..............0.....
+...0..00..00.00..0.........0..........000.......
+...0.0..0.0..0...0.0.0.00..000..0...0.0...0.000.
+0..0.0.00.0..0...0.00.0..0.0..0.0.0.0.00..0.0..0
+0..0.00...0..0...0.0..0..0.0..0.00.00.0...0.0..0
+.00...000.0..0...0.0...00..0..0.0...0.000.0.0..0
+
+Into a z80 cross assembler format. Like the following:
+
+ db 3,0d1h,68h,3,1,23h,2,46h,74h,74h,80h,0,1,11h,0,0,0,0,0,3,0,28h,0,0,19h
+ db 96h,45h,63h,0aah,2ah,44h,44h,55h,55h,5ah,21h,95h,59h,0c2h,22h,8ah,0d8h
+ db 0abh,0abh,22h,2ah,0e9h,99h
+(This is the actual data of the picture above.)
+
+   The Internal Info block begins at $100 and it's format is as follows:
+   $100-$101 - 00 C3  (2 bytes)
+   $102-$103 - Lo Hi  (Start Address for Game, usually $150 it would be written
+                       as 50 01)
+   $104-$133 - Nintendo Character Area, if this does not exist the game
+               will not run!
+
+ When the GameBoy is turned on a graphic slowly scrolls down the
+screen. This graphic is determined by the data from $104-$133.
+It is exactly 48 wide by 8 dots tall. This image is actually
+magnified 2x so if you were to look at the screen you would
+actually see 96 x 16 dots. It is encoded as follows:
+
+ Lets say this is your picture:
+
+A1 B1 C1 D1 E1 F1 G1 H1 I1 J1 ... X1 Y1 Z1 AA1 BB1 CC1 ... TT1 UU1 VV1
+A2 B2 C2 D2 ...
+A3 B3 C3 D3 ...
+A4 B4 C4 D4 ...
+A5 B5 C5 D5 ...
+A6 B6 C6 D6 ...
+A7 B7 C7 D7 ...
+A8 B8 C8 D8 E8 F8 G8 H8 I8 J8 ... X8 Y8 Z8 AA8 BB8 CC8 ... TT8 UU8 VV8
+
+ This would be the encoding format:
+
+      MSB-----One Byte-----LSB
+0104: A1 B1 C1 D1 A2 B2 C2 D2
+0105: A3 B3 C3 D3 A4 B4 C4 D4
+
+0106: E1 F1 G1 H1 E2 F2 G2 H2
+0107: E3 F3 G3 H3 E4 F4 G4 H4
+
+0108: I1 J1 K1 L1 I2 J2 K2 L2
+0109: I3 J3 K3 L3 I4 J4 K4 L4
+....
+....
+011A: SS1 TT1 UU1 VV1 SS2 TT2 UU2 VV2
+011B: SS3 TT3 UU3 VV3 SS4 TT4 UU4 VV4
+
+011C: A5 B5 C5 D5 A6 B6 C6 D6
+011D: A7 B7 C7 D7 A8 B8 C8 D8
+
+011E: E5 F5 G5 H5 E6 F6 G6 H6
+011F: E7 F7 G7 H7 E8 F8 G8 H8
+
+0120: I5 J5 K5 L5 I6 J6 K6 L6
+0121: I7 J7 K7 L7 I8 J8 K8 L8
+....
+....
+0132: SS5 TT5 UU5 VV5 SS6 TT6 UU6 VV6
+0133: SS7 TT7 UU7 VV7 SS8 TT8 UU8 VV8
+
+
+0100: 00 C3 50 01 CE ED 66 66 CC 0D 00 0B 03 73 00 83
+0110: 00 0C 00 0D 00 08 11 1F 88 89 00 0E DC CC 6E E6
+0120: DD DD D9 99 BB BB 67 63 6E 0E EC CC DD DC 99 9F
+0130: BB B9 33 3E
+
+  $134-$143 - Title Registration Area (title of the game in ASCII)

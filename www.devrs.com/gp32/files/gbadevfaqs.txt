@@ -1,0 +1,1414 @@
+QTM=?
+BKG=#e0e0e0
+PTL=Dev'rs GBA Dev FAQs
+TTL=<H3>Dev'rs GBA Dev FAQs - Last Update 2002-Feb-18</H3>
+
+General FAQs
+
+Q: Where can find other related FAQs?KEY=OtherFAQs
+A: Cross GCC FAQs: http://www.objsw.com/CrossGCC/
+
+Q: Can I email a question if I don't see it below?KEY=Email
+A: You should usually send your questions to appropriate mailing lists
+-after first searching any mailing list archives.
+-If anyone can help, and has time, they will. Sending email specifically
+-to one web site or person only serves to make them feel guilty if
+-they can not help due to time constraints.<br><br>
+-Please keep in mind that lots of email comes into this site. Much of it
+-requests, specifically, that help or support be provided in some form
+-or to provide links to web sites or people that can help them. There
+-is no possible way that help can be provided to everyone that emails
+-due to volume. Chances are that if you don't see your question or
+-link on this site then help is not yet available. :-(
+
+Q: Is it my imagination or is the GBA screen darker than the GBC screen?KEY=GBAScreen
+A: It's not your imagination, it is darker. Also the viewing angle appears to be worse.
+-It is more difficult to view things on the screen than it was on the GBC.
+
+Q: What is multiboot mode?KEY=MultiBoot
+A: That is where you can play a multiplayer game with several GBA's
+-even if only one of the GBA's has a cart installed. FZero, Mario
+-Advance, Kuru-Kuru Kururin, and ChuChu Rocket are examples of
+-commercial ROMs that use multiboot.
+
+Q: How do you activate multiboot on a slave GBA?KEY=MultiActivate
+A: If no cart is installed on the slave GBA then all you have to do is
+-turn on the slave GBA. The master GBA will automatically boot the slave
+-GBA if a GBA link cable (A GBC link cable won't work for GBA mode games.
+-It only works for GBC mode games on the GBA.) is installed and a cart
+-that has been designed for multiboot support is installed on the master
+-GBA. If the slave GBA has some form of GBA cart installed, (regardless
+-of the title) then you will need to hold down Start+Select while turning
+-on the slave GBA. An extra jingle will then be heard that indicates that
+-the installed cart is being ignored and the GBA is waiting for a multiboot
+-from a master GBA. A slave unit waiting in multiboot mode (assuming a cart
+-is installed) can cancel this mode by the user pressing A,B, or one of
+-the directions buttons. At which time the installed cart will execute.
+
+Q: What dev kit do official developers use?KEY=OffDev
+A: For software they mostly use GCC compiled for Thumb target (i.e. Thumb GCC)
+-and the Gnu ASsembler (GAS). For hardware they mostly use an official Nintendo
+-64mbit flash cart(US$120), IS-AGB-Emulator(~US$6000), or IS-AGB-Debugger(~US$7000)
+-from http://www.intsys.co.jp<br>SN Systems (http://www.snsys.com) is also
+-releasing a GBA Dev setup soon. Other official developers may use different
+-c compilers or GBA emulators. There is no current requirement that official
+-tools must be used.
+
+Q: What kind of processor is used in the GBA?KEY=GBAProcessor
+A: There are two processors in the GBA. A processor similar to
+-z80 for the GB Color mode and a 16MHz ARM/Thumb processor for GBA mode.
+-The GBA mode processor either runs in ARM mode (32bits) or Thumb mode
+-(16bits). Each mode has it's own advantages.<br>
+-The GBA decides which processor to use on power up, depending on if
+-there is a notch on the back of the cart or not. There is no currently
+-known method for switching processors after powerup or for using both
+-at the same time. In GBA mode, ARM processor mode is enabled during
+-power up and during interrupt handeling. 
+
+Q: What is put into RAM on power up or reset?KEY=PowerUp
+A: Nothing. In fact, RAM may contain purely random values. It is totally
+-up to the programmer to copy data from ROM to RAM or to initialize RAM
+-to known values. Sometimes start up files crt0.s (for GCC) and start.s
+-/ start.asm (for SDT/ADS) may initialize areas of RAM to some known values
+-but this may not always be the case. Some programmers may prefer to
+-leave these out of their ROM code to speed up ROM start up.
+
+Q: Is GBC mode emulated on the GBA?KEY=GBCMode
+A: No. GBC mode contains it's own processor that is similar to the z80.
+
+Q: Why do I see a repeating pattern of bytes when I view memory from 0 to 0x1ffffff?KEY=Repeat
+A: With the exception of 0 to 0x3fff (GBA Bios which can be executed but
+-is not externally readable), this is all memory space that is unavailable
+-to user programs. What you are actually seeing is instruction prefetch
+-data. More specifically, you are seeing repeating bytes of the second
+-instruction after the instruction that you used to view this memory area.
+-(Info from Mike Heckenbach.)
+
+Q: Can the repeating bytes in memory from 0 to 0x1ffffff be useful?KEY=RepeatUses
+A: This data repeats every 2 bytes in Thumb mode and every 4 bytes in ARM mode.
+-All of this memory space is 0 wait state when you attempt to read or execute it.
+-You can place a Thumb or ARM 'bx lr' instruction at 0x2000000 and then
+-branch anywhere from 0x4000 to 0x1fffffe to execute a single assembly
+-language instruction many times. (The repeating instruction would be the
+-second instruction after the 'BX' instruction.) However, with the exception
+-of carefully crafted 'ldm/stm' instructions, you probably can't do 'ldr/str'
+-instructions due to the fact that they probably put new data on the bus,
+-thus replacing the repeating instruction. This effect doesn't seem to
+-occur in any address space except for 0 - 0x1ffffff. ('ldm/stm' idea from
+-Mike Heckenbach.)<br><br>
+-The drawbacks to doing this is that your code might break on emulators or
+-future hardware (GBA2?) since this is an undocumented effect.
+
+Q: What do various file extensions in the GBA dev world mean?KEY=FileExt
+A: The following are the USUAL meanings:<br>
+-<b>.bin</b> - Raw cart ROM image. No extra headers. (Start location=0x8000000)<br>
+-<b>.elf</b> - Data-rich ROM image. This, usually GCC generated, image can not be
+-used on flash carts but can be used by a few GBA emulators "as is". It can be
+-converted to a raw ROM image by using "objcopy".<br>
+-<b>.gba</b> - Same as .bin<br>
+-<b>.map</b> - ROM image information file resulting from the -Map linker option.<br>
+-<b>.mb</b> - Raw multiboot ROM image. No extra headers. (Start location=0x2000000)<br>
+-(Note: Some .mb files operate the same as .mb.gba files.)
+-<b>.mb.gba</b> - Raw multiboot/cart ROM image. No extra headers. This ROM can work
+-as both a multiboot & a cart ROM image. If it is loaded at 0x8000000, it will copy
+-itself to 0x2000000 and then start execution from there. If it is located at 0x2000000,
+-then it will just immediately execute the rest of the image.<br>
+-<b>.o</b> - Object file resulting from compiling a .asm, .c, or .s file.<br>
+-<b>.all.rodata.o</b> - Used by DevKitAdvance & Jeff F linker script to put all sections
+-in this file into the .rodata section.<br>
+-<b>.s</b> - Gnu ASsembler (GAS) file<br>
+-<b>.S</b> - GAS file to be filtered through the GCC C pre-processor before GAS.
+-(So that #define, #if, etc.. can be used.)<br>
+-<b>.sav</b> - Cart backup image. Contents of cart SRAM, EEPROM, or backup flash.<br>
+-<b>.text.iwram.o</b> - Used by DevKitAdvance & Jeff F linker script to put the text
+-sections in this file into the .iwram section. Other sections are left alone.<br>
+
+Q: How is information layed out in a GBA ROM?KEY=RomHeader
+A: Check out the crt0.S in the crtls package on http://www.devrs.com/gba
+-In the Nintendo Logo Character Data section there are graphics that
+-have been left out of this file. These graphic bytes are required in
+-order for the ROM to actually work. They have been left out of this
+-file due to the questionable copyright status of this data. This data
+-is always identical in each ROM that actually works on real hardware.
+
+Graphics FAQs
+
+Q: Graphics memory (VRAM) doesn't allow 8 bit writes. What happens when you try?KEY=VRAM8bit
+A: The results of trying is that the same 8 bit value gets written to
+-the upper & lower 8 bits of the destination of your memory pointer. (i.e.
+-If your memory pointer is an even number then the next byte also gets set
+-with the same value. If it's an odd number then the previous byte also gets
+-set with the same value.) Use aligned 16 bit or 32 bit writes to avoid this
+-effect.
+
+Q: If you can't do 8 bit writes to VRAM, doesn't that make mode 4 difficult to use?KEY=Mode4bit8
+A: If you want to draw single pixels then you have to read/modify/write
+-which slows things down greatly. If you are writing two pixels at a time then
+-you can benefit from the fact that you can draw twice as many pixels in mode 4
+-in the same amount of time compared to modes 3 or 5.
+
+Q: Where can I get more info on Mode 7 graphics mode?KEY=Mode7
+A: The GBA only has graphics modes 0-5. Mode 7 refers to a graphics method
+-rather than a GBA graphics mode. The term dates back to the SNES/Super Famicon
+-days. The original SNES mode 7 was a graphics mode that supported rotation /
+-scaling (zooming). The current (even if not exactly correct) use of the term
+-"mode 7" often refers to using a rotation / scaling graphics mode on the GBA
+-along with rewriting zoom/scaling values every scan line on a graphics tile
+-map so that tiles toward the top of the screen appear farther away and tiles
+-toward the bottom appear closer to the player. Use of DMA0 (set to trigger
+-on H-blank interval) to copy scaling register manipulation data each scan
+-line is one method of achieving this effect. You can also use an H-Blank
+-interrupt to modify scaling registers but any DMA occuring while the screen
+-is redrawing can delay an H-Blank interrupt and thus cause it to occur on
+-the wrong line or at the wrong time.
+
+Q: How can you increase horizontal resolution 3x for high contrast images?KEY=SubPixel
+A: Use Sub-Pixel Rendering. The GBA hardware uses BGR (left-to-right) ordering.
+-Check this site for the theory: http://grc.com/cleartype.htm
+-and for a freeware windows program for generating text.
+
+Q: How many cycles are used per various display events?KEY=DispCycles
+A: GB Clock (GBClk) = 4.194304 MHz<br>
+-GBC Clock = GBClk or 2xGBClk (Depending on mode)<br><br>
+-GBA Clock = 4 x GBClk = 16777216 Cycles/Second<br>
+-Display Size = 240 x 160<br>
+-Lines in VBlank = 68<br>
+-Total lines = 160 + 68 = 228<br>
+-Cycles/Line = 73.433us/Line = 1232<br>
+-Cycles/Frame = 16.743ms/Frame = 1232 * 228 = 280896<br>
+-Cycles/VBlank = 4.993ms/Frame = 1232 * 68 = 83776<br>
+-Cycles/HBlank = 16.212us/Line = 272
+
+Sprite FAQs
+
+Q: Is there a simple way of turning a sprite off?KEY=SpritesOff
+A: The preferred method is to set rotation double size mode with
+-rotation/scaling switched off. You can also set the sprite Y
+-coordinate to 160.
+
+Q: What is the difference between hardware sprites and software sprites?KEY=SpriteTypes
+A: A hardware sprite is where you use the game system sprite/object
+-hardware to display a sprite.<br><br>
+-A software sprite is where you draw a sprite into background tiles
+-or into a mode 3/4/5 bitmap plane. Most people don't usually use software
+-sprites unless they are trying to do something that can't be performed
+-with hardware sprites. The reason software sprites aren't often used
+-is because it consumes lots of CPU time to move a software sprite.
+-The term software sprite is confusing & sometimes misleading to some.
+-A "software sprite" is nothing more that a bunch of writes (and possibly
+-reads) directly to tile/bitmap VRAM.
+
+Q: Why do my sprites not appear in graphics modes 3,4, & 5?KEY=UpperSprites
+A: You need to put them at starting address 0x06014000 and the starting
+-sprite number will be 512. You only have 512 sprites available in these
+-modes. Sprites 0-511 are not available due to the memory that is
+-consumed by the bitmap plane.
+
+Q: Is it possible to do alpha blending between sprites?KEY=SprSprBlend
+A: Unfortunately, no. :-\
+
+DMA FAQs
+
+Q: Does DMA halt the CPU or operate in the background?KEY=DMAHalt
+A: DMA halts the CPU until completion. This would seem a tremendous
+-disadvantage and it probably is in some cases. However, DMA can still
+-be fast enough, in some cases, to be more efficient than using
+-other methods of data transfer.
+
+Q: If DMA halts the CPU, how can high priority DMA interrupt low priority DMA?KEY=DMAIntr
+A: Because you can setup hblank, vblank, or sound DMA to occur automatically
+-at some future point in time. When an automatic blank or sound DMA interrupt
+-occurs, it will halt any lower priority DMA and resume it later upon completion
+-of the higher priority DMA. Only One DMA can occur at any one time.
+
+Q: What happens if an interrupt occurs during a DMA?KEY=DMACIntr
+A: The interrupt will be processed upon completion of DMA.
+
+Q: How long does a DMA transfer take?KEY=DMATiming
+A: It depends on the width of the DMA (16 or 32), the width of the
+-source & destination memory, and the wait type of source & destination.
+-Below is table of the CPU clock cycles required by each DMA
+-transfer (Thanks to exoticorn):<br><br>
+-DMA16 / SRC16 = (fetch: 1+SrcWait) + (write:1+DestWait) = 2 + SrcWait + DestWait<br><br>
+-DMA32 / SRC16 / DEST16 = (fetch:2*(1+SrcWait)) + (write:2*(1+DestWait)) = 4 + 2*SrcWait + 2*DestWait<br><br>
+-DMA32 / SRC16 / DEST32 = (fetch:2*(1+SrcWait)) + (write:1+DestWait) = 3 + 2*SrcWait + DestWait<br><br>
+-DMA32 / SRC32 / DEST32 = (fetch:1+SrcWait) + (write:1+DestWait) = 2 + SrcWait + DestWait<br><br>
+-Example: 32 bit DMA from external WRAM(2:16) to internal WRAM(0:32) = 7 clocks per 32 bit word transfer
+
+Interrupt FAQs
+
+Q: Are there cautions to clearing the IE or IME flags?KEY=IEClear
+A: Interrupts may occur during execution of commands to clear the IE or IME
+-flags. If you would like to clear the IE flag, clear the IME flag first, so
+-that problems will not occur.<br><br>
+-When using multiple interrupts and an interrupt
+-coincides with clearing the IME flag, the interrupt will still occur, even
+-though interrupts are disabled (IME flag is cleared). This will cause the
+-interrupt routines to be "out of sync" with the IME flag. Write interrupt
+-routines that save the IME flag and IE/IF registers and then re-enable the
+-IME flag so that multiple interrupts can occur. This condition is rare but
+-must be considered in your project.
+
+Q: What registers should I preserve in interrupt code?KEY=IntRegs
+A: The GBA BIOS was designed to allow passing interrupt handling directly
+-to GCC or ARM SDT C procedures by following the APCS (Arm Procedure Call
+-Standard). As a result, the BIOS saves registers r0-r3 & r12 for you.
+-You should preserve all other registers yourself when writing custom
+-assembly interrupt drivers. Here is the actual ARM
+-IRQ handler code used by the BIOS. Notice that the address that is
+-stored at 0x3007ffc must be a branch to ARM (not Thumb) code:
+-<pre><b>   stmdb r13!,{r0-r3,r12,r14}
+-   mov r0,#0x4000000
+-   adr lr,IntRet
+-   ldr pc,[r0,#-4] </b>@ pc = [0x3007ffc]<b>
+-IntRet:
+-   ldmia r13!,{r0-r3,r12,r14}
+-   subs pc,r14,#4</b></pre>
+
+Q: My interrupt routine works but upon exit the return location is not correct. Why?KEY=IntRet
+A: If you are using DevKitAdvance, or Jeff F linker script for GCC, the interrupt
+-stack is only 160 bytes long. If you are using extensive stack usage
+-(i.e. many local variables or printf/sprintf, etc..) then this space
+-can easily run out. Here are two different options:<br><br>
+-<b>a)</b> In your lnkscript file, change this:<br>
+-<b>__iheap_end = 0x3008000 - 0x400;</b><br>
+-<b>__sp_usr = 0x3008000 - 0x100;</b><br>
+-to this instead:<br>
+-<b>__iheap_end = 0x3008000 - 0x1000;</b><br>
+-<b>__sp_usr = 0x3008000 - 0xd00;</b><br>
+-This will give the IRQ stack a total space of 3232 bytes.<br><br>
+-<b>b)</b> Modify the Jeff F crt0.S (from the crtls package) to use
+-__MultipleInterrupts. This forces the interrupt to use the main
+-stack, instead of the interrupt stack, thus allowing a much larger
+-stack area.
+
+C Complier FAQs
+
+Q: What C compilers are available for GBA development?KEY=CCompilers
+A: The two most popular are ARM/Thumb GCC and ARM/Thumb SDT. GCC is free but
+-ARM/Thumb SDT is not after the trial period runs out. Official developers
+-usually use GCC. GCC is also available for many versions of unix.
+-ARM also makes a ADS version (US$5500) of their C compiler that is designed
+-to replace SDT. Green Hills software also makes an ARM C compiler but
+-it is expensive and few or none use it for GBA development.
+
+Q: Is ARM SDT a more efficient C compiler for GBA development?KEY=Compare
+A: Check the following: http://www.dwelch.com/gba/
+
+Q: Should I use a C compiler that generates ARM or Thumb instructions?KEY=ARMvsThumb
+A: Thumb code is able to provide up to 65% of the code size of ARM,
+-and 160% of the performance of ARM when accessing 16 bit memory.
+-(Source: ARM DDI 0029E) Since most code is usually run out of ROM
+-(which is 16 bit) it makes sense to use a Thumb compiler. For the
+-times when you need the extra performance of ARM, you can always
+-code these subroutines in ARM assembly language and place them in
+-internal WRAM.
+
+Q: When I read a GBA hardware register the value never changes. Why?KEY=UseVol
+A: Make sure you are using the volatile keyword when trying to read a hardware
+-register that is modified by hardware. C compilers will often cache the value
+-of a register if you don't declare it volatile. Use the following:<br><br>
+-typedef volatile unsigned short int vu16;<br>
+-i = *(vu16 *)REG_xxxx;
+
+Q: What does the term "volatile" mean?KEY=DefineVolatile
+A: This means a value that can automatically change at any given instance.
+-This is usually in reference to a hardware register that often has
+-a different value ever time you read it. Specifically, it is useful
+-to define some values as volatile so that a C compiler will not cache
+-that value, but rather, get a fresh copy every time you request it's
+-value. Otherwise, the compiler may return values which are inaccurate
+-because it doesn't realized the value can change.
+
+Q: What are crt0.S/lnkscript (GCC) and start.s (SDT/ADS) used for in a project?KEY=StartUp
+A: crt0.S and start.s (sometimes start.asm) both have similar functions.
+-They are mainly designed to execute assembly code that occurs before
+-user compiled code is executed; usually for initialization purposes.
+-(Sometimes these files will contain other assembly code as well like
+-interrupt support, etc.) The most common usage is to set uninitialized
+-global variable RAM to 0 and to copy initialized global variables from
+-ROM to RAM. A bare minimum crt0.S or start.s file must at least contain
+-a branch to the start of compiled code, even if it contains nothing else.
+-(The S of crt0.s is often capitalized because the GCC docs
+-mention that it must be this way if you ever wish to run the GCC
+-preprocessor on this file.)<br><br>
+-lnkscript is a linker script used by GCC that tells the linker where to
+-put various sections (.text/.data/.rodata/.iwram/etc..) in the GBA
+-memory map. Often a particular crt0.s and lnkscript may be designed
+-to work together so they are often distributed together. Some GCC
+-compilers (i.e. DevKitAdvance) may include a default lnkscript
+-and/or crt0.S as part of the the compiler suite which will be used if
+-the user doesn't specify lnkscript and/or crt0.S files.
+
+GCC General FAQs
+
+Q: Can I use my existing GCC C compiler for GBA development?KEY=x86GCC
+A: No. You need a version of GCC that has been compiled for Thumb
+-and/or ARM code generation. Most developers use GCC compiled for Thumb
+-output. Thumb code is slower than ARM code but it is quite a bit
+-smaller. (Thumb instructions take 2 bytes, ARM instrs. take 4.)
+
+Q: Is it difficult to setup a fully functional ARM/Thumb GCC compiler?KEY=GCCSetup
+A: Only if you plan to do that by compiling the GCC source files.
+-So don't do that unless you like pain. ;) Download pre-built GCC
+-binaries for your platform and then installation is no more difficult
+-than installing ARM SDT.
+
+Q: How do you use the GCC C compiler & GAS assembler?KEY=GCCUse
+A: The best documentation is probably a working demo that contains
+-all of the source code. Try downloading gfxLib, or a similar GCC demo.
+-Follow the instructions in the "readme' file.
+
+Q: Can I mix ARM and Thumb code?KEY=MixARMThumb
+A: Yes. You need to include "-mthumb-interwork" in your compiler
+-options. Subroutines can be written in assembly language in either
+-ARM or Thumb. If you are calling these routines from C then the
+-compiler automatically handles switching between ARM and Thumb modes
+-for you by using the assembly instruction "bx". Using this instruction,
+-ARM or Thumb code is able to call ARM or Thumb subroutines at will.
+-The general rule of "thumb" ;) is to use Thumb in ROM and ARM instructions
+-in RAM when execution speed is important.
+
+Q: How do I display all of the command line options for GCC?KEY=Options
+A: Type the following at a DOS prompt: <b>gcc -v --help|more</b>
+
+Q: I have a GCC compiler for GBA. Can I generate ARM or Thumb using a command line option?KEY=AoTCLO
+A: This depends on the version of GCC that you have. Up until mid-year
+-2000, GCC had to be built to support ARM or Thumb mode. You could not
+-support both in the same compiler. Around mid-year 2000, ARM contributed
+-a new backend to the GCC project that allowed one compiler build to
+-support many of the ARM platforms including ARM & Thumb. Type the
+-following from a DOS prompt: <b>gcc -dumpmachine</b><br>
+-If it reports "arm-thumb-elf" and it is v3.0 or later then it supports
+-both. If it reports "thumb-elf" or "arm-elf" then it only supports one
+-mode.
+
+Q: How do I include ( or INCBIN ) raw data into a project?KEY=IncRaw
+A:There are at least 7 different ways to do this. Two of them involve
+-using <b>B2X</b> (for DOS & linux) from http://www.devrs.com/gba/
+-(Look in the Apps / Misc section.) The easiest method is listed
+-first. The most efficient method is listed last:<br><br>
+-<b>1)</b> Compile your code & build a ROM. Pad the ROM size so that
+-the file size is a nice, easy to remember, value. (Check the "Misc Tools
+-section - http://www.devrs.com/gba/files/gbadevfaqs.php#Padding - for an
+-easy method of padding your ROM or data files to any size in
+-bytes that you prefer.) Use the following DOS command to append your
+-binary data to the end of the ROM:<br>
+-<b>copy /b </b>romin.gba<b>+</b>data1.bin<b>+</b>data2.bin<b>+</b>... romout.gba<br>
+-Define a memory pointer to 0x8000000+YourRomSize to access the data
+-from your code. (<b>NOTE:</b> Check the "Misc Tools section for an easy
+-method of padding your data files to any size in bytes that you prefer.)<br><br>
+-<b>2)</b> *** Convert your data to .h (gcc compiler) file ***<br>
+-<b>b2x -c -t const_u8 -n </b>SomeLabel<b> <</b>in_file<b> ></b>out_file<br>
+-To be able to access this data from your C code use the following:<br>
+-<b>typedef const unsigned char const_u8;<br>
+-#include "</b>out_file<b>"</b><br><br>
+-<b>3)</b> *** Convert your data to .s (gas compiler) file ***<br>
+-<b>b2x -a -d <</b>in_file<b> ></b>out_file<br>
+-now using your favorite code editor create a file "data.s" and
+-add the following info:<br><b>
+-.align<br>
+-.global </b>SomeLabel<b><br>
+-.include "</b>out_file<b>"</b><br>
+-To be able to access this data from your C code use the following:<br>
+-<b>typedef unsigned char u8;<br>
+-extern const u8 </b>SomeLabel<b> [ ];</b><br>
+-Plus you need to link the .s file into your project in order for C
+-to see it. For an example of linking .c & .s files, download gfxLib
+-from http://www.devrs.com/gba/.<br><br>
+-<b>4)</b> *** Convert your data to .o (gcc object) file #1 ***<br>
+-If you have the objcopy program that comes with a later version
+-of the official Nintendo dev kit then use the following (NOTE:
+-earlier versions of objcopy don't support this option):<br>
+-objcopy -v -I binary -O elf32-little --rename-section .data=.rodata in_file out_file<br><br>
+-<b>5)</b> *** Convert your data to .o (gcc object) file #2 ***<br>
+-If you are using DevKitAdv, or crtls v1.2 or later, then you can
+-use the following technique without needing to modify your lnkscript.
+-If you are using some other lnkscript then you need to add the line
+-<b>*all.rodata*(*)</b> to your lnkscript as shown in the step below.
+-Do the following:<br>
+-<b>objcopy -I binary -O elf32-little </b>in_file out_file<b>.all.rodata.</b>ext<br>
+-(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br>
+-Ignore the "architecture UNKNOWN" warning message.)<br>
+-This will force the lnkscript to put all sections in this file into
+-the .rodata (read-only data / ROM) section.
+-To be able to access this data from your C code use the following:<br>
+-<b>typedef unsigned char u8;<br>
+-extern const u8 _binary_</b>outname<b>_all_rodata_</b>ext<b>_start [ ];<br></b>
+-(The symbols _binary_outname_all_rodata_ext_size &
+-_binary_outname_all_rodata_ext_end are also available. However,
+-the "size" symbol seems to be an address to a value rather than
+-the value itself so you may need to do -> (u32)&_binary..._size )<br><br>
+-<b>6)</b> *** Convert your data to .o (gcc object) file #3 ***<br>
+-The last step is not very useful if you have lots of labels.
+-Here is a possibly much more useful approach:<br>
+-<b>objcopyroda -I binary -O elf32-little </b>in_file outname.ext
+-(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br>
+-(ObjCopyRoda can be found in the Apps / C Compilers section of
+-http://www.devrs.com/gba . Ignore the "architecture UNKNOWN" warning message.)<br>
+-In the <b>lnkscript</b> file add the following line, shown in bold, if it is not
+-already in this file. ObjCopyRoda outputs data to a section named .roda . The
+-following modification of lnkscript is necessary in order to put .roda section
+-data into the .rodata (read-only data / ROM) section. If you are using DevKitAdv,
+-or crtls v1.2 or later, then you can skip the lnkscript modification since it
+-has already been done for you:<br><br>
+-.rodata :<br>
+-{<br>
+- ...<br>
+- <b>*(.roda)</b><br>
+- *all.rodata*(*)<br>
+- ...<br>
+-. = ALIGN(4);<br>
+-}<br><br>
+-NOTE: Some 2.9 versions of binutils (maybe later versions as well) sometimes
+-require that you have a <b>. = ALIGN(4);</b> at the end of your linker
+-script section (as shown above) in order to prevent linker problems.<br><br>
+-<b>7)</b> *** Convert your data to .o (gcc object) file #4 ***<br>
+-If you don't want to use the hacked program "ObjCopyRoda" in the last
+-step then here is another, slightly more complicated, approach:<br>
+-<b>objcopy -I binary -O elf32-little </b>in_file<b> temp.o</b>
+-(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br>
+-(Ignore the "architecture UNKNOWN" warning message.)<br>
+-<b>ld -T convert.ls temp.o -o </b>outname.ext<br>
+-The convert.ls linker script file should contain the following text:<br><br>
+-<b>SECTIONS { .rodata : { *(.data) } }<br></b><br>
+-Info from: http://sources.redhat.com/ml/binutils/2001-05/msg00513.html
+
+Q: How do you force GCC to put a variable into a specific CPU register?KEY=ForceReg
+A: <b>register u32 remainder asm ("r5");</b> will force "remainder" into regster R5, for example.
+
+Q: Does GCC GDB include a type of ARMulator for simulating arm code?KEY=ARMSim
+A: Yes. It is based on a version of the ARMulator that ARM released under GPL.
+-It also allows remote debugging over a serial port (with a proper ARM/Thumb
+-GBA-side stub) which is ideal for embedded systems such as the GBA.
+-eCos comes with GDB stub ROMs for ARM targets that can be modified for GBA
+-use. You can get eCos from here: http://sources.redhat.com/ecos/
+
+Q: Why does GCC put global & static variables in ROM when you simultaneously declare AND initialize it?KEY=DeclInit
+A: This is because your linker script and/or crt0.s is wrong. It is probably
+-putting the .data section in ROM when the correct location is in RAM. Get
+-the ones from here: http://www.devrs.com/gba/ccode.php#cmisc . Check the
+-next question for more info.
+
+Q: Why does sprintf, malloc, & other library functions not work right?KEY=LibFunc
+A: This is because your linker script and/or crt0.s is wrong. Get the ones
+-from here: http://www.devrs.com/gba/ccode.php#cmisc . Check the
+-next question for more info.<br><br>
+-From looking at the sprintf source code, there is an initialized global
+-variable. A faulty official lnkscript would put this in ROM. So when the
+-sprintf lib went to update this global it would try to write to ROM which
+-would crash the Nintendo flash cart but a Visoly cart would be unaffected.
+
+Q: What are sections and how are they used?KEY=Sections
+A: GCC puts different code or data into different sections so as to
+-organize the data according to its type. It is then the job of a
+-linker script to put the various sections into either RAM or ROM.
+-Here is what GCC does with code & global variables:<br><br>
+-code <b>---></b> text section<br>
+-u8 foo; <b>---></b> bss (uninitialized data, set to 0x00 ) section<br>
+-u8 foo [ ] = {0,0,...}; <b>---></b> data (initialized data) section<br>
+-const u8 foo [ ] = {0,0,...}; <b>---></b> rodata section<br><br>
+-However, you can force code or data to other sections by using
+-the following:<br><br>
+-// do this only when declaring, not defining<br>
+-<b>void myfunc(void) __attribute__ ((section(".mysection")));</b><br>
+-// vars must be initialized<br>
+-<b>int myvar __attribute ((section(".mysection"))) = 0;</b> (Info from Jason Wilkins)<br><br>
+-A correct linker script should do the following:<br><br>
+-text <b>---></b> ROM<br>
+-bss <b>---></b> RAM<br>
+-data <b>---></b> RAM (Loaded from ROM to RAM at startup by crt0.S[GCC] or start.asm[SDT].)<br>
+-rodata <b>---></b> ROM<br><br>
+-A correct crt0.s should clear all of bss to 0 and copy the data
+-section initialized data from ROM to RAM. For a correct crt0.s
+-& linker script get crtls from here:<br>
+-http://www.devrs.com/gba/ccode.php#cmisc
+
+Q: I would like to put a variable into a different section. How?Key=VarSections
+A: You can only do this for initialized, global variables. Here are some examples:<br>
+-<b>u8 a[10000] __attribute__ ((section (".ewram"))) = { 0 };<br>
+-u8 init_data __attribute__ ((section (".iwram"))) = 0;</b><br>
+-Quoting from the GCC manual:<br>
+-"You may only use the section attribute with a fully initialized global
+-definition because of the way linkers work. The linker requires each
+-object be defined once, with the exception that uninitialized variables
+-tentatively go in the common (or bss) section and can be multiply
+-'defined'. You can force a variable to be initialized with the `-fno-common'
+-flag or the nocommon attribute."<br><br>
+-Another method would be just to define a pointer and reference an array
+-by using it:<br>
+-<b>u8 *MyArray = (u8 *)0x2000000;</b> // ewram start<br>
+-<b>MyArray[0] = 1;</b><br>
+-If you are compiling a multiboot ROM image (code starting at 0x2000000)
+-then use the following pointer instead. (In fact, this code will work
+-regardless of whether you are compiling a standard or multiboot ROM image.)
+-It will 4-byte align itself at the beginning location following the
+-multiboot image (You must use
+-lnkscript v1.3 from http://www.devrs.com/gba/ccode.php#cmisc for this
+-to work):<br>
+-<b>extern u8 *__eheap_start;</b><br>
+-<b>u8 *MyArray = __eheap_start;</b> // This can not be a global initialized ptr or compiler error<br>
+-<b>MyArray[0] = 1;</b>
+
+Q: Is there anything I should know to compile a GCC C++ program?Key=CPPMain
+A: Your main program function should have the name: <b>int main (void);</b><br>
+-The reason is that GCC will insert a call to __main right at the beginning
+-of this function that is used to setup constructors. One reason that many
+-do not commonly use this function name, when using C only, is because this
+-causes the function __main to be linked with your program and ~5500 bytes
+-are used up in the process.
+
+Q: How do I put my code in Internal WRAM so that it will run faster?Key=IntRamCode
+A: If you just have a few functions or procedures that needs to go in IWRAM
+-then proceed to the next question for a solution.<br><br>
+-If you want to put all of the code in an object file into IWRAM then get v1.2 or
+-later the Crtls package from http://www.devrs.com/gba . Rename your object file
+-to the following format: *.text.iwram.o . The linker script will now automatically
+-put all code (.text section) in that object file(s) into IWRAM. The crt0.S
+-(in the Crtls package) will make sure that that object file code gets copied
+-from ROM to IWRAM upon startup of your GCC code. Proceed to the next question
+-for methods of calling your functions or procedures in IWRAM. 
+
+Q: How do I do a long branch to a routine that is in Internal WRAM?KEY=LongBranch
+A: For all of the following suggestions, you need a "proper" crt0.S and linker
+-script that copies code from ROM to RAM for you. The following all assume that
+-you have crtls v1.2 or later from http://www.devrs.com/gba . The following
+-all require you to use the compiler option -mthumb-interwork if you plan to
+-mix Thumb & ARM code:<br><br>
+-<b>1)</b> To call C code, if you are using GCC 3.0 or later, you may
+-choose one of the three following methods.:<br>
+-a) Compile and link with -mlong-calls option.<br>
+-b) Use #pragma long_calls or #pragma long_calls_off.<br>
+-c) Use #define CODE_IN_IWRAM __attribute__ ((section (".iwram"), long_call))<br>
+-#define VAR_IN_IWRAM __attribute__ ((section (".iwram"))) = {0}<br><br>
+-Option c allows per-function enabling and thus saves some bytes by only
+-doing long calls to functions that require it. For option c to work, the
+-function must be in a separate object file (source file). Otherwise a
+-'bl' is attempted and you will get an error similar to "relocation
+-truncated to fit: R_ARM_PC24". Here is example code that will work:<br><br>
+-// file1.h<br>
+-extern void DataTest (int j, int k) CODE_IN_IWRAM;<br><br>
+-// file1.c<br>
+-void DataTest (int j, int k)<br>
+-{<br>
+-...<br>
+-...<br>
+-}<br><br>
+-// file2.c<br>
+-#define CODE_IN_IWRAM __attribute__ ((section (".iwram"), long_call))<br>
+-#include "file1.h"<br>
+-int AgbMain (void)<br>
+-{<br>
+-DataTest(1,2); // Just call it.<br>
+-...<br>
+-}<br>
+-(Info from Andrew Cox.)<br><br>
+-<b>2)</b> To call C code, one method is by using a function pointer. Example:<br><br>
+-#define INIT_BRANCH void (*ptr2Function)();<br>
+-#define BRANCH(a,b...) ({ ptr2Function = a; ptr2Function(b); })<br>
+-#define IN_IWRAM __attribute__ ((section (".iwram")))<br><br>
+-void DataTest (int j, int k) IN_IWRAM;<br><br>
+-void DataTest (int j, int k)<br>
+- {<br>
+- ...<br>
+- ...<br>
+- }<br><br>
+-int AgbMain (void)<br>
+- {<br>
+- INIT_BRANCH<br><br>
+- BRANCH(DataTest,1,2);<br>
+-...<br>
+- }<br><br>
+-Care must be taken when using the BRANCH macro because it does not
+-check to see if you have supplied too little or too many parameters.
+-You can force exact number of parameters checking by adding them to
+-the () in the DECLARE_BRANCH #define but this makes it work only
+-with functions with a specific number of parameters.<br><br>
+-<b>3)</b> Here's a slightly less complicated method which calls a function in crt0.S:<br><br>
+-typedef unsigned int u32;<br>
+-#define IN_IWRAM __attribute__ ((section (".iwram")))<br>
+-extern u32 __FarFunction (u32 (*ptr)(), ...);  // Reference to routine in crt0.S<br>
+-extern void __FarProcedure (void (*ptr)(), ...);  // Reference to routine in crt0.S<br>
+-u32 IWRAMCode (u32 *FuncAddr, int param1, int param2) IN_IWRAM;<br><br>
+-u32 IWRAMCode (u32 *FuncAddr, u32 param1, u32 param2)<br>
+-{<br>
+-u32 SomeValue;<br>
+-// Note: The first parameter for this function MUST be<br>
+-//  the *FuncAddr. Do NOT remove this parameter even<br>
+-//  though you probably may not need it.<br>
+-...<br>
+-return (SomeValue);<br>
+-}<br><br>
+-void AgbMain (void)<br>
+-{<br>
+-u32 ReturnValue = __FarFunction (IWRAMCode, 1, 2);<br>
+-}<br><br>
+-<b>4)</b> To call ARM assembly code, put the following in your assembly source code:<br>
+-<b>.SECTION .iwram,"ax",%progbits<br>
+-.ARM<br>
+-.ALIGN</b><br><br>
+-<b>5)</b> To call Thumb assembly code, put the following in your assembly source code:<br>
+-<b>.SECTION .iwram,"ax",%progbits<br>
+-.THUMB<br>
+-.ALIGN 2<br></b>
+-Also, you must put <b>.THUMB_FUNC</b> before EVERY Thumb function entry label.
+-This assembler directive lets the C complier know that this is a Thumb label.
+
+Q: Are there any advantages to using GCC for linking rather than LD?KEY=GCCorLD
+A: When you use GCC for linking it actually calls LD to do the actual linking.
+-There is an advantage in that when you use GCC, it implicitly links in libgcc.a
+-and libc.a. (It also links in crt0.o if you are using DevKitAdvance.) Libgcc
+-contains division code, c++ constructor setup, etc. Libc contains many different
+-functions as noted here: http://www.devrs.com/gba/docs.php#docsmisc
+
+Q: How can I look at the size of various sections or the linker output results?KEY=LinkerResults
+A: Here are various methods. Use the one that you prefer:<br>
+-a) Add the following to your linker options: <b>-Map</b> filename.<b>map</b><br>
+-b) <b>nm --numeric-sort --demangle </b>filename<b>.elf</b><br>
+-c) <b>objdump -h </b>filename<b>.elf</b><br>
+-(Please note that empty sections may incorrectly list the lma address as
+-the vma address for some versions of objdump.)
+
+GCC Error Message FAQs
+
+Q: What does "ld: cannot open -l###: No such file or directory" mean?KEY=LDerror
+A: This means that the linker can not locate link library "lib###.a".
+-(i.e. -lgcc = libgcc.a) First, make sure you have this file.It may
+-be in your gcc bins directory. Modify "makefile", if necessary, to
+-point the libraries path to this file.
+
+Q: What does "relocation truncated to fit: R_ARM_THM_PC22 function" error message mean?KEY=Trunc
+A: This means that you are trying to do a long branch to a function
+-that is too far away for the compiler to generate a branch to it.
+-Try this instead: http://www.devrs.com/gba/files/gbadevfaqs.php#LongBranch
+
+Q: I get an "undefined reference" to one of these: __divsi3,__modsi3,__udivsi3,__umodsi3. Why?KEY=IncLibgcc
+A: The library libgcc.a is either not getting properly linked with your
+-project or it is an incorrect version.
+
+Q: I get an "undefined reference to '__EH_FRAME_BEGIN__'". Why?KEY=UndefEHFB
+A: You need to link in crtbegin.o and crtend.o.
+
+Q: I get an "undefined reference to '__main'". Why?KEY=UndefUUMain
+A: This is because you are not linking libgcc.a in your project.
+-Normally, libgcc is linked without having to explicitly link it
+-if you use GCC for linking. (If you use LD, directly, for linking
+-then you need to link libgcc as well. Note: GCC calls LD to do
+-linking.) The --nostdlib option will tell the compiler not to
+-link libgcc. Function __main is used to setup c++ constructors
+-if they are used.
+
+Q: I get an "undefined reference to 'main'". Why?KEY=UndefMain
+A: This is because the file you are compiling contains no 'main'
+-function. First, look at your C code and locate the name of the
+-main function. Many use 'AgbMain' instead of 'main'. If you want
+-a quick fix then rename 'AgbMain' (or whatever) to 'main'. (This
+-will increase the size of your output binary file about 5500 bytes.)
+-Or you can disable C++ support in your crt0.S file (if you have the
+-one written by Jeff F.) and that will also fix the problem. For
+-more info on why people sometimes use 'AgbMain' instead of 'main',
+-refer to the following: http://www.devrs.com/gba/files/gbadevfaqs.php#CPPMain
+
+Q: I get an "undefined reference" to one of these: sin, cos. Why?KEY=UndefSin
+A: You need to add -lm option to your linker options to link in libm.a.
+-This library (and all libraries) must be included AFTER the object files.
+-So put it at the end of your link options.
+
+Q: Why do I get a "Makefile:xxx: *** Missing separator" error message?KEY=MissSep
+A: Makefiles must be edited with a text editor that preserves Tab characters.
+-If the text editor, or you, insert spaces where tabs are supposed to be then
+-you will get this error. If necessary, use Windows Notepad to edit makefiles
+-since it is known to preserve Tabs.
+
+Q: When I try to compile it complains that it can't find cc1plus.exe. Why?KEY=CC1Perror
+A: You need to download the the "C++ support files" from the
+-C Compilers section on http://www.devrs.com/gba and put these
+-files in the same directory as the other GNU compiler binaries.
+
+GCC Warning Message FAQs
+
+Q: How do I fix "Warning: XXX.o does not support interworking, whereas YYY.elf does"?KEY=Interworking
+A: Try using the 'interflip' tool that comes with DevKitAdvance. Use
+-the -mthumb-interwork command line option with it.
+
+Q: How do I fix "Warning: architecture UNKNOWN"?KEY=ArchUnknown
+A: Objcopy will give this error when converting a binary file to
+-an object file because it does not "recognize" the data type.
+-There no current solution other than to just ignore this warning.
+
+GCC Optimization FAQs
+
+Q: Are there any dangers to using -O3 optimization level?KEY=O3
+A: Yes. Subroutines that contain or do nothing will be optimized out.
+-GCC assumes that subroutines at this optimization level that contain
+-nothing but inline assembly code [asm("....");] are basically empty
+-so these subroutines are ignored and not included during compile.
+-To prevent this from happening, use [asm volatile("....");] instead.
+
+Q: What operations are particularly slow on the ARM processor?KEY=ARMSlow
+A: Division and modulus. The ARM has no division instruction so these are
+-painfully slow. Whenever possible, use >> (right shift) or multiply by
+-the reciprocal instead. If you absolutely need to use division then use
+-the routines in the GBA BIOS. One report has the BIOS divison code
+-operating ~2.5x faster than GCC division.
+
+Q: Which parameters are most efficient to pass to a function?KEY=FunctParams
+A: u32 or s32. If you use u8,s8,u16 or s16 then the compiler will automatically
+-generate code to force the upper bits of a 32 bit register to zero's.
+-(i.e. The compiler uses shifts to simulate '& 0xff' for 8 bit parameters
+-and '& 0xffff' for 16 bit parameters.) If you pass 32 bit values then
+-these extra instructions are eliminated.
+
+Q: My structure have a minimum "sizeof" of 8. How can it be made smaller?KEY=StructPack
+A: This occurs because the compiler pads everything to be long
+-aligned by default. You can change this behaviour on a file
+-level by using the compiler option <b>-mstructure-size-boundary=</b>X.
+-You can change this behaviour on an individual structure level
+-by using:<br><b>struct Point8Bin {char x; char y;} __attribute__
+-((packed));</b> (Info from Sam Nova)<br> or by using<br><b>struct POINTTemp
+-{char x; char y;} __attribute__ ((packed));<br>typedef struct
+-POINTTemp Point8Bin;</b> (Info from Bob Koon)
+
+DevKitAdvance FAQs
+
+Q: How do I build a ROM image that will be multiboot (MBV2,etc) compatible?KEY=MBBoot
+A: #define MULTIBOOT const int __gba_multiboot;<br>
+-Then use it like this: MULTIBOOT<br>
+-(Putting the MULTIBOOT in your main project file, close to the top, might be useful.)
+
+Q: Does malloc use internal or external WRAM?KEY=DKAMalloc
+A: It uses the label __eheap_start to indicate the start of malloc space
+-which grows upward. This label is defined in the internal link script
+-or in an external link script if you provide one. __eheap_start usually
+-points to the start of unused external WRAM space.
+
+GCC Known Problems FAQs
+
+Q: What can cause problems without reporting an error ?KEY=NoReport
+A: "On windows using gcc [editors & Neil's note: some versions anyway] checks
+-for the existence of include files case insensitivly,  but it only includes
+-the file if the case is exact. Getting it wrong results in the compiler
+-reporting no error but also not including he file causing all sorts of
+-problems downstream." (Info from Neil Graham)<br><br>
+-"I used objcopyroda [editors note: this should also apply to objcopy]
+-to make a binary into an object file. It broke everything. I tracked it
+-down to the fact that my file wasn't a multiple of 4 bytes long.
+-Appending two bytes to the binary fed to objcopyroda fixed the problem."
+-(Info from Neil Graham)
+
+ARM / Thumb Assembly FAQs
+
+Q: ARM docs are confusing. How do I figure out how many clock cycles an instruction takes?KEY=InstTiming
+A: It depends on if it's an ARM instruction, Thumb instruction, operating
+-in 16 bit or 32 bit memory, and the number of wait states of the memory.
+-ARM instructions are 32 bit. Thumb are 16 bit. An ARM instruction in
+-32 bit memory takes 1 fetch but 2 fetches in 16 bit memory. Wait
+-states from ROM depend on if it's the first access (non sequential)
+-or the next access (sequential). If you have the prefetch
+-buffer disabled then you will hit the first access many times during ROM fetch.
+-<table>
+-  <tr> 
+-    <td rowspan="2" colspan="2">&nbsp;</td>
+-    <td>IRAM</td>
+-    <td>ERAM</td>
+-    <td>ROM</td>
+-    <td>ROM</td>
+-    <td>ROM</td>
+-  </tr>
+-  <tr> 
+-    <td>(0)</td>
+-    <td>(2)</td>
+-    <td>(3/1)</td>
+-    <td>(4/2)</td>
+-    <td>(PF)</td>
+-  </tr>
+-  <tr> 
+-    <td rowspan="2">ARM</td>
+-    <td>S . .</td>
+-    <td>1</td>
+-    <td>6</td>
+-    <td>4</td>
+-    <td>6</td>
+-    <td>1</td>
+-  </tr>
+-  <tr> 
+-    <td>N . .</td>
+-    <td>1</td>
+-    <td>6</td>
+-    <td>6</td>
+-    <td>8</td>
+-    <td>-</td>
+-  </tr>
+-  <tr> 
+-    <td rowspan="2">Thumb</td>
+-    <td>S . .</td>
+-    <td>1</td>
+-    <td>3</td>
+-    <td>2</td>
+-    <td>3</td>
+-    <td>1</td>
+-  </tr>
+-  <tr> 
+-    <td>N . .</td>
+-    <td>1</td>
+-    <td>3</td>
+-    <td>4</td>
+-    <td>5</td>
+-    <td>-</td>
+-  </tr>
+-</table><br>
+-Examples:<br>
+-<b>mov r0,#0</b> = 1S, Thumb in ERAM -> 3 cycles<br>
+-<b>b myLabel</b> = 2S + 1N, Thumb in 3/1 ROM (Prefetch off) -> 8 cycles
+
+Q: Why use ARM instructions at all since they often seem to take longer and take up more memory than Thumb instructions?KEU=UseARM
+A: Many ARM instructions are more powerful than Thumb and can often
+-do twice as many things, or more, as the same number of Thumb instructions.
+-If you use ARM in internal WRAM then they run at the same speed as Thumb
+-so all of the advantages of ARM over Thumb become available.
+
+Q: How do you do shift & rotates in assembly language?KEY=Shifts
+A: In Thumb assembly, it's not too complicated. Example: <b>lsl r0,r1</b>
+-means r0 = r0 << r1.<br><br>
+-In ARM assembly, there are no dedicated shift or rotate instructions.
+-Instead, you use shifts & rotates as optional modifiers for other instructions.
+-Example: <b>mov r0,r1,lsl r2</b> means r0 = r1 << r2 and <b>add r0,r1,r2,lsl r3</b>
+-means r0 = r1 + (r2 << r3).
+
+GAS (Gnu ASsembler) FAQs
+
+Q: Why does "mov r0,#0x4000000" compile but "mov r0,#0x4000006" gives errors?KEY=Shift8bConst
+A: The reason is that you can't use "mov" or "mvn" to load
+-just any random 32bit value. The value you are trying to load
+-must meet the form factor of (8 bit value) << (x*2). In other words,
+-the compiler will try to fit your value into an 8 bit quantity
+-and rotate it left (yes, rotate, not shift) x*2 number of bits (if needed)
+-to satisfy your requirements. (where x=0-15) To load a purely random 32bit
+-value you need to use <b>ldr r0,MyValue</b> and <b>MyValue: .word 0x4000006</b>.
+-(Where the .word portion is in a non-executing area. i.e. After a b or bx instruction.)
+-Read the following question for an optimization alternative.<br><br>
+-To be technically correct, the rotate is actually a right rotate since the
+-ARM hardware can't do left rotates. But the effect is the same. (Info from Joat.)
+
+Q: How do I implement an optimizing immediate 32bit load?KEY=OptILoad
+A: If you wish to load an immediate 32bit value into a register
+-and this value is to be determined at compile time, you may want
+-the compiler to automatically decide whether to use "mov","mvn",
+-or "ldr" to accomplish what you are trying to do most efficiently.
+-This can be accomplished by using <b>ldr r</b>X<b>,=</b>Y and the <b>.pool</b>
+-directive. Example:<br><b>ldr r0,=0x4000006<br>...<br>.pool</b><br>(The pool
+-directive must follow the ldr instruction and it must be
+-in a non-executing area. i.e. After a "b" or "bx" instruction.)
+-If the value fits the "8 bit value << z" form factor (discussed
+-in the last question above) then a "mov" instruction will be used.
+-If it doesn't, then a "ldr" and a ".word" will be generated to
+-load the desired value. The ".word" will be inserted after the
+-".pool" directive.
+
+Q: How do I access a global C array or global C variables from assembly code?KEY=IncArray
+A: All you have to do is just use it. You don't need to import
+-or export anything. Let's assume you have a C array MyArray
+-that you want to use. The following code will put a pointer
+-to the start of this array in r0:<br>
+-<b>ldr r0,pMyArray<br>
+-...<br>
+-pMyArray: .word MyArray</b><br>
+-You can use the above code to access a C variable as well. In the
+-case of a u32 variable, to read the value of that variable into r1
+-you need the following in addition to the above code:<br>
+-<b>ldr r1,[r0]</b>
+
+Q: When I compile assembly code to go into section .iwram, only empty (0x00) code is copied from ROM to IWRAM. Why?KEY=EmptyBits
+A: It is not enough to just do the following:<br>
+-<b>.SECTION .iwram</b><br>
+-you need to do the following instead:<br>
+-<b>.SECTION .iwram,"ax",%progbits</b><br>
+-or otherwise the code that is put in ROM, to be copied to IWRAM,
+-for some reason is composed only of the value 0x00.
+-If you use the GCC command line option -save-temps when compiling
+-a C file then you will notice similar directives in the resulting .s
+-temporary files. Search this FAQs on the keyword 'progbits' for
+-other examples.
+
+Q: Is it possible to do something similar to #define in assembly files?KEY=GasDefine
+A: Yes. You can do this by having gcc pre-process your file and then pass
+-the result along to GAS. This is done by invoking GCC instead of GAS.
+-In order for that to happen, rename the file extension from .s to .S.
+-You will need to rename the file extension in your makefile as well.
+
+General Cart FAQs
+
+Q: Are there any GBA flash carts available?KEY=GBAFlash
+A: Yes, 64mbit Visoly carts from http://www.lik-sang.com<br>
+-There are also 64mbit official flash carts but only from Nintendo
+-for licensed developers.
+
+Q: Will Bung GB/GBC flash carts, or similar, allow me to run GBA code on the GBA?KEY=GBAFCCode
+A: No. The voltages are different, the lower address bus is multiplexed with the data bus,
+-and the data bus is 16 bits wide instead of the 8 bit width of GB/GBC carts.
+-It won't work. :-(
+
+Q: How much modifications to an existing GBA cart would need to be done to make a GBA flash cart?KEY=MakeCart
+A: It's not as simple as replacing a ROM chip with a flash ROM.
+-GBA ROMs are not even remotely similar, interface wise, to standard ROMS
+-or flash ROMS. Read "How does the GBA ROM cart interface work?" below.
+
+Q: How does the GBA detect whether the cart is for GB/GBC or for GBA?KEY=CartDetect
+A: The cart connector inside of the GBA uses a switch to detect the cart type.
+-If there are two small grooves on the back of the cart on the sides, then
+-the GBA recognizes it as a GBA cart. These grooves are detected by a switch
+-in the cart connector in the GBA. No grooves cause the switch to flip and 5 volts
+-(gb/gbc carts) to be put on the cart instead of 3.3 volts (GBA carts). If you
+-try to defeat this system you will maybe end up destroying a cart and maybe
+-damage your GBA.
+
+Q: Will Bung flash carts, or similar, allow me to run GB/GBC code on the GBA?Key=GBCFCCode
+A: Yes, but you may not be happy with the results. GBC game graphics appear much darker
+-on the GBA screen than on the GBC screen.
+
+Q: Is there any way for a GB/GBC cart to detect if it's plugged into a GBA?KEY=GBADetect
+A: Yes, you can check register B on reset. If bit 0 of register B is set then it's a GBA,
+-otherwise it's a GB/GBC/SGB/GBP. Register B bits 1-7 are reserved for future use.
+-(Info from DuoDreamer & others)
+
+Q: What does mirroring mean?KEY=Mirroring
+A: That means that multiple large blocks of memory contain the exact same information.
+-In the case of gamepak memory, mirroring is used for a specific purpose. (Read the
+-next question.) In the case of mirroring in other areas of memory, this is usually
+-an artifact of simplistic hardware design.
+
+Q: I've read there are mirror addresses for different speed gamepaks. Why?KEY=MirrorGP
+A: It is cheaper (right now) to make low or slow speed gamepaks. As a result,
+-Nintendo will probably use low speed gamepaks until prices drop even more.
+-If you dedicate separate memory spaces for different speed gamepaks then
+-this is an easy way for the hardware to automatically know what speed
+-gamepack is being used and you could mix several different speed ROMs in the
+-same gamepak if really needed.
+
+Q: What is the prefetch buffer?KEY=Prefetch
+A: The prefetch buffer can be used to get bytes from game ROM before you
+-actually need them. It only works for ROM and not other forms of memory
+-and it is off by default. The advantage of turning it on is that it will
+-prefetch ROM data while the bus is idle. This allows some sequential
+-accesses to occur at 0 wait states. The disadvantage of turning on prefetch
+-is that it uses ~10% more battery power.
+
+Q: How does the GBA ROM cart interface work?KEY=CartRead
+A: GBA ROMs are special chips that contain a standard ROM, address latches,
+-and address counters all on one chip. Cart accesses can be either sequential
+-or non-sequential. The first access to a random cart ROM location must be
+-non-sequential. This type of access is done by putting the lower 16 bits
+-of the ROM address on cart lines AD0-AD15 and setting /CS low to latch
+-address lines A0-A15. Then /RD is strobed low to read 16 bits of data from
+-that ROM location. (Data is valid on the rising edge of /RD.) The following
+-sequential ROM location(s) can be read by again strobing /RD low. Sequential
+-ROM access does not require doing another /CS high-to-low transitions because
+-there are count up registers in the cart ROM chip that keep track of the next
+-ROM location to read. Address increment occurs on the low-to-high edge of all
+-/RD. In theory, you can read
+-an entire GBA ROM with just one non-sequential read (address 0) and all of
+-the other reads as sequential so address counters must be used on most address
+-lines to exactly emulate a GBA ROM. However, you only need to use address latch /
+-counters on A0-A15 in order to satisfy the GBA since A16-A23 are always
+-accurate. (Thanks to Christian Grenier for Logic Analyzer data posted to
+-gbadev mailing list ( http://groups.yahoo.com/group/gbadev ) Apr 11,2001.)
+
+Q: Is there a datasheet available for the GBA ROMS?Key=MaskRom
+A: MX23L3206-12B: made by http://www.macronix.com but they do not provide
+-documentation for this chip online nor do they provide it if you contact them.
+-LHMY5MT8: Made by Sharp but they don't provide datasheets either.
+
+Q: What type of eeprom memory is in the 8-pin chip in Mario Advance?KEY=Cart8Pin
+A: This appears to be a MPS-bus type eeprom. http://www.xicor.com has similar chips.
+-(Thanks to Dark Fader.)
+
+Q: Can NeoGeo Pocket flash carts/copier be used with the GBA?KEY=NGPCCart
+A: No. All versions of the NeoGeo Pocket use an 8 bit non-multiplexed
+-data bus where as the GBA uses a 16 bit multiplexed data bus.
+
+Q: What is the largest size ROM supported by GBA?KEY=LargestROM
+A: The GBA cart interface has 24 address lines. Also there are
+-16 data lines. 24 address lines = 2^24 = 16.7 million locations
+-which means 16M x 16bit or 32M x 8bit. Which is a total of
+-32MBytes or 256Mbits of memory space. To put more memory
+-than this in a cart would require some form of bankswitching.<br><br>
+-ROM has 3 different address ranges: 0x08000000 - 0x09ffffff, 0x0a000000 -
+-0x0bffffff, and 0x0c000000 - 0x0dffffff. Each of these ranges are mirrors
+-of each other. (i.e. They overlay each other. ) Read the mirroring question
+-above for more info.
+
+Q: Why do official Nintendo flash carts sometimes crash. Can you write to them?KEY=NFCCrash
+A: Standard Nintendo flash carts have to be modified before you can actually
+-write to them. This is done by removing resistor R7 and putting it at empty
+-location R8. But, you can temporarily cause the ROM contents to disappear
+-(i.e. the cart appears to crash) on unmodified or modified carts by changing
+-modes in the flash chip. (i.e. By writing to it with random values. The common way
+-to fix this is by power off/on.) Carts that crash often are running code
+-that does writes to ROM but the code author is unaware that this is occurring.
+-The first write that you do to flash sets up a particular mode or is ignored,
+-depending on it's value. For more information on the available flash modes
+-then check out the datasheet for LH28F320BJE on http://www.sharpmeg.com.
+
+Q: What type of backup methods are currently used in GBA carts?KEY=BackupTypes
+A: SRAM - Battery backed up static RAM. It can be up to 64K bytes but it's usually
+-32K bytes in size. It is located in the memory map from 0xe000000 to 0xe00ffff.
+-(Examples of games that use 32K RAM backup: FZero, etc.)<br><br>
+-Flash ROM - This is memory which can be up to 64K bytes and it is usually that
+-exact size. It is located in the memory map from 0xe000000 to 0xe00ffff.
+-Reading Flash ROM is the same as reading SRAM; however, writing to Flash ROM
+-is a different process due to the fact that Flash chips often have different
+-modes of operation. Consult Sanyo & Atmel flash data sheets for more info.
+-Some of the manufacturers guarantee a minimum of 10,000 rewrites per 1 sector
+-so these devices have a limited life compared to SRAM. (Examples of games that
+-use 64K Flash ROM backup: GT:Grand Touring Car Championship, Chu Chu Rocket, etc.)<br><br>
+-EEPROM - This uses the /RAMCS, A23, and D0 of the cart bus and is a serial connection.
+-It usually is found in 4kbit or 64kbit size, but because of it's serial configuration,
+-it could theoretically be any size. The maximum useable ROM size is 128MBits when using
+-this device. Some of the manufacturers guarantee a minimum of 100,000 rewrites per
+-address so these devices have a limited life compared to SRAM. (Examples of games that
+-use EEPROM backup: Mario Advance, Final Fight, Hot Potato, etc.)
+
+Q: Is is possible to use a PC parallel port or a PC I/O card to emulate a GBA cart?KEY=CartEmulate
+A: No. GBA bus speeds are just too fast for pc parallel port or PC I/O cards to keep up.
+
+Q: Has anyone tried using CompactFlash to design a GBA flash cart?KEY=CompactFlash
+A: These cards are too slow to be attached to the GBA cart interface.
+
+Q: What minimum information must all carts contain to boot & run?KEY=CartHeader
+A: As a minimum they must contain the following information:<br>
+-Nintendo Graphics Logo: ROM Locations $4 to $9f.<br>
+-96:  $96 stored at ROM location $b2.<br>
+-Complement Check: Correct complement value at ROM location $bd.<br><br>
+-To calculate the Complement check:<br>
+-1) Add all the values from ROM locations $a0 to (and including) $bc.<br>
+-2) Add $19 to this value.<br>
+-3) Exclusive OR with $ff.<br>
+-4) Save the 8 least significant bits of the result to ROM location $bd.
+
+Flash Advance / Visoly Cart FAQs
+
+Q: I'm having problems getting my FA linker to work. Ideas?KEY=FAIdeas
+A: DON'T USE BATTERIES. Read more below. Also check out these FAQs:
+-http://fafaq.gbaemu.com
+
+Q: What is the difference between Flash Advance & Visoly?KEY=FAVDiff
+A: They are the same thing. Flash Advance (or FA for short) is
+-probably the more accurate name for these flash carts. The
+-programmer is often referred to as the Flash Advance Linker.
+
+Q: What are the specs of the FA flash carts?KEY=VisolyFC
+A: There is a 64Mbit version that contains 128kbytes of
+-game save SRAM. You can put up to two games on this cart with each
+-game having access to 64kbytes of game save SRAM.<br><br>
+-The 128Mbit version contains 256kbytes of game save SRAM
+-and allows up to 4 games to be stored on a cart. Each game
+-has access to 64kbytes of game save SRAM.<br><br>
+-All of the these carts have game save flash emulation.
+-Only the 256Mbit version contains game save EEPROM emulation.
+
+Q: Should I get a tall (65mm) or a short (44mm) FA cart?KEY=VisolyDiff
+A: The short (known as "Turbo") FA carts are rated for 10 nanosecond faster
+-read access timings so they are, on average, more reliable than the taller carts.
+-(i.e. A tall 64M cart uses 1 Intel 28F640J3A flash chip where the
+-Turbo 64M cart uses 2 Intel 28F320J3A flash chips which are slightly faster.)<br><br>
+-The Turbo 64M carts are rated at 10 nanoseconds faster than Turbo 128M carts.
+-As a result, on average, Turbo 64M carts are slightly more reliable than any
+-of the other FA flash carts. (Turbo 128 uses 2 Intel 28F640J3A flash chips.)
+
+Q: Where can I get a FA flash cart?KEY=GBAFlash
+A: http://www.lik-sang.com You can probably find other sources as
+-well by doing a http://www.google.com search for Visoly.
+
+Q: What type of power supply does the FA flash cart programmer require?KEY=VisolyFCP
+A: It uses 6 AAA batteries or a power adapter. (There has been one report
+-that it doesn't work reliably even with brand new batteries so a power
+-adapter was used instead.) The power adapter needs to meet the following
+-requirements: 8 to 12 volts DC, 150 milliAmps(mA) or greater, center is negative.
+
+Q: Why does the FA flash cart sometimes crash when testing code?KEY=VisolyCrash
+A: Some people experience this problem and others don't. FA "Turbo 64M" carts
+-are least likely to exhibit this problem. Sometimes this will even only occur
+-after the cart warms up. This appears to be due to the cart flash &/or logic
+-sometimes being too slow for reliable operation. (i.e. The flash cart sometimes
+-can't handle 3 wait/1 wait cart access timing.) To greatly improve reliability
+-for problem flash carts, set the cart timing to 4 wait/2 wait. (i.e. Write 0 to
+-0x4000204 [WAITCNT]) Most commercial carts are designed for 3 wait/1 wait
+-cart access. As a result, those testing commercial code are most likely to
+-experience these problems.
+
+Q: How many times can you reprogram the FA 64M flash cart?KEY=VisErase
+A: The flash chip in that cart (Intel 28F640J3A) has an Erase/Reprogram
+-lifetime of a minimum of 100,000 per block. So, you will probably wear
+-out your cart connector long before you wear out the flash chip. :)
+
+Q: How do I access FA backup SRAM?KEY=CartRWSRAM
+A: Make sure that you only use 8 bit read or writes and then try
+-something like the following:<br><b>
+-typedef  unsigned char  u8;<br>
+-#define CART_SRAM 0xe000000<br>
+-*(u8 *)(CART_SRAM+offset) = i; </b>// Write i to cart backup SRAM location + offset<br>
+-<b>i = *(u8 *)(CART_SRAM+offset); </b>// Read cart backup SRAM location + offset
+
+Q: Is it possible to write to FA main program flash from GBA code?KEY=FAMFlash
+A: Yes. Download FLinker from http://www.devrs.com/gba in the Apps/Misc section.
+-It contains cartlib.c that allows you to do this. When you write to the flash
+-chip you are actually setting bits to zero on the chip. If you do another write
+-to the same flash location you can only clear additional bits. You can not set
+-bits by using a write. In order to restore a memory location to all 1's you must
+-erase it. Erasing can only be done by erasing a whole block. If you have an
+-older full-size Flash Advance cart, a block contains 128k bytes. The newer
+-short "Turbo" carts use two interleaved chips with an effective block size
+-of 256k bytes. As mentioned above, you can erase each block a minimum of
+-100,000 times but there are no guarantees above that point. The flash data
+-sheet mentions that, on average, a block erase takes 1 second but it could
+-have a worst case time of 5 seconds
+
+Link Port FAQs
+
+Q: I want to make a PC<->GBA link cable. Where do I start?KEY=PCGCable
+A: The GBA has several different link port communications modes and there
+-currently are no general purpose PC<->GBA link cables that can handle
+-several different comms modes (except the MBV2.)
+-Here are the 3 most popular PC<->GBA style link cables:<br><br>
+-<b>1) Multiboot</b> - This would be a cable that supports "multiboot" so that
+-you can boot the GBA just using the link port (i.e. no cart installed.)
+-Check the links below for more info on what hurdle there are in making
+-this type of cable.<br><br>
+-<b>2) UART Comms</b> - This type of cable allows you to connect the GBA
+-to a PC serial port. You need voltage conversion logic (max3222, max3232,
+-etc) for this to work. With this type of cable you can use GNU GDB to
+-do remote debugging of GBA software (i.e. debug in-circuit GBA code using a PC.)
+-Link port pin SC is a handshake input in UART mode, however, on power up
+-this pin is an output pin. As a result, you should put a resistor (1k ohm will work)
+-between this pin and any voltage conversion logic to prevent 2 outputs from
+-shorting each other.<br><br>
+-<b>3) Normal Comms</b> - This is probably the simpliest of any of the PC<->GBA
+-cable ideas, using to a PC parallel port. You *might* be able to use
+-just wires and resistors (1k ohm - to do voltage conversion from 3.3v<->5v)
+-with no other parts needed. Make the PC the clock master for this setup. (If
+-you make the GBA clock master then any PC interrupt might cause loss of data.)
+
+Q: Can you modify a GBA link cable to connect to a COM serial port to support multiboot?KEY=MBSerial
+A: There are many reasons you can't easily do this. The first reason is
+-that a standard serial COM port uses 1/8/1 format but GBA multiplayer /
+-multiboot link mode uses 1/16/1 format. (format = Start bit/Data Bits/Stop Bit)
+
+Q: Can you modify a GBA link cable to connect to a PC parallel port to support multiboot?KEY=MBParallel
+A: Yes but you either need to run your PC only in DOS mode or else you
+-need a small microprocessor or programmable logic in your cable. The
+-reason is that the serial data in multiboot mode (which uses multiplayer
+-comms mode) is asynchronous data which must be clocked in & out at 115200
+-bits per second. As a result, you need very precise timing in order to be
+-able to do this. This kind of timing using a "dumb" cable is only available
+-when using DOS or by using special protected mode programming on a PC when
+-using windows. In addition, you must make sure that no non-maskable interrupt
+-occurs as well. It just makes life easier to use a "smart" cable instead.<br><br>
+-In normal comms mode you can use a relatively dumb cable (just wires & voltage
+-conversion) since the GBA relies on the PC to synchronize the flow of each
+-data bit into & out of the GBA.
+
+Q: What data transfer rate can be expected in multiboot mode?KEY=MBRate
+A: The GBA uses multiplayer communications mode fixed at 115200 bps to send
+-multiboot data. 18 bits (start bit + 16 data bits + stop bit) are sent from
+-master to slave and then the master waits for 18 bits from the slave. This
+-translates to a transfer rate of 115200/18 = 6400 words or 12800 bytes/sec.
+-Since communication occurs in only one direction at any one given time, this
+-means the amount of data that you can send in any one direction, per given
+-amount of time, is cut in half. So effectively in this mode, the theoretical
+-limit is 6.4k bytes/sec transfer in one direction.<br><br>
+-While the theoretical limit is 6.4k bytes/sec for multiplayer comms mode,
+-multiboot effective maximum transfer rate appears to be around 5k bytes/sec
+-from tests. This less than ideal rate might be due to the fact that data
+-tranferred during multiboot is key encrypted and must be decrypted on the
+-receive end.
+
+Q: Is there encryption in multiboot transfer mode?KEY=MBEncrypt
+A: During transfer negotiations, the slave GBA sends a random number
+-to the master GBA. The master then uses this number or key to encrypt
+-data that is sent to the slave. As a result, if you did a data capture
+-of the transferred data it would appear different each time you do
+-a transfer for a given multiboot image. 
+
+Q: Is the GBA game link port physically different from the GBC link port?KEY=LinkShape
+A: The only difference is that there is an extra notch on the GBA
+-link port. This is to prevent GBA-Only link cables from being used
+-on a GBC. GBC link cables will work fine to connect two GBA's that
+-wish to link to play a GBC game. A GBC link cable probably won't
+-work for GBA link games due to link electrical differences.
+
+Q: What is the voltage on the GBA game link port?KEY=LinkVolts
+A: It is 3.3 volts when using a GBA cart. It is 5 volts when using
+-a GB/GBC cart.
+
+Q: There appear to be many link communication modes. Which are realistic?KEY=LinkModes
+A: The GBA supports many game link communication (comms) modes but
+-most are not realistic for commercial games because they require special
+-cables. So far, there is one standard GBP/GBC cable (GB cable has same
+-wiring but physically larger connectors) and one common GBA cable. This
+-multiplayer GBA cable is specifically designed to support multiplayer
+-comms mode. It also supports low-speed (256kbits/sec) normal comms mode
+-(2mbits/sec high-speed normal comms mode is currently only supported by
+-wireless-style devices) but ONLY from higher priority to lower priority.
+-(i.e. Master can talk to slave #1 but slave #1 can't talk to master, slave
+-#1 can talk to slave #2 but slave #2 can't talk to slave #1, etc...) This
+-is due to the way the cable is wired. To fully take advantage of GBA normal
+-comms mode (di-directional comms) you need to use a standard GB/GBC cable.
+-Unfortunately, it gets confusing when there are multiple cable
+-choices for the GBA so it's probably highly likely that the currently
+-common GBA multiplayer cable will become a standard for commercial
+-games. In theory, the GBA multiplayer cable can support up to 256k bits/sec
+-for one-way comms when used in low-speed normal comms mode and the GB/GBC
+-cable can not (according to Nintendo anyway.) This would probably be due to
+-the quality of the cables themselves. General purpose comms mode is
+-unique in that it, in some form, supports all possible cable combinations.
+-However, due to it's simplicity and low-level nature, it can be very
+-software intensive to use this mode. Serial transfer algorithms that are
+-done in hardware in other modes must strictly be handled in software in
+-this mode.
+
+Q: What are the pin signals on the link interface?KEY=LinkPins
+A: NOTE: When looking at the top of the GBA with the battery-side of the
+-GBA towards your feet (link port center notch is up), pin 1 is on the
+-top row to the far right. Pin 2 is on the bottom row below pin 1. etc.<br><br>
+-Pin# - Signal - FullName - PositionOnConnector<br>
+-1 - PWR - +3.3Volts - UpperRight (+5Volts when using GB/GBC cart.)<br>
+-2 - SO - SerialOut - LowerRight<br>
+-3 - SI - SerialIn - UpperMiddle<br>
+-4 - SD - SerialData - LowerMiddle<br>
+-5 - SC - SerialClock - UpperLeft<br>
+-6 - GND - Ground - LowerLeft
+
+Q: Are there any things that should be avoided when writing comms code?KEY=CommsCode
+A: Make sure that if you do any DMA's that they are short enough not to
+-disturb comms communications if you send more than one communication
+-per frame. i.e. If you send one comms transfer followed by a second
+-transfer, make sure that any DMA is not longer than the length of time
+-it takes to send one comms transfer. The CPU is halted during DMA so
+-an extensively long DMA may cause you to lose the next transfer due to
+-the fact that GBA hardware can only buffer one comms transfer at a time.
+
+Misc Hardware FAQs
+
+Q: Is there any way to add a reset button to the GBA?KEY=ResetButton
+A: Yes, and it can be quite a handy feature if multiboot mode is
+-figured out for development purposes. Just press the reset button
+-to return to multiboot mode.<br>
+-To add a reset button you'll need to be handy with a soldering iron and
+-happy with the fact that you are voiding your warranty by messing with
+-your GBA. Remove the back cover of your GBA using a very small flat head
+-screwdriver in the funky tri-wing screws. Next, loosen the clamp that holds
+-the LCD flat cable to the top of the board. To do this you need
+-to very gently pry the plastic clip out on each side of the cable.
+-THIS CLIP IS NOT DESIGNED TO COME OFF, JUST TO BE LOOSENED. SO DO NOT
+-TRY TO PRY IT COMPLETELY OFF. Once this clip is loosened you should
+-be able to remove this cable with NO force. Next unscrew the board
+-and remove it. Flip it over. Just to the right of where the direction
+-pad buttons are located is a small hole labeled "RESET". (The hole will
+-be directly above the letter E in RESET.) Solder a wire
+-from this hole to a switch. Solder a wire from the other side of this
+-switch to the last pin on the cart connector that is closest to the
+-direction pad buttons area. Put the board back in the GBA. Install the
+-LCD cable. Press the LCD cable clip back in place so that the LCD cable
+-is snug again. Put everything else back together. Do a short prayer,
+-tibetan dance, or a ceremony of your choice for good luck. Hopefully
+-your GBA will still work, assuming you did everything right. Test.
+
+Q: There is a small adjustment screw below the serial # of US GBA's. What's it for?KEY=AdjScrew
+A: This is a voltage adjustment for the LCD display. DO NOT TOUCH IT.
+-Messing with it can greatly shorten the lifetime of your LCD display.
+-LCD displays must have an average of 0 volts DC on them (i.e. The positive
+-and negative voltages put on them must nearly perfectly cancel out when
+-you average the voltages over time.) If they don't average out to 0 volts
+-then the LCD plating materials will start to come off which
+-slowly destroys the display over time.
+
+Q: How do I conserve battery power when developing GBA software?KEY=Conserve
+A: The main things would be to use 4/2 rom wait state timing and to leave
+-the ROM prefetch turned off. 3/1 rom wait states uses about 20% more power.
+-ROM prefetch increases power usage by about 10%. If using Visoly flash
+-carts, keep in mind that Turbo 64M uses ~15% more and Turbo 128M uses ~35%
+-more battery power than the older 64M carts. (Turbo carts are all small carts.)
+
+Q: Where can I get a 3-point screwdriver to open the GBA case?KEY=3point
+A:Try one of these links:<br>
+-http://www.panamericantool.com/triwing1.html<br>
+-http://www.starkelectronic.com/eclsd.htm
+
+Graphics Tools FAQs
+
+Q: Why are JPEGs produced by Photoshop so large?KEY=Photoshop
+A: That is because they sometimes put up to 7k bytes worth of comments
+-and thumbnails into their file. Use JPEGTRAN.EXE to remove these
+-and to compress the huffman tables. You can get it from devrs.com/gba
+-(Look in the the Apps/Misc section.)
+
+Q: I plan to put a JPEG & JPEG viewer into ROM. Should I down sample to save space?KEY=JPEGSample
+A: No. A 256 color image won't JPEG compress or view very well and you won't
+-save any ROM space by doing so. Leave the image at 16 million colors
+-when you convert it to JPEG and put it in ROM.
+
+Misc Tools FAQs
+
+Q: How do I pad a ROM or raw data to a given size?KEY=Padding
+A: There are at least 2 different methods of doing this:<br>
+-<b>1)</b> Get one of the standard GBA ROM "fixer" programs to fix a ROM. (i.e. GBAFix, etc.)
+-These programs often not only fix header area info but also pad to the next
+-larger 2^X file size.<br><br>
+-<b>2)</b> Use the following DOS commands to pad a ROM or raw data to any size you want:<br>
+-<b>copy /b </b>filein.bin<b>+</b>largefile.bin temp.bin<br>
+-<b>subset 0 </b>filesize temp.bin fileout.bin<br><br>
+-largefile.bin is just any large file that probably should contain
+-all 0xff's. (All 0xff's allow the file to compress well and write to
+-flash carts a little faster.) The "copy" appends this file to the end
+-of your data file and the "subset" trims the file size to exactly
+-"filesize" bytes in size.<br><br>
+-You can generate your own largefile.bin by taking any small size file
+-(preferably containing only 0xff data) and replicating it's size by
+-using several "copy /b" commands. (Get <b>subset</b> [for DOS & linux]
+-from http://www.devrs.com/gba/ . Look in the Apps / Misc section.)
+
+Q: What disassemblers are available for ARM/Thumb?KEY=Disassemble
+A: IDA Pro - An expensive package from here: http://www.datarescue.com<br><br>
+-ARMSD - This comes in the 30 day trial version of the ARM SDT C compiler.<br><br>
+-OBJDUMP - This comes with the GCC binutils. Use option --disassemble.
+-Note that it only works on .ELF or .a files.<br><br>
+-Mappy - This GBA emulator has an export disassembly option.
+
+Subjective FAQs (Possibly unreliable answers)
+
+Q: If I make a custom game, how do I go about selling it?KEY=CustGame
+A: Many publishers do not accept original titles. Rather than saying
+-other things that can be interpreted as pessimistic, this will be left
+-as an excercise for the reader to research, since results may vary.
+
+Q: What does Nintendo think about amateur GBA development?KEY=AmDev
+A: Nintendo is in business to make money and to maximize their profit
+-returns. They may have other motivations as well but it is probably
+-safe to assume that this motivation is high in their list of priorities.
+-As such, I'm sure they are not opposed to the idea of selling as much
+-of their product as possible with as little competition as possible.
+-If you are doing anything that you think they might interpret as
+-cutting into their profits then that's probably a bad sign. The
+-following is a suggested list of things that could conceivably be
+-interpreted as profit infringement. If you are not actively doing
+-any of the following then you are probably not a top priority on
+-their concern list (i.e. And some of the Nintendo employees
+-probably admire what you are doing, even if that's off the record. ;-):<br>
+-<b>a)</b> You are distributing copyright games, of which Nintendo has
+-licensed, on a website or by any other distribution method.<br>
+-<b>b)</b> You are openly or otherwise sharing what they might
+-consider NDA material which might encourage third party clone
+-units of their console hardware. (It has been reported on several
+-occasions that their lawyers will target anything that looks identical
+-in appearance to their NDA material.)<br>
+-<b>c)</b> You are producing/making hardware or software which may
+-be confused with official hardware or software and cause a source
+-of confusion for their customers. (For instance, Nintendo instigated
+-legal action for songboy.com to be renamed to prevent confusion. It
+-is now songpro.com)<br>
+-<b>d)</b> You are posting bogus (even if unknowingly) specifications
+-about their products on a website. (There have been no circulated
+-reports of this being a problem with Nintendo, but, just don't
+-do it. You confuse us all when you do that. ;-)
+
+END

@@ -1,0 +1,114 @@
+ Picture Conversion to GBA
+   by Leon <leondzine@gmx.net>
+
+Here's a little perl script that converts a raw 24-bit RGB picture to a 
+15-bit BGR one, for use in Gameboy Advance development. maybe it's of use 
+to some people. It should work under Cygwin, if Perl is installed (tested, 
+using a full install of Cygwin), Windows with ActivePerl, and UNIX. When 
+you're building a project, you can include it in your batch/shell/make 
+script, so all you have to do to update graphics is replace the 24-bit file 
+with an updated one.
+
+The script is very basic, and does not dither the image, nor does it care 
+about the size of an image. It's as much an example of an approach to 
+create little tools like this as anything else, but of course it is useful 
+as it is.
+
+Using the standard GNU tools, to include the output in a project, do this:
+
+  - invoke the script, like this:
+         24to15.pl picture.raw
+
+  - convert the output to an elf object-file, like this:
+         arm-thumb-elf-objcopy -Ibinary -Oelf32-little picture.bin picture.o
+
+    You'll probably get some useless warnings.
+
+  - link it using a linker-script, like this:
+
+         arm-thumb-elf-ld -EL --script=linkerscript --output=object.2.o
+
+    use a script like this:
+
+         SECTIONS{
+                 .text 0x08000000: {
+                         object.1.o
+                         picture = .;
+                         picture.o
+                 }
+         }
+
+---------Start of "24to15.pl" perl script-------
+
+#!/usr/bin/perl -w
+
+# Convert raw 24-bit RGB graphics data to raw 15-bit BGR graphics data
+# Interactive usage:	Invoke from the command-line. You will be prompted
+# 						for a filename.
+#
+# Command-line options: input-file [output-file],
+# 				where	input-file - 24-bit data,
+# 						output-file - filename for the outputted 15-bit data
+# 									  if this is omitted, the name of the
+# 									  input-file (minus extension) plus .bin
+# 									  will be used.
+
+use strict;
+
+my $InFile;
+my $OutFile;
+
+my $InPixel;
+my $OutPixel;
+
+my $Verbose;
+
+if ( scalar @ARGV ) {									# Invoked with command-line options
+
+	$Verbose = 0;
+
+	$InFile = $ARGV[0];
+
+	if ( $ARGV[1] ) {
+		$OutFile = $ARGV[1];
+	} else {
+		$InFile =~ /.*(?=\..*$)/;
+		$OutFile = "$&.bin";
+	}
+
+}else {
+
+	$Verbose = 1;
+
+	print "\nPlease enter INPUT File: ";
+	$InFile = <STDIN>;
+	chomp $InFile;
+
+	$InFile =~ /.*(?=\..*$)/;
+	$OutFile = "$&.bin";
+}
+
+open( INFILE, $InFile ) or die "\nError: Couldn't open INPUT File $!";
+binmode( INFILE );
+
+open( OUTFILE, ">$OutFile" ) or die "\nError: Couldn't open OUTPUT File $!";
+binmode( OUTFILE );
+
+if ( $Verbose ) { print "\nConverting $InFile..."; }
+
+while ( read( INFILE, $InPixel, 3 ) ) {
+
+	$OutPixel = ( ( ord( substr( $InPixel, 0, 1 ) )&248 )>>3 )|		# Red - bits 4-0
+				( ( ord( substr( $InPixel, 1, 1 ) )&248 )<<2 )|		# Green - bits 9-5
+				( ( ord( substr( $InPixel, 2, 1 ) )&248 )<<7 );		# Blue - bits 14-10
+
+	print OUTFILE chr( $OutPixel&255 );
+	print OUTFILE chr( $OutPixel>>8 );
+
+}
+
+close( INFILE );
+close( OUTFILE );
+
+if ( $Verbose ) { print "Done.\n\nConverted file written as $OutFile.\n"; }
+

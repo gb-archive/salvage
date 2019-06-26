@@ -1,0 +1,129 @@
+Boot Logo Tutorial
+------------------
+ by CyBuilder, v0.1226
+
+[Thanks goes to HunkPapa for the inspiration for this info.]
+
+   Did you know that you can replace the Cybiko
+  boot logo with another photo or with a game itself?
+  The only drawback is that you will lose password
+  protection of your system if you do this. However,
+  if you replace the boot logo with BootViewer then
+  you will retain password protection.
+
+   The logo that is displayed on power up is actually
+  as much a standard Cybiko application as any game.
+  With the exception that this app also password protects
+  your system (if you have than enabled) to prevent others
+  from using it.
+
+   All you need to do to replace the logo with your own
+  game that auto-starts on power up is to send a file to
+  your Cybiko with the SDK Console. The name of this file
+  must be the following:  logo.app
+
+To replace boot logo with another logo
+--------------------------------------
+
+ 1)  First you need to use CyberLoad to load a picture
+    onto the cybiko. To do this, download CyberLoad from
+    cybiko.com and install it. Next, start up CyberLoad.
+    Select Tools and then Converter on the top menu bar.
+    When the Converter window opens, select File and Open
+    to view a picture to send to your cybiko. Modify
+    this photo as you like and then send it to the cybiko
+    as file name: logo.pic
+
+ 2)  First, view this photo on the cybiko to make sure
+    that it transferred ok. To do this, run the application
+    "Uploader & File Manager" on the cybiko. Scroll down
+    until you see the photo that you transferred and then
+    press <Enter> to view it. Press <Esc> when you are
+    done looking at it. Does it look okay? If not, repeat
+    step 1 and get it looking how you want before going
+    to step 3.
+
+ 3)  The file name must be exactly: logo.pic
+    All letters must be in lower case.
+    If it is this exact name, go to step 4 now.
+    If it is not this exact name, the you need to rename
+    it at this point. In the "Uploader & File Manager",
+    scroll down until you have selected your picture.
+    Hold down the <Fn> and press <Enter>. Scroll down
+    to Rename and then press <Enter>. Type in: logo.pic
+    and then press <Enter>. The filename should now
+    look correct. Press <Esc> to exit.
+
+ 4)  Next, you need to download and install the BootViewer
+    application from here:
+
+      http://www.devrs.com/cybiko/files/logo.zip
+
+     Here are instructions for transferring this application
+    to your cybiko:
+
+      http://www.devrs.com/cybiko/files/logoinst.txt
+
+  5) All done! Turn off your cybiko and turn it back on
+    to view your photo on power up.
+
+  6) NOTE: Hold down the <Enter> when the photo appears
+    to view it as long as you want.
+
+
+To remove the boot logo completely
+----------------------------------
+
+ 1)  Install the Cybiko SDK found at cybiko.com.
+
+ 2)  Start up the SDK Console program, turn on your
+    cybiko, and connect up the cybiko-to-PC cable.
+
+ 3)  Type 'ver' and then hit the Enter key in the
+    bottom line of the SDK Console. If you don't
+    see something like 'CyOS v. .......' then you
+    probably have a cable or COM port setting problem.
+    Change some settings and retry this step until you
+    see this message after typing 'ver' <Enter>.
+
+ 4)  In the bottom line of the SDK console, type the
+    following and then press the Enter button:
+       rm logo.app
+    This is a file delete instruction. DO NOT USE IT
+    FOR OTHER PURPOSES UNLESS YOU KNOW WHAT YOU'RE
+    DOING. IT COULD CAUSE YOUR CYBIKO TO STOP WORKING.
+
+ 5)  All done! Turn off the power and then turn it back
+    on to test the results.
+
+ 6)  To restore the original logo, later, use the logo.zip
+    file provided here. You will need to use WinZip to
+    convert it to logo.app before you can use it. You will
+    then need to use the Send feature in SDK Console.
+
+
+To replace Logo with auto-start game
+------------------------------------
+ 1)  If you want the game Tetris to automatically run on
+    power up in place of the logo then, first, download the
+     tetris.zip from here:
+       http://www.devrs.com/cybiko
+
+ 2)  Unzip this tetris game using WinZip for windows.
+    You can get WinZip from here:  http://www.winzip.com
+
+ 3)  Just rename the file tetris.app to the file name logo.app
+
+ 4)  Follow the instructions, here, for sending logo.app to
+    the cybiko using the SDK Console:
+       http://www.devrs.com/cybiko/files/cybinst.txt
+
+ 5)  All done! On power up, tetris will automatically start.
+
+ 6)  To restore the original logo, use the logo.zip file
+    provided here. You will need to use WinZip to convert it
+    to logo.app before you can use it.
+
+ Disclaimer: None of these suggestions are supported by
+ Cybiko or their employees. DO NOT call Cybiko asking for
+ more information on how to do this.

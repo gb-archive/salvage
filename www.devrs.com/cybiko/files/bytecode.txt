@@ -1,0 +1,160 @@
+Cybiko ByteCode Instruction Set
+-------------------------------
+  by Jeff Frohwein, v1.0127
+  Some contributions by Robert Ang.
+
+* Indicates predicted, but not observed, instructions.
+
+ For all of the following, zz = xx + yy.
+
+00              seteq
+01              setne
+02              setlt
+03              setle
+04              setgt
+05              setge
+06              switch
+07 xx           jump.c xx
+08 xx           jumpz.c xx
+09 xx           jumpnz.c xx
+0a xx xx        calln.s ?
+0b             *calli
+0c xx           callx.b ?
+0d xx xx        calls12.w ?
+0e xx xx        calls3.w ?
+0f              retf
+10              retn
+11 xx           retn.c xx
+12 xx           stack.c xx
+13              push
+14              pop
+15              move
+16 xx           load.c xx
+17 x1 x2        load.s x1x2
+18 zz           leal.b xx yy
+19 ?           *leat.b
+1a xx xx        leag.u ? 0
+1b              loadic
+1c              loadis
+1d              loadil
+1e              storeic
+1f              storeis
+20              storeil
+21 zz           loadlc.b xx yy
+22 zz           loadls.b xx yy
+23 zz           loadll.b xx yy
+24 ?           *loadtc.b
+25 ?           *loadts.b
+26 ?           *loadtl.b
+27 zz           storelc.b xx yy
+28 zz           storels.b xx yy
+29 zz           storell.b xx yy
+2a ?           *storetc.b
+2b ?           *storets.b
+2c ?           *storetl.b
+2d              inc1
+2e              inc2
+2f              inc4
+30              dec1
+31              dec2
+32              dec4
+33              lshift1
+34              lshift2
+35              rshift1
+36              rshift2
+37              add
+38              sub
+39              neg
+3a              mul
+3b              div
+3c              mod
+3d              and
+3e              or
+3f              xor
+40 x1 x2        jump.s x1x2
+41 x1 x2        jumpz.s x1x2
+42 x1 x2        jumpnz.s x1x2
+43              load0
+44              load1
+45 x1 x2 x3 x4  load.l x1x2x3x4
+46 xx           add.c xx
+47 x1 x2        add.s x1x2
+48 x1 x2 x3 x4  add.l x1x2x3x4
+49 xx           cmpe.c xx
+4a x1 x2        cmpe.s x1x2
+4b x1 x2 x3 x4  cmpe.l x1x2x3x4
+4c xx xx/x3 x4  calld12.w ? / .disp x3x4
+4d xx xx/x3 x4  calld3.w ?  / .disp x3x4
+4e              setz
+4f              setnz
+50              cwd
+51              cbd
+52 xx xx        loadgc.u ? 0
+53 xx xx        loadgs.u ? 0
+54 xx xx        loadgl.u ? 0
+55 xx xx        storegc.u ? 0
+56 xx xx        storegs.u ? 0
+57 xx xx        storegl.u ? 0
+58              load0p
+59              load1p
+5a xx           loadp.c xx
+5b x1 x2        loadp.s x1x2
+5c x1 x2 x3 x4  loadp.l x1x2x3x4
+5d zz           lealp.b xx yy
+5e ?           *leatp.b
+5f xx xx        leagp.u ? 0
+60              loadicp
+61              loadisp
+62              loadilp
+63 zz           loadlcp.b xx yy
+64 zz           loadlsp.b xx yy
+65 zz           loadllp.b xx yy
+66 ?           *loadtcp.b
+67 ?           *loadtsp.b
+68 ?           *loadtlp.b
+69 xx xx       *loadgcp.u ? 0
+6a xx xx        loadgsp.u ? 0
+6b xx xx        loadglp.u ? 0
+6c              load0m
+6d              load1m
+6e xx           loadm.c xx
+6f x1 x2        loadm.s x1x2
+70 x1 x2 x3 x4 *loadm.l x1x2x3x4
+71 zz           lealm.b xx yy
+72 ?           *leatm.b
+73 xx xx        leagm.u ? 0
+74             *loadicm
+75              loadism
+76              loadilm
+77 zz          *loadlcm.b xx yy
+78 zz           loadlsm.b xx yy
+79 zz           loadllm.b xx yy
+7a ?           *loadtcm.b
+7b ?           *loadtsm.b
+7c ?           *loadtlm.b
+7d xx xx        loadgcm.u ? 0
+7e xx xx        loadgsm.u ? 0
+7f xx xx        loadglm.u ? 0
+80 xx xx        leas.w ?
+81 xx xx/x3 x4  lead.w ? / .disp x3x4
+
+Added with bytecode v11
+-----------------------
+83              decic1
+84              incic1
+85              decis1
+86              incis1
+87              decil1
+88              incil1
+89              popadd
+
+Added with bytecode v12
+-----------------------
+8a x1x2 x3x4.. *patch
+8b xx          *loadic.b xx
+8c xx           loadis.b xx
+8d xx           loadil.b xx
+8e xx           mul.c xx
+8f xx           muladd.c xx
+90 xx           jumple.c xx
+91 xx           jumpge.c xx

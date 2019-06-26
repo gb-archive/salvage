@@ -1,0 +1,51 @@
+ ADSR        - Attack, Decay, Sustain, Release (Used to define audio waveform envelopes.)
+ AdvGBIDE    - GB IDE assembler by MegaMan_X.
+ AI          - Artificial Intelligence
+ API         - Application Program Interface
+ C3          - Carbon Copy Card
+ CPU         - Central Processing Unit
+ GB          - Game Boy
+ GBA         - GameBoy Advanced (Code name for the next generation GameBoy in development.)
+ GBC         - GameBoy Color
+ GBDK        - C compiler for GB by Pascal Felber.
+ GBP         - Game Boy Pocket
+ GBTD        - Tile editor for GB by Harry Mulder.
+ GG          - Game Genie
+ DMA         - Direct Memory Access
+ EPROM       - A chip that works like a ROM but is reprogrammable
+               but requires an ultaviolet light source to do so.
+ Flash       - A chip that works like a ROM but that can be
+               reprogrammed many times easily.
+ Flash EPROM - Same as Flash.
+ Flash Cart  - Any cart that has had the original ROM removed
+               and a Flash installed in its place as shown
+               in the ReadPlus cart reader/writer docs.
+ FMV         - Full Motion Video
+ FPS         - Frames Per Second
+ GBX         - GB Xchanger made by Bung Enterprises Limited.
+ GDMA        - General Purpose DMA
+ GUI         - Graphical User Interface
+ H-blank     - Horizontal video blank
+ HDMA        - Horizontal Blanking DMA
+ Hicolor     - A generic term referring to dynamically updating colo(u)r palettes
+               to render a picture with up to 2048 colo(u)rs.
+ HuC         - Hudson Controller (selects memory banks + other features)
+ IDE         - Integrated Development Environment
+ IME         - Interrupt Master Enable
+ LCD         - Liquid Crystal Display
+ LSB         - Least Significant Bit (or Byte)
+ MBC         - Memory Bank Controller
+ MSB         - Most Significant Bit (or Byte)
+ NDA         - Non-Disclosure Agreement
+ OAM         - Object (Sprite) Attribute Memory
+ OOP         - Object Oriented Programming
+ RAM         - Random Access Memory (read / write memory)
+ RGBDS       - Powerful GB assembler by Carsten Sorensen.
+ ROM         - Read Only Memory (new carts contain this)
+ SGB         - Super Game Boy
+ SMC         - Self Modifying Code
+ SSC         - Super Smart Card (programmable cart, no longer made)
+ TASM        - Table assembler for GB (not related to Turbo Assembler)
+ V-blank     - Vertical video blank
+ VBK         - Video Bank select register in the GBC.
+ VRAM        - Video RAM

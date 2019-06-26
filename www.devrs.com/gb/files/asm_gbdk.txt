@@ -1,0 +1,107 @@
+A trivial example of how to mix GBDK C and Assembly....
+Written by Ken Jenks
+
+mix_c_asm.c:
+
+/*
+     mix_c_asm.c
+     An example of how to mix C and assembly -- Ken Jenks, 1999
+
+     There are actually three files of interest:
+     This one (mix_c_asm.c), mix_c_asm_add.s and mix_c_asm_make.bat.
+
+     Based on main.c
+     http://www.gbdev.org/gbdk/guidelines.html
+     Michael Hope, 1999.
+
+     Also based on fonts.c
+     Simple example of how to use multiple fonts on the GB
+     Michael Hope, 1999.
+*/
+
+#include <stdio.h>
+#include <font.h>
+#include <console.h>
+#include <drawing.h>
+
+void main(void)
+{
+     font_t ibm_font, italic_font, min_font;
+
+     /* The following three lines are from main.c, demonstrating
+        how to call a function, mix_c_asm_add(), which is defined
+        in assembly language. See file mix_c_asm_add.s. -- KJ
+     */
+     WORD i;
+     WORD mix_c_asm_add(WORD, WORD);
+
+     i = mix_c_asm_add(1, 3);
+
+     /* The rest of this code is from fonts.c -- KJ */
+
+     /* First, init the font system */
+     font_init();
+
+     /* Load all the fonts that we can */
+     ibm_font = font_load(font_ibm);  /* 96 tiles */
+     italic_font = font_load(font_italic);   /* 93 tiles */
+
+     /* Load this one with dk grey background and white foreground */
+     color(WHITE, DKGREY, SOLID);
+
+     min_font = font_load(font_min);
+
+     /* Turn scrolling off (why not?) */
+     mode(get_mode() | M_NO_SCROLL);
+
+     /* Print some text! */
+
+     /* IBM font */
+     font_set(ibm_font);
+
+     /* In italic */
+     font_set(italic_font);
+     printf("The result was: %d\n",i);
+
+     /* Done */
+     font_set(ibm_font);
+     printf("\nDone!");
+}
+
+
+mix_c_asm_add.s:
+
+.globl _mix_c_asm_add
+_mix_c_asm_add:	; WORD mix_c_asm_add(WORD a, WORD b)
+      		; There is no register to save:
+		;  BC is not used
+		;  DE is the return register
+		;  HL needs never to be saved
+
+	LDA  HL,2(SP)
+	LD   E,(HL)	; Get a in DE
+	INC  HL
+	LD   D,(HL)
+	INC  HL
+	LD   A,(HL)	; Get b in HL
+	INC  HL
+	LD   H,(HL)
+	LD   L,A
+	ADD  HL,DE	; Add DE to HL
+	LD   D,H
+	LD   E,L
+			; There is no register to restore
+	RET		; Return result in DE
+
+
+mix_c_asm_make.bat:
+
+..\bin\lcc -Wa-l -Wl-m -o mix_c_asm.gb mix_c_asm.c mix_c_asm_add.s
+
+rem Assuming you installed GBDK in the default directory, C:\SDK\
+rem this file and its two friends should be located in
+rem   C:\sdk\gbz80-gb\2-1-5\examples
+rem or a directory at a similar level.
+rem See http://www.gbdev.org/gbdk/tools.html
+rem -- KJ
+

@@ -1,0 +1,100 @@
+
+Building a gcc cross compiler for ARM
+(using Cygwin for windows or Linux)
+-------------------------------------
+ by David Welch
+
+get
+
+binutils-2.xxxx.tar.gz (currently 2.11.2)
+gcc-core-3.xxxx.tar.gz (currently 3.0.4)
+newlib-1.9.0.tar.gz (has not changed in a while)
+
+mkdir /arm
+cd /arm
+tar xzvf binutils-2.xxx.tar.gz
+tar xzvf gcc-core-3.xxx.tar.gz
+tar xzvf newlib-1.9.0.tar.gz
+
+PATH=/arm/bin:$PATH ; export PATH
+
+mkdir build
+cd build
+
+mkdir binutils
+cd binutils
+
+/arm/binxxx/configure --target=arm-thumb-elf --prefix=/arm
+
+make all install
+
+cd /arm/gcc-3.xxxx/gcc/config/arm/
+
+Add
+
+#define HAS_INIT_SECTION
+
+to beginning of elf.h file
+
+cd /arm/build
+mkdir gcc
+cd gcc
+
+/arm/gcc-2.95.2.1/configure --target=arm-thumb-elf --prefix=/arm --without-libs
+
+in /arm/build/gcc/gcc/Makefile
+
+change FROM:
+# Additional target-dependent options for compiling libgcc2.a.
+TARGET_LIBGCC2_CFLAGS =
+
+TO:
+# Additional target-dependent options for compiling libgcc2.a.
+TARGET_LIBGCC2_CFLAGS = -Dinhibit_libc
+
+cd /arm/build/gcc
+make all install
+
+cd /arm/newlib-1.9.0/newlib/libc/sys/arm/
+
+edit libcfunc.c and syscalls.c
+
+blow away all the swi stuff and basically make everything an
+empty shell:
+
+function
+{
+    return(0);
+}
+
+at some point you need to tailor this crt0.S to your needs
+(setup the stack pointer, clear the bss mem, and jump to main)
+then save the resulting crt0.o in /arm/arm-elf/lib/
+
+cd /arm/build
+mkdir newlib
+cd newlib
+
+/arm/newlib-1.9.0/configure --target=arm-thumb-elf --prefix=/arm
+
+I have seen someone mention changing the compile option from -O2 to -O3 to produce a
+better (faster) performing library, this would be the time to do it...I think you would
+be looking for the TARGET CFLAGS in one of the high up Makefiles.
+
+make all install
+
+if you didnt fix the crt0.o files you need to find them and blow them away now
+cd /arm
+find |grep crt0.o
+
+
+To use the executables:
+
+PATH=/arm/bin:$PATH ; export PATH
+
+(or just add /arm/bin to your path)
+
+
+All the gnu programs have arm-thumb-elf- on the front of the file name (arm-thumb-elf-gcc,
+arm-thumb-elf-as, etc).
+

@@ -1,0 +1,38 @@
+
+ These are the goals that were used in designing the flash/EEPROM
+programmer:
+
+1. The more inexpensive the better
+
+   When you can buy programmers fully built in the $100US to $150US
+  range, a useful circuit should be $50US or less. A programmer and
+  chips that don't require ultraviolet for the erase cycle helps
+  to meet this goal.
+
+2. Easy to build
+
+   The more wires needed for connections the less likely anyone will
+  want to build it. Heavily using serial interface techniques keep
+  wiring low while minorly affecting performance.
+
+3. Reliable operation
+
+   Proper powerup & powerdown techniques should be employed to
+  protect the device to be programmed during installation & removal.
+  A high impedance should be present on each pin during these times
+  to guard against false writes and pin input damage.
+   This is the most important goal because it adds predictability
+  to the programming process.
+
+ Unfortunately due to these goals, this programmer has several
+disadvantages:
+
+1. Slow
+
+   Programming a 29F040 (4mbit flash) is reported to take
+  20 minutes to program on a Pentium 133.
+
+2. Won't program any EPROM chips
+
+   Because no voltage higher that 5 volts is used in this
+  circuit, the programming of EPROMS is not possible.

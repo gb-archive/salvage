@@ -1,0 +1,43 @@
+Comparing various ARM C Compilers
+(In ARM mode, not Thumb mode)
+-----------------------------
+
+   info from David Welch
+
+Well here are the Dhrystone results to date, this is prolly as much as I am
+going to do.  It appears that -O2 (full optimizations) is the default for
+the ARM tools, gh and gcc showed great improvements when optimizations were
+turned on.  The -Otime option was not listed when running the armcc program
+on the command line you have to RTFM.  gcc and gh seem to be tied and at
+best get to 1.8 times slower than arms best.
+
+Oh yeah, maybe I will have to do this again with the cache on! 
+
+arm/ads         168282 clocks   no optimizations (cannot recreate this one
+we think its ads 1.0)
+
+arm/ads1.1      188516 clocks   no optimizations
+arm/ads1.1      188516 clocks   -O2 
+arm/ads1.1      151953 clocks   -Otime
+
+arm/sdt         182109 clocks   no optimizations
+arm/sdt         182109 clocks   -O2 (full) optimizations
+arm/sdt         185625 clocks   -O1 
+arm/sdt         211953 clocks   -O0 
+arm/sdt         167109 clocks   -Otime
+
+gh              453126 clocks   no optimizations
+gh              305001 clocks   -O optmizations
+gh              506797 clocks   -OLAMISD (all optimizations)
+gh              269610 clocks   -OLAMID (almost all) very respectable!!!
+
+gcc             259766 clocks   -O3 optimizations
+gcc             266094 clocks   -O2 optimizations
+gcc             265704 clocks   -O1 optimizations
+gcc             458673 clocks   no optimizations
+
+Notes:
+ gcc = GNU C
+ arm = http://www.arm.com (Expensive)
+ gh =  http://www.ghs.com (Expensive)
+ Dhrystone 2.1 source code was used for these tests.

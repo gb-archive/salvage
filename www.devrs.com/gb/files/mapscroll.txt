@@ -1,0 +1,111 @@
+Large Map Scrolling in GBDK
+Written by Jason
+drunk-ass@beer.com
+http://www.gbdev.org/news/
+
+One of the most common requests for things that people are too lazy 
+to write for themselves is an 8-way scrolling engine that can hold 
+maps larger than 32x32. In this document, I hope to try and explain 
+how to do it.
+
+The way I'm doing it is not the most optimized way of doing it. It
+is, however, the easiest way I can explain it without losing too 
+many people.
+
+I didn't test this. I'm just writing out the logic behind it. Alot
+of the values need to be tweaked here
+Making your map, you should use a program like Harry Mulder's Gameboy 
+Map Builder. Design your map, and when you export, export to 1 byte
+per tile. 
+
+Now when you include it in your GBDK project, try and include it in
+a higher bank such as 2+ so that it is not included in bank 0. Bank
+0 is 16k and cannot be changed, plus on intense games you need as 
+much space there as possible. Data should never be stored in bank
+0.
+
+For convenience and making it easier to understand where I got the
+numbers from, we'll make some quick defines.
+	#define MapSizeX 64	// where 64 is defined by your map
+	#define MapSizeY 64	// where 64 is defined by your map
+
+You need a couple of variables to keep track of things.
+	UBYTE ScrollXCnt;	// Scrolling X Counter
+	UBYTE ScrollYCnt;	// Scrolling Y Counter
+	BYTE SCXCnt;		// update info
+	BYTE SCYCnt;		// update info
+	UBYTE tempa, tempb;	// temp numbers
+	UWORD Cnt;		// counter
+
+Load the initial screen
+	Cnt = 0;
+	wait_vbl_done();
+	for(tempa = 0; tempa != 32; tempa++) {
+		set_bkg_tiles(0,tempa,32,tempa+1,TileMap[Cnt]);
+		Cnt = Cnt + MapSizeX;	// increase Cnt the size
+					// of x so that the next
+					// column is loaded
+	}
+
+Check the joypad for information telling where you need to scroll.
+	if(joypad() & J_UP) ScrollUp();
+	if(joypad() & J_DOWN) ScrollDown();
+	if(joypad() & J_LEFT) ScrollLeft();
+	if(joypad() & J_RIGHT) ScrollRight();
+You only need 4 because if joypad is being pressed in two directions,
+the joypad() & direction1, joypad() & direction2 should return true.
+
+Now make sure the actual scroll routines are in vlblank interrupt.
+	wait_vbl_done();
+	scroll_bkg(x,y);  // where x and y are positive or negative
+			  // numbers depending on the direction
+			  // and the numbers depending on the speed
+
+Update the ScrollXCnt and ScrollCntY when you change the info.
+	ScrollX++;	or	ScrollX--;
+	ScrollY++;	or	ScrollY--;
+	SCXCnt++;	or	SCXCnt++;
+	SCYCnt++;	or	SCYCnt--;
+
+
+Check to see if the map needs updated.
+	if(SCXCnt == 8) {
+		SCXCnt = 0;		// reset the scroll counter
+		Cnt = ScrollX / 8;	// find out what tile is on 
+					// the left on the screen
+		Cnt = Cnt + 20;		// increase the counter the
+					// size of the screen
+		// repeat this 32 times
+		for(tempa = 0; tempa != 32; tempa++) {
+			// set the tiles
+			set_bkg_tiles(0,tempa,1,tempa+1,TileMap[Cnt]);
+			// increase the counter to prevent graphics 
+			// loading the wrong tile
+			Cnt = Cnt + MapSizeX;
+		}		
+	}
+	if(SCXCnt == -8) {
+		SCXCnt = 0;
+		SCXCnt = 0;		// reset the scroll counter
+		Cnt = ScrollX / 8;	// find out what tile is on 
+					// the left on the screen
+		Cnt--;			// decrease the counter to
+					// prevent bad looking gfx
+		// repeat this 32 times
+		for(tempa = 0; tempa != 32; tempa++) {
+			// set the tiles
+			set_bkg_tiles(0,tempa,1,tempa+1,TileMap[Cnt]);
+			// increase the counter to prevent graphics 
+			// loading the wrong tile
+			Cnt = Cnt + MapSizeX;
+		}		
+	}
+	.
+	.
+	.
+
+
+Like I said, tweak the code. This is just the logic behind it. I'm
+not going to write the code line for line for you, but you should
+be able to get an idea from wtf I'm talking about so that you can
+do this. Hope you enjoyed it and it was useful. =)

@@ -1,0 +1,25 @@
+Label     Description
+---       -----
+          C3 PC Board
+          Power Switch (Mouser #10SP003)
+ J3       2.0MM Power Connector (Digikey #CP-002A-ND)
+ J1       GB Connector (MCM #83-2285)
+ J2       RS-232 Connector (Jameco #15149)
+ B1       >0.5A >24V Bridge Rectifier (Digikey #W005G-ND)
+ T1       78L05 Voltage Regulator
+ C3       68-220uF >24V Capacitor
+ C6       47-100uF >9V Capacitor
+ U6       74HCT00
+ U3       74HCT138
+ U2       74HC157
+ U1,U4,U5 74HCT374
+          LED (Light Emitting Diode, Green T1-3/4)
+ R1       330ohm (1/10w - 1/4w)
+ C1       0.1uF >9V cap
+ C2,C4,C5 3900pF (0.0039uF) >9V cap
+ C7,C8,C9    (C7,C8,C9 go on back of board)
+
+ Cover    2" Heat Shrink Tubing (Mouser #5174-12003)
+          9-12V AC or DC, >100mA Power Supply
+
+

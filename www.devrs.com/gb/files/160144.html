@@ -1,0 +1,94 @@
+<HTML>
+
+<!-- Mirrored from www.devrs.com/gb/files/160144.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:19 GMT -->
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Basic 160x144 image loading in GBDK</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff" TEXT="#000000">
+<P>
+<B><BIG>160x144 image loading</BIG></B><BR>
+Written by Mike Parks (BigRedPimp@juno.com)<BR>
+<P>
+<B>Basic 160x144 image loading.</B><BR>
+----------------------------
+<P>
+First, convert your image using PCX2GB (prefered) to GBDK output format using
+this on the command line 
+<P>
+<SAMP>pcx2gb n d filename.pcx filename.c</SAMP>
+<P>
+(I'll be using PCX2GB for this description, there are other utils you can
+use for this). Next, in the output file, change the name of the unsigned
+char to whatever you'd like. Then, in your project's main source file, put
+<P>
+<SAMP>#include &lt;drawing.h&gt;</SAMP>
+<P>
+Now, you'll put this whereever you want your image to appear: 
+<P>
+<SAMP>draw_image(unsigned char's name);</SAMP>
+<P>
+You should get a nice, full screen image.<BR>
+I used this in my South Park X-Treme demo and it worked fine. There were
+some drawbacks to doing it this way, though (cart size was 128k, had to use
+bank switching to hold the images).
+<P>
+<P>
+<B>Advanced image loading. (Using CGB
+colors)</B><BR>
+------------------------------------------
+<P>
+There is a better way if you plan on using a different sized image. Convert
+the image in PCX2GB using 
+<P>
+<SAMP>pcx2gb o d filename.pcx filename.c filename.map</SAMP>
+<P>
+This will not only optimize your image so it'll be smaller in code, it'll
+also decrease the need for a larger cart size. (Thanx go out to Icehawk for
+making the beginners docs to explain some of these things -
+<A HREF="http://www.gbdev.org/news/">www.gbdev.org/news/</A>). 
+<P>
+What you need to do is include both your converted image (filename.c) and
+your tile map (filename.map) into your project. You will then put the following
+code into your project whereever you want your image to appear:
+<P>
+<SAMP>/* Beginning of code snippet <BR>
+The following can be changed:<BR>
+bgpal = the color palette being used<BR>
+MK = image tile data being used<BR>
+MKCGBMap = map of how your palettes will be displayed<BR>
+MKMap = map of how your tiles will be displayed */</SAMP>
+<P>
+<SAMP>// Set palette(s) for
+image</SAMP><BR>
+<SAMP>set_bkg_palette(0,2,&amp;bgpal[0]);</SAMP>
+<P>
+<SAMP>// Set bkg tile data<BR>
+set_bkg_data(0,255,MK); </SAMP>
+<P>
+<SAMP>// Switch to VRAM<BR>
+VBK_REG = 1; </SAMP>
+<P>
+<SAMP>// Set the map for where your palettes will be
+displayed<BR>
+set_bkg_tiles(0,0,20,18,MKCGBMap); </SAMP>
+<P>
+<SAMP> // Switch out of VRAM<BR>
+VBK_REG = 0;</SAMP>
+<P>
+<SAMP>// Set the map for where the bkg tiles will be
+displayed<BR>
+set_bkg_tiles(0,0,20,18,MKMap);</SAMP>
+<P>
+<SAMP>// Show the background<BR>
+SHOW_BKG;</SAMP>
+<P>
+<SAMP>// Turn the display on</SAMP><BR>
+<SAMP>DISPLAY_ON; </SAMP>
+<P>
+That should help. If you have any more questions,
+<A HREF="mailto:bigredpimp@juno.com">feel free to ask</A>.
+<P>
+</BODY>
+<!-- Mirrored from www.devrs.com/gb/files/160144.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:19 GMT -->
+</HTML>

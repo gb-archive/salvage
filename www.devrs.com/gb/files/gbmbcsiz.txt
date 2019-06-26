@@ -1,0 +1,890 @@
+DOS Name        Name of game        ROM Type                 Size (in bytes)
+
+TRUMPBOY.GB      - TRUMP  BOY -     ROM Only                 32,768
+CADA.GB          ---  CADA  ---     ROM+MBC1                 65,536
+ACE_STRI.GB     ACE STRIKER         ROM+MBC1                 131,072
+ADDAMSF.GB      ADDAMS FAMILY       ROM+MBC1                 131,072
+ADDAMSF2.GB     ADDAMS FAMILY 2     ROM+MBC1                 131,072
+ADISLAND.GB     ADVENTURE ISLAND    ROM+MBC1                 131,072
+ADVENTU2.GB     ADVENTUREISLAND2    ROM+MBC1                 262,144
+AEROSTAR.GB     AEROSTAR            ROM+MBC1                 131,072
+AFTERBUR.GB     AFTER BURST         ROM+MBC1                 65,536
+ALADDIN.GB      ALADDIN             ROM+MBC1                 262,144
+ALFREDCH.GB     ALFRED CHICKEN      ROM+MBC1                 131,072
+ALIENS3.GB      ALIEN               ROM+MBC1                 131,072
+ALIOLYM.GB      ALIEN OLYMPICS      ROM+MBC1                 131,072
+ALIENVSP.GB     ALIEN V PREDATOR    ROM+MBC1                 131,072
+ALLEYWAY.GB     ALLEY WAY           ROM Only                 32,768
+ALLSTAR.GB      ALLSTARCHALLENGE    ROM+MBC1                 65,536
+ALLSTAR2.GB     ALSTARCHALLENGE2    ROM+MBC1                 131,072
+ALLSTR2J.GB     ALSTARCHALLENGE2    ROM+MBC1                 131,072
+ALTSPACE.GB     ALTERED SPACE       ROM+MBC1                 131,072
+ALTSPACJ.GB     ALTERED SPACE       ROM+MBC1                 131,072
+AMAZINGT.GB     AMAZING-TATER       ROM+MBC1                 65,536
+AMIDA.GB        AMIDA               ROM Only                 32,768
+ANIMANIA.GB     ANIMANIACS          ROM+MBC1                 262,144
+ANOTHERB.GB     ANOTHER BIBLE       ROM+MBC1+RAM+BATTERY     524,288
+ARETHA.GB       ARETHA              ROM+MBC2+BATTERY         262,144
+ARETHA3.GB      ARETHA3             ROM+MBC1+RAM+BATTERY     262,144
+ASMIK2.GB       ASMIK2              ROM+MBC1                 131,072
+ASTERIX.GB      ASTERIX             ROM+MBC1                 131,072
+ASTEROID.GB     ASTEROIDS           ROM Only                 32,768
+ASTEROIM.GB     ASTEROIDS/MISCMD    ROM+MBC1                 131,072
+ASTRORAB.GB     ASTRO RABBY         ROM+MBC1                 65,536
+ATOMIC_P.GB     ATOMIC PUNK         ROM+MBC1                 131,072
+AVENGING.GB     AVENGING SPIRIT     ROM+MBC1                 262,144
+AYAKASI.GB      AYAKASI NO SIRO     ROM+MBC2+BATTERY         65,536
+BCKID2.GB       B.C.KID2            ROM+MBC1                 262,144
+BALLOON.GB      BALLOON KID         ROM+MBC1                 131,072
+BANISH.GB       BANISHING RACER     ROM+MBC1                 131,072
+BARBIE.GB       BARBIE GAME GIRL    ROM+MBC1                 131,072
+BASEBALK.GB     BASE BALL KIDS      ROM+MBC1                 131,072
+BASEBALL.GB     BASEBALL            ROM+MBC1                 65,536
+BASES_LO.GB     BASES LOADED GB     ROM+MBC1                 131,072
+BATMAN.GB       BATMAN              ROM+MBC1                 131,072
+BATMANAS.GB     BATMAN ANIMATED     ROM+MBC1                 131,072
+BATMAN4E.GB     BATMAN FOREVER      ROM+MBC1                 262,144
+BATMANRJ.GB     BATMAN ROJ          ROM+MBC1                 131,072
+BATLBULL.GB     BATTLE BULL         ROM+MBC1                 131,072
+BATLCRUS.GB     BATTLE CRUSHER      ROM+MBC1                 262,144
+BATLOFKD.GB     BATTLE OFKINGDOM    ROM+MBC1                 131,072
+BATLPP.GB       BATTLE PINGPONG     ROM+MBC1                 65,536
+GBATSHIP.GB     BATTLE SHIP         ROM+MBC1                 65,536
+BATTLESH.GB     BATTLE SHIP         ROM+MBC1                 65,536
+GBATSHIP.GB     BATTLE SHIP         ROM+MBC1                 65,536
+BATTLESH.GB     BATTLE SHIP         ROM+MBC1                 65,536
+BATLCITY.GB     BATTLECITY          ROM Only                 32,768
+BATLTOAD.GB     BATTLETOADS         ROM+MBC1                 131,072
+B-ZEOTH.GB      BATTLEUNIT ZEOTH    ROM+MBC1                 131,072
+VOLLEYBM.GB     BEACH,VOLLEYBALL    ROM+MBC1                 65,536
+BEACHVOL.GB     BEACH_VOLLEY        ROM+MBC1                 262,144
+BEETHOV2.GB     BEETHOVEN           ROM+MBC1                 131,072
+BEETLEJU.GB     BEETLEJUICE         ROM+MBC1                 131,072
+BEST_BES.GB     BEST OF THE BEST    ROM+MBC1                 262,144
+BIKKURI.GB      BIKKURI NEKKETU     ROM+MBC1                 262,144
+BILL&TED.GB     BILL AND TED        ROM+MBC1                 131,072
+BIONICBA.GB     BIONIC BATTLER      ROM+MBC1                 65,536
+BIONICC.GB      BIONIC-COMMANDO     ROM+MBC1                 262,144
+BIONICJ.GB      BIONIC-COMMANDO     ROM+MBC1                 262,144
+BISHOJYO.GB     BISHOJYOSENSI SE    ROM+MBC1                 131,072
+BLADES.GB       BLADES OF STEEL     ROM+MBC1                 131,072
+BM_BOY.GB       BLASTER MASTER B    ROM+MBC1                 131,072
+BLODIA.GB       BLODIA              ROM+MBC1                 65,536
+BLUESBR1.GB     BLUES BROTHERS      ROM+MBC1                 131,072
+BOJACKSO.GB     BO JACKSON          ROM+MBC1                 131,072
+BOKUDRAC.GB     BOKU DRACURA KUN    ROM+MBC1                 262,144
+BOMBJACK.GB     BOMB JACK           ROM Only                 32,768
+BOMBER_B.GB     BOMBER BOY          ROM+MBC1                 131,072
+BOMBER_K.GB     BOMBER KING S2      ROM+MBC1                 131,072
+BOMBER_N.GB     BOMBER MAN GB       ROM+MBC1                 262,144
+BOMBER_M.GB     BOMBERMAN GB        ROM+MBC1                 262,144
+BONKSADV.GB     BONK'S ADVENTURE    ROM+MBC1                 262,144
+BOOBYBOY.GB     BOOBY BOYS          ROM+MBC1                 262,144
+BOUKENJI.GB     BOUKENJIMA2         ROM+MBC1                 131,072
+BOULDERD.GB     BOULDER DASH        ROM+MBC1                 65,536
+BOULDERJ.GB     BOULDER DASH        ROM+MBC1                 65,536
+BOXING.GB       BOXING              ROM+MBC1                 65,536
+BOXXLE.GB       BOXXLE              ROM Only                 32,768
+BOXXLE2.GB      BOXXLE2             ROM Only                 32,768
+BOY&BLOB.GB     BOY AND BLOB GB1    ROM+MBC1                 65,536
+BOYBLOB.GB      BOY AND BLOB GB2    ROM+MBC1                 65,536
+BOYBLOB.GB      BOY AND BLOB GB2    ROM+MBC1                 65,536
+BRAINB.GB       BRAINBENDER         ROM Only                 32,768
+BREAKTHR.GB     BREAKTHRU!          ROM+MBC1                 131,072
+BATLTOA2.GB     BT2RAGNAROKWORLD    ROM+MBC1                 131,072
+BUBBLE90.GB     BUBBLE BOBBLE       ROM+MBC1                 131,072
+BUBBLE91.GB     BUBBLE BOBBLE       ROM+MBC1                 131,072
+BUBBLEG.GB      BUBBLE GHOST        ROM Only                 32,768
+BUBGHOST.GB     BUBBLE GHOST        ROM Only                 32,768
+BUBBLE2.GB      BUBBLEBOBBLE2       ROM+MBC1                 131,072
+BUBBLEJR.GB     BUBBLEBOBBLEJR      ROM+MBC1                 131,072
+BUBSY2.GB       BUBSY II            ROM+MBC1                 524,288
+BUGSBUNN.GB     BUGS BUNNY          ROM+MBC1                 65,536
+BUGSCRAZ.GB     BUGSCRAZYCASTLE2    ROM+MBC1                 131,072
+BURAI.GB        BURAI FIGHTER DE    ROM+MBC1                 65,536
+BURAIJ.GB       BURAI FIGHTER DX    ROM+MBC1                 65,536
+BURGER_T.GB     BURGER TIME         ROM+MBC1                 65,536
+BURNPAPR.GB     BURNING PAPER       ROM+MBC1                 131,072
+BATLZONE.GB     BZONE SBREAKOUT     ROM+MBC1                 262,144
+CADILLAC.GB     CADILLAC2           ROM+MBC1                 65,536
+CAESARSJ.GB     CAESARS PALACE      ROM+MBC1                 131,072
+CAESARSP.GB     CAESARS PALACE      ROM+MBC1                 131,072
+QUIZ.GB         CAPCOM QUIZ         ROM+MBC1                 262,144
+CAPTAINT.GB     CAPTAIN TUBASA J    ROM+MBC1                 524,288
+CARDGAME.GB     CARD GAME           ROM+MBC1                 65,536
+CASINOFP.GB     CASINO FUNPAK       ROM+MBC1                 131,072
+CASTELIA.GB     CASTELIAN           ROM Only                 32,768
+CASTLE91.GB     CASTLEVANIA ADVE    ROM+MBC1                 65,536
+CASTLE89.GB     CASTLEVANIA ADVE    ROM+MBC1                 65,536
+CASTLEV2.GB     CASTLEVANIA2 BEL    ROM+MBC1                 131,072
+CAVE_NOI.GB     CAVE NOIRE          ROM+MBC2+BATTERY         262,144
+CENTIPED.GB     CENTIPEDE           ROM Only                 32,768
+CHACHAMA.GB     CHACHAMARUPANIC     ROM+MBC1                 65,536
+CHASEHQ.GB      CHASE HQ            ROM+MBC1                 131,072
+CHASE_HQ.GB     CHASE HQ            ROM+MBC1                 131,072
+CHIBIMAR.GB     CHIBIMARUKO         ROM+MBC1                 65,536
+CHIKI.GB        CHIKI RACE GB       ROM+MBC2+BATTERY         262,144
+CHOPLIFT.GB     CHOPLIFTER 2        ROM+MBC1                 131,072
+CHOPLIF2.GB     CHOPLIFTER 2        ROM+MBC1                 131,072
+CHOPLIF3.GB     CHOPLIFTER III      ROM+MBC1                 131,072
+BASEBALR.GB     CLEMENS BASEBALL    ROM+MBC1                 262,144
+CLIFFHAN.GB     CLIFFHANGER         ROM+MBC1                 131,072
+CONTRA.GB       CONTRA              ROM+MBC1                 131,072
+CONTRA_S.GB     CONTRA SPIRITS      ROM+MBC1                 131,072
+COOLSPOT.GB     COOL SPOT           ROM+MBC1                 131,072
+COOLWORL.GB     COOL WORLD          ROM+MBC1                 131,072
+COSMOTNK.GB     COSMO TANK          ROM+MBC1                 131,072
+CRASHDUM.GB     CRASH DUMMIES       ROM+MBC1                 131,072
+CRYSTALQ.GB     CRYSTAL QUEST       ROM Only                 32,768
+CUTTHROA.GB     CUTTHROAT ISLAND    ROM+MBC1                 262,144
+CYBERFOR.GB     CYBER FORMULA       ROM+MBC1                 131,072
+CYRAID.GB       CYRAID              ROM+MBC1                 65,536
+DAEDOPUS.GB     DAEDALIAN OPUS      ROM Only                 32,768
+DAFFY.GB        DAFFY DUCK          ROM+MBC1                 131,072
+DAFFY2.GB       DAFFY DUCK          ROM+MBC1                 262,144
+DAISENRY.GB     DAISENRYAKU HIRO    ROM+MBC2+BATTERY         262,144
+DARKWING.GB     DARK WING DUCK      ROM+MBC1                 131,072
+DARKMAN.GB      DARKMAN             ROM+MBC1                 131,072
+DARUMAN.GB      DARUMAN BUSTERS     ROM+MBC1                 65,536
+DAYSOFTH.GB     DAYS OF THUNDER     ROM+MBC1                 131,072
+DEADHEAJ.GB     DEADHEATSCRAMBLE    ROM+MBC1                 65,536
+DEADHEAT.GB     DEADHEATSCRAMBLE    ROM+MBC1                 65,536
+DEFENDER.GB     DEFENDER/JOUST      ROM+MBC1                 131,072
+DENNIS.GB       DENNIS              ROM+MBC1                 131,072
+DESERT_S.GB     DESERT STRIKE       ROM+MBC1                 262,144
+DEXTERTY.GB     DEXTERITY           ROM+MBC1                 65,536
+DICKTRAC.GB     DICK TRACY          ROM+MBC1                 131,072
+DIGDUG.GB       DIG DUG             ROM+MBC1                 131,072
+DRAGONSL.GB     DLAIR LEGEND UK0    ROM+MBC1                 131,072
+DLAIRLGD.GB     DLAIR THE LEGEND    ROM+MBC1                 131,072
+DMGFOOTB.GB     DMG FOOTBALL        ROM+MBC1                 131,072
+BOOMERSA.GB     DMG-ASE             ROM+MBC1                 65,536
+BOOMERSJ.GB     DMG-ASJ             ROM+MBC1                 65,536
+DMG-KMJ.GB      DMG-KMJ             ROM Only                 32,768
+SNOWBROS.GB     DMG-SJJ             ROM+MBC1                 131,072
+DMG-UQJ.GB      DMG-UQJ             ROM+MBC1                 262,144
+DODGEBAL.GB     DODGE BALL          ROM+MBC1                 131,072
+DODGEBOY.GB     DODGE BOY           ROM+MBC1                 131,072
+DODGEDAN.GB     DODGEDANPEI         ROM+MBC1                 262,144
+DKONG.GB        DONKEY KONG         ROM+MBC1+RAM+BATTERY     524,288
+DKLAND2.GB      DONKEYKONGLAND 2    ROM+MBC1+RAM+BATTERY     524,288
+DKLAND3.GB      DONKEYKONGLAND 3    ROM+MBC1+RAM+BATTERY     524,288
+DKONGL95.GB     DONKEYKONGLAND95    ROM+MBC1+RAM+BATTERY     524,288
+DORAEMON.GB     DORAEMON            ROM+MBC1                 131,072
+DORAEMO1.GB     DORAEMON            ROM+MBC1                 131,072
+DORAEMO2.GB     DORAEMON2           ROM+MBC1                 131,072
+CASTLEJ.GB      DORAKYURADENSETU    ROM+MBC1                 65,536
+DORASURE.GB     DORASUREGAIDEN      ROM+MBC2+BATTERY         262,144
+DOUBLED.GB      DOUBLE DRAGON       ROM+MBC1                 131,072
+DOUBLED2.GB     DOUBLE DRAGON 2     ROM+MBC1                 131,072
+DOUBLED3.GB     DOUBLE DRAGON 3     ROM+MBC1                 131,072
+DOUBLEDR.GB     DOUBLE DRIBBLE      ROM+MBC1                 131,072
+DOUBLEYA.GB     DOUBLEYAKUMAN2      ROM+MBC1                 131,072
+DRFRANK.GB      DR FRANKEN          ROM+MBC1                 131,072
+DRFRANJ.GB      DR FRANKEN          ROM+MBC1                 131,072
+DRFRANK2.GB     DR FRANKEN 2        ROM+MBC1                 262,144
+DRMARIO.GB      DR.MARIO            ROM Only                 32,768
+DRACULA.GB      DRACULA             ROM+MBC1                 131,072
+CASTLEJ2.GB     DRACURA2            ROM+MBC1                 131,072
+DRAGONS1.GB     DRAGON SLAYER 1     ROM Only                 32,768
+DRGHEART.GB     DRAGONHEART         ROM+MBC1                 262,144
+DRAGONH.GB      DRAGONHEART         ROM+MBC1                 262,144
+DRAGONSR.GB     DRAGONS LAIR        ROM+MBC1                 131,072
+DRAGONTA.GB     DRAGONTAILBIT2      ROM+MBC1                 131,072
+DROPZONE.GB     DROPZONE            ROM Only                 32,768
+DUCKTJ.GB       DUCK TALES          ROM+MBC1                 65,536
+DUCKT.GB        DUCK TALES          ROM+MBC1                 65,536
+DUCKT2J.GB      DUCK TALES 2        ROM+MBC1                 131,072
+DUCKT2.GB       DUCK TALES 2        ROM+MBC1                 131,072
+DUNGEONL.GB     DUNGEONLAND         ROM+MBC1+RAM+BATTERY     131,072
+DYNABLAS.GB     DYNABLASTER         ROM+MBC1                 131,072
+EARTHJIM.GB     EARTHWORM JIM       ROM+MBC1                 262,144
+ELEVATOJ.GB     ELEVATOR ACTION     ROM+MBC1                 65,536
+ELEVATOR.GB     ELEVATOR ACTION     ROM+MBC1                 65,536
+SOCCERE.GB      ELITE SOCCER        ROM+MBC1                 131,072
+STARWARE.GB     EMPIRE STRIKES      ROM+MBC1                 131,072
+ESPARKS.GB      ESPARKS             ROM+MBC1                 131,072
+F1HEROG.GB      F-1 HEROGB          ROM+MBC1                 131,072
+F1HERO.GB       F-1HERO GB92        ROM+MBC1                 262,144
+F1_BOY.GB       F1 BOY              ROM+MBC1                 65,536
+F1SPIRIT.GB     F1 SPIRIT           ROM+MBC1                 131,072
+F1_SD.GB        F1 SUPER DRIVING    ROM+MBC1                 262,144
+F15_STRI.GB     F15 STRIKE EAGLE    ROM+MBC1                 131,072
+F1_RACE.GB      F1RACE              ROM+MBC2+BATTERY         131,072
+FACEBALL.GB     FACEBALL 2000       ROM+MBC1                 131,072
+FAMILYJ.GB      FAMILYJOCKEY        ROM+MBC1                 131,072
+FASTESTL.GB     FASTEST LAP         ROM+MBC2+BATTERY         262,144
+FELIX.GB        FELIX THE CAT       ROM+MBC1                 131,072
+FERRARI.GB      FERRARI             ROM+MBC1                 131,072
+SOCCERF.GB      FIFA SOCCER         ROM+MBC1                 524,288
+FIFASOCC.GB     FIFA SOCCER 96      ROM+MBC1                 524,288
+FIGHBIRD.GB     FIGHBIRD  GB        ROM+MBC1                 131,072
+FIGHTING.GB     FIGHTING SOCCER     ROM+MBC1+RAM+BATTERY     131,072
+FINALREV.GB     FINAL REVERSE       ROM+MBC1                 65,536
+FIRE_FIG.GB     FIRE FIGHTER        ROM+MBC1                 131,072
+FISHDUDE.GB     FISH DUDE           ROM+MBC1                 65,536
+FLAPPY.GB       FLAPPY SPECIAL      ROM Only                 32,768
+FLINTKRT.GB     FLINTSTONES         ROM+MBC1                 131,072
+FLIPULL.GB      FLIPULL             ROM Only                 32,768
+FIGHTSIM.GB     FLYING WARRIORS     ROM+MBC1                 131,072
+FOOTBALL.GB     FOOTBALL INT'L      ROM+MBC1                 131,072
+FOREMAN.GB      FOREMAN FOR REAL    ROM+MBC1                 262,144
+FORTZONE.GB     FORTIFIED ZONE      ROM+MBC1                 131,072
+FORTZON2.GB     FORTIFIED ZONE2     ROM+MBC1                 131,072
+THOMASBB.GB     FRANK THOMAS BB     ROM+MBC1                 524,288
+FUNNY_FI.GB     FUNNY FIELD         ROM+MBC1                 65,536
+FUNPACK.GB      FUNPAK 4IN1         ROM+MBC1                 131,072
+FUNPACK2.GB     FUNPAK 4IN1 - V2    ROM+MBC1                 131,072
+FUSHIGIN.GB     FUSHIGINA BULOBI    ROM+MBC1                 65,536
+G&W.GB          G&W GALLERY         ROM+MBC1+RAM+BATTERY     262,144
+GALAGAX.GB      GALAGA&GALAXIAN     ROM+MBC1                 131,072
+GAME&WAT.GB     GAME&WATCH          ROM+MBC1                 131,072
+GAMERA.GB       GAMERA DAIKAIJUU    ROM+MBC1                 262,144
+GANBAREG.GB     GANBARE GOEMON      ROM+MBC1                 262,144
+GARFIELD.GB     GARFIELD            ROM+MBC1                 131,072
+GARGOYLE.GB     GARGOYLE'S          ROM+MBC1                 131,072
+GAUNTLET.GB     GAUNTLET II         ROM+MBC1                 262,144
+TAMA&FRI.GB     GB 3TAMA            ROM+MBC1                 131,072
+BASKET.GB       GB BASKETBALL       ROM+MBC1                 131,072
+BEACHV91.GB     GB BEACHVOLLEY      ROM+MBC1                 131,072
+DRAGONBZ.GB     GB DBZ GOKOU        ROM+MBC2+BATTERY         262,144
+DRUAGA.GB       GB DRUAGA 1         ROM+MBC1                 131,072
+GARMS.GB        GB GARMS 1          ROM+MBC1                 131,072
+GENJIN.GB       GB GENJIN           ROM+MBC1                 262,144
+GENJINLD.GB     GB GENJIN LAND      ROM+MBC1                 262,144
+GBGODZ.GB       GB GODZILLA         ROM+MBC1                 262,144
+IRONLEAG.GB     GB IRON LEAGUER1    ROM+MBC1                 131,072
+GBJIDAIG.GB     GB JIDAIGEKI        ROM+MBC1+RAM+BATTERY     262,144
+KINNIKUM.GB     GB KINNIKUMAN DM    ROM+MBC1                 131,072
+GBKUREY4.GB     GB KUREYON SHIN     ROM+MBC1                 131,072
+KUREYON.GB      GB KUREYON SHIN4    ROM+MBC1                 131,072
+GBLACRO1.GB     GB LACROANHERO 1    ROM+MBC2+BATTERY         262,144
+GBMASKR.GB      GB MASKRIDER SD     ROM+MBC1                 131,072
+MUSASHIR.GB     GB MUSASHIROAD 1    ROM+MBC1                 131,072
+GBMUSASH.GB     GB MUSASHIROAD 1    ROM+MBC1                 131,072
+GUNDAMB.GB      GB NEW SD GUNDAM    ROM+MBC1                 262,144
+GBOTOKO1.GB     GB OTOKOJYUKU 1     ROM+MBC1                 131,072
+GBOTOKOJ.GB     GB OTOKOJYUKU 1     ROM+MBC1                 131,072
+OTOKOJYU.GB     GB OTOKOJYUKU 1     ROM+MBC1                 131,072
+MIGHTMPM.GB     GB POWER MOVIE      ROM+MBC1                 262,144
+SAILORM.GB      GB SAILORMOON R     ROM+MBC1                 262,144
+SAILOR.GB       GB SAILORMOON R     ROM+MBC1                 262,144
+SLAMDUNK.GB     GB SLAM DUNK        ROM+MBC1                 262,144
+SLAMDNK2.GB     GB SLAM DUNK 2      ROM+MBC1                 524,288
+SUPERBIK.GB     GB SUPERBIKKURI1    ROM+MBC1                 262,144
+GBTAACHI.GB     GB TAACHIYAN        ROM+MBC1                 262,144
+TAMAJ.GB        GB TAMAGOTCH 1      ROM+MBC1+RAM+BATTERY     524,288
+TAMA.GB         GB TAMAGOTCHI       ROM+MBC1+RAM+BATTERY     524,288
+GBTARU1.GB      GB TARURU-TO 1      ROM+MBC1                 131,072
+GBTARU2.GB      GB TARURU-TO 2      ROM+MBC1                 131,072
+TEKKAMAN.GB     GB TEKKAMANBLADE    ROM+MBC1                 131,072
+GBULTRA1.GB     GB ULTRAMANCLUB1    ROM+MBC1                 65,536
+UNDOUKAI.GB     GB UNDOUKAI         ROM+MBC1                 262,144
+GENJIN2.GB      GBGENJIN2           ROM+MBC1                 262,144
+GBWARS.GB       GBWARS              ROM+MBC1+RAM+BATTERY     262,144
+GEMGEM.GB       GEMGEM              ROM+MBC1+RAM+BATTERY     65,536
+STGENRAT.GB     GENERATIONS         ROM+MBC1                 131,072
+GENSAJ.GB       GENSAN              ROM+MBC1                 262,144
+GENSAN.GB       GENSAN              ROM+MBC1                 262,144
+GENSAN2.GB      GENSAN2             ROM+MBC1                 262,144
+FOREMANK.GB     GEORGE F. BOXING    ROM+MBC1                 131,072
+GHOSTBU2.GB     GHOSTBUSTERS 2      ROM+MBC1                 131,072
+GHOSTBUS.GB     GHOSTBUSTERS II     ROM+MBC1                 131,072
+GINGA.GB        GINGA               ROM+MBC1                 65,536
+GOGOTANK.GB     GO GO TANK          ROM+MBC1                 65,536
+GOAL.GB         GOAL!               ROM+MBC1                 131,072
+GODMEDIC.GB     GOD MEDICINE        ROM+MBC1+RAM+BATTERY     262,144
+GODZILLA.GB     GODZILLA            ROM+MBC1                 131,072
+GOLF.GB         GOLF                ROM+MBC2+BATTERY         131,072
+GOLFCLAS.GB     GOLF CLASSIC        ROM+MBC1                 262,144
+MR_CHIN.GB      GOURMET PARADISE    ROM+MBC1                 65,536
+GRADIUS.GB      GRADIUS             ROM+MBC1                 262,144
+GREMLIN2.GB     GREMLINS 2          ROM+MBC1                 131,072
+HARIMANA.GB     HARIMANADA          ROM+MBC1                 131,072
+HATRIS.GB       HATRIS              ROM+MBC1                 65,536
+HEAD_ON.GB      HEAD ON             ROM+MBC1                 65,536
+HEIANKYJ.GB     HEIANKYO ALIEN      ROM Only                 32,768
+HEIANKYO.GB     HEIANKYO ALIEN      ROM Only                 32,768
+HERCULES.GB     HERCULES EIKOU      ROM+MBC2+BATTERY         262,144
+HIGH_STA.GB     HIGH STAKES         ROM+MBC1                 131,072
+HIRYUGAI.GB     HIRYU GAIDEN        ROM+MBC1                 131,072
+HOMEALON.GB     HOME ALONE          ROM+MBC1                 131,072
+HOMEALO2.GB     HOME ALONE2         ROM+MBC1                 131,072
+HONGKONG.GB     HONG KONG           ROM Only                 32,768
+HOOK.GB         HOOK                ROM+MBC1                 131,072
+HOOK2.GB        HOOK                ROM+MBC1                 131,072
+HOSHINOK.GB     HOSHINOKA-BI        ROM+MBC1                 262,144
+HUDSON.GB       HUDSON HAWK         ROM+MBC1                 131,072
+HUDSONJ.GB      HUDSON HAWK         ROM+MBC1                 77,828
+HUGO.GB         HUGO                ROM+MBC1                 131,072
+HYPRBLAC.GB     HYPER BLACKBASS     ROM+MBC1                 262,144
+HYPRDUNK.GB     HYPER DUNK          ROM+MBC1                 131,072
+HYPRLODE.GB     HYPERLODERUNNER     ROM Only                 32,768
+IKARINOY.GB     IKARI NO YOUSAI     ROM+MBC1                 131,072
+IN_YOUR.GB      IN YOUR FACE        ROM+MBC1                 131,072
+INDIANAJ.GB     INDIANA JONES       ROM+MBC1                 131,072
+INDIANA3.GB     INDIANA JONES 3     ROM+MBC1                 131,072
+IREMFIGH.GB     IREM FIGHTER        ROM+MBC1                 262,144
+ISHIDOJ.GB      ISHIDO JPN VER.     ROM Only                 32,768
+ISHIDO.GB       ISHIDO USA VER.     ROM+MBC1                 65,536
+SIMPSONI.GB     ITCHY & SCRATCHY    ROM+MBC1                 131,072
+TENNISJC.GB     J CONNOR TENNIS     ROM+MBC1                 65,536
+JCUPSOCC.GB     J.CUP SOCCER        ROM+MBC1                 131,072
+SUPERJP.GB      JAMES POND          ROM+MBC1                 131,072
+JANKENMA.GB     JANKENMAN           ROM+MBC1                 65,536
+JANSHIRO.GB     JANSHIRO            ROM+MBC1                 65,536
+JANTAKUB.GB     JANTAKUBOY          ROM+MBC1                 131,072
+JEEPJAMB.GB     JEEP JAMBOREE       ROM+MBC1                 131,072
+JELLYBOY.GB     JELLY BOY           ROM+MBC1                 262,144
+JEOPARDY.GB     JEOPARDY            ROM+MBC1                 131,072
+JINSEI.GB       JINSEI              ROM+MBC1                 131,072
+GBJOEMAC.GB     JOE AND MAC         ROM+MBC1                 262,144
+JOE&MAC.GB      JOE AND MAC         ROM+MBC1                 262,144
+GBJOEMAC.GB     JOE AND MAC         ROM+MBC1                 262,144
+JORDANON.GB     JORDAN ONEONONE     ROM+MBC1                 65,536
+JORDAN_V.GB     JORDAN VS BIRD      ROM+MBC1                 65,536
+JUDGEDRE.GB     JUDGE DREDD         ROM+MBC1                 262,144
+JUNGLE.GB       JUNGLE BOOK         ROM+MBC1                 131,072
+JUNGLEST.GB     JUNGLE STRIKE       ROM+MBC1                 262,144
+JUNGLEWA.GB     JUNGLE WARS         ROM+MBC1+RAM+BATTERY     262,144
+JPARK.GB        JURASSIC PARK       ROM+MBC1                 262,144
+JPARK2.GB       JURASSIC PARK II    ROM+MBC1                 262,144
+KAERUNO.GB      KAERUNOTAMENI       ROM+MBC1+RAM+BATTERY     524,288
+KAGUYAHI.GB     KAGUYAHIME          ROM+MBC1                 131,072
+KATTOBIR.GB     KATTOBI ROAD        ROM+MBC1+RAM+BATTERY     131,072
+KESAMARU.GB     KESAMARU            ROM+MBC1                 65,536
+KIDICARU.GB     KID ICARUS          ROM+MBC2+BATTERY         131,072
+KIDNIKI.GB      KID NIKI            ROM+MBC1                 65,536
+KILLERTO.GB     KILLER TOMATOES     ROM+MBC1                 131,072
+KILLINST.GB     KILLERINSTINCT95    ROM+MBC1                 524,288
+KINGDOMC.GB     KINGDOM CRUSADE     ROM+MBC1                 131,072
+KINGOZOO.GB     KINGOFTHEZOO        ROM+MBC1                 65,536
+KINTAROA.GB     KINTARO ACG         ROM+MBC1                 262,144
+KIRBYBB.GB      KIRBY BLOCKBALL     ROM+MBC1+RAM+BATTERY     524,288
+KIRBYDL.GB      KIRBY DREAM LAND    ROM+MBC1                 262,144
+KIRBYPIJ.GB     KIRBY'S PINBALL     ROM+MBC2+BATTERY         262,144
+KIRBYPIN.GB     KIRBY'S PINBALL     ROM+MBC2+BATTERY         262,144
+KIRBYDL2.GB     KIRBY2              ROM+MBC1+RAM+BATTERY     524,288
+KITCHENP.GB     KITCHIN PANIC       ROM+MBC1                 131,072
+KITERETU.GB     KITERETU ZYURAKI    ROM+MBC1                 262,144
+KLAX.GB         KLAX                ROM Only                 32,768
+KNIGHTQ.GB      KNIGHT QUEST        ROM+MBC1                 131,072
+KOIWAKAK.GB     KOI WA KAKEHIKI     ROM Only                 32,768
+GOLFK.GB        KONAMI GOLF         ROM+MBC2+BATTERY         131,072
+SPORTS.GB       KONAMIC SPORTS      ROM+MBC1                 131,072
+KORODICE.GB     KORODICE            ROM Only                 32,768
+SIMPSONK.GB     KRUSTY              ROM+MBC1                 131,072
+KUNIO.GB        KUNIO               ROM+MBC1                 131,072
+KWIRK.GB        KWIRK               ROM Only                 32,768
+NEBULOUS.GB     KYORCHANLANDHIRO    ROM Only                 32,768
+LAMBORGH.GB     LAMBORGHINI         ROM+MBC1                 131,072
+FRENCH.GB       LANG TRNSLTR FRN    ROM+MBC1                 131,072
+SPANISH.GB      LANG TRNSLTR SPN    ROM+MBC1                 131,072
+LASTACTI.GB     LAST ACTION HERO    ROM+MBC1                 131,072
+LASTBIB.GB      LAST BIBLE          ROM+MBC1+RAM+BATTERY     262,144
+LASTBIB2.GB     LAST BIBLE2         ROM+MBC1+RAM+BATTERY     262,144
+LAWNMOWR.GB     LAWNMOWER MAN       ROM+MBC1                 131,072
+LAZLOSL.GB      LAZLOS LEAP         ROM+MBC2+BATTERY         32,768
+LEGEND.GB       LEGEND              ROM+MBC2+BATTERY         262,144
+LEGENDOZ.GB     LEGEND OF ZERD      ROM+MBC1+RAM+BATTERY     131,072
+LEMMINGS.GB     LEMMINGS            ROM+MBC1                 131,072
+LEMMING2.GB     LEMMINGS 2          ROM+MBC1                 524,288
+LETHALWE.GB     LETHAL WEAPON       ROM+MBC1                 131,072
+LITTLEM.GB      LITTLE MASTER       ROM+MBC2+BATTERY         262,144
+LITTLEM2.GB     LITTLE MASTER 2     ROM+MBC1+RAM+BATTERY     262,144
+LITTLE_M.GB     LITTLE MERMAID      ROM+MBC1                 131,072
+LOCKCHAS.GB     LOCK'N CHASE        ROM+MBC1                 65,536
+LOLO.GB         LOLO                ROM+MBC1                 131,072
+LOONEY.GB       LOONEY TUNES        ROM+MBC1                 131,072
+LOOPZ.GB        LOOPZ               ROM Only                 32,768
+LUCKYMON.GB     LUCKY MONKEY        ROM+MBC1                 65,536
+LUCLE.GB        LUCLE               ROM+MBC1+RAM+BATTERY     524,288
+LUNALAND.GB     LUNA LANDER         ROM+MBC1                 131,072
+MADDEN95.GB     MADDEN 95           ROM+MBC1                 524,288
+MADDEN96.GB     MADDEN 96           ROM+MBC1                 524,288
+MAGNETIC.GB     MAGNETIC SOCCER     ROM+MBC1                 131,072
+MAHOUJIN.GB     MAHOUJINGURUGURU    ROM+MBC1                 262,144
+MAKAIMUR.GB     MAKAIMURAGAIDEN     ROM+MBC1                 262,144
+MANSELL.GB      MANSELL             ROM+MBC1                 131,072
+MARBLE_M.GB     MARBLE MADNESS      ROM+MBC1                 262,144
+MARIO&YO.GB     MARIO & YOSHI       ROM+MBC1                 65,536
+MARIOSPI.GB     MARIO'S PICROSS     ROM+MBC1+RAM+BATTERY     262,144
+SUPERML2.GB     MARIOLAND2          ROM+MBC1+RAM+BATTERY     524,288
+MARUS_M.GB      MARU'S MISSION      ROM+MBC1                 131,072
+MASTERKA.GB     MASTER KARATEKA     ROM Only                 32,768
+MCDONALD.GB     MCDONALDLAND        ROM+MBC1                 131,072
+MEGAMAN2.GB     MEGA MAN 2          ROM+MBC1                 262,144
+GBMEGMN2.GB     MEGA MAN 2          ROM+MBC1                 262,144
+GBMEGMN2.GB     MEGA MAN 2          ROM+MBC1                 262,144
+MEGALIT.GB      MEGALIT             ROM+MBC1                 65,536
+MEGAMAN.GB      MEGAMAN             ROM+MBC1                 262,144
+GBMEGMN3.GB     MEGAMAN3            ROM+MBC1                 262,144
+GBMEGMN3.GB     MEGAMAN3            ROM+MBC1                 262,144
+MEGAMAN3.GB     MEGAMAN3            ROM+MBC1                 262,144
+MEGAMAN4.GB     MEGAMAN4            ROM+MBC1                 524,288
+M-FORCE.GB      MERCENARY FORCE     ROM+MBC1                 131,072
+METALJAC.GB     METALJACK           ROM+MBC1                 131,072
+METROID2.GB     METROID2            ROM+MBC1+RAM+BATTERY     262,144
+MICKEY4.GB      MICKEY 4            ROM+MBC1                 131,072
+MICKEY5.GB      MICKEY 5            ROM+MBC1                 131,072
+GBMICKYV.GB     MICKEY MOUSE        ROM+MBC1                 131,072
+GBMICKYV.GB     MICKEY MOUSE        ROM+MBC1                 131,072
+MICKEY.GB       MICKEY MOUSE        ROM+MBC1                 65,536
+MICKEY2.GB      MICKEY MOUSE 2      ROM+MBC1                 131,072
+MICKCHAS.GB     MICKEYS CHASE       ROM+MBC1                 131,072
+MICRMACH.GB     MICRO MACHINES      ROM+MBC1                 524,288
+MICROMA2.GB     MICRO MACHINES 2    ROM+MBC1                 524,288
+MIGRAINA.GB     MIGRAIN ACCLAIM     ROM Only                 32,768
+MIKENEKO.GB     MIKENEKO HOLMES     ROM+MBC1                 131,072
+MILLCENT.GB     MILLI/CENTI/PEDE    ROM+MBC1                 131,072
+MILON.GB        MILON CASTLE        ROM+MBC1                 131,072
+MINR2049.GB     MINER 2049ER        ROM+MBC1                 65,536
+MINE.GB         MINESWEEPER         ROM Only                 32,768
+MINIPUTT.GB     MINI PUTT           ROM+MBC1                 65,536
+MISSLE.GB       MISSILE COMMAND     ROM Only                 32,768
+MICKEYUC.GB     MM ULT CHALLENGE    ROM+MBC1                 262,144
+MOGURADE.GB     MOGURA DE PON!      ROM Only                 32,768
+MOLEMANI.GB     MOGURANYA           ROM+MBC1+RAM+BATTERY     524,288
+MOMOTAR1.GB     MOMOTARO DENGEKI    ROM+MBC1                 262,144
+MOMOTAR2.GB     MOMOTARODENGEKI2    ROM+MBC1                 524,288
+MOMOTETU.GB     MOMOTETU            ROM+MBC2+BATTERY         262,144
+MONOPOLY.GB     MONOPOLY            ROM+MBC1                 131,072
+MONOPJ.GB       MONOPOLY            ROM+MBC1                 262,144
+MONSTERK.GB     MONSTER MAKER J     ROM+MBC2+BATTERY         131,072
+MONSTERL.GB     MONSTER MAKER J2    ROM+MBC1+RAM+BATTERY     262,144
+MONSTERM.GB     MONSTER MAX         ROM+MBC1                 262,144
+MONSTERT.GB     MONSTERTRUCK        ROM+MBC1                 65,536
+MK.GB           MORTAL KOMBAT       ROM+MBC1                 262,144
+MK3.GB          MORTAL KOMBAT 3     ROM+MBC1                 524,288
+MK2.GB          MORTAL KOMBAT II    ROM+MBC1                 262,144
+MOTOCROS.GB     MOTOCROSSMANIACS    ROM Only                 32,768
+MOUSETRA.GB     MOUSE TRAP HOTEL    ROM+MBC1                 65,536
+MR_NUTZ.GB      MR NUTZ             ROM+MBC1                 262,144
+MRDO.GB         MR.DO!              ROM+MBC1                 65,536
+MSPACMAN.GB     MS.PAC-MAN          ROM+MBC1                 65,536
+MUHAMMAD.GB     MUHAMMAD ALI        ROM+MBC1                 131,072
+MYSTERIU.GB     MYSTERIUM           ROM+MBC1                 131,072
+MYSTICG.GB      MYSTIC QUEST        ROM+MBC2+BATTERY         262,144
+MYSTIC.GB       MYSTIC QUEST        ROM+MBC2+BATTERY         262,144
+MYSTICF.GB      MYSTIC QUEST        ROM+MBC2+BATTERY         262,144
+NAILNSCA.GB     NAIL N SCALE        ROM+MBC1                 131,072
+NAMCOCLA.GB     NAMCOCLASSIC        ROM+MBC1                 131,072
+BILLELLI.GB     NASCARFASTTRACKS    ROM+MBC1                 131,072
+NAVYBLUE.GB     NAVY BLUE           ROM+MBC1                 65,536
+NAVYBLUF.GB     NAVY BLUE 90        ROM+MBC1                 131,072
+NAVYSEAL.GB     NAVY SEALS          ROM+MBC1                 131,072
+NBAJAM.GB       NBA JAM             ROM+MBC1                 262,144
+NBAJAMTE.GB     NBA JAM TE          ROM+MBC1                 524,288
+NEKOJARA.GB     NEKOJARA            ROM+MBC2+BATTERY         262,144
+NEMESIS.GB      NEMESIS             ROM+MBC1                 131,072
+NEMESIS2.GB     NEMESIS 2           ROM+MBC1                 262,144
+KOF95.GB        NETTOU KOF 95       ROM+MBC1                 524,288
+SAMURAIN.GB     NETTOU SAMURAI      ROM+MBC1                 524,288
+NETTOUT.GB      NETTOU TOSHINDEN    ROM+MBC1                 524,288
+WORLDH2J.GB     NETTOU WH2JET       ROM+MBC1                 524,288
+NETWH2JT.GB     NETTOU WH2JET       ROM+MBC1                 524,288
+NETTOUG2.GB     NETTOUGAROU2        ROM+MBC1                 524,288
+CHESSM2.GB      NEW CHESSMASTER     ROM+MBC1                 65,536
+NFL_FB.GB       NFL FOOTBALL        ROM Only                 32,768
+NFL96.GB        NFL QB CLUB 96      ROM+MBC1                 262,144
+NHL95.GB        NHL HOCKEY 95       ROM+MBC1                 524,288
+NINJABOY.GB     NINJA BOY           ROM+MBC1                 65,536
+NINJABO2.GB     NINJA BOY 2         ROM+MBC1                 262,144
+NGAIDEN.GB      NINJA GAIDEN        ROM+MBC1                 131,072
+NINJA_G.GB      NINJA GAIDEN        ROM+MBC1                 131,072
+NINJARYU.GB     NINJA RYUKENDEN     ROM+MBC1                 131,072
+NINJASPI.GB     NINJA SPIRIT        ROM+MBC1                 131,072
+NINJA_T.GB      NINJATARO           ROM+MBC2+BATTERY         131,072
+NOBUNAGJ.GB     NOBUNAGA            ROM+MBC1+RAM+BATTERY     131,072
+NOBUNAGA.GB     NOBUNAGA            ROM+MBC1+RAM+BATTERY     131,072
+NORTHSTA.GB     NORTH STAR          ROM+MBC1                 131,072
+OBELIX.GB       OBELIX              ROM+MBC1                 262,144
+OIRAJAJA.GB     OIRA JAJAMARU       ROM+MBC1                 131,072
+OLYMPICG.GB     OLYMPIC GAMES       ROM+MBC1                 524,288
+OLYMPUS.GB      OLYMPUS             ROM+MBC1                 262,144
+ON_TILES.GB     ON THE TILES        ROM+MBC1                 131,072
+ONI.GB          ONI                 ROM+MBC2+BATTERY         131,072
+ONI5.GB         ONI 5               ROM+MBC1+RAM+BATTERY     262,144
+ONIPACH.GB      ONI-PACHINKOTEN     ROM+MBC1                 131,072
+OPERAC.GB       OPERATION C         ROM+MBC1                 131,072
+OTHELLO.GB      OTHELLO             ROM Only                 32,768
+OUTBURST.GB     OUT BURST           ROM+MBC1                 262,144
+OUTOFGAS.GB     OUT OF GAS          ROM+MBC1                 131,072
+PACNTIME.GB     PAC-IN-TIME         ROM+MBC1                 262,144
+PACMAN.GB       PAC-MAN             ROM+MBC1                 65,536
+PAC-MAN.GB      PAC-MAN             ROM+MBC1                 65,536
+PACMANJ.GB      PAC-MAN             ROM+MBC1                 65,536
+PACPANIC.GB     PAC-PANIC           ROM+MBC1                 131,072
+PACHINKO.GB     PACHINKO TIME       ROM+MBC1                 65,536
+PAINTERM.GB     PAINTERMOMOPIE      ROM+MBC1                 65,536
+PALAMEDE.GB     PALAMEDES           ROM Only                 32,768
+PANG.GB         PANG                ROM+MBC1                 131,072
+PAPERBOY.GB     PAPERBOY            ROM+MBC1                 65,536
+PAPUWAKU.GB     PAPUWAKUNN          ROM+MBC1                 131,072
+PARASOL.GB      PARASOL STARS       ROM+MBC1                 131,072
+PARASORU.GB     PARASORU HEMBEI     ROM+MBC1                 65,536
+PARODIUS.GB     PARODIUS            ROM+MBC1                 262,144
+PARODIUJ.GB     PARODIUS DA!        ROM+MBC1                 262,144
+PEETAN.GB       PEETAN              ROM+MBC1                 131,072
+PENGUINB.GB     PENGUIN BOY         ROM+MBC1                 65,536
+PENGUINL.GB     PENGUIN LAND        ROM Only                 32,768
+PENGUINW.GB     PENGUIN WARS        ROM+MBC1                 65,536
+PENGUINK.GB     PENGUINKUNWARSVS    ROM+MBC1                 65,536
+PENTADRA.GB     PENTADRAGON         ROM+MBC1+RAM+BATTERY     262,144
+ORGANIZE.GB     PERSONAL ORGANIZ    ROM+MBC1+RAM+BATTERY     65,536
+PGAEUROP.GB     PGA EURO TOUR       ROM+MBC1                 524,288
+PGATOU96.GB     PGA TOUR 96         ROM+MBC1                 524,288
+PHANTASM.GB     PHANTASM            ROM+MBC1                 262,144
+GBPINBLL.GB     PINBALL             ROM+MBC1                 65,536
+GBPINBLL.GB     PINBALL             ROM+MBC1                 65,536
+PINBALL.GB      PINBALL             ROM+MBC1                 65,536
+PINBALLJ.GB     PINBALL             ROM+MBC1                 65,536
+PINBALLD.GB     PINBALL DELUXE      ROM+MBC1                 262,144
+PINBALLE.GB     PINBALL DREAMS      ROM+MBC1                 131,072
+PINBALLF.GB     PINBALL FANTASIE    ROM+MBC1                 262,144
+PINMANIA.GB     PINBALL MANIA       ROM+MBC1                 262,144
+PINBALLP.GB     PINBALL PARTY       ROM+MBC1                 65,536
+PIPEDREA.GB     PIPE DREAM          ROM Only                 32,768
+PITFIGHT.GB     PIT FIGHTER         ROM+MBC1                 262,144
+PITMAN.GB       PITMAN              ROM Only                 32,768
+POCAHONT.GB     POCAHONTAS          ROM+MBC1                 524,288
+POCKBATL.GB     POCKET BATTLE       ROM+MBC1                 131,072
+POCKSTAD.GB     POCKET STADIUM      ROM+MBC1                 65,536
+POKONYAN.GB     POKONYAN!           ROM+MBC1                 262,144
+POPUP.GB        POP UP              ROM Only                 32,768
+POPEYE.GB       POPEYE              ROM+MBC1                 131,072
+POPEYE2.GB      POPEYE 2            ROM+MBC1                 131,072
+POPEY2.GB       POPEYE 2            ROM+MBC1                 131,072
+POPULOUS.GB     POPULOUS            ROM+MBC1                 131,072
+POWERM.GB       POWER MISSION       ROM+MBC1                 131,072
+POWERMIS.GB     POWER MISSION       ROM+MBC1                 131,072
+POWERRAC.GB     POWER RACER         ROM+MBC1                 65,536
+MIGHTMPR.GB     POWER RANGERS       ROM+MBC1                 262,144
+PREHISTO.GB     PREHISTORIK MAN     ROM+MBC1                 131,072
+PRIMAL_R.GB     PRIMAL RAGE         ROM+MBC1                 262,144
+PRINCE.GB       PRINCE OF PERSIA    ROM+MBC1                 131,072
+PRINCEJ.GB      PRINCE OF PERSIA    ROM+MBC1                 131,072
+PRIPRI.GB       PRIPRI              ROM+MBC1                 65,536
+PROSOCCE.GB     PRO SOCCER          ROM+MBC1                 131,072
+PROBO.GB        PROBOTECTOR         ROM+MBC1                 131,072
+PROBO2.GB       PROBOTECTOR 2       ROM+MBC1                 131,072
+PROWRES.GB      PROWRES             ROM+MBC1                 131,072
+HALWREST.GB     PROWRES             ROM+MBC1                 131,072
+PUROSTAD.GB     PURO STADIUM '91    ROM+MBC2+BATTERY         262,144
+PUYOPUYO.GB     PUYOPUYO            ROM+MBC1                 262,144
+PUZZLBOY.GB     PUZZLE BOY          ROM Only                 32,768
+PUZZLEB2.GB     PUZZLE BOY2         ROM+MBC1                 65,536
+PUZZLROA.GB     PUZZLE ROAD         ROM Only                 32,768
+PUZZNIC.GB      PUZZNIC             ROM+MBC1                 65,536
+PYRAMIDS.GB     PYRAMIDS OF RA      ROM+MBC1                 65,536
+QBERT2J.GB      Q*BERT II           ROM+MBC1                 65,536
+QBERT2.GB       Q*BERT II           ROM+MBC1                 65,536
+QBILLION.GB     QBILLION            ROM Only                 32,768
+QIX.GB          QIX                 ROM+MBC1                 65,536
+QUARTHJ.GB      QUARTH              ROM+MBC1                 65,536
+QUARTH.GB       QUARTH              ROM+MBC1                 65,536
+RACEDAYS.GB     RACE DAYS           ROM+MBC1                 262,144
+RACE_DRI.GB     RACE DRIVIN'        ROM+MBC1                 131,072
+RACINGDA.GB     RACING DAMASHII     ROM+MBC1                 65,536
+RADARMJ.GB      RADARMISSION        ROM+MBC1                 131,072
+RADARM.GB       RADARMISSION        ROM+MBC1                 131,072
+RAGINGFI.GB     RAGING FIGHTER      ROM+MBC1                 262,144
+RAIJINOU.GB     RAIJINOU            ROM+MBC1                 65,536
+RAMPART.GB      RAMPART_GB          ROM+MBC1                 131,072
+RANMA.GB        RANMA 1/2           ROM+MBC1                 65,536
+RANMA2.GB       RANMA1/2 PART2      ROM+MBC1                 262,144
+RANMAK.GB       RANMA1/2KAKUGEKI    ROM+MBC1                 262,144
+RAYTHUND.GB     RAY THUNDER         ROM+MBC1                 131,072
+REALGHOS.GB     REAL GHOSTBUSTER    ROM+MBC1                 131,072
+REDARREM.GB     RED ARREMER         ROM+MBC1                 131,072
+RED_OCT.GB      RED OCTOBER         ROM+MBC1                 131,072
+RED_OCTJ.GB     RED OCTOBER         ROM+MBC1                 131,072
+RIDDICK.GB      RIDDICK BOWE        ROM+MBC1                 131,072
+RINGRAGE.GB     RING RAGE           ROM+MBC1                 131,072
+ROADRASH.GB     ROAD RASH           ROM+MBC1                 131,072
+ROBINHOO.GB     ROBIN HOOD          ROM+MBC1                 262,144
+ROBOCOPJ.GB     ROBOCOP             ROM+MBC1                 131,072
+ROBOCOP.GB      ROBOCOP             ROM+MBC1                 131,072
+ROBOCOP2.GB     ROBOCOP2            ROM+MBC1                 131,072
+ROCKNMON.GB     ROCK'N! MONSTER!    ROM+MBC1                 524,288
+ROCKMAN.GB      ROCKMAN WORLD       ROM+MBC1                 262,144
+ROCKMAN2.GB     ROCKMAN WORLD2      ROM+MBC1                 262,144
+ROCKMAN3.GB     ROCKMANWORLD3       ROM+MBC1                 262,144
+ROCKMAN4.GB     ROCKMANWORLD4       ROM+MBC1                 524,288
+ROCKMAN5.GB     ROCKMANWORLD5       ROM+MBC1                 524,288
+ROCKY&BU.GB     ROCKY BULLWINKLE    ROM+MBC1                 131,072
+RODLAND.GB      RODLAND             ROM+MBC1                 65,536
+RODLANDJ.GB     RODLAND             ROM+MBC1                 65,536
+ROGER_R.GB      ROGER RABBIT        ROM+MBC1                 131,072
+ROLANSC2.GB     ROLAN'S CURSE 2     ROM+MBC2+BATTERY         131,072
+ROLANSC.GB      ROLANS CURSE        ROM+MBC1                 65,536
+RTYPE.GB        RTYPE               ROM+MBC1                 131,072
+RTYPEJ.GB       RTYPE               ROM+MBC1                 131,072
+RTYPE2J.GB      RTYPE 2             ROM+MBC1                 131,072
+RTYPE2.GB       RTYPE 2             ROM+MBC1                 131,072
+RUBBLES2.GB     RUBBLE SAVER 2      ROM+MBC1                 65,536
+RUBBLESA.GB     RUBBLESA            ROM+MBC1                 131,072
+ULTIMA.GB       RUNES OF VIRTUE     ROM+MBC2+BATTERY         131,072
+ULTIMA2.GB      RUNES OF VIRTUE2    ROM+MBC2+BATTERY         262,144
+ROBOCVST.GB     RVT                 ROM+MBC1                 131,072
+BASKETSS.GB     S S BASKET BALL2    ROM+MBC1                 131,072
+FFL.GB          SAGA                ROM+MBC2+BATTERY         131,072
+FFLJ.GB         SAGA                ROM+MBC2+BATTERY         262,144
+FFL2J.GB        SAGA2               ROM+MBC1+RAM+BATTERY     262,144
+FFL2.GB         SAGA2               ROM+MBC1+RAM+BATTERY     262,144
+FFL3.GB         SAGA3               ROM+MBC1+RAM+BATTERY     262,144
+FFL3J.GB        SAGA3               ROM+MBC1+RAM+BATTERY     262,144
+SAGAIA.GB       SAGAIA              ROM+MBC1                 131,072
+SAMURAIS.GB     SAMURAI SHODOWN     ROM+MBC1                 524,288
+SANGOKUS.GB     SANGOKUSHI          ROM+MBC1+RAM+BATTERY     262,144
+SANRIOCA.GB     SANRIO CARNIVAL     ROM+MBC1                 65,536
+MONSTERW.GB     Saved game          N/A                      131,072
+SCOTLAND.GB     SCOTLANDYARD        ROM+MBC1                 131,072
+HIRYUNO.GB      SD HIRYUNOKEN       ROM+MBC1                 524,288
+LUPIN3RD.GB     SD LUPIN THE 3RD    ROM+MBC1                 65,536
+SDSEINTP.GB     SD SEINTPARADA01    ROM+MBC2+BATTERY         262,144
+SDGUNDAM.GB     SDGUNDAMKUNITORI    ROM+MBC1                 131,072
+SDSENGOK.GB     SDSENGOKUDEN2       ROM+MBC2+BATTERY         262,144
+SDSENGO3.GB     SDSENGOKUDEN3       ROM+MBC2+BATTERY         262,144
+VOLLEYBS.GB     SEASIDE VOLLEY      ROM+MBC1                 65,536
+MYSTICJJ.GB     SEIKEN DENSETSU     ROM+MBC2+BATTERY         262,144
+MYSTICJ.GB      SEIKEN DENSETSU     ROM+MBC2+BATTERY         262,144
+SELECTIO.GB     SELECTION           ROM+MBC1                 131,072
+SENGOKUN.GB     SENGOKUNINJAKUN     ROM+MBC2+BATTERY         262,144
+SENSIBLE.GB     SENSIBLE SOCCER     ROM+MBC1                 131,072
+SERPENT.GB      SERPENT             ROM Only                 32,768
+SHADOWWA.GB     SHADOW WARRIORS     ROM+MBC1                 131,072
+SHANGHAI.GB     SHANGHAI            ROM Only                 32,768
+SHANGHAJ.GB     SHANGHAI            ROM Only                 32,768
+SHIKINJY.GB     SHIKINJYO           ROM+MBC1                 65,536
+SHIPPODE.GB     SHIPPO DE BUN       ROM+MBC1                 65,536
+SHISENSO.GB     SHISENSYO           ROM Only                 32,768
+SHOOT.GB        SHOOT               ROM+MBC1                 262,144
+SHOOT.GB        SHOOT               ROM+MBC1                 262,144
+SHOUGI.GB       SHOUGI              ROM+MBC1                 131,072
+SPORTSIK.GB     SI KIDS             ROM+MBC1                 262,144
+SIDE_POC.GB     SIDE POCKET         ROM+MBC1                 65,536
+SIMPSON.GB      SIMPSON ESCAPE      ROM+MBC1                 131,072
+SIMPSON2.GB     SIMPSONS 2          ROM+MBC1                 131,072
+SIMPSON3.GB     SIMPSONS3           ROM+MBC1                 131,072
+SKATE_OR.GB     SKATE OR DIE BAD    ROM+MBC1                 131,072
+SMURF.GB        SMURFS              ROM+MBC1                 131,072
+SNEAKY_S.GB     SNEAKY SNAKES       ROM+MBC1                 131,072
+SNOOPYJ.GB      SNOOPY              ROM+MBC1                 65,536
+SNOOPY.GB       SNOOPY              ROM+MBC1                 65,536
+SNOWBRO.GB      SNOW BROS.JR        ROM+MBC1                 131,072
+SOCCER.GB       SOCCER              ROM+MBC1                 131,072
+SOCCERBO.GB     SOCCER BOY          ROM+MBC1                 65,536
+SOCCERMA.GB     SOCCER MANIA        ROM+MBC1                 65,536
+SOLARSTR.GB     SOLARSTRIKER        ROM+MBC1                 65,536
+SOLDAM.GB       SOLDAM GB           ROM+MBC1                 131,072
+SOLI_FUN.GB     SOLITAIRE FUNPAK    ROM+MBC1                 131,072
+SOLOMON.GB      SOLOMON'S CLUB      ROM+MBC1                 65,536
+SOLOMONS.GB     SOLOMON'S CLUB      ROM+MBC1                 65,536
+SOUKOBA.GB      SOUKOBAN            ROM Only                 32,768
+SOUKOBA2.GB     SOUKOBAN2           ROM Only                 32,768
+SPACEINV.GB     SPACE INVADERS      ROM Only                 32,768
+SPACEIN2.GB     SPACE INVADERS      ROM+MBC1                 524,288
+SPANKYS.GB      SPANKY'S QUEST      ROM+MBC1                 65,536
+KUNGFU.GB       SPARTAN X           ROM+MBC1                 65,536
+SPARTANX.GB     SPARTAN X           ROM+MBC1                 65,536
+SPEEDBA2.GB     SPEED BALL 2        ROM+MBC1                 131,072
+SPEEDYJ.GB      SPEEDY GONZALES     ROM+MBC1                 262,144
+SPEEDY.GB       SPEEDY GONZALES     ROM+MBC1                 262,144
+SPELLCHK.GB     SPELL CHECKER       ROM+MBC1                 131,072
+SPIDERMA.GB     SPIDER-MAN          ROM+MBC1                 65,536
+SPIDERM2.GB     SPIDER-MAN 2        ROM+MBC1                 131,072
+SPIDERM3.GB     SPIDER-MAN 3 DMG    ROM+MBC1                 131,072
+SPIDERMX.GB     SPIDERMAN XMEN      ROM+MBC1                 131,072
+SPIROU.GB       SPIROU              ROM+MBC1                 262,144
+SPOTJ.GB        SPOT                ROM Only                 32,768
+SPOT.GB         SPOT                ROM Only                 32,768
+SPOTCOOL.GB     SPOT COOL ADV       ROM+MBC1                 131,072
+SPUDSADV.GB     SPUDS ADVENTURE     ROM+MBC1                 65,536
+SEAQUEST.GB     SQ DSV DMG          ROM+MBC1                 262,144
+SQUARE_D.GB     SQUARE DEAL         ROM+MBC1                 65,536
+STARWARR.GB     SRJ DMG             ROM+MBC1                 524,288
+STARSAVE.GB     STAR SAVER          ROM+MBC1                 131,072
+KIRBYSS.GB      STAR STACKER        ROM+MBC1+RAM+BATTERY     262,144
+STARTNG.GB      STAR TREK           ROM+MBC1                 131,072
+STARTREK.GB     STAR TREK           ROM+MBC1                 131,072
+STARWARS.GB     STAR WARS           ROM+MBC1                 131,072
+STARGATE.GB     STARGATE            ROM+MBC1                 131,072
+STREETF2.GB     STREET FIGHTER 2    ROM+MBC1                 524,288
+SUMOFIGH.GB     SUMO FIGHTER        ROM+MBC1                 131,072
+SUMOUFIG.GB     SUMOU FIGHTER       ROM+MBC1                 131,072
+BEEDAMAN.GB     SUPER B DAMAN       ROM+MBC1+RAM+BATTERY     524,288
+BLUESBRO.GB     SUPER BLUES         ROM+MBC1                 131,072
+SUPERBL.GB      SUPER BOMBLISS      ROM+MBC1                 131,072
+SUPERCH2.GB     SUPER CHINESE 2     ROM+MBC1                 262,144
+SUPERHUN.GB     SUPER HUNCHBACK     ROM+MBC1                 131,072
+SUPERHUJ.GB     SUPER HUNCHBACK     ROM+MBC1                 131,072
+SUPERKIC.GB     SUPER KICK OFF      ROM+MBC1                 131,072
+GBMARIO.GB      SUPER MARIOLAND     ROM+MBC1                 65,536
+SUPERMV0.GB     SUPER MARIOLAND     ROM+MBC1                 65,536
+GBMARIO.GB      SUPER MARIOLAND     ROM+MBC1                 65,536
+SUPERMV1.GB     SUPER MARIOLAND     ROM+MBC1                 65,536
+SUPEROFF.GB     SUPER OFF ROAD      ROM+MBC1                 131,072
+SUPERRCP.GB     SUPER RC PRO-AM     ROM+MBC1                 131,072
+SUPERRW.GB      SUPER ROBOT WAR     ROM+MBC2+BATTERY         262,144
+SUPERCHL.GB     SUPERCHINESELAND    ROM+MBC1                 65,536
+SUPERML3.GB     SUPERMARIOLAND3     ROM+MBC1+RAM+BATTERY     524,288
+SUPERRW2.GB     SUPERROBOTWAR 2G    ROM+MBC1+RAM+BATTERY     524,288
+WWFSS2J.GB      SUPERWWF            ROM+MBC1                 131,072
+WWFSS2.GB       SUPERWWF            ROM+MBC1                 131,072
+SWAMP.GB        SWAMP THING         ROM+MBC1                 131,072
+RENJU.GB        TAIKYOKU RENJU      ROM+MBC1                 65,536
+TAILGATO.GB     TAIL GATOR          ROM+MBC1                 65,536
+TALESPIN.GB     TALE SPIN           ROM+MBC1                 131,072
+TARZAN.GB       TARZAN              ROM+MBC1                 131,072
+TASMANIA.GB     TASMANIA STORY      ROM Only                 32,768
+TASMANIS.GB     TASMANIA STORY      ROM Only                 32,768
+TAZMANIA.GB     TAZ-MANIA           ROM+MBC1                 262,144
+TECMO_BO.GB     TECMO BOWL          ROM+MBC1                 262,144
+TEKKYUFI.GB     TEKKYUFIGHT!        ROM+MBC1                 131,072
+TENCHI.GB       TENCHIWOKURAU       ROM+MBC2+BATTERY         262,144
+TENJINK2.GB     TENJIN KAISEN 2     ROM+MBC1                 262,144
+TENJINK.GB      TENJINKAISEN        ROM+MBC1                 131,072
+TENNIS.GB       TENNIS              ROM Only                 32,768
+TENSAIBA.GB     TENSAIBAKABON       ROM+MBC1                 131,072
+TERMIN2.GB      TERMINATOR 2        ROM+MBC1                 131,072
+TERMIN2T.GB     TERMINATOR 2 TAG    ROM+MBC1                 131,072
+TESSERAE.GB     TESSERAE            ROM Only                 32,768
+TETRIS.GB       TETRIS              ROM Only                 32,768
+TATTACK.GB      TETRIS ATTACK       ROM+MBC1                 524,288
+TBLAST.GB       TETRIS BLAST        ROM+MBC1                 131,072
+TETRISF.GB      TETRIS FLASH        ROM+MBC1                 131,072
+TETRISP.GB      TETRIS PLUS         ROM+MBC1+RAM+BATTERY     262,144
+TETRIS2.GB      TETRIS2             ROM+MBC1                 131,072
+CHESSM.GB       THE CHESSMASTER     ROM+MBC1                 65,536
+FIDGETTS.GB     THE FIDGETTS        ROM+MBC1                 262,144
+GBFIDGET.GB     THE FIDGETTS        ROM+MBC1                 262,144
+FLASH.GB        THE FLASH           ROM+MBC1                 131,072
+FLINT.GB        THE FLINTSTONES     ROM+MBC1                 262,144
+GETAWAY1.GB     THE GETAWAY         ROM+MBC1                 262,144
+GETAWAY.GB      THE GETAWAY         ROM+MBC1                 262,144
+HUMANS.GB       THE HUMANS          ROM+MBC1                 262,144
+JETSONS.GB      THE JETSONS         ROM+MBC1                 131,072
+LIONKING.GB     THE LION KING       ROM+MBC1                 524,288
+PAGEMAST.GB     THE PAGEMASTER      ROM+MBC1                 262,144
+PUNISHER.GB     THE PUNISHER        ROM+MBC1                 131,072
+SWORD.GB        THE SWORD OFHOPE    ROM+MBC1                 131,072
+SWORDG.GB       THE SWORD OFHOPE    ROM+MBC1                 131,072
+HARMONY.GB      THEGAMEOFHARMONY    ROM Only                 32,768
+THUNDERB.GB     THUNDERBIRDS        ROM+MBC1                 131,072
+TINTIN.GB       TINTIN AU TIBET     ROM+MBC1                 262,144
+TINYTOO2.GB     TINY TOON 2         ROM+MBC1                 131,072
+TINYTOO3.GB     TINY TOON 3         ROM+MBC1                 131,072
+TINYTOOJ.GB     TINY TOON ADVENT    ROM+MBC1                 131,072
+TINYTOON.GB     TINY TOON ADVENT    ROM+MBC1                 131,072
+TINYWACK.GB     TINY TOON WACKY     ROM+MBC1                 131,072
+TITUSFOX.GB     TITUS THE FOX       ROM+MBC1                 262,144
+TMHT2.GB        TMHT BACK FROM S    ROM+MBC1                 262,144
+TMNT.GB         TMNT                ROM+MBC1                 131,072
+TMNT2.GB        TMNT 2              ROM+MBC1                 262,144
+TMNTBF.GB       TMNT BACK FROM S    ROM+MBC1                 262,144
+TMNTFC.GB       TMNT FOOT CLAN      ROM+MBC1                 131,072
+TMNT3J.GB       TMNT3               ROM+MBC1                 131,072
+TMNT3.GB        TMNT3               ROM+MBC1                 131,072
+TOM&JER2.GB     TOM AND JERRY       ROM+MBC1                 131,072
+TOM&J.GB        TOM AND JERRY       ROM+MBC1                 131,072
+TOM&JFA.GB      TOM AND JERRY       ROM+MBC1                 131,072
+TOPGUN2.GB      TOPGUN 2            ROM+MBC1                 131,072
+TENNISTR.GB     TOPRANKTENNIS       ROM+MBC2+BATTERY         262,144
+TORPEDOR.GB     TORPEDO RANGE       ROM+MBC2+BATTERY         262,144
+TOTALCAR.GB     TOTAL CARNAGE       ROM+MBC1                 131,072
+TOTSUGEK.GB     TOTSUGEKI TANK      ROM+MBC1                 131,072
+TOUR_DE.GB      TOUR DE THRASH      ROM+MBC1                 131,072
+TOXICCRU.GB     TOXIC CRUSADERS     ROM+MBC1                 131,072
+TOYSTORE.GB     TOY STORY           ROM+MBC1                 524,288
+TRACKME.GB      TRACK MEET          ROM+MBC1                 131,072
+TRACKMEE.GB     TRACK MEET          ROM+MBC1                 131,072
+TRACKMEA.GB     TRACK MEET HIRO     ROM+MBC1                 131,072
+TRACK&FI.GB     TRACK&FIELD         ROM+MBC1                 131,072
+TRAPPERS.GB     TRAPPERS TENGOKU    ROM+MBC1                 131,072
+TRAX.GB         TRAX                ROM+MBC1                 131,072
+TRIPWORL.GB     TRIP WORLD          ROM+MBC1                 262,144
+C_ROCK.GB       TRSI RULEZ          ROM+MBC1                 131,072
+TRUELIES.GB     TRUE LIES           ROM+MBC1                 262,144
+TSUMEGO1.GB     TSUMEGO 01          ROM+MBC1                 65,536
+TUBASAVS.GB     TUBASA VS           ROM+MBC1                 262,144
+TUMBLE~1.GB     TUMBLE POP          ROM+MBC1                 131,072
+TUMBLPOP.GB     TUMBLE POP          ROM+MBC1                 131,072
+TURNANDB.GB     TURN AND BURN       ROM+MBC1                 131,072
+TURRICAN.GB     TURRICAN            ROM+MBC1                 131,072
+TWIN.GB         TWIN                ROM+MBC1                 131,072
+TWINBEE.GB      TWIN-BEE DA!!       ROM+MBC1                 131,072
+GOLFU.GB        ULTRA GOLF          ROM+MBC2+BATTERY         131,072
+ULTRAMAN.GB     ULTRAMAN            ROM+MBC1                 131,072
+ULTRAMAB.GB     ULTRAMAN BALL       ROM+MBC1                 131,072
+ULTRAMNG.GB     ULTRAMAN GEKIDEN    ROM+MBC1                 262,144
+UNDERCOV.GB     UNDER COVER COPS    ROM+MBC1                 262,144
+UNIVERSA.GB     UNIVERSALSOLDIER    ROM+MBC1                 262,144
+UNO2-SW.GB      UNO2SMALL WORLD     ROM+MBC1                 131,072
+FISHDUDJ.GB     UOOZU               ROM+MBC1                 65,536
+URUSEIYA.GB     URUSEIYATSURA       ROM+MBC2+BATTERY         262,144
+VALATION.GB     VALATIONS           ROM+MBC1                 65,536
+VATTLE_G.GB     VATTLE GIUCE        ROM+MBC1                 131,072
+VEEDIOTS.GB     VEEDIOTS            ROM+MBC1                 262,144
+VEGAS.GB        VEGAS STAKES        ROM+MBC1+RAM+BATTERY     524,288
+VEGAS.GB        VEGAS STAKES        ROM+MBC1+RAM+BATTERY     524,288
+VELIOUS2.GB     VELIOUS 2           ROM+MBC2+BATTERY         262,144
+VSHERO.GB       VERSUS HERO         ROM+MBC1                 131,072
+VIRTUALW.GB     VIRTUAL WARS        ROM+MBC1                 131,072
+VITAMINA.GB     VITAMINA KINGDOM    ROM+MBC1+RAM+BATTERY     262,144
+VOLLEY_F.GB     VOLLEY FIRE         ROM Only                 32,768
+VSBATTLE.GB     VS BATTLER          ROM+MBC1                 65,536
+WORLDCIR.GB     W CIRCUIT SERIES    ROM+MBC1                 131,072
+WARIOBLA.GB     WARIO BLAST         ROM+MBC1                 262,144
+WARRIOR.GB      WARRIOR             ROM+MBC1                 65,536
+WATER_WO.GB     WATER WORLD         ROM+MBC1                 262,144
+WAVERACE.GB     WAVERACE            ROM+MBC2+BATTERY         131,072
+WAYNEWLD.GB     WAYNE'S WORLD       ROM+MBC1                 262,144
+WEREBACK.GB     WEREBACK BC         ROM+MBC1                 131,072
+WORLDH2.GB      WH2JET              ROM+MBC1                 524,288
+WHEEL_OF.GB     WHEEL OF FORTUNE    ROM+MBC1                 131,072
+WILDSNAK.GB     WILDSNAKE           ROM+MBC1                 65,536
+WINNINGG.GB     WINNING GOAL        ROM+MBC1+RAM+BATTERY     131,072
+WINTER_G.GB     WINTER GOLD         ROM+MBC1                 131,072
+WINTER_O.GB     WINTER OLYMPICS     ROM+MBC1                 131,072
+WIZARDRY.GB     WIZARDRY SOQ        ROM+MBC1+RAM+BATTERY     262,144
+WIZWARF.GB      WIZARDS WARRIORS    ROM+MBC1                 65,536
+WORDTRIS.GB     WORDTRIS            ROM+MBC1                 131,072
+WORDZAP.GB      WORDZAP             ROM+MBC1                 65,536
+WORLDB.GB       WORLD BOWLING       ROM Only                 32,768
+WORLDBJ.GB      WORLD BOWLING       ROM Only                 32,768
+WORLDCUP.GB     WORLD CUP           ROM+MBC1                 131,072
+WORLDC1.GB      WORLD CUP           ROM+MBC1                 131,072
+WLDCUP94.GB     WORLD CUP USA 94    ROM+MBC1+RAM+BATTERY     262,144
+WORLDCUU.GB     WORLD CUP USA 94    ROM+MBC1+RAM+BATTERY     262,144
+WORLDICE.GB     WORLD ICE HOKKEY    ROM+MBC1                 131,072
+WORMS.GB        WORMS               ROM+MBC1                 262,144
+WWFRAW.GB       WWF RAW             ROM+MBC1                 262,144
+WWFSSJ.GB       WWF SUPERSTARS      ROM+MBC1                 131,072
+WWFSS.GB        WWF SUPERSTARS      ROM+MBC1                 131,072
+WWFKORJ.GB      WWFKOR              ROM+MBC1                 131,072
+WWFKOR.GB       WWFKOR              ROM+MBC1                 131,072
+XEKKUSU.GB      X                   ROM+MBC2+BATTERY         262,144
+XENON2J.GB      XENON 2             ROM+MBC1                 131,072
+XENON2.GB       XENON 2             ROM+MBC1                 131,072
+XERD2.GB        XERD!!              ROM+MBC1+RAM+BATTERY     524,288
+YAIBA.GB        YAIBA               ROM+MBC1                 262,144
+YAKUMAN.GB      YAKUMAN             ROM Only                 32,768
+YAMATO.GB       YAMATO              ROM+MBC1                 262,144
+YOGIBEAR.GB     YOGIS GOLDRUSH      ROM+MBC1                 131,072
+Y_COOKIE.GB     YOSHI'S COOKIE      ROM+MBC1                 131,072
+YOSHI.GB        YOSSY NO TAMAGO     ROM+MBC1                 65,536
+MARIO&YJ.GB     YOSSY NO TAMAGO     ROM+MBC1                 65,536
+YUUYUU1.GB      YUUYUU-1            ROM+MBC1                 262,144
+YUUYUU2.GB      YUUYUU-2            ROM+MBC1                 262,144
+YUUYUU3.GB      YUUYUU-3            ROM+MBC1                 262,144
+YUUYUU4.GB      YUUYUU-4            ROM+MBC1                 262,144
+ZELDAF.GB       ZELDA               ROM+MBC1+RAM+BATTERY     524,288
+ZELDAJ.GB       ZELDA               ROM+MBC1+RAM+BATTERY     524,288
+ZELDA0.GB       ZELDA               ROM+MBC1+RAM+BATTERY     524,288
+ZELDA1.GB       ZELDA               ROM+MBC1+RAM+BATTERY     524,288
+ZEN.GB          ZEN                 ROM+MBC1                 131,072
+ZEOTH.GB        ZEOTH               ROM+MBC1                 131,072
+ZOIDS.GB        ZOIDS J1            ROM+MBC1                 65,536
+ZOOL.GB         ZOOL                ROM+MBC1                 131,072
+ZOOP.GB         ZOOP                ROM+MBC1                 65,536

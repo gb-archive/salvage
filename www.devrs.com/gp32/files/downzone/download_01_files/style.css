@@ -1,0 +1,54 @@
+INPUT {
+	BACKGROUND-COLOR: white; BORDER-BOTTOM: #999999 1px solid; BORDER-LEFT: #999999 1px solid; BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; COLOR: #555555; FONT-FAMILY: ±¼¸², verdana, arial; FONT-SIZE: 9pt
+}
+INPUT.chk {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #555555; FONT-FAMILY: ±¼¸², verdana, arial; FONT-SIZE: 9pt
+}
+INPUT.btn {
+	BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #555555; FONT-SIZE: 9pt
+}
+INPUT.chk1 {
+	BACKGROUND-COLOR: #f0f0f0; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: black; FONT-FAMILY: ±¼¸², verdana, arial; FONT-SIZE: 9pt
+}
+SELECT {
+	BACKGROUND-COLOR: #ffffff; COLOR: #555555; FONT-SIZE: 9pt
+}
+TEXTAREA {
+	BACKGROUND-COLOR: #ffffff; BORDER-BOTTOM: #999999 1px solid; BORDER-LEFT: #999999 1px solid; BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; COLOR: #555555; FONT-FAMILY: ±¼¸², verdana, arial; FONT-SIZE: 9pt
+}
+BODY {
+	BACKGROUND-COLOR: #cccccc; COLOR: #555555; FONT-FAMILY: ±¼¸²,verdana; FONT-SIZE: 9pt; LINE-HEIGHT: 15px; MARGIN-TOP: 9px
+}
+TD {
+	FONT-FAMILY: ±¼¸²,verdana; FONT-SIZE: 9pt; LINE-HEIGHT: 15px
+}
+A:link {
+	COLOR: #555555; FONT-FAMILY: ±¼¸²,verdana,arial; FONT-SIZE: 9pt; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #555555; FONT-FAMILY: ±¼¸²,verdana,arial; FONT-SIZE: 9pt; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: green; FONT-FAMILY: ±¼¸²,verdana,arial; FONT-SIZE: 9pt; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #333333; FONT-FAMILY: ±¼¸²,verdana,arial; FONT-SIZE: 9pt; TEXT-DECORATION: none
+}
+FONT.goods1 {
+	COLOR: olive; FONT-FAMILY: ±¼¸²,verdana; FONT-SIZE: 14pt; FONT-WEIGHT: bold; LINE-HEIGHT: 15px
+}
+.GPM {
+	COLOR: #009966; FONT-WEIGHT: bold
+}
+.GPP {
+	COLOR: #6495ed; FONT-WEIGHT: bold
+}
+.letter {
+	COLOR: #ff6600; FONT-WEIGHT: bold
+}
+.price {
+	COLOR: #d2691e; FONT-WEIGHT: bold
+}
+.orange {
+	COLOR: #ff4500
+}

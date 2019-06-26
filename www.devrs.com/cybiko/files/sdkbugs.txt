@@ -1,0 +1,78 @@
+SDK Bugs v0.1225
+----------------
+
+Cybiko C Compiler v1.0.18 EOF Bug
+---------------------------------
+
+  FileInput_get_flags doesn't appear to work for locating
+ the end of a file. Use Input_get_flags instead.
+
+   Bad Code
+   --------
+
+ value = FileInput_get_flags(&input_file) & FLAG_EOF;
+
+   Good Code
+   ---------
+
+ value = Input_get_flags(&input_file) & FLAG_EOF;
+
+
+
+Cybiko C Compiler v1.0.18 Math Bug
+----------------------------------
+
+   Bad Code
+   --------
+
+ char i;
+ i = -i;
+
+   Good Code
+   ---------
+
+ char i;
+ i = 0-i;
+
+
+
+Cybiko C Compiler v1.0.18 Array Bug
+-----------------------------------
+
+  When using arrays, trying to do math in the first parameter
+will produce bad code but there is no compiler warning.
+
+   Bad Code
+   --------
+
+ int x,y,i;
+ i = Test[y/4][x/4];
+
+   Good Code
+   ---------
+
+ int x,y,i,ox,oy;
+ ox = x/4;
+ oy = y/4;
+ i = Test[oy][ox];
+
+   Good Code
+   ---------
+
+ int x,y,i,oy;
+ oy = y/4;
+ i = Test[oy][x/4];
+
+
+
+Cybiko C Compiler v1.0.18 draw_lib Bug
+--------------------------------------
+
+ This is the function to use to draw "sprites" to the screen.
+
+ If you wish to use the 'BM_FLIP_X' and 'BM_FLIP_Y' attributes
+(for horizontal &/or vertical flip of your graphic) then make sure
+that these graphics are in their own file (in the filer.list file).
+and that no other extremely large graphic is in the same file.
+A large graphic in the same file will cause the FLIPs to not work.
+The result will be nothing drawn.

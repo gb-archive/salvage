@@ -1,0 +1,421 @@
+<html>
+
+<!-- Mirrored from www.devrs.com/gba/files/mbv2faqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:57:55 GMT -->
+<head>
+<title>MBV2 FAQs</title>
+</head>
+<body bgcolor="#e0e0e0">
+<font face="Arial, Helvetica, sans-serif">
+<H3>MBV2 FAQs - Last Update 2003-July-15</H3>
+<DL>
+<DT><BR><B>General FAQs</B><BR><BR></DT>
+<DD><A HREF="#Describe"> What does the MBV2 cable do?</A></DD>
+<DD><A HREF="#Available"> Where are they available?</A></DD>
+<DD><A HREF="#MBV3"> I have seen an MBV3 cable. Is that the latest version?</A></DD>
+<DD><A HREF="#PInfo"> Can I get info on the protocol used by the cable to talk to the GBA?</A></DD>
+<DD><A HREF="#MvsD"> I want to program flash carts. Should I get an MBV2 or a dedicated cart programmer?</A></DD>
+<DD><A HREF="#FlashSupport"> What type of flash carts does the MBV2 support?</A></DD>
+<DD><A HREF="#OtherHW"> Is any other hardware needed?</A></DD>
+<DD><A HREF="#Photos"> Are there any photos of it?</A></DD>
+<DD><A HREF="#Used"> How is the cable actually used?</A></DD>
+<DD><A HREF="#9pin"> What is the smaller 9 pin connector on the MBV2 used for?</A></DD>
+<DD><A HREF="#Link2"> Is there any convenient way to use the MBV2 and a multiplayer link cable together?</A></DD>
+<DD><A HREF="#CableFirm"> What cable firmware is the latest?</A></DD>
+<DD><A HREF="#Diff"> How does downloaded code differ from code that might be in a cart?</A></DD>
+<DD><A HREF="#RMBDiff"> Is there any way to distinguish between a file compiled as a ROM vs MultiBoot?</A></DD>
+<DD><A HREF="#Both"> Is there any way to compile a file so that it will work on a flash cart / emulator and also MultiBoot?</A></DD>
+<DD><A HREF="#PCSoft"> Where do I get the the PC software?</A></DD>
+<DD><A HREF="#PCFeatures"> What features are introduced with each version of PC software?</A></DD>
+<DD><A HREF="#MBDemos"> What demos are available to test?</A></DD>
+<DD><A HREF="#Opt3"> How do I display a photo on the GBA screen?</A></DD>
+<DD><A HREF="#OS"> What operating systems are supported by the MBV2 software?</A></DD>
+<DD><A HREF="#WinXP"> How do I get it to work on Win 2000 or Win XP?</A></DD>
+<DD><A HREF="#ProtIO"> Any other methods for Win 2000?</A></DD>
+<DD><A HREF="#Features"> Does this cable have other features besides code transfer?</A></DD>
+<DD><A HREF="#UARTMode"> Does the MBV2 support GBA UART comms mode?</A></DD>
+<DD><A HREF="#EnterUMode"> How do you tell the MBV2 to enter GBA UART comms mode?</A></DD>
+<DD><A HREF="#SwitchModes"> I want to download a multiboot image and then switch over to UART mode. How?</A></DD>
+<DD><A HREF="#MandFDev"> I already have a GBA flash cart. Can I use a MBV2 along with it for debugging?</A></DD>
+<DD><A HREF="#ONC"> How do I program my official Nintendo cart with the MBV2?</A></DD>
+<DD><A HREF="#NFMods"> Can official Nintendo flash carts be used "as is" with it?</A></DD>
+<DD><A HREF="#NOAFProc"> How do I program my Flash Advance or *modified* official Nintendo flash cart?</A></DD>
+<DD><A HREF="#ExactFA"> What exact types of flash carts can be programmed with the MBV2?</A></DD>
+<DD><A HREF="#GBDev"> Can I program GB/GBC flash carts or use the MBV2 for GB/GBC software development?</A></DD>
+<DD><A HREF="#XferRate"> What is the transfer rate from PC to GBA?</A></DD>
+<DD><A HREF="#Reset"> Do you have to power off the GBA each time you test new code?</A></DD>
+<DD><A HREF="#CartBackup"> Is there any way to copy cart backup memory to or from a PC?</A></DD>
+<DD><A HREF="#CartPart"> Is there any way to reprogram part of a flash cart instead of the whole thing?</A></DD>
+<DD><A HREF="#ErrorNHF"> I followed the directions, but I get "Error - No hardware found.." Any ideas?</A></DD>
+</DL>
+<DL>
+<HR>
+<DT><A NAME="Describe"><B> What does the MBV2 cable do?</B></A><BR><BR></DT>
+<DD> The MBV2 (MultiBoot Version 2) is a cable that connects to a</DD>
+PC parallel port and to the link port on the GameBoy Advance</DD>
+itself. It allows you to test small GBA programs (256K bytes or less), that</DD>
+you have created yourself, on real GBA hardware, or you can use it</DD>
+to program flash carts (only GBA flash carts, no GB/GBC flash carts).</DD>
+It takes advantage of the fact that each GameBoy Advance has a</DD>
+built-in boot algorithm</DD>
+for loading code over the link port into external WRAM (256k bytes)</DD>
+and then executing this code. (External WRAM is actually inside of the</DD>
+GBA itself.) As such, no cart is required to be installed in the GBA to</DD>
+use this cable.<BR><BR></DD>
+<DT><A NAME="Available"><B> Where are they available?</B></A><BR><BR></DT>
+<DD> You can get them from <a href="http://www.lik-sang.com/" target=_blank>http://www.lik-sang.com</a> . Go to their site and</DD>
+do a search on the keyword MBV2. There is no other source for the MBV2.</DD>
+Other devices that claim to be 100% compatible are not.<BR><BR></DD>
+<DT><A NAME="MBV3"><B> I have seen an MBV3 cable. Is that the latest version?</B></A><BR><BR></DT>
+<DD> That appears to be a clone of the MBV2. One web site that distributes</DD>
+this cable claims that it is "compatible with version 2" and that it</DD>
+"supports GBA UART comms mode". However, both of these statements</DD>
+appear to be wrong because there appears to be no DB9 serial connector</DD>
+on this device. It appears (though it has not been verified) that</DD>
+they are also using a relatively low-speed PIC chip in the cable</DD>
+(similar to the MBV1) that will not allow it the same performance</DD>
+as the MBV2.<BR><BR></DD>
+<DT><A NAME="PInfo"><B> Can I get info on the protocol used by the cable to talk to the GBA?</B></A><BR><BR></DT>
+<DD> I can not release this information due to an agreement I've made with</DD>
+another company. :( Sorry about that. However, I can release info on</DD>
+the protocol from the cable to the PC for purposes of writing custom</DD>
+PC apps. Use the email link at the bottom of the page for more info.<BR><BR></DD>
+<DT><A NAME="MvsD"><B> I want to program flash carts. Should I get an MBV2 or a dedicated cart programmer?</B></A><BR><BR></DT>
+<DD> The flash advance linker has the advantage of being faster. One 4Mbyte</DD>
+test file I tried took 55 seconds to erase & program using the FAL.<br><br></DD>
+The MBV2 took 98 seconds to erase & program the same file. (You need v3</DD>
+firmware or later in order to program Flash Advance flash carts.) However,</DD>
+when using the MBV2 you save some time and much wear & tear on connectors</DD>
+due to the fact of not having to remove the cart from the GBA to program</DD>
+it. You can program a cart and then immediately execute it using the</DD>
+command line option -e. If you also use -r and modify your GBA for hardware</DD>
+reset then you don't need to cycle the power on & off each time you reprogram.<BR><BR></DD>
+<DT><A NAME="FlashSupport"><B> What type of flash carts does the MBV2 support?</B></A><BR><BR></DT>
+<DD> Only Flash Advance, Flash Advance Turbo, and official Nintendo flash carts.</DD>
+EZF Advance, Flash2Advance, and game carts that you buy at your local</DD>
+game store are not supported.<BR><BR></DD>
+<DT><A NAME="OtherHW"><B> Is any other hardware needed?</B></A><BR><BR></DT>
+<DD> The MBV2 cable is about 3 feet (1 metre) in length and plugs directly</DD>
+into a PC parallel or serial port. (Parallel cable is required for transferring</DD>
+code or programming flash carts. Serial cable is required to use GBA UART</DD>
+comms mode for your own coding projects.) If you need a longer cable from your</DD>
+PC to your GBA then you need a parallel or serial extension cable. Any standard</DD>
+serial or parallel "straight through" extension cable will work.<BR><BR></DD>
+<DT><A NAME="Photos"><B> Are there any photos of it?</B></A><BR><BR></DT>
+<DD> Here's a photo of it with the cover on -</DD>
+<a href="http://home.hiwaay.net/~jfrohwei/gameboy/mbv22.jpg" target=_blank>http://home.hiwaay.net/~jfrohwei/gameboy/mbv22.jpg</a> and here's a photo</DD>
+with the cover off - <a href="http://home.hiwaay.net/~jfrohwei/gameboy/mbv21.jpg" target=_blank>http://home.hiwaay.net/~jfrohwei/gameboy/mbv21.jpg</a></DD>
+. Many of the components are on the bottom on the pc board. The top connector</DD>
+is parallel and the bottom right is serial. The bottom left 4 pin connector</DD>
+is accessible when the cover is on and it is used to upgrade the internal</DD>
+computer chip firmware in order to take advantage of any future enhancements.</DD>
+(The cable has to be returned to be upgraded since it takes special equipment</DD>
+and there may be a small fee to cover shipping costs.)<BR><BR></DD>
+<DT><A NAME="Used"><B> How is the cable actually used?</B></A><BR><BR></DT>
+<DD> You just connect the cable from your PC parallel port to the GBA</DD>
+link port and then turn on the GameBoy Advance with no cart installed.</DD>
+Then you run a program on the PC end that transfers code to the GameBoy</DD>
+Advance. At the end of transfer of data the code will automatically</DD>
+execute. Example demonstration programs along with source code are</DD>
+available along with the cable software.<BR><BR></DD>
+<DT><A NAME="9pin"><B> What is the smaller 9 pin connector on the MBV2 used for?</B></A><BR><BR></DT>
+<DD> That can connect to a PC serial port but it can not be used to</DD>
+transfer programs to the GBA using MB.EXE. It is useful for allowing</DD>
+the MBV2 to communicate with a PC when the GBA is in UART comms mode.<BR><BR></DD>
+<DT><A NAME="Link2"><B> Is there any convenient way to use the MBV2 and a multiplayer link cable together?</B></A><BR><BR></DT>
+<DD> Yes, get the InterAct PlayLine Link Cable (<a href="http://www.interactaccessories.com/" target=_blank>http://www.InterActAccessories.com</a>).</DD>
+This kit contains a "Link Port Multiplier/Pass Thru Port" that allows you to</DD>
+plug two devices into the link port at the same time. You can download code</DD>
+to a GBA, using the MBV2, and upon completion the MBV2 will no longer interfere</DD>
+with the link port. This will allow you to communicate with a second GBA</DD>
+even with two cables in the link port. An alternative method to this would</DD>
+be to use 2 GBA's, 2 MBV2's, 2 Pass Thru Ports, 1 link cable, and 2 PC</DD>
+parallel ports. This would allow downloading multiplayer code to 2 GBA's</DD>
+independent of each other.<BR><BR></DD>
+<DT><A NAME="CableFirm"><B> What cable firmware is the latest?</B></A><BR><BR></DT>
+<DD> At various times new cable firmware is released to add more features</DD>
+to the internal cable computer chip. This is done by returning the cable</DD>
+to where you bought it so that it can get upgraded by way of the four pin</DD>
+connector on the end of the cable housing. Upgrades can NOT be done by</DD>
+the end user. The upgrade code (even in compiled form) will not be sent</DD>
+to end users due to legal agreements in effect. Here is a list of the</DD>
+various firmware and the added functionality with each release:<br></DD>
+<b>v0</b> - Original release.<br></DD>
+<b>v1</b> - Support for GBA UART mode added.<br></DD>
+.....The GBA can indicate wanting to enter UART comms mode by setting<br></DD>
+.....SD to 1 & SC to 0 for at least 50 milliseconds. (The GBA can do<br></DD>
+.....this by entering General Purpose comms mode, set SD high (1), set<br></DD>
+.....SC low (0), delaying 50 milliseconds, and then switching to UART<br></DD>
+.....comms mode.)<br></DD>
+<b>v2</b> - Does not exist. Skipped for version naming reasons.<br></DD>
+<b>v3</b> - High speed PC to GBA transfer modes added. Upgrade to at</DD>
+least this version if you wish to use your MBV2 to program Flash</DD>
+Advance flash carts.<br></DD>
+<b>v4</b> - High speed GBA to PC transfer mode added. This mode is</DD>
+currently not used and was only added for possible future use.<BR><BR></DD>
+<DT><A NAME="Diff"><B> How does downloaded code differ from code that might be in a cart?</B></A><BR><BR></DT>
+<DD> Downloaded code by MultiBoot is nearly identical to ROM code. They both</DD>
+must have a ROM header at the beginning followed by code/data. (Currently,</DD>
+the rom header, by default, is replaced with a known good header containing</DD>
+the standard logo. This default replacement can be disabled with a command</DD>
+line option.) To compile your code you need to specify a Text section of</DD>
+0x2000000 instead of 0x8000000. There is one other difference. In multiboot</DD>
+images, the area from 0x20000c4 to 0x20000df is reserved and should be set</DD>
+to zeros in your crt0.s (for GCC) or start.asm (for SDT). If you use the</DD>
+following code, then stick it right after the ROM header:<br><pre><b></DD>
+        b       SkipReservedStuff</DD>
+        .byte   0       @ Boot method (0 = ROM boot, 3 = Multiplay boot)</DD>
+        .byte   0       @ Slave # (1 = slave #1, 2 = slave #2, 3 = slave #3)</DD>
+        .byte   0       @ reserved</DD>
+        .byte   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+        .word   0       @ reserved</DD>
+SkipReservedStuff:</DD>
+</pre></b>(For SDT, replace <b>.</b>byte with <b>dcb</b>, <b>.</b>word with <b>dcd</b>,</DD>
+and @ with <b>;</b> .)<br><br></DD>
+After the multiboot image is loaded into RAM by the GBA, the GBA BIOS will</DD>
+patch location 0x20000c4 (boot method) with 0x03 and location 0x20000c5</DD>
+(Slave #) with 0x01.<BR><BR></DD>
+<DT><A NAME="RMBDiff"><B> Is there any way to distinguish between a file compiled as a ROM vs MultiBoot?</B></A><BR><BR></DT>
+<DD> I personally use .gba (preferred) or .bin to indicate a standard ROM image</DD>
+and .mb to indicate a MultiBoot image. My proposal is that if the file extension</DD>
+is .mb OR the rom header game code is 'MB  ' (Hex: 4D 42 20 20) then GBA</DD>
+emulators should treat the file as a MultiBoot image rather than a standard ROM image.</DD>
+The ideal MultiBoot image should probably use both.<BR><BR></DD>
+<DT><A NAME="Both"><B> Is there any way to compile a file so that it will work on a flash cart / emulator and also MultiBoot?</B></A><BR><BR></DT>
+<DD> Yes. Use the ReservedStuff header, above, (after the normal ROM header) and compile</DD>
+the rom with the Text section set to 0x2000000. After the ReservedStuff header put</DD>
+some assembly language code in that file that detects if the program is running</DD>
+in ROM or RAM (by looking at the Program counter value.) If the program is running</DD>
+in ROM then copy 256k bytes of the program to external RAM and then branch to</DD>
+0x2000000. If the program is running in RAM then continue as normal. You should</DD>
+probably give the file an extension of .mb.gba (i.e. myfile.mb.gba) since it works</DD>
+on multiple setups. (Idea from Joat / File extension idea from Dark Fader.)<BR><BR></DD>
+<DT><A NAME="PCSoft"><B> Where do I get the the PC software?</B></A><BR><BR></DT>
+<DD> <b>DOS / Windows port v1.75:</b> <a href="mbdw.zip" target=_blank>http://www.devrs.com/gba/files/mbdw.zip</a><br></DD>
+<b>Linux port v1.75:</b> <a href="mblinux.tar.gz" target=_blank>http://www.devrs.com/gba/files/mblinux.tar.gz</a><br></DD>
+<b>DebugLib v1.42:</b> <a href="mbdebug.zip" target=_blank>http://www.devrs.com/gba/files/mbdebug.zip</a><br></DD>
+To do printf/getch or fileserving over the parallel link with Debug console (-c)</DD>
+you need DebugLib (also referred to as mbv2lib.c) as well. To use this library</DD>
+the MB software must be running in Console mode (i.e. -c option). The PC parallel</DD>
+interface must be used. DebugLib does not support the mbv2 serial interface.<br></DD>
+To uncompress  the linux version just do: <b>tar -xzf mblinux.tar.gz</b><br></DD>
+You must be a root user to run this software on linux. Also, you may need</DD>
+to kill "lpd" in order to get more reliable operation in linux.<BR><BR></DD>
+<DT><A NAME="PCFeatures"><B> What features are introduced with each version of PC software?</B></A><BR><BR></DT>
+<DD>Type the following to get the version number: <b>mb</b><br><br></DD>
+<b>v1.50</b> - * Added -3 option<br></DD>
+<b>v1.60</b> - * Fixed verify OK reported count. * Added support for MBV2</DD>
+firmware v3 & Flash Advance programming. Speeded up official Nintendo</DD>
+flash cart programming many times. [<3 minutes to erase/program 4mbytes.]</DD>
+(NOTE: Flash Advance & fast N flash cart programming requires firmware v3</DD>
+or later.) * Speeded up -3 option when using MBV2 firmware v3.<br></DD>
+<b>v1.70</b> - * Added support for Turbo/Pro FA 256M flash cart.<br></DD>
+<b>v1.72</b> - * Added -u option. Fixed 'fgetc' bug with char 0x1b when using mbv2lib.<br></DD>
+<b>v1.73</b> - * Filenames & paths can now be 256 characters long instead of 20 chars.<br></DD>
+<b>v1.75</b> - * Added support for user specified port address & fixed bug in xferNC() routine where -x had no effect.<BR><BR></DD>
+<DT><A NAME="MBDemos"><B> What demos are available to test?</B></A><BR><BR></DT>
+<DD> Here's gfxLib compiled for MultiBoot: <a href="glibmb.zip" target=_blank>http://www.devrs.com/gba/files/glibmb.zip</a> <br></DD>
+To use it try the following: <b>mb -s glib -w 500</b><br></DD>
+(For linux, use this instead: <b>./mb -s glib.mb -w 500</b>)<br></DD>
+If that doesn't work then try doubling the number until it works.<br></DD>
+If that does work then try cutting the number in half until it fails.</DD>
+Once it fails then double the number to get a reliable setting.</DD>
+A smaller number means a faster transfer rate for download.<br><br></DD>
+The source code for gfxLib is on this web site. Just change the 0x8000000 to</DD>
+0x2000000 in the 'makefile' and it will compile for MultiBoot.<BR><BR></DD>
+<DT><A NAME="Opt3"><B> How do I display a photo on the GBA screen?</B></A><BR><BR></DT>
+<DD> First, you need v1.50 software or later. Next you need a photo</DD>
+that is 240x160 pixels or smaller and it has been saved in Targa</DD>
+(.tga) format. (You can also display raw graphics files but that's</DD>
+left for more experienced users to attempt.) It can be 16,24, or</DD>
+32 bits color depth and it doesn't matter if it's compressed (RLE)</DD>
+or uncompressed. Try the following:<br></DD>
+<b>mb -3 </b>YourFile<b>.tga -w </b>delay<BR><BR></DD>
+<DT><A NAME="OS"><B> What operating systems are supported by the MBV2 software?</B></A><BR><BR></DT>
+<DD> It has been tested on Win95, Win98, Win2000, WinXP, and linux. It *should*</DD>
+also work on WinNT with the giveio method described for Win2000.<BR><BR></DD>
+<DT><A NAME="WinXP"><B> How do I get it to work on Win 2000 or Win XP?</B></A><BR><BR></DT>
+<DD>1) Get the following driver: <a href="userport.zip" target=_blank>http://www.devrs.com/gba/files/userport.zip</a><br></DD>
+2) Unzip userport.zip in a temporary folder.<br></DD>
+3) Copy the userport.sys file into the %XPDIR%/SYSTEM32/DRIVERS/<br></DD>
+4) Copy the userport.exe file into the %XPDIR%/<br></DD>
+5) Run the userport.exe file and enter the adress-range applicable for</DD>
+your LPT1 port. (Check this range in the Control</DD>
+Panel|System|Hardware|DeviceManager|PORTS|Printer ports|Resources).</DD>
+My I/O range for LPT1 was 0378 - 037F. You can remove the other ranges</DD>
+listen by default in userport.exe.<br></DD>
+6) Click start. That's it, you can exit UserPort now.<br></DD>
+Open any shell you want (e.g. Start->Run->"cmd") and MB.exe will work.<BR><BR></DD>
+<DT><A NAME="ProtIO"><B> Any other methods for Win 2000?</B></A><BR><BR></DT>
+<DD> METHOD #1<br></DD>
+1) The method above is probably preferred but you can also use these methods.<br></DD>
+2) Get the following driver: <a href="giveio.zip" target=_blank>http://www.devrs.com/gba/files/giveio.zip</a> <br></DD>
+3) Unzip it in directory c:\giveio (Or some place, anyway..)<br></DD>
+4) Run loaddrv.exe. Set the path in the edit box to c:\giveio\giveio.sys<br></DD>
+5) Click Install.<br></DD>
+Now you should be setup to use MB.EXE. Everything above only needs to be done once.<br><br></DD>
+6) Execute giveio.cmd by double-clicking it or running it. (NOTE: You must do this every</DD>
+time you restart windows!)<br></DD>
+7) In the new shell window that is created, you can now use MB.EXE to control the MBV2.</DD>
+<br><br></DD>
+ METHOD #2 - Get and install Direct I/O from <a href="http://www.direct-io.com/" target=_blank>http://www.direct-io.com</a><BR><BR></DD>
+<DT><A NAME="Features"><B> Does this cable have other features besides code transfer?</B></A><BR><BR></DT>
+<DD> v1.50 & later software allows you to display raw or Targa (.tga)</DD>
+graphics pictures on the GBA. You can program official Nintendo flash</DD>
+carts in the GBA itself using MBV2. Also, there are features that allow</DD>
+doing a "printf" on the GBA which displays a debug string on the PC. File</DD>
+server software is also supported which allows the GBA to read or</DD>
+write PC files over the link.<BR><BR></DD>
+<DT><A NAME="UARTMode"><B> Does the MBV2 support GBA UART comms mode?</B></A><BR><BR></DT>
+<DD> Yes, if you have version 1 firmware or later. If you have version 0</DD>
+firmware then it has to be upgraded to support this mode. (You can</DD>
+display your firmware version by doing: mb -s ) Upgrades are not</DD>
+physically possible over the parallel port or serial ports.<br><br></DD>
+In order for the MBV2 to transmit serial data out the pin 9 serial</DD>
+connector, pin 7 must be held high (+5v to +12v). (However, the MBV2</DD>
+can receive data without requiring anything to be held high.) This is normally</DD>
+accomplished by enabling hardware handshaking on a PC serial interface.</DD>
+This upgrade supports standard UART transmit/receive and hardware handshaking</DD>
+from PC->GBA. (i.e. GBA can wait until PC is ready to accept data.) Handshaking</DD>
+from GBA->PC is not supported due to hardware limitations. (i.e. PC will not</DD>
+wait until GBA is ready. It can send data to GBA at any time.)<br><br></DD>
+To upgrade the firmware you must send it to the following address along</DD>
+with US$5 to cover return international postage:<br><br></DD>
+Jeff Frohwein<br></DD>
+910 Clinton Ave. E<br></DD>
+Huntsville, AL 35801<br></DD>
+USA<BR><BR></DD>
+<DT><A NAME="EnterUMode"><B> How do you tell the MBV2 to enter GBA UART comms mode?</B></A><BR><BR></DT>
+<DD> If the MBV2 is powered up while connected to a parallel port,</DD>
+then the MBV2 will go into sleep mode when not busy. This is to</DD>
+save GBA battery power. So you must use the software -u option</DD>
+to set uart mode. The method below will NOT work for switching</DD>
+to UART mode if the MBV2 was powered up while connected to a</DD>
+parallel port.<br><br></DD>
+If the MBV2 is powered up while not connected to a parallel port,</DD>
+then the MBV2 is in serial mode. At this point you can switch to</DD>
+UART mode by setting link port SD to 1 & SC to 0 for at least</DD>
+50 milliseconds. (The GBA can do this by entering General Purpose</DD>
+comms mode, set SD high (1), set SC low (0), delaying 50 milliseconds,</DD>
+and then switching to UART comms mode.) You also need to supply a</DD>
+handshake or +5v to +12v to pin 7 of the 9 pin serial connector</DD>
+or else the MBV2 cable will not put out any data, even though it will</DD>
+receive data just fine. This is normally</DD>
+accomplished by enabling hardware handshaking on a PC serial interface.<BR><BR></DD>
+<DT><A NAME="SwitchModes"><B> I want to download a multiboot image and then switch over to UART mode. How?</B></A><BR><BR></DT>
+<DD> Use the -u option that is found in v1.72 or later. But also realize that the</DD>
+serial port and the parallel port on the MBV2 can not both be hooked up at the</DD>
+same time due to the fact that they share some interface signals. Here are</DD>
+various options:<br></DD>
+1) Put a parallel port switch on the parallel cable and a serial port switch</DD>
+on the serial cable.<br></DD>
+2) Keep the serial cable hooked up all the time but put a parallel port switch</DD>
+on the parallel cable. The only draw back is that garbage serial characters</DD>
+will be sent by the MBV2 while the multiboot image is being downloaded.<br></DD>
+3) Same as option #2 except instead of a parallel switch, pin 1 & pin 11 on</DD>
+the parallel interface are disconnected from the MBV2 while using the MBV2</DD>
+serial interface.<BR><BR></DD>
+<DT><A NAME="MandFDev"><B> I already have a GBA flash cart. Can I use a MBV2 along with it for debugging?</B></A><BR><BR></DT>
+<DD> Yes. MBV2 can be used for multibooting, debugging, or both. Get the DebugLib</DD>
+software from the link above and then use the following for printf/fileserving:<br></DD>
+mb -c -x 10000 (Use smallest value that works.)<BR><BR></DD>
+<DT><A NAME="ONC"><B> How do I program my official Nintendo cart with the MBV2?</B></A><BR><BR></DT>
+<DD> Carts that contain a game that you buy at your local store are not</DD>
+programmable because they contain ROM instead of flash. However, if</DD>
+you are a licensed Nintendo developer then you might have access to</DD>
+ordering official Nintendo flash carts from their developers support</DD>
+group. These are the only official Nintendo carts that may be programmed.<BR><BR></DD>
+<DT><A NAME="NFMods"><B> Can official Nintendo flash carts be used "as is" with it?</B></A><BR><BR></DT>
+<DD> No. To make Nintendo flash carts (only available to licensed developers</DD>
+from Nintendo) writeable in the GBA, resistor R7 has to be moved to</DD>
+the empty resistor position R8. If you'd rather not do the modification</DD>
+yourself then I'd be glad to do it for US$20 + $5 shipping.<BR><BR></DD>
+<DT><A NAME="NOAFProc"><B> How do I program my Flash Advance or *modified* official Nintendo flash cart?</B></A><BR><BR></DT>
+<DD> You need MB.EXE v1.60 or later. Do the following:<br></DD>
+1) Insert your flash cart into the GBA.<br></DD>
+2) Turn on the GBA and hold down START+SELECT so that the GBA</DD>
+enters multiboot mode.<br></DD>
+3) Do the following: <b>mb -p </b>filename.ext<b> - w </b>delay<br></DD>
+Use whatever delay value, or smaller, you used to get the glib.mb demo to work.<br></DD>
+4) Wait for programming to complete.<br></DD>
+5) Turn off the GBA & turn it back on. The program on the flash cart</DD>
+will now execute.<br>]</DD>
+6) To autoexecute a program cart after programming, use the -e option.<br></DD>
+7) To speed up cart programming, lower the -w value until errors occur then</DD>
+slightly raise the value until it's reliable.<br><br></DD>
+Currently, programming a 32mbit/4mbyte ROM takes < 2 minutes with firmware v3.<BR><BR></DD>
+<DT><A NAME="ExactFA"><B> What exact types of flash carts can be programmed with the MBV2?</B></A><BR><BR></DT>
+<DD> It has been tested with all of the following and they all program fine:<br></DD>
+Flash Advance (FA) 64M, FA 64M Turbo, FA 128M Turbo, FA 256M Pro, and a</DD>
+modified official Nintendo cart.<BR><BR></DD>
+<DT><A NAME="GBDev"><B> Can I program GB/GBC flash carts or use the MBV2 for GB/GBC software development?</B></A><BR><BR></DT>
+<DD> No. The MBV2 will only work for GBA software & GBA hardware.<BR><BR></DD>
+<DT><A NAME="XferRate"><B> What is the transfer rate from PC to GBA?</B></A><BR><BR></DT>
+<DD> Upon power up of the GBA, the transfer rate is 5K bytes/sec</DD>
+at a transfer baud rate of 115200 bps. The GBA is not able to handle</DD>
+data sent to it during boot at a rate faster than 5K bytes/sec.</DD>
+The reason appears to be due to the inherent encryption that is</DD>
+used on the cable that slows down the GBA-side handling of data.<br><br></DD>
+The theoretical upper limit for GBA cables is 32k bytes/sec for</DD>
+normal communications mode. However, in 32-bit comms mode a rate</DD>
+close to 110k bytes/sec is possible. Possibly the link can handle</DD>
+a faster rate but the MBV2, itself, is limited to ~110k bytes/sec.</DD>
+The current release of PC software uses the slower, normal comms to</DD>
+load a small "boot loader" using multiboot and then switch to a</DD>
+faster rate to program flash carts. Note that ~110k bytes/sec is</DD>
+the theoretical top burst rate. In actual practice, programming a</DD>
+flash cart will appear to have an effective transfer rate that is</DD>
+slower than this due to handshaking, GBA data processing, etc.</DD>
+This boot loader does not currently support transfer of user</DD>
+multiboot code at this time.<BR><BR></DD>
+<DT><A NAME="Reset"><B> Do you have to power off the GBA each time you test new code?</B></A><BR><BR></DT>
+<DD> Yes, unless you add a software reset to your code or modify your GBA.<br><br></DD>
+To add a software reset, execute the following ARM assembly code in</DD>
+Supervisor mode: (i.e. Execute this code in an interrupt.)<br></DD>
+<b>mov r0,#0x8c<br></DD>
+bx r0</b><br><br></DD>
+A modified GBA where the GBA reset line is brought out and connected</DD>
+to the MBV2 allows testing new code without having to touch anything.</DD>
+However, each individual has to modify their own GBA and be happy with</DD>
+the fact that they are voiding their warranty by doing so. Here is info</DD>
+on locating the GBA reset line:<br></DD>
+<a href="gbadevfaqs.html#ResetButton" target=_blank>http://www.devrs.com/gba/files/gbadevfaqs.php#ResetButton</a><br></DD>
+This reset line needs to be connected to pin 9 of the serial</DD>
+connector (if the parallel connector is connected to a PC) or to pin</DD>
+18 of the parallel connector (if the serial connector is connected to a PC).<BR><BR></DD>
+<DT><A NAME="CartBackup"><B> Is there any way to copy cart backup memory to or from a PC?</B></A><BR><BR></DT>
+<DD> The -f option can be used to copy from GBA cart->PC. There is no feature</DD>
+in the MB.EXE software to copy from PC->GBA cart. However, you can</DD>
+copy cart SRAM or Flash backup to PC or from PC to cart SRAM by using</DD>
+the examples in mbv2lib. Look at mbv2lib.c in the DebugLib package for an example</DD>
+of code to do this. After you compile the code with GCC, you then need to</DD>
+execute it on a GBA using something similar to the following command line</DD>
+options:<br></DD>
+<b>mb -s </b>YourCompiledFile.mb<b> -w </b>50<b> -x </b>500<b> -c</b><BR><BR></DD>
+<DT><A NAME="CartPart"><B> Is there any way to reprogram part of a flash cart instead of the whole thing?</B></A><BR><BR></DT>
+<DD> Yes. This comes in handy if you have large amounts of data that never changes.</DD>
+When programming a flash cart, the software erases just enough blocks of</DD>
+memory to allow writing the new image. (Each block is typically 256k bytes</DD>
+in size, but the earliest full-size Visoly 64M cart had blocks of 128k bytes.)</DD>
+You can take advantage of this fact by writing a file to flash that is, for example,</DD>
+600k bytes in length. Next, program the flash cart with a file that is less than</DD>
+256k bytes in length. The older data at offset 256k bytes and upward is still</DD>
+present even though the first 256k bytes of flash cart has been erased and rewritten.<BR><BR></DD>
+<DT><A NAME="ErrorNHF"><B> I followed the directions, but I get "Error - No hardware found.." Any ideas?</B></A><BR><BR></DT>
+<DD> Try changing your parallel port setting to SPP (Standard Parallel Port.)</DD>
+If that works then for better performance, try EPP mode. (Either EPP 1.7</DD>
+or EPP 1.9 mode should work.) On most computers you change the parallel port</DD>
+mode by pressing a key during the power up of your computer. Instructions</DD>
+are on the screen during power up of which button to press to edit settings.</DD>
+On some other computers, you change the parallel port mode by accessing the</DD>
+windows control panel.<BR><BR></DD>
+</DL>
+</font>
+</body>
+
+<!-- Mirrored from www.devrs.com/gba/files/mbv2faqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:58:01 GMT -->
+</html>

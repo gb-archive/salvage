@@ -1,0 +1,58 @@
+GBDK (lcc version) Save RAM Demo:
+
+   /* test saveram - save.c */
+
+   #include <stdio.h>
+   #include <gb.h>
+
+   UBYTE *RAMPtr;
+
+   int main()
+      {
+      ENABLE_RAM_MBC1;
+
+      RAMPtr = (UBYTE *)0xa000;
+      printf("Hex number -> 0x%x", RAMPtr[0]);
+      RAMPtr[0]++;
+
+      DISABLE_RAM_MBC1;
+      return(0);
+      }
+
+   =====================
+   Everytime the program runs a different hex number is displayed.
+   compiled as follows:
+
+   lcc -Wl-yt2 -Wl-yo4 -Wl-ya4 -o save.gb save.c
+
+-----------
+
+RGBASM Save RAM Demo:
+
+   ; Write B to Cart RAM location HL
+   ; (HL needs to be in range $a000-$bfff.)
+
+   WriteToCartRAM:
+      ld   a,$0a
+      ld   [0],a    ; Enable Cart Save RAM
+
+      ld   [hl],b
+
+      xor  a
+      ld   [0],a    ; Disable Cart Save RAM to prevent
+                    ; false writes during powerdown
+      ret
+
+   ; Read Cart RAM location HL into B
+   ; (HL needs to be in range $a000-$bfff.)
+
+   ReadFromCartRAM:
+      ld   a,$0a
+      ld   [0],a    ; Enable Cart Save RAM
+
+      ld   b,[hl]
+
+      xor  a
+      ld   [0],a    ; Disable Cart Save RAM to prevent
+                    ; false writes during powerdown
+      ret

@@ -1,0 +1,53 @@
+
+         Modifying any ROM+MBC1+RAM cart to be a C3 cart:
+         -----------------------------------------------
+
+1. Cut out old ROM - I use a sharp X-acto and cut the legs off of
+  the rom right at the chip. It then is very easy to remove the
+  remaining legs with a fine-tipped soldering iron. Another way
+  which saves the ROM but takes longer is to lift each leg
+  individually with an X-acto or any sharp, pointed device after
+  heating each leg with a soldering iron.
+
+   It is VERY easy to damage the PC board rom pads so keep that
+  in mind if you use other techniques to remove the ROM.
+
+2. Program the flash eprom with GB Basic if possible - This will
+  let you test the cart immediately upon completion of your
+  cart soldering work.
+
+3. Install 4mbit flash eprom - I do this by first cleaning ROM
+  PC board pads if there is too much solder with solder wick.
+  I then place the flash "as is" on the PC board and solder it in
+  place with the middle pin on each side where the old ROM was
+  located. With two pins of the flash soldered in place, I use
+  an X-acto (or sharp, pointed knife) to carefully bend some pins
+  on the sides to reach old ROM pads. I then solder all of the
+  pins on each side to pads located close by.
+
+4. Solder top & bottom rows of PLCC to board - Since very few
+  of the top & bottom pins of the PLCC packaged flash will
+  reach the remaining ROM pads on the PC board, with a sharp
+  blade I very carefully pry each pin up 90 degrees and then
+  use needle nose pliers to mold them in the general direction
+  I want them to go.
+
+   You can do this no problem with new flash chips if you are
+  careful. This will not work with older, used flash chips that
+  have been inserted & removed numerous times. You can only bend
+  integrated circuit pins so many times before they will break
+  off.
+
+   Use wire wrap wire to solder connect pins that can't reach pads.
+
+5. Install 47k pull up resistor - The wire that goes from
+  one end of this resistor connects to pin 31 of the cart
+  connector. BEFORE soldering to this cart connector pin place
+  some form of tape covering 75% or more of this gold pin. (This
+  is to prevent solder from wicking down the whole pin.)
+
+   Remove tape from pin when soldering is complete.
+
+6. Test the cart on your GB - If you programmed the flash with
+  GB Basic before installing then it should show this upon
+  powering up your GB. If not, you have a wiring problem.

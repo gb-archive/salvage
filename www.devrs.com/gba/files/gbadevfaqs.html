@@ -1,0 +1,1592 @@
+<html>
+
+<!-- Mirrored from www.devrs.com/gba/files/gbadevfaqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:58:01 GMT -->
+<head>
+<title>Dev'rs GBA Dev FAQs</title>
+</head>
+<body bgcolor="#e0e0e0">
+<font face="Arial, Helvetica, sans-serif">
+<H3>Dev'rs GBA Dev FAQs - Last Update 2002-Mar-18</H3>
+<DL>
+<DT><BR><B>General FAQs</B><BR><BR></DT>
+<DD><A HREF="#OtherFAQs"> Where can find other related FAQs?</A></DD>
+<DD><A HREF="#Email"> Can I email a question if I don't see it below?</A></DD>
+<DD><A HREF="#GBAScreen"> Is it my imagination or is the GBA screen darker than the GBC screen?</A></DD>
+<DD><A HREF="#MultiBoot"> What is multiboot mode?</A></DD>
+<DD><A HREF="#MultiActivate"> How do you activate multiboot on a slave GBA?</A></DD>
+<DD><A HREF="#OffDev"> What dev kit do official developers use?</A></DD>
+<DD><A HREF="#GBAProcessor"> What kind of processor is used in the GBA?</A></DD>
+<DD><A HREF="#PowerUp"> What is put into RAM on power up or reset?</A></DD>
+<DD><A HREF="#GBCMode"> Is GBC mode emulated on the GBA?</A></DD>
+<DD><A HREF="#Repeat"> Why do I see a repeating pattern of bytes when I view memory from 0 to 0x1ffffff?</A></DD>
+<DD><A HREF="#RepeatUses"> Can the repeating bytes in memory from 0 to 0x1ffffff be useful?</A></DD>
+<DD><A HREF="#FileExt"> What do various file extensions in the GBA dev world mean?</A></DD>
+<DD><A HREF="#RomHeader"> How is information layed out in a GBA ROM?</A></DD>
+<DD><A HREF="#SimpleVblank"> Is there any simple code to wait for vblank?</A></DD>
+<DT><BR><B>Graphics FAQs</B><BR><BR></DT>
+<DD><A HREF="#VRAM8bit"> Graphics memory (VRAM) doesn't allow 8 bit writes. What happens when you try?</A></DD>
+<DD><A HREF="#Mode4bit8"> If you can't do 8 bit writes to VRAM, doesn't that make mode 4 difficult to use?</A></DD>
+<DD><A HREF="#Mode7"> Where can I get more info on Mode 7 graphics mode?</A></DD>
+<DD><A HREF="#SubPixel"> How can you increase horizontal resolution 3x for high contrast images?</A></DD>
+<DD><A HREF="#DispCycles"> How many cycles are used per various display events?</A></DD>
+<DT><BR><B>Sprite FAQs</B><BR><BR></DT>
+<DD><A HREF="#SpritesOff"> Is there a simple way of turning a sprite off?</A></DD>
+<DD><A HREF="#SpriteTypes"> What is the difference between hardware sprites and software sprites?</A></DD>
+<DD><A HREF="#UpperSprites"> Why do my sprites not appear in graphics modes 3,4, & 5?</A></DD>
+<DD><A HREF="#SprSprBlend"> Is it possible to do alpha blending between sprites?</A></DD>
+<DD><A HREF="#SprColDet"> Does the GBA support sprite collision detection in hardware?</A></DD>
+<DT><BR><B>DMA FAQs</B><BR><BR></DT>
+<DD><A HREF="#DMAHalt"> Does DMA halt the CPU or operate in the background?</A></DD>
+<DD><A HREF="#DMAIntr"> If DMA halts the CPU, how can high priority DMA interrupt low priority DMA?</A></DD>
+<DD><A HREF="#DMACIntr"> What happens if an interrupt occurs during a DMA?</A></DD>
+<DD><A HREF="#DMATiming"> How long does a DMA transfer take?</A></DD>
+<DD><A HREF="#DMADelay"> Is there anything special I need to know about DMA operation?</A></DD>
+<DT><BR><B>Interrupt FAQs</B><BR><BR></DT>
+<DD><A HREF="#IntBasics"> What are the basics that I need to know to write GBA interrupt code?</A></DD>
+<DD><A HREF="#IntRegs"> What registers should I preserve in interrupt code?</A></DD>
+<DD><A HREF="#IEClear"> Are there cautions to clearing the IE or IME flags?</A></DD>
+<DD><A HREF="#IntRet"> My interrupt routine works but upon exit the return location is not correct. Why?</A></DD>
+<DT><BR><B>C Complier FAQs</B><BR><BR></DT>
+<DD><A HREF="#CCompilers"> What C compilers are available for GBA development?</A></DD>
+<DD><A HREF="#Compare"> Is ARM SDT a more efficient C compiler for GBA development?</A></DD>
+<DD><A HREF="#ARMvsThumb"> Should I use a C compiler that generates ARM or Thumb instructions?</A></DD>
+<DD><A HREF="#UseVol"> When I read a GBA hardware register the value never changes. Why?</A></DD>
+<DD><A HREF="#DefineVolatile"> What does the term "volatile" mean?</A></DD>
+<DD><A HREF="#StartUp"> What are crt0.S/lnkscript (GCC) and start.s (SDT/ADS) used for in a project?</A></DD>
+<DT><BR><B>GCC General FAQs</B><BR><BR></DT>
+<DD><A HREF="#x86GCC"> Can I use my existing GCC C compiler for GBA development?</A></DD>
+<DD><A HREF="#GCCSetup"> Is it difficult to setup a fully functional ARM/Thumb GCC compiler?</A></DD>
+<DD><A HREF="#GCCUse"> How do you use the GCC C compiler & GAS assembler?</A></DD>
+<DD><A HREF="#MixARMThumb"> Can I mix ARM and Thumb code?</A></DD>
+<DD><A HREF="#Options"> How do I display all of the command line options for GCC?</A></DD>
+<DD><A HREF="#AoTCLO"> I have a GCC compiler for GBA. Can I generate ARM or Thumb using a command line option?</A></DD>
+<DD><A HREF="#IncRaw"> How do I include ( or INCBIN ) raw data into a project?</A></DD>
+<DD><A HREF="#ForceReg"> How do you force GCC to put a variable into a specific CPU register?</A></DD>
+<DD><A HREF="#ARMSim"> Does GCC GDB include a type of ARMulator for simulating arm code?</A></DD>
+<DD><A HREF="#DeclInit"> Why does GCC put global & static variables in ROM when you simultaneously declare AND initialize it?</A></DD>
+<DD><A HREF="#LibFunc"> Why does sprintf, malloc, & other library functions not work right?</A></DD>
+<DD><A HREF="#Sections"> What are sections and how are they used?</A></DD>
+<DD><A HREF="#VarSections"> I would like to put a variable into a different section. How?</A></DD>
+<DD><A HREF="#CPPMain"> Is there anything I should know to compile a GCC C++ program?</A></DD>
+<DD><A HREF="#IntRamCode"> How do I put my code in Internal WRAM so that it will run faster?</A></DD>
+<DD><A HREF="#LongBranch"> How do I do a long branch to a routine that is in Internal WRAM?</A></DD>
+<DD><A HREF="#GCCorLD"> Are there any advantages to using GCC for linking rather than LD?</A></DD>
+<DD><A HREF="#LinkerResults"> How can I look at the size of various sections or the linker output results?</A></DD>
+<DT><BR><B>GCC Error Message FAQs</B><BR><BR></DT>
+<DD><A HREF="#LDerror"> What does "ld: cannot open -l###: No such file or directory" mean?</A></DD>
+<DD><A HREF="#Trunc"> What does "relocation truncated to fit: R_ARM_THM_PC22 function" error message mean?</A></DD>
+<DD><A HREF="#IncLibgcc"> I get an "undefined reference" to one of these: __divsi3,__modsi3,__udivsi3,__umodsi3. Why?</A></DD>
+<DD><A HREF="#UndefEHFB"> I get an "undefined reference to '__EH_FRAME_BEGIN__'". Why?</A></DD>
+<DD><A HREF="#UndefCVR"> I get an "undefined reference to '___call_via_rX'" (X=0-9). Why?</A></DD>
+<DD><A HREF="#UndefUUGMain"> I get an "undefined reference to '__gccmain'". Why?</A></DD>
+<DD><A HREF="#UndefUUMain"> I get an "undefined reference to '__main'". Why?</A></DD>
+<DD><A HREF="#UndefMain"> I get an "undefined reference to 'main'". Why?</A></DD>
+<DD><A HREF="#UndefSin"> I get an "undefined reference" to one of these: sin, cos. Why?</A></DD>
+<DD><A HREF="#UndefIntrTable"> I get an "undefined reference to `IntrTable'". Why?</A></DD>
+<DD><A HREF="#UndefInterruptProcess"> I get an "undefined reference to `InterruptProcess'". Why?</A></DD>
+<DD><A HREF="#MissSep"> Why do I get a "Makefile:xxx: *** Missing separator" error message?</A></DD>
+<DD><A HREF="#CC1Perror"> When I try to compile it complains that it can't find cc1plus.exe. Why?</A></DD>
+<DD><A HREF="#InterErr"> How to fix "X supports interworking but Y does not" warning messages?</A></DD>
+<DD><A HREF="#ICAF"> I get an "Error: invalid constant (1684) after fixup". Why?</A></DD>
+<DT><BR><B>GCC Warning Message FAQs</B><BR><BR></DT>
+<DD><A HREF="#Interworking"> How do I fix "Warning: XXX.o does not support interworking, whereas YYY.elf does"?</A></DD>
+<DD><A HREF="#ArchUnknown"> How do I fix "Warning: architecture UNKNOWN"?</A></DD>
+<DD><A HREF="#MLSLs"> How do I fix "Warning: multi-line string literals are deprecated"?</A></DD>
+<DT><BR><B>GCC Optimization FAQs</B><BR><BR></DT>
+<DD><A HREF="#O3"> Are there any dangers to using -O3 optimization level?</A></DD>
+<DD><A HREF="#ARMSlow"> What operations are particularly slow on the ARM processor?</A></DD>
+<DD><A HREF="#FunctParams"> Which parameters are most efficient to pass to a function?</A></DD>
+<DD><A HREF="#StructPack"> My structure have a minimum "sizeof" of 8. How can it be made smaller?</A></DD>
+<DT><BR><B>DevKitAdvance FAQs</B><BR><BR></DT>
+<DD><A HREF="#MBBoot"> How do I build a ROM image that will be multiboot (MBV2,etc) compatible?</A></DD>
+<DD><A HREF="#DKAMalloc"> Does malloc use internal or external WRAM?</A></DD>
+<DD><A HREF="#VMEError"> Why do I get "Virtual memory exhausted: Invalid argument"?</A></DD>
+<DD><A HREF="#DKAInt"> How do I use interrupts with DevKitAdvance?</A></DD>
+<DD><A HREF="#DKACrt"> How do I provide my own crt0.o instead of using the default crt0.o?</A></DD>
+<DD><A HREF="#DKALS"> How do I provide my own lnkscript instead of using the default lnkscript?</A></DD>
+<DT><BR><B>GCC Known Problems FAQs</B><BR><BR></DT>
+<DD><A HREF="#NoReport"> What can cause problems without reporting an error ?</A></DD>
+<DT><BR><B>ARM / Thumb Assembly FAQs</B><BR><BR></DT>
+<DD><A HREF="#InstTiming"> ARM docs are confusing. How do I figure out how many clock cycles an instruction takes?</A></DD>
+<DD><A HREF="#UseARM"> Why use ARM instructions at all since they often seem to take longer and take up more memory than Thumb instructions?</A></DD>
+<DD><A HREF="#Shifts"> How do you do shift & rotates in assembly language?</A></DD>
+<DT><BR><B>GAS (Gnu ASsembler) FAQs</B><BR><BR></DT>
+<DD><A HREF="#Shift8bConst"> Why does "mov r0,#0x4000000" compile but "mov r0,#0x4000006" gives errors?</A></DD>
+<DD><A HREF="#OptILoad"> How do I implement an optimizing immediate 32bit load?</A></DD>
+<DD><A HREF="#IncArray"> How do I access a global C array or global C variables from assembly code?</A></DD>
+<DD><A HREF="#EmptyBits"> When I compile assembly code to go into section .iwram, only empty (0x00) code is copied from ROM to IWRAM. Why?</A></DD>
+<DD><A HREF="#GasDefine"> Is it possible to do something similar to #define in assembly files?</A></DD>
+<DT><BR><B>General Cart FAQs</B><BR><BR></DT>
+<DD><A HREF="#GBAFlash"> Are there any GBA flash carts available?</A></DD>
+<DD><A HREF="#GBAFCCode"> Will Bung GB/GBC flash carts, or similar, allow me to run GBA code on the GBA?</A></DD>
+<DD><A HREF="#MakeCart"> How much modifications to an existing GBA cart would need to be done to make a GBA flash cart?</A></DD>
+<DD><A HREF="#CartDetect"> How does the GBA detect whether the cart is for GB/GBC or for GBA?</A></DD>
+<DD><A HREF="#GBCFCCode"> Will Bung flash carts, or similar, allow me to run GB/GBC code on the GBA?</A></DD>
+<DD><A HREF="#GBADetect"> Is there any way for a GB/GBC cart to detect if it's plugged into a GBA?</A></DD>
+<DD><A HREF="#Mirroring"> What does mirroring mean?</A></DD>
+<DD><A HREF="#MirrorGP"> I've read there are mirror addresses for different speed gamepaks. Why?</A></DD>
+<DD><A HREF="#Prefetch"> What is the prefetch buffer?</A></DD>
+<DD><A HREF="#CartRead"> How does the GBA ROM cart interface work?</A></DD>
+<DD><A HREF="#MaskRom"> Is there a datasheet available for the GBA ROMS?</A></DD>
+<DD><A HREF="#Cart8Pin"> What type of eeprom memory is in the 8-pin chip in Mario Advance?</A></DD>
+<DD><A HREF="#NGPCCart"> Can NeoGeo Pocket flash carts/copier be used with the GBA?</A></DD>
+<DD><A HREF="#LargestROM"> What is the largest size ROM supported by GBA?</A></DD>
+<DD><A HREF="#NFCCrash"> Why do official Nintendo flash carts sometimes crash. Can you write to them?</A></DD>
+<DD><A HREF="#BackupTypes"> What type of backup methods are currently used in GBA carts?</A></DD>
+<DD><A HREF="#CartEmulate"> Is is possible to use a PC parallel port or a PC I/O card to emulate a GBA cart?</A></DD>
+<DD><A HREF="#CompactFlash"> Has anyone tried using CompactFlash to design a GBA flash cart?</A></DD>
+<DD><A HREF="#CartHeader"> What minimum information must all carts contain to boot & run?</A></DD>
+<DT><BR><B>Flash Advance Cart FAQs</B><BR><BR></DT>
+<DD><A HREF="#FAIdeas"> I'm having problems getting my FA linker to work. Ideas?</A></DD>
+<DD><A HREF="#FAVDiff"> What is the difference between Flash Advance & Visoly?</A></DD>
+<DD><A HREF="#VisolyFC"> What are the specs of the FA flash carts?</A></DD>
+<DD><A HREF="#VisolyDiff"> Should I get a tall (65mm) or a short (44mm) FA cart?</A></DD>
+<DD><A HREF="#GBAFlash"> Where can I get a FA flash cart?</A></DD>
+<DD><A HREF="#VisolyFCP"> What type of power supply does the FA flash cart programmer require?</A></DD>
+<DD><A HREF="#VisolyCrash"> Why does the FA flash cart sometimes crash when testing code?</A></DD>
+<DD><A HREF="#VisErase"> How many times can you reprogram the FA 64M flash cart?</A></DD>
+<DD><A HREF="#CartRWSRAM"> How do I access FA backup SRAM?</A></DD>
+<DD><A HREF="#FAMFlash"> Is it possible to write to FA main program flash from GBA code?</A></DD>
+<DT><BR><B>Link Port FAQs</B><BR><BR></DT>
+<DD><A HREF="#PCGCable"> I want to make a PC<->GBA link cable. Where do I start?</A></DD>
+<DD><A HREF="#MBSerial"> Can you modify a GBA link cable to connect to a COM serial port to support multiboot?</A></DD>
+<DD><A HREF="#MBParallel"> Can you modify a GBA link cable to connect to a PC parallel port to support multiboot?</A></DD>
+<DD><A HREF="#MBRate"> What data transfer rate can be expected in multiboot mode?</A></DD>
+<DD><A HREF="#MBEncrypt"> Is there encryption in multiboot transfer mode?</A></DD>
+<DD><A HREF="#LinkShape"> Is the GBA game link port physically different from the GBC link port?</A></DD>
+<DD><A HREF="#LinkVolts"> What is the voltage on the GBA game link port?</A></DD>
+<DD><A HREF="#LinkModes"> There appear to be many link communication modes. Which are realistic?</A></DD>
+<DD><A HREF="#LinkPins"> What are the pin signals on the link interface?</A></DD>
+<DD><A HREF="#CommsCode"> Are there any things that should be avoided when writing comms code?</A></DD>
+<DD><A HREF="#PCGB4"> I found a PC parallel port to GBA link port cable that contains only 4 wires. What's it for?</A></DD>
+<DT><BR><B>Misc Hardware FAQs</B><BR><BR></DT>
+<DD><A HREF="#ResetButton"> Is there any way to add a reset button to the GBA?</A></DD>
+<DD><A HREF="#AdjScrew"> There is a small adjustment screw below the serial # of US GBA's. What's it for?</A></DD>
+<DD><A HREF="#Conserve"> How do I conserve battery power when developing GBA software?</A></DD>
+<DD><A HREF="#3point"> Where can I get a 3-point screwdriver to open the GBA case?</A></DD>
+<DD><A HREF="#GSHacking"> Can I hack the GameShark GBA (Action Replay GBX) to use the USB hardware for other stuff?</A></DD>
+<DT><BR><B>Graphics Tools FAQs</B><BR><BR></DT>
+<DD><A HREF="#Photoshop"> Why are JPEGs produced by Photoshop so large?</A></DD>
+<DD><A HREF="#JPEGSample"> I plan to put a JPEG & JPEG viewer into ROM. Should I down sample to save space?</A></DD>
+<DT><BR><B>Visual C++ IDE FAQs</B><BR><BR></DT>
+<DD><A HREF="#VCDep"> I am getting the following error when I build the project: "fatal error U1087: cannot have : and :: dependents for same target". Why?</A></DD>
+<DD><A HREF="#VCUndef"> I get the following error when I build: "undefined reference to [function name]" and the build fails. Why?</A></DD>
+<DT><BR><B>Misc Tools FAQs</B><BR><BR></DT>
+<DD><A HREF="#Padding"> How do I pad a ROM or raw data to a given size?</A></DD>
+<DD><A HREF="#Disassemble"> What disassemblers are available for ARM/Thumb?</A></DD>
+<DT><BR><B>Subjective FAQs (Possibly unreliable answers)</B><BR><BR></DT>
+<DD><A HREF="#CustGame"> If I make a custom game, how do I go about selling it?</A></DD>
+<DD><A HREF="#AmDev"> What does Nintendo think about amateur GBA development?</A></DD>
+</DL>
+<DL>
+<HR>
+<DT><A NAME="OtherFAQs"><B> Where can find other related FAQs?</B></A><BR><BR></DT>
+<DD> Cross GCC FAQs: <a href="http://www.objsw.com/CrossGCC/" target=_blank>http://www.objsw.com/CrossGCC/</a><BR><BR></DD>
+<DT><A NAME="Email"><B> Can I email a question if I don't see it below?</B></A><BR><BR></DT>
+<DD> You should usually send your questions to appropriate mailing lists</DD>
+after first searching any mailing list archives.</DD>
+If anyone can help, and has time, they will. Sending email specifically</DD>
+to one web site or person only serves to make them feel guilty if</DD>
+they can not help due to time constraints.<br><br></DD>
+Please keep in mind that lots of email comes into this site. Much of it</DD>
+requests, specifically, that help or support be provided in some form</DD>
+or to provide links to web sites or people that can help them. There</DD>
+is no possible way that help can be provided to everyone that emails</DD>
+due to volume. Chances are that if you don't see your question or</DD>
+link on this site then help is not yet available. :-(<BR><BR></DD>
+<DT><A NAME="GBAScreen"><B> Is it my imagination or is the GBA screen darker than the GBC screen?</B></A><BR><BR></DT>
+<DD> It's not your imagination, it is darker. Also the viewing angle appears to be worse.</DD>
+It is more difficult to view things on the screen than it was on the GBC.<BR><BR></DD>
+<DT><A NAME="MultiBoot"><B> What is multiboot mode?</B></A><BR><BR></DT>
+<DD> That is where you can play a multiplayer game with several GBA's</DD>
+even if only one of the GBA's has a cart installed. FZero, Mario</DD>
+Advance, Kuru-Kuru Kururin, and ChuChu Rocket are examples of</DD>
+commercial ROMs that use multiboot.<BR><BR></DD>
+<DT><A NAME="MultiActivate"><B> How do you activate multiboot on a slave GBA?</B></A><BR><BR></DT>
+<DD> If no cart is installed on the slave GBA then all you have to do is</DD>
+turn on the slave GBA. The master GBA will automatically boot the slave</DD>
+GBA if a GBA link cable (A GBC link cable won't work for GBA mode games.</DD>
+It only works for GBC mode games on the GBA.) is installed and a cart</DD>
+that has been designed for multiboot support is installed on the master</DD>
+GBA. If the slave GBA has some form of GBA cart installed, (regardless</DD>
+of the title) then you will need to hold down Start+Select while turning</DD>
+on the slave GBA. An extra jingle will then be heard that indicates that</DD>
+the installed cart is being ignored and the GBA is waiting for a multiboot</DD>
+from a master GBA. A slave unit waiting in multiboot mode (assuming a cart</DD>
+is installed) can cancel this mode by the user pressing A,B, or one of</DD>
+the directions buttons. At which time the installed cart will execute.<BR><BR></DD>
+<DT><A NAME="OffDev"><B> What dev kit do official developers use?</B></A><BR><BR></DT>
+<DD> For software they mostly use GCC compiled for Thumb target (i.e. Thumb GCC)</DD>
+and the Gnu ASsembler (GAS). For hardware they mostly use an official Nintendo</DD>
+64mbit flash cart(US$120), IS-AGB-Emulator(~US$6000), or IS-AGB-Debugger(~US$7000)</DD>
+from <a href="http://www.intsys.co.jp/" target=_blank>http://www.intsys.co.jp</a><br>SN Systems (<a href="http://www.snsys.com/" target=_blank>http://www.snsys.com</a>) is also</DD>
+releasing a GBA Dev setup soon. Other official developers may use different</DD>
+c compilers or GBA emulators. There is no current requirement that official</DD>
+tools must be used.<BR><BR></DD>
+<DT><A NAME="GBAProcessor"><B> What kind of processor is used in the GBA?</B></A><BR><BR></DT>
+<DD> There are two processors in the GBA. A processor similar to</DD>
+z80 for the GB Color mode and a 16MHz ARM/Thumb processor for GBA mode.</DD>
+The GBA mode processor either runs in ARM mode (32bits) or Thumb mode</DD>
+(16bits). Each mode has it's own advantages.<br></DD>
+The GBA decides which processor to use on power up, depending on if</DD>
+there is a notch on the back of the cart or not. There is no currently</DD>
+known method for switching processors after powerup or for using both</DD>
+at the same time. In GBA mode, ARM processor mode is enabled during</DD>
+power up and during interrupt handeling.<BR><BR></DD>
+<DT><A NAME="PowerUp"><B> What is put into RAM on power up or reset?</B></A><BR><BR></DT>
+<DD> Nothing. In fact, RAM may contain purely random values. It is totally</DD>
+up to the programmer to copy data from ROM to RAM or to initialize RAM</DD>
+to known values. Sometimes start up files crt0.s (for GCC) and start.s</DD>
+/ start.asm (for SDT/ADS) may initialize areas of RAM to some known values</DD>
+but this may not always be the case. Some programmers may prefer to</DD>
+leave these out of their ROM code to speed up ROM start up.<BR><BR></DD>
+<DT><A NAME="GBCMode"><B> Is GBC mode emulated on the GBA?</B></A><BR><BR></DT>
+<DD> No. GBC mode contains it's own processor that is similar to the z80.<BR><BR></DD>
+<DT><A NAME="Repeat"><B> Why do I see a repeating pattern of bytes when I view memory from 0 to 0x1ffffff?</B></A><BR><BR></DT>
+<DD> With the exception of 0 to 0x3fff (GBA Bios which can be executed but</DD>
+is not externally readable), this is all memory space that is unavailable</DD>
+to user programs. What you are actually seeing is instruction prefetch</DD>
+data. More specifically, you are seeing repeating bytes of the second</DD>
+instruction after the instruction that you used to view this memory area.</DD>
+(Info from Mike Heckenbach.)<BR><BR></DD>
+<DT><A NAME="RepeatUses"><B> Can the repeating bytes in memory from 0 to 0x1ffffff be useful?</B></A><BR><BR></DT>
+<DD> This data repeats every 2 bytes in Thumb mode and every 4 bytes in ARM mode.</DD>
+All of this memory space is 0 wait state when you attempt to read or execute it.</DD>
+You can place a Thumb or ARM 'bx lr' instruction at 0x2000000 and then</DD>
+branch anywhere from 0x4000 to 0x1fffffe to execute a single assembly</DD>
+language instruction many times. (The repeating instruction would be the</DD>
+second instruction after the 'BX' instruction.) However, with the exception</DD>
+of carefully crafted 'ldm/stm' instructions, you probably can't do 'ldr/str'</DD>
+instructions due to the fact that they probably put new data on the bus,</DD>
+thus replacing the repeating instruction. This effect doesn't seem to</DD>
+occur in any address space except for 0 - 0x1ffffff. ('ldm/stm' idea from</DD>
+Mike Heckenbach.)<br><br></DD>
+The drawbacks to doing this is that your code might break on emulators or</DD>
+future hardware (GBA2?) since this is an undocumented effect.<BR><BR></DD>
+<DT><A NAME="FileExt"><B> What do various file extensions in the GBA dev world mean?</B></A><BR><BR></DT>
+<DD> The following are the USUAL meanings:<br></DD>
+<b>.bin</b> - Raw cart ROM image. No extra headers. (Start location=0x8000000)<br></DD>
+<b>.elf</b> - Data-rich ROM image. This, usually GCC generated, image can not be</DD>
+used on flash carts but can be used by a few GBA emulators "as is". It can be</DD>
+converted to a raw ROM image by using "objcopy".<br></DD>
+<b>.gba</b> - Same as .bin<br></DD>
+<b>.map</b> - ROM image information file resulting from the -Map linker option.<br></DD>
+<b>.mb</b> - Raw multiboot ROM image. No extra headers. (Start location=0x2000000)<br></DD>
+(Note: Some .mb files operate the same as .mb.gba files.)</DD>
+<b>.mb.gba</b> - Raw multiboot/cart ROM image. No extra headers. This ROM can work</DD>
+as both a multiboot & a cart ROM image. If it is loaded at 0x8000000, it will copy</DD>
+itself to 0x2000000 and then start execution from there. If it is located at 0x2000000,</DD>
+then it will just immediately execute the rest of the image.<br></DD>
+<b>.o</b> - Object file resulting from compiling a .asm, .c, or .s file.<br></DD>
+<b>.all.rodata.o</b> - Used by DevKitAdvance & Jeff F linker script to put all sections</DD>
+in this file into the .rodata section.<br></DD>
+<b>.s</b> - Gnu ASsembler (GAS) file<br></DD>
+<b>.S</b> - GAS file to be filtered through the GCC C pre-processor before GAS.</DD>
+(So that #define, #if, etc.. can be used.)<br></DD>
+<b>.sav</b> - Cart backup image. Contents of cart SRAM, EEPROM, or backup flash.<br></DD>
+<b>.text.iwram.o</b> - Used by DevKitAdvance & Jeff F linker script to put the text</DD>
+sections in this file into the .iwram section. Other sections are left alone.<br><BR><BR></DD>
+<DT><A NAME="RomHeader"><B> How is information layed out in a GBA ROM?</B></A><BR><BR></DT>
+<DD> Check out the crt0.S in the crtls package on <a href="../index.html" target=_blank>http://www.devrs.com/gba</a></DD>
+In the Nintendo Logo Character Data section there are graphics that</DD>
+have been left out of this file. These graphic bytes are required in</DD>
+order for the ROM to actually work. They have been left out of this</DD>
+file due to the questionable copyright status of this data. This data</DD>
+is always identical in each ROM that actually works on real hardware.<BR><BR></DD>
+<DT><A NAME="SimpleVblank"><B> Is there any simple code to wait for vblank?</B></A><BR><BR></DT>
+<DD> #define VCOUNT (*(volatile u16*)0x04000006)<br></DD>
+#define vsync() while (VCOUNT != 160);<BR><BR></DD>
+<HR>
+<DT><A NAME="VRAM8bit"><B> Graphics memory (VRAM) doesn't allow 8 bit writes. What happens when you try?</B></A><BR><BR></DT>
+<DD> The results of trying is that the same 8 bit value gets written to</DD>
+the upper & lower 8 bits of the destination of your memory pointer. (i.e.</DD>
+If your memory pointer is an even number then the next byte also gets set</DD>
+with the same value. If it's an odd number then the previous byte also gets</DD>
+set with the same value.) Use aligned 16 bit or 32 bit writes to avoid this</DD>
+effect.<BR><BR></DD>
+<DT><A NAME="Mode4bit8"><B> If you can't do 8 bit writes to VRAM, doesn't that make mode 4 difficult to use?</B></A><BR><BR></DT>
+<DD> If you want to draw single pixels then you have to read/modify/write</DD>
+which slows things down greatly. If you are writing two pixels at a time then</DD>
+you can benefit from the fact that you can draw twice as many pixels in mode 4</DD>
+in the same amount of time compared to modes 3 or 5.<BR><BR></DD>
+<DT><A NAME="Mode7"><B> Where can I get more info on Mode 7 graphics mode?</B></A><BR><BR></DT>
+<DD> The GBA only has graphics modes 0-5. Mode 7 refers to a graphics method</DD>
+rather than a GBA graphics mode. The term dates back to the SNES/Super Famicon</DD>
+days. The original SNES mode 7 was a graphics mode that supported rotation /</DD>
+scaling (zooming). The current (even if not exactly correct) use of the term</DD>
+"mode 7" often refers to using a rotation / scaling graphics mode on the GBA</DD>
+along with rewriting zoom/scaling values every scan line on a graphics tile</DD>
+map so that tiles toward the top of the screen appear farther away and tiles</DD>
+toward the bottom appear closer to the player. Use of DMA0 (set to trigger</DD>
+on H-blank interval) to copy scaling register manipulation data each scan</DD>
+line is one method of achieving this effect. You can also use an H-Blank</DD>
+interrupt to modify scaling registers but any DMA occuring while the screen</DD>
+is redrawing can delay an H-Blank interrupt and thus cause it to occur on</DD>
+the wrong line or at the wrong time.<BR><BR></DD>
+<DT><A NAME="SubPixel"><B> How can you increase horizontal resolution 3x for high contrast images?</B></A><BR><BR></DT>
+<DD> Use Sub-Pixel Rendering. The GBA hardware uses BGR (left-to-right) ordering.</DD>
+Check this site for the theory: <a href="http://grc.com/cleartype.htm" target=_blank>http://grc.com/cleartype.htm</a></DD>
+and for a freeware windows program for generating text.<BR><BR></DD>
+<DT><A NAME="DispCycles"><B> How many cycles are used per various display events?</B></A><BR><BR></DT>
+<DD> GB Clock (GBClk) = 4.194304 MHz<br></DD>
+GBC Clock = GBClk or 2xGBClk (Depending on mode)<br><br></DD>
+GBA Clock = 4 x GBClk = 16777216 Cycles/Second<br></DD>
+Display Size = 240 x 160<br></DD>
+Lines in VBlank = 68<br></DD>
+Total lines = 160 + 68 = 228<br></DD>
+Cycles/Line = 73.433us/Line = 1232<br></DD>
+Cycles/Frame = 16.743ms/Frame = 1232 * 228 = 280896<br></DD>
+Cycles/VBlank = 4.993ms/Frame = 1232 * 68 = 83776<br></DD>
+Cycles/HBlank = 16.212us/Line = 272<BR><BR></DD>
+<HR>
+<DT><A NAME="SpritesOff"><B> Is there a simple way of turning a sprite off?</B></A><BR><BR></DT>
+<DD> The preferred method is to set rotation double size mode with</DD>
+rotation/scaling switched off. You can also set the sprite Y</DD>
+coordinate to 160.<BR><BR></DD>
+<DT><A NAME="SpriteTypes"><B> What is the difference between hardware sprites and software sprites?</B></A><BR><BR></DT>
+<DD> A hardware sprite is where you use the game system sprite/object</DD>
+hardware to display a sprite.<br><br></DD>
+A software sprite is where you draw a sprite into background tiles</DD>
+or into a mode 3/4/5 bitmap plane. Most people don't usually use software</DD>
+sprites unless they are trying to do something that can't be performed</DD>
+with hardware sprites. The reason software sprites aren't often used</DD>
+is because it consumes lots of CPU time to move a software sprite.</DD>
+The term software sprite is confusing & sometimes misleading to some.</DD>
+A "software sprite" is nothing more that a bunch of writes (and possibly</DD>
+reads) directly to tile/bitmap VRAM.<BR><BR></DD>
+<DT><A NAME="UpperSprites"><B> Why do my sprites not appear in graphics modes 3,4, & 5?</B></A><BR><BR></DT>
+<DD> You need to put them at starting address 0x06014000 and the starting</DD>
+sprite number will be 512. You only have 512 sprites available in these</DD>
+modes. Sprites 0-511 are not available due to the memory that is</DD>
+consumed by the bitmap plane.<BR><BR></DD>
+<DT><A NAME="SprSprBlend"><B> Is it possible to do alpha blending between sprites?</B></A><BR><BR></DT>
+<DD> Unfortunately, no. :-\<BR><BR></DD>
+<DT><A NAME="SprColDet"><B> Does the GBA support sprite collision detection in hardware?</B></A><BR><BR></DT>
+<DD> Unfortunately, no. :-\<BR><BR></DD>
+<HR>
+<DT><A NAME="DMAHalt"><B> Does DMA halt the CPU or operate in the background?</B></A><BR><BR></DT>
+<DD> DMA halts the CPU until completion. This would seem a tremendous</DD>
+disadvantage and it probably is in some cases. However, DMA can still</DD>
+be fast enough, in some cases, to be more efficient than using</DD>
+other methods of data transfer.<BR><BR></DD>
+<DT><A NAME="DMAIntr"><B> If DMA halts the CPU, how can high priority DMA interrupt low priority DMA?</B></A><BR><BR></DT>
+<DD> Because you can setup hblank, vblank, or sound DMA to occur automatically</DD>
+at some future point in time. When an automatic blank or sound DMA interrupt</DD>
+occurs, it will halt any lower priority DMA and resume it later upon completion</DD>
+of the higher priority DMA. Only One DMA can occur at any one time.<BR><BR></DD>
+<DT><A NAME="DMACIntr"><B> What happens if an interrupt occurs during a DMA?</B></A><BR><BR></DT>
+<DD> The interrupt will be processed upon completion of DMA.<BR><BR></DD>
+<DT><A NAME="DMATiming"><B> How long does a DMA transfer take?</B></A><BR><BR></DT>
+<DD> It depends on the width of the DMA (16 or 32), the width of the</DD>
+source & destination memory, and the wait type of source & destination.</DD>
+Below is table of the CPU clock cycles required by each DMA</DD>
+transfer (Thanks to exoticorn):<br><br></DD>
+DMA16 / SRC16 = (fetch: 1+SrcWait) + (write:1+DestWait) = 2 + SrcWait + DestWait<br><br></DD>
+DMA32 / SRC16 / DEST16 = (fetch:2*(1+SrcWait)) + (write:2*(1+DestWait)) = 4 + 2*SrcWait + 2*DestWait<br><br></DD>
+DMA32 / SRC16 / DEST32 = (fetch:2*(1+SrcWait)) + (write:1+DestWait) = 3 + 2*SrcWait + DestWait<br><br></DD>
+DMA32 / SRC32 / DEST32 = (fetch:1+SrcWait) + (write:1+DestWait) = 2 + SrcWait + DestWait<br><br></DD>
+Example: 32 bit DMA from external WRAM(2:16) to internal WRAM(0:32) = 7 clocks per 32 bit word transfer<BR><BR></DD>
+<DT><A NAME="DMADelay"><B> Is there anything special I need to know about DMA operation?</B></A><BR><BR></DT>
+<DD> Some report that a DMA transfer isn't started until one instruction *after*</DD>
+the final write to the DMA control register to make it start. As a result,</DD>
+you need to delay 1 or 2 instructions (if writing assembly code... and make</DD>
+sure it doesn't get optimised out if it's trivial) after the write and</DD>
+before you try and access the DMA'ed memory.<BR><BR></DD>
+<HR>
+<DT><A NAME="IntBasics"><B> What are the basics that I need to know to write GBA interrupt code?</B></A><BR><BR></DT>
+<DD> 1) <b>Interrupt entry point address is stored at 0x3007ffc.</b> When</DD>
+an interrupt occurs, regardless of the type of interrupt, the GBA bios saves</DD>
+some registers and then it reads the 32 bit address value that is stored at</DD>
+0x3007ffc in IWRAM. It then branches to this address in ARM mode. (The</DD>
+actual code that the bios uses to do this included in the next question.)<br><br></DD>
+2) <b>The address stored at 0x3007ffc must point to ARM code.</b> Many people</DD>
+prefer to compile most or all of their GBA C code into Thumb code because it</DD>
+is smaller and runs faster out of GBA ROM or flash carts. In these cases,</DD>
+ you can not put a pointer at 0x3007ffc directly to your C code. If you</DD>
+are using GCC and Jeff F's crt0.S file then you don't have to worry about this.</DD>
+Assembly code is included in that crt0.S file to automatically patch address</DD>
+0x3007ffc, at start up, with a pointer to ARM code in the crt0.S file. [Note that</DD>
+this patch occurs before your code starts so you can freely write over that</DD>
+patch with your own patch if you prefer.] This ARM code then will branch to your</DD>
+ARM or Thumb code. If you enable FastInterrupts in</DD>
+that crt0.S file, then all that happens is that the ARM code loads a pointer to</DD>
+your ARM or Thumb C code and then jumps to it. For the FastInterrupts method,</DD>
+your C function needs the function name "void InterruptProcess (void)". There</DD>
+needs to be nothing special about this function. It can be treated basically</DD>
+like any other function in the sense that it requires no special needs when</DD>
+entering or exiting from the function. If you have an array of function</DD>
+pointers in your C code with the name "IntrTable" then you can use the</DD>
+SingleInterrupts or MultipleInterrupts options in the above mentioned crt0.S</DD>
+file. Each one of these function pointers would point to a specific interrupt</DD>
+type and allow you to call the specific type rather than having to figure this</DD>
+out yourself. (Ex. VBlankIntr(), SerialIntr(), etc) The MultipleInterrupts</DD>
+option allows multiple interrupts to occur at the same time. It switches to</DD>
+the main stack instead of the interrupt stack to minimize stack overflow</DD>
+problems due to too many interrupts and too little interrupt stack space.<br><br></DD>
+3) <b>If writing interrupt assembly code, you must save registers R4-r11.</b></DD>
+This is because the bios doesn't save these for you. Read the next question</DD>
+for more info. However, C compilers automatically save these registers so</DD>
+this is not a worry if you are writing C code. If you are using the asm("");</DD>
+statement in your standard or interrupt C code then you must be very careful</DD>
+and follow the guidelines that are listed in the asm("") documentation.<BR><BR></DD>
+<DT><A NAME="IntRegs"><B> What registers should I preserve in interrupt code?</B></A><BR><BR></DT>
+<DD> The GBA BIOS was designed to allow passing interrupt handling directly</DD>
+to GCC or ARM SDT C procedures by following the APCS (Arm Procedure Call</DD>
+Standard). As a result, the BIOS saves registers r0-r3 & r12 for you.</DD>
+You should preserve all other registers yourself when writing custom</DD>
+assembly interrupt drivers. Here is the actual ARM</DD>
+IRQ handler code used by the BIOS. Notice that the address that is</DD>
+stored at 0x3007ffc must be a branch to ARM (not Thumb) code:</DD>
+<pre><b>   stmdb r13!,{r0-r3,r12,r14}</DD>
+   mov r0,#0x4000000</DD>
+   adr lr,IntRet</DD>
+   ldr pc,[r0,#-4] </b>@ pc = [0x3007ffc]<b></DD>
+IntRet:</DD>
+   ldmia r13!,{r0-r3,r12,r14}</DD>
+   subs pc,r14,#4</b></pre><BR><BR></DD>
+<DT><A NAME="IEClear"><B> Are there cautions to clearing the IE or IME flags?</B></A><BR><BR></DT>
+<DD> Interrupts may occur during execution of commands to clear the IE or IME</DD>
+flags. If you would like to clear the IE flag, clear the IME flag first, so</DD>
+that problems will not occur.<br><br></DD>
+When using multiple interrupts and an interrupt</DD>
+coincides with clearing the IME flag, the interrupt will still occur, even</DD>
+though interrupts are disabled (IME flag is cleared). This will cause the</DD>
+interrupt routines to be "out of sync" with the IME flag. Write interrupt</DD>
+routines that save the IME flag and IE/IF registers and then re-enable the</DD>
+IME flag so that multiple interrupts can occur. This condition is rare but</DD>
+must be considered in your project.<BR><BR></DD>
+<DT><A NAME="IntRet"><B> My interrupt routine works but upon exit the return location is not correct. Why?</B></A><BR><BR></DT>
+<DD> If you are using DevKitAdvance, or Jeff F linker script for GCC, the interrupt</DD>
+stack is only 160 bytes long. If you are using extensive stack usage</DD>
+(i.e. many local variables or printf/sprintf, etc..) then this space</DD>
+can easily run out. Here are two different options:<br><br></DD>
+<b>a)</b> In your lnkscript file, change this:<br></DD>
+<b>__iheap_end = 0x3008000 - 0x400;</b><br></DD>
+<b>__sp_usr = 0x3008000 - 0x100;</b><br></DD>
+to this instead:<br></DD>
+<b>__iheap_end = 0x3008000 - 0x1000;</b><br></DD>
+<b>__sp_usr = 0x3008000 - 0xd00;</b><br></DD>
+This will give the IRQ stack a total space of 3232 bytes.<br><br></DD>
+<b>b)</b> Modify the Jeff F crt0.S (from the crtls package) to use</DD>
+__MultipleInterrupts. This forces the interrupt to use the main</DD>
+stack, instead of the interrupt stack, thus allowing a much larger</DD>
+stack area.<BR><BR></DD>
+<HR>
+<DT><A NAME="CCompilers"><B> What C compilers are available for GBA development?</B></A><BR><BR></DT>
+<DD> The two most popular are ARM/Thumb GCC and ARM/Thumb SDT. GCC is free but</DD>
+ARM/Thumb SDT is not after the trial period runs out. Official developers</DD>
+usually use GCC. GCC is also available for many versions of unix.</DD>
+ARM also makes a ADS version (US$5500) of their C compiler that is designed</DD>
+to replace SDT. Green Hills software also makes an ARM C compiler but</DD>
+it is expensive and few or none use it for GBA development.<BR><BR></DD>
+<DT><A NAME="Compare"><B> Is ARM SDT a more efficient C compiler for GBA development?</B></A><BR><BR></DT>
+<DD> Check the following: <a href="http://www.dwelch.com/gba/" target=_blank>http://www.dwelch.com/gba/</a><BR><BR></DD>
+<DT><A NAME="ARMvsThumb"><B> Should I use a C compiler that generates ARM or Thumb instructions?</B></A><BR><BR></DT>
+<DD> Thumb code is able to provide up to 65% of the code size of ARM,</DD>
+and 160% of the performance of ARM when accessing 16 bit memory.</DD>
+(Source: ARM DDI 0029E) Since most code is usually run out of ROM</DD>
+(which is 16 bit) it makes sense to use a Thumb compiler. For the</DD>
+times when you need the extra performance of ARM, you can always</DD>
+code these subroutines in ARM assembly language and place them in</DD>
+internal WRAM.<BR><BR></DD>
+<DT><A NAME="UseVol"><B> When I read a GBA hardware register the value never changes. Why?</B></A><BR><BR></DT>
+<DD> Make sure you are using the volatile keyword when trying to read a hardware</DD>
+register that is modified by hardware. C compilers will often cache the value</DD>
+of a register if you don't declare it volatile. Use the following:<br><br></DD>
+typedef volatile unsigned short int vu16;<br></DD>
+i = *(vu16 *)REG_xxxx;<BR><BR></DD>
+<DT><A NAME="DefineVolatile"><B> What does the term "volatile" mean?</B></A><BR><BR></DT>
+<DD> This means a value that can automatically change at any given instance.</DD>
+This is usually in reference to a hardware register that often has</DD>
+a different value ever time you read it. Specifically, it is useful</DD>
+to define some values as volatile so that a C compiler will not cache</DD>
+that value, but rather, get a fresh copy every time you request it's</DD>
+value. Otherwise, the compiler may return values which are inaccurate</DD>
+because it doesn't realized the value can change.<BR><BR></DD>
+<DT><A NAME="StartUp"><B> What are crt0.S/lnkscript (GCC) and start.s (SDT/ADS) used for in a project?</B></A><BR><BR></DT>
+<DD> crt0.S and start.s (sometimes start.asm) both have similar functions.</DD>
+They are mainly designed to execute assembly code that occurs before</DD>
+user compiled code is executed; usually for initialization purposes.</DD>
+(Sometimes these files will contain other assembly code as well like</DD>
+interrupt support, etc.) The most common usage is to set uninitialized</DD>
+global variable RAM to 0 and to copy initialized global variables from</DD>
+ROM to RAM. A bare minimum crt0.S or start.s file must at least contain</DD>
+a branch to the start of compiled code, even if it contains nothing else.</DD>
+(The S of crt0.s is often capitalized because the GCC docs</DD>
+mention that it must be this way if you ever wish to run the GCC</DD>
+preprocessor on this file.)<br><br></DD>
+lnkscript is a linker script used by GCC that tells the linker where to</DD>
+put various sections (.text/.data/.rodata/.iwram/etc..) in the GBA</DD>
+memory map. Often a particular crt0.s and lnkscript may be designed</DD>
+to work together so they are often distributed together. Some GCC</DD>
+compilers (i.e. DevKitAdvance) may include a default lnkscript</DD>
+and/or crt0.S as part of the the compiler suite which will be used if</DD>
+the user doesn't specify lnkscript and/or crt0.S files.<BR><BR></DD>
+<HR>
+<DT><A NAME="x86GCC"><B> Can I use my existing GCC C compiler for GBA development?</B></A><BR><BR></DT>
+<DD> No. You need a version of GCC that has been compiled for Thumb</DD>
+and/or ARM code generation. Most developers use GCC compiled for Thumb</DD>
+output. Thumb code is slower than ARM code but it is quite a bit</DD>
+smaller. (Thumb instructions take 2 bytes, ARM instrs. take 4.)<BR><BR></DD>
+<DT><A NAME="GCCSetup"><B> Is it difficult to setup a fully functional ARM/Thumb GCC compiler?</B></A><BR><BR></DT>
+<DD> Only if you plan to do that by compiling the GCC source files.</DD>
+So don't do that unless you like pain. ;) Download pre-built GCC</DD>
+binaries for your platform and then installation is no more difficult</DD>
+than installing ARM SDT.<BR><BR></DD>
+<DT><A NAME="GCCUse"><B> How do you use the GCC C compiler & GAS assembler?</B></A><BR><BR></DT>
+<DD> The best documentation is probably a working demo that contains</DD>
+all of the source code. Try downloading gfxLib, or a similar GCC demo.</DD>
+Follow the instructions in the "readme' file.<BR><BR></DD>
+<DT><A NAME="MixARMThumb"><B> Can I mix ARM and Thumb code?</B></A><BR><BR></DT>
+<DD> Yes. You need to include "-mthumb-interwork" in your compiler</DD>
+options. Subroutines can be written in assembly language in either</DD>
+ARM or Thumb. If you are calling these routines from C then the</DD>
+compiler automatically handles switching between ARM and Thumb modes</DD>
+for you by using the assembly instruction "bx". Using this instruction,</DD>
+ARM or Thumb code is able to call ARM or Thumb subroutines at will.</DD>
+The general rule of "thumb" ;) is to use Thumb in ROM and ARM instructions</DD>
+in RAM when execution speed is important.<BR><BR></DD>
+<DT><A NAME="Options"><B> How do I display all of the command line options for GCC?</B></A><BR><BR></DT>
+<DD> Type the following at a DOS prompt: <b>gcc -v --help|more</b><BR><BR></DD>
+<DT><A NAME="AoTCLO"><B> I have a GCC compiler for GBA. Can I generate ARM or Thumb using a command line option?</B></A><BR><BR></DT>
+<DD> This depends on the version of GCC that you have. Up until mid-year</DD>
+2000, GCC had to be built to support ARM or Thumb mode. You could not</DD>
+support both in the same compiler. Around mid-year 2000, ARM contributed</DD>
+a new backend to the GCC project that allowed one compiler build to</DD>
+support many of the ARM platforms including ARM & Thumb. Type the</DD>
+following from a DOS prompt: <b>gcc -dumpmachine</b><br></DD>
+If it reports "arm-thumb-elf" and it is v3.0 or later then it supports</DD>
+both. If it reports "thumb-elf" or "arm-elf" then it only supports one</DD>
+mode.<BR><BR></DD>
+<DT><A NAME="IncRaw"><B> How do I include ( or INCBIN ) raw data into a project?</B></A><BR><BR></DT>
+<DD>There are at least 7 different ways to do this. Two of them involve</DD>
+using <b>B2X</b> (for DOS & linux) from <a href="../index.html" target=_blank>http://www.devrs.com/gba/</a></DD>
+(Look in the Apps / Misc section.) The easiest method is listed</DD>
+first. The most efficient method is listed last:<br><br></DD>
+<b>1)</b> Compile your code & build a ROM. Pad the ROM size so that</DD>
+the file size is a nice, easy to remember, value. (Check the "Misc Tools</DD>
+section - <a href="gbadevfaqs.html#Padding" target=_blank>http://www.devrs.com/gba/files/gbadevfaqs.php#Padding</a> - for an</DD>
+easy method of padding your ROM or data files to any size in</DD>
+bytes that you prefer.) Use the following DOS command to append your</DD>
+binary data to the end of the ROM:<br></DD>
+<b>copy /b </b>romin.gba<b>+</b>data1.bin<b>+</b>data2.bin<b>+</b>... romout.gba<br></DD>
+Define a memory pointer to 0x8000000+YourRomSize to access the data</DD>
+from your code. (<b>NOTE:</b> Check the "Misc Tools section for an easy</DD>
+method of padding your data files to any size in bytes that you prefer.)<br><br></DD>
+<b>2)</b> *** Convert your data to .h (gcc compiler) file ***<br></DD>
+<b>b2x -c -t const_u8 -n </b>SomeLabel<b> <</b>in_file<b> ></b>out_file<br></DD>
+To be able to access this data from your C code use the following:<br></DD>
+<b>typedef const unsigned char const_u8;<br></DD>
+#include "</b>out_file<b>"</b><br><br></DD>
+<b>3)</b> *** Convert your data to .s (gas compiler) file ***<br></DD>
+<b>b2x -a -d <</b>in_file<b> ></b>out_file<br></DD>
+now using your favorite code editor create a file "data.s" and</DD>
+add the following info:<br><b></DD>
+.align<br></DD>
+.global </b>SomeLabel<b><br></DD>
+.include "</b>out_file<b>"</b><br></DD>
+To be able to access this data from your C code use the following:<br></DD>
+<b>typedef unsigned char u8;<br></DD>
+extern const u8 </b>SomeLabel<b> [ ];</b><br></DD>
+Plus you need to link the .s file into your project in order for C</DD>
+to see it. For an example of linking .c & .s files, download gfxLib</DD>
+from <a href="../index.html" target=_blank>http://www.devrs.com/gba/</a>.<br><br></DD>
+<b>4)</b> *** Convert your data to .o (gcc object) file #1 ***<br></DD>
+If you have the objcopy program that comes with a later version</DD>
+of the official Nintendo dev kit then use the following (NOTE:</DD>
+earlier versions of objcopy don't support this option):<br></DD>
+objcopy -v -I binary -O elf32-little --rename-section .data=.rodata in_file out_file<br><br></DD>
+<b>5)</b> *** Convert your data to .o (gcc object) file #2 ***<br></DD>
+If you are using DevKitAdv, or crtls v1.2 or later, then you can</DD>
+use the following technique without needing to modify your lnkscript.</DD>
+If you are using some other lnkscript then you need to add the line</DD>
+<b>*all.rodata*(*)</b> to your lnkscript as shown in the step below.</DD>
+Do the following:<br></DD>
+<b>objcopy -I binary -O elf32-little </b>in_file out_file<b>.all.rodata.</b>ext<br></DD>
+(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br></DD>
+(Ignore the "architecture UNKNOWN" warning message.)<br></DD>
+This will force the lnkscript to put all sections in this file into</DD>
+the .rodata (read-only data / ROM) section.</DD>
+To be able to access this data from your C code use the following:<br></DD>
+<b>typedef unsigned char u8;<br></DD>
+extern const u8 _binary_</b>outname<b>_all_rodata_</b>ext<b>_start [ ];<br></b></DD>
+(The symbols _binary_outname_all_rodata_ext_size &</DD>
+_binary_outname_all_rodata_ext_end are also available. However,</DD>
+the "size" symbol seems to be an address to a value rather than</DD>
+the value itself so you may need to do -> (u32)&_binary..._size )<br><br></DD>
+<b>6)</b> *** Convert your data to .o (gcc object) file #3 ***<br></DD>
+The last step is not very useful if you have lots of labels.</DD>
+Here is a possibly much more useful approach:<br></DD>
+<b>objcopyroda -I binary -O elf32-little </b>in_file outname.ext</DD>
+(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br></DD>
+(ObjCopyRoda can be found in the Apps / C Compilers section of</DD>
+<a href="../index.html" target=_blank>http://www.devrs.com/gba</a> . Ignore the "architecture UNKNOWN" warning message.)<br></DD>
+In the <b>lnkscript</b> file add the following line, shown in bold, if it is not</DD>
+already in this file. ObjCopyRoda outputs data to a section named .roda . The</DD>
+following modification of lnkscript is necessary in order to put .roda section</DD>
+data into the .rodata (read-only data / ROM) section. If you are using DevKitAdv,</DD>
+or crtls v1.2 or later, then you can skip the lnkscript modification since it</DD>
+has already been done for you:<br><br></DD>
+.rodata :<br></DD>
+{<br></DD>
+ ...<br></DD>
+ <b>*(.roda)</b><br></DD>
+ *all.rodata*(*)<br></DD>
+ ...<br></DD>
+. = ALIGN(4);<br></DD>
+}<br><br></DD>
+NOTE: Some 2.9 versions of binutils (maybe later versions as well) sometimes</DD>
+require that you have a <b>. = ALIGN(4);</b> at the end of your linker</DD>
+script section (as shown above) in order to prevent linker problems.<br><br></DD>
+<b>7)</b> *** Convert your data to .o (gcc object) file #4 ***<br></DD>
+If you don't want to use the hacked program "ObjCopyRoda" in the last</DD>
+step then here is another, slightly more complicated, approach:<br></DD>
+<b>objcopy -I binary -O elf32-little </b>in_file<b> temp.o</b></DD>
+(options -> ...G H <b>I</b> J K L M N <b>O</b> P Q...)<br></DD>
+(Ignore the "architecture UNKNOWN" warning message.)<br></DD>
+<b>ld -T convert.ls temp.o -o </b>outname.ext<br></DD>
+The convert.ls linker script file should contain the following text:<br><br></DD>
+<b>SECTIONS { .rodata : { *(.data) } }<br></b><br></DD>
+Info from: <a href="http://sources.redhat.com/ml/binutils/2001-05/msg00513.html" target=_blank>http://sources.redhat.com/ml/binutils/2001-05/msg00513.html</a><BR><BR></DD>
+<DT><A NAME="ForceReg"><B> How do you force GCC to put a variable into a specific CPU register?</B></A><BR><BR></DT>
+<DD> <b>register u32 remainder asm ("r5");</b> will force "remainder" into regster R5, for example.<BR><BR></DD>
+<DT><A NAME="ARMSim"><B> Does GCC GDB include a type of ARMulator for simulating arm code?</B></A><BR><BR></DT>
+<DD> Yes. It is based on a version of the ARMulator that ARM released under GPL.</DD>
+It also allows remote debugging over a serial port (with a proper ARM/Thumb</DD>
+GBA-side stub) which is ideal for embedded systems such as the GBA.</DD>
+eCos comes with GDB stub ROMs for ARM targets that can be modified for GBA</DD>
+use. You can get eCos from here: <a href="http://sources.redhat.com/ecos/" target=_blank>http://sources.redhat.com/ecos/</a><BR><BR></DD>
+<DT><A NAME="DeclInit"><B> Why does GCC put global & static variables in ROM when you simultaneously declare AND initialize it?</B></A><BR><BR></DT>
+<DD> This is because your linker script and/or crt0.s is wrong. It is probably</DD>
+putting the .data section in ROM when the correct location is in RAM. Get</DD>
+the ones from here: <a href="../ccode.html#cmisc" target=_blank>http://www.devrs.com/gba/ccode.php#cmisc</a> . Check the</DD>
+next question for more info.<BR><BR></DD>
+<DT><A NAME="LibFunc"><B> Why does sprintf, malloc, & other library functions not work right?</B></A><BR><BR></DT>
+<DD> This is because your linker script and/or crt0.s is wrong. Get the ones</DD>
+from here: <a href="../ccode.html#cmisc" target=_blank>http://www.devrs.com/gba/ccode.php#cmisc</a> . Check the</DD>
+next question for more info.<br><br></DD>
+From looking at the sprintf source code, there is an initialized global</DD>
+variable. A faulty official lnkscript would put this in ROM. So when the</DD>
+sprintf lib went to update this global it would try to write to ROM which</DD>
+would crash the Nintendo flash cart but a Visoly cart would be unaffected.<BR><BR></DD>
+<DT><A NAME="Sections"><B> What are sections and how are they used?</B></A><BR><BR></DT>
+<DD> GCC puts different code or data into different sections so as to</DD>
+organize the data according to its type. It is then the job of a</DD>
+linker script to put the various sections into either RAM or ROM.</DD>
+Here is what GCC does with code & global variables:<br><br></DD>
+code <b>---></b> text section<br></DD>
+u8 foo; <b>---></b> bss (uninitialized data, set to 0x00 ) section<br></DD>
+u8 foo [ ] = {0,0,...}; <b>---></b> data (initialized data) section<br></DD>
+const u8 foo [ ] = {0,0,...}; <b>---></b> rodata section<br><br></DD>
+However, you can force code or data to other sections by using</DD>
+the following:<br><br></DD>
+// do this only when declaring, not defining<br></DD>
+<b>void myfunc(void) __attribute__ ((section(".mysection")));</b><br></DD>
+// vars must be initialized<br></DD>
+<b>int myvar __attribute ((section(".mysection"))) = 0;</b> (Info from Jason Wilkins)<br><br></DD>
+A correct linker script should do the following:<br><br></DD>
+text <b>---></b> ROM<br></DD>
+bss <b>---></b> RAM<br></DD>
+data <b>---></b> RAM (Loaded from ROM to RAM at startup by crt0.S[GCC] or start.asm[SDT].)<br></DD>
+rodata <b>---></b> ROM<br><br></DD>
+A correct crt0.s should clear all of bss to 0 and copy the data</DD>
+section initialized data from ROM to RAM. For a correct crt0.s</DD>
+& linker script get crtls from here:<br></DD>
+<a href="../ccode.html#cmisc" target=_blank>http://www.devrs.com/gba/ccode.php#cmisc</a><BR><BR></DD>
+<DT><A NAME="VarSections"><B> I would like to put a variable into a different section. How?</B></A><BR><BR></DT>
+<DD> You can only do this for initialized, global variables. Here are some examples:<br></DD>
+<b>u8 a[10000] __attribute__ ((section (".ewram"))) = { 0 };<br></DD>
+u8 init_data __attribute__ ((section (".iwram"))) = 0;</b><br></DD>
+Quoting from the GCC manual:<br></DD>
+"You may only use the section attribute with a fully initialized global</DD>
+definition because of the way linkers work. The linker requires each</DD>
+object be defined once, with the exception that uninitialized variables</DD>
+tentatively go in the common (or bss) section and can be multiply</DD>
+'defined'. You can force a variable to be initialized with the `-fno-common'</DD>
+flag or the nocommon attribute."<br><br></DD>
+Another method would be just to define a pointer and reference an array</DD>
+by using it:<br></DD>
+<b>u8 *MyArray = (u8 *)0x2000000;</b> // ewram start<br></DD>
+<b>MyArray[0] = 1;</b><br></DD>
+If you are compiling a multiboot ROM image (code starting at 0x2000000)</DD>
+then use the following pointer instead. (In fact, this code will work</DD>
+regardless of whether you are compiling a standard or multiboot ROM image.)</DD>
+It will 4-byte align itself at the beginning location following the</DD>
+multiboot image (You must use</DD>
+lnkscript v1.3 from <a href="../ccode.html#cmisc" target=_blank>http://www.devrs.com/gba/ccode.php#cmisc</a> for this</DD>
+to work):<br></DD>
+<b>extern u8 *__eheap_start;</b><br></DD>
+<b>u8 *MyArray = __eheap_start;</b> // This can not be a global initialized ptr or compiler error<br></DD>
+<b>MyArray[0] = 1;</b><BR><BR></DD>
+<DT><A NAME="CPPMain"><B> Is there anything I should know to compile a GCC C++ program?</B></A><BR><BR></DT>
+<DD> Your main program function should have the name: <b>int main (void);</b><br></DD>
+The reason is that GCC will insert a call to __main right at the beginning</DD>
+of this function that is used to setup constructors. One reason that many</DD>
+do not commonly use this function name, when using C only, is because this</DD>
+causes the function __main to be linked with your program and ~5500 bytes</DD>
+are used up in the process.<BR><BR></DD>
+<DT><A NAME="IntRamCode"><B> How do I put my code in Internal WRAM so that it will run faster?</B></A><BR><BR></DT>
+<DD> If you just have a few functions or procedures that needs to go in IWRAM</DD>
+then proceed to the next question for a solution.<br><br></DD>
+If you want to put all of the code in an object file into IWRAM then get v1.2 or</DD>
+later the Crtls package from <a href="../index.html" target=_blank>http://www.devrs.com/gba</a> . Rename your object file</DD>
+to the following format: *.text.iwram.o . The linker script will now automatically</DD>
+put all code (.text section) in that object file(s) into IWRAM. The crt0.S</DD>
+(in the Crtls package) will make sure that that object file code gets copied</DD>
+from ROM to IWRAM upon startup of your GCC code. Proceed to the next question</DD>
+for methods of calling your functions or procedures in IWRAM.<BR><BR></DD>
+<DT><A NAME="LongBranch"><B> How do I do a long branch to a routine that is in Internal WRAM?</B></A><BR><BR></DT>
+<DD> For all of the following suggestions, you need a "proper" crt0.S and linker</DD>
+script that copies code from ROM to RAM for you. The following all assume that</DD>
+you have crtls v1.2 or later from <a href="../index.html" target=_blank>http://www.devrs.com/gba</a> . The following</DD>
+all require you to use the compiler option -mthumb-interwork if you plan to</DD>
+mix Thumb & ARM code:<br><br></DD>
+<b>1)</b> To call C code, if you are using GCC 3.0 or later, you may</DD>
+choose one of the three following methods.:<br></DD>
+a) Compile and link with -mlong-calls option.<br></DD>
+b) Use #pragma long_calls or #pragma long_calls_off.<br></DD>
+c) Use #define CODE_IN_IWRAM __attribute__ ((section (".iwram"), long_call))<br></DD>
+#define VAR_IN_IWRAM __attribute__ ((section (".iwram"))) = {0}<br><br></DD>
+Option c allows per-function enabling and thus saves some bytes by only</DD>
+doing long calls to functions that require it. For option c to work, the</DD>
+function must be in a separate object file (source file). Otherwise a</DD>
+'bl' is attempted and you will get an error similar to "relocation</DD>
+truncated to fit: R_ARM_PC24". Here is example code that will work:<br><br></DD>
+// file1.h<br></DD>
+extern void DataTest (int j, int k) CODE_IN_IWRAM;<br><br></DD>
+// file1.c<br></DD>
+void DataTest (int j, int k)<br></DD>
+{<br></DD>
+...<br></DD>
+...<br></DD>
+}<br><br></DD>
+// file2.c<br></DD>
+#define CODE_IN_IWRAM __attribute__ ((section (".iwram"), long_call))<br></DD>
+#include "file1.h"<br></DD>
+int AgbMain (void)<br></DD>
+{<br></DD>
+DataTest(1,2); // Just call it.<br></DD>
+...<br></DD>
+}<br></DD>
+(Info from Andrew Cox.)<br><br></DD>
+<b>2)</b> To call C code, one method is by using a function pointer. Example:<br><br></DD>
+#define INIT_BRANCH void (*ptr2Function)();<br></DD>
+#define BRANCH(a,b...) ({ ptr2Function = a; ptr2Function(b); })<br></DD>
+#define IN_IWRAM __attribute__ ((section (".iwram")))<br><br></DD>
+void DataTest (int j, int k) IN_IWRAM;<br><br></DD>
+void DataTest (int j, int k)<br></DD>
+ {<br></DD>
+ ...<br></DD>
+ ...<br></DD>
+ }<br><br></DD>
+int AgbMain (void)<br></DD>
+ {<br></DD>
+ INIT_BRANCH<br><br></DD>
+ BRANCH(DataTest,1,2);<br></DD>
+...<br></DD>
+ }<br><br></DD>
+Care must be taken when using the BRANCH macro because it does not</DD>
+check to see if you have supplied too little or too many parameters.</DD>
+You can force exact number of parameters checking by adding them to</DD>
+the () in the DECLARE_BRANCH #define but this makes it work only</DD>
+with functions with a specific number of parameters.<br><br></DD>
+<b>3)</b> Here's a slightly less complicated method which calls a function in crt0.S:<br><br></DD>
+typedef unsigned int u32;<br></DD>
+#define IN_IWRAM __attribute__ ((section (".iwram")))<br></DD>
+extern u32 __FarFunction (u32 (*ptr)(), ...);  // Reference to routine in crt0.S<br></DD>
+extern void __FarProcedure (void (*ptr)(), ...);  // Reference to routine in crt0.S<br></DD>
+u32 IWRAMCode (u32 *FuncAddr, int param1, int param2) IN_IWRAM;<br><br></DD>
+u32 IWRAMCode (u32 *FuncAddr, u32 param1, u32 param2)<br></DD>
+{<br></DD>
+u32 SomeValue;<br></DD>
+// Note: The first parameter for this function MUST be<br></DD>
+//  the *FuncAddr. Do NOT remove this parameter even<br></DD>
+//  though you probably may not need it.<br></DD>
+...<br></DD>
+return (SomeValue);<br></DD>
+}<br><br></DD>
+void AgbMain (void)<br></DD>
+{<br></DD>
+u32 ReturnValue = __FarFunction (IWRAMCode, 1, 2);<br></DD>
+}<br><br></DD>
+<b>4)</b> To call ARM assembly code, put the following in your assembly source code:<br></DD>
+<b>.SECTION .iwram,"ax",%progbits<br></DD>
+.ARM<br></DD>
+.ALIGN</b><br><br></DD>
+<b>5)</b> To call Thumb assembly code, put the following in your assembly source code:<br></DD>
+<b>.SECTION .iwram,"ax",%progbits<br></DD>
+.THUMB<br></DD>
+.ALIGN 2<br></b></DD>
+Also, you must put <b>.THUMB_FUNC</b> before EVERY Thumb function entry label.</DD>
+This assembler directive lets the C complier know that this is a Thumb label.</DD>
+** NOTE: The GNU GAS documentation says to use the format @progbits, instead of</DD>
+%progbits, but this applies to all platforms EXCEPT the ARM platform since</DD>
+the ARM platform uses @ as the comment character in assembly files. **<BR><BR></DD>
+<DT><A NAME="GCCorLD"><B> Are there any advantages to using GCC for linking rather than LD?</B></A><BR><BR></DT>
+<DD> When you use GCC for linking it actually calls LD to do the actual linking.</DD>
+There is an advantage in that when you use GCC, it implicitly links in libgcc.a</DD>
+and libc.a. (It also links in crt0.o if you are using DevKitAdvance.) Libgcc</DD>
+contains division code, c++ constructor setup, etc. Libc contains many different</DD>
+functions as noted here: <a href="../docs.html#docsmisc" target=_blank>http://www.devrs.com/gba/docs.php#docsmisc</a><BR><BR></DD>
+<DT><A NAME="LinkerResults"><B> How can I look at the size of various sections or the linker output results?</B></A><BR><BR></DT>
+<DD> Here are various methods. Use the one that you prefer:<br></DD>
+a) Add the following to your linker options: <b>-Map</b> filename.<b>map</b><br></DD>
+b) <b>nm --numeric-sort --demangle </b>filename<b>.elf</b><br></DD>
+c) <b>objdump -h </b>filename<b>.elf</b><br></DD>
+(Please note that empty sections may incorrectly list the lma address as</DD>
+the vma address for some versions of objdump.)<BR><BR></DD>
+<HR>
+<DT><A NAME="LDerror"><B> What does "ld: cannot open -l###: No such file or directory" mean?</B></A><BR><BR></DT>
+<DD> This means that the linker can not locate link library "lib###.a".</DD>
+(i.e. -lgcc = libgcc.a) First, make sure you have this file.It may</DD>
+be in your gcc bins directory. Modify "makefile", if necessary, to</DD>
+point the libraries path to this file.<BR><BR></DD>
+<DT><A NAME="Trunc"><B> What does "relocation truncated to fit: R_ARM_THM_PC22 function" error message mean?</B></A><BR><BR></DT>
+<DD> This means that you are trying to do a long branch to a function</DD>
+that is too far away for the compiler to generate a branch to it.</DD>
+Try this instead: <a href="gbadevfaqs.html#LongBranch" target=_blank>http://www.devrs.com/gba/files/gbadevfaqs.php#LongBranch</a><BR><BR></DD>
+<DT><A NAME="IncLibgcc"><B> I get an "undefined reference" to one of these: __divsi3,__modsi3,__udivsi3,__umodsi3. Why?</B></A><BR><BR></DT>
+<DD> The library libgcc.a is either not getting properly linked with your</DD>
+project or it is an incorrect version.<BR><BR></DD>
+<DT><A NAME="UndefEHFB"><B> I get an "undefined reference to '__EH_FRAME_BEGIN__'". Why?</B></A><BR><BR></DT>
+<DD> You need to link in crtbegin.o and crtend.o.<BR><BR></DD>
+<DT><A NAME="UndefCVR"><B> I get an "undefined reference to '___call_via_rX'" (X=0-9). Why?</B></A><BR><BR></DT>
+<DD> See the answer for "undefined reference to '__main'" that is below.<BR><BR></DD>
+<DT><A NAME="UndefUUGMain"><B> I get an "undefined reference to '__gccmain'". Why?</B></A><BR><BR></DT>
+<DD> See the answer for "undefined reference to '__main'" that is below.<BR><BR></DD>
+<DT><A NAME="UndefUUMain"><B> I get an "undefined reference to '__main'". Why?</B></A><BR><BR></DT>
+<DD> This is because you are not linking libgcc.a in your project.</DD>
+Normally, libgcc is linked without having to explicitly link it</DD>
+if you use GCC for linking. (If you use LD, directly, for linking</DD>
+then you need to link libgcc as well. Note: GCC calls LD to do</DD>
+linking.) The --nostdlib option will tell the compiler not to</DD>
+link libgcc. Function __main is used to setup c++ constructors</DD>
+if they are used.<br><br></DD>
+NOTE: Sometimes you will get this error message even if you</DD>
+have -lgcc on your LD link line. The easy solution to fix this</DD>
+is to use GCC instead of LD for linking.<BR><BR></DD>
+<DT><A NAME="UndefMain"><B> I get an "undefined reference to 'main'". Why?</B></A><BR><BR></DT>
+<DD> This is because the file you are compiling contains no 'main'</DD>
+function. First, look at your C code and locate the name of the</DD>
+main function. Many use 'AgbMain' instead of 'main'. If you want</DD>
+a quick fix then rename 'AgbMain' (or whatever) to 'main'. (This</DD>
+will increase the size of your output binary file about 5500 bytes.)</DD>
+Or you can disable C++ support in your crt0.S file (if you have the</DD>
+one written by Jeff F.) and that will also fix the problem. For</DD>
+more info on why people sometimes use 'AgbMain' instead of 'main',</DD>
+refer to the following: <a href="gbadevfaqs.html#CPPMain" target=_blank>http://www.devrs.com/gba/files/gbadevfaqs.php#CPPMain</a><BR><BR></DD>
+<DT><A NAME="UndefSin"><B> I get an "undefined reference" to one of these: sin, cos. Why?</B></A><BR><BR></DT>
+<DD> You need to add -lm option to your linker options to link in libm.a.</DD>
+This library (and all libraries) must be included AFTER the object files.</DD>
+So put it at the end of your link options.<BR><BR></DD>
+<DT><A NAME="UndefIntrTable"><B> I get an "undefined reference to `IntrTable'". Why?</B></A><BR><BR></DT>
+<DD> This is because the crt0.S file (compiled to crt0.o) that you are using</DD>
+has support for interrupts enabled but you have not supplied an interrupt pointer.</DD>
+You can fix this problem by either a) Editing your crt0.S file and disabling</DD>
+interrupts and then compiling it, or b) Supply an array of function pointers</DD>
+to interrupt service routines with the name of the array being 'IntrTable'.<BR><BR></DD>
+<DT><A NAME="UndefInterruptProcess"><B> I get an "undefined reference to `InterruptProcess'". Why?</B></A><BR><BR></DT>
+<DD> This is because the crt0.S file (compiled to crt0.o) that you are using</DD>
+has support for interrupts enabled but you have not supplied an interrupt function.</DD>
+You can fix this problem by either a) Editing your crt0.S file and disabling</DD>
+interrupts and then compiling it, or b) Supply your own function of the type</DD>
+'void InterruptProcess (void)' that is used to service interrupts.<BR><BR></DD>
+<DT><A NAME="MissSep"><B> Why do I get a "Makefile:xxx: *** Missing separator" error message?</B></A><BR><BR></DT>
+<DD> Makefiles must be edited with a text editor that preserves Tab characters.</DD>
+If the text editor, or you, insert spaces where tabs are supposed to be then</DD>
+you will get this error. If necessary, use Windows Notepad to edit makefiles</DD>
+since it is known to preserve Tabs.<BR><BR></DD>
+<DT><A NAME="CC1Perror"><B> When I try to compile it complains that it can't find cc1plus.exe. Why?</B></A><BR><BR></DT>
+<DD> You need to download the the "C++ support files" from the</DD>
+C Compilers section on <a href="../index.html" target=_blank>http://www.devrs.com/gba</a> and put these</DD>
+files in the same directory as the other GNU compiler binaries.<BR><BR></DD>
+<DT><A NAME="InterErr"><B> How to fix "X supports interworking but Y does not" warning messages?</B></A><BR><BR></DT>
+<DD> This has several causes. Using objcopy to convert binary to object</DD>
+format is one source. Use the following on the file that has problems.</DD>
+This will flip the mthumb-interwork bit in the file to remove this warning:<br></DD>
+<b>interflip -mthumb-interwork </b>file<b>.o</b><br></DD>
+(You can get 'interflip' from the DevKitAdvance web site.)<BR><BR></DD>
+<DT><A NAME="ICAF"><B> I get an "Error: invalid constant (1684) after fixup". Why?</B></A><BR><BR></DT>
+<DD> This can occur if you do an assembly language "adr rX,MyLabel" where</DD>
+MyLabel is out of range. Try using "ldr rX,=MyLabel" instead. You may</DD>
+need to use a ".pool" directive afterwards in a non-code executing area.<BR><BR></DD>
+<HR>
+<DT><A NAME="Interworking"><B> How do I fix "Warning: XXX.o does not support interworking, whereas YYY.elf does"?</B></A><BR><BR></DT>
+<DD> Try using the 'interflip' tool that comes with DevKitAdvance. Use</DD>
+the -mthumb-interwork command line option with it.<BR><BR></DD>
+<DT><A NAME="ArchUnknown"><B> How do I fix "Warning: architecture UNKNOWN"?</B></A><BR><BR></DT>
+<DD> Objcopy will give this error when converting a binary file to</DD>
+an object file because it does not "recognize" the data type.</DD>
+There no current solution other than to just ignore this warning.<BR><BR></DD>
+<DT><A NAME="MLSLs"><B> How do I fix "Warning: multi-line string literals are deprecated"?</B></A><BR><BR></DT>
+<DD> You could do the following with GCC 2.9.x:<br></DD>
+asm("<br></DD>
+ ...<br></DD>
+ ...<br></DD>
+ ");<br></DD>
+That will not work with GCC 3.x.x. Instead, you must do something like this:<br></DD>
+asm("\n"<br></DD>
+" ...\n"<br></DD>
+" ...\n"<br></DD>
+" \n");<br></DD>
+Or do this:<br></DD>
+asm("\n\<br></DD>
+ ...\n\<br></DD>
+ ...\n\<br></DD>
+ \n");<BR><BR></DD>
+<HR>
+<DT><A NAME="O3"><B> Are there any dangers to using -O3 optimization level?</B></A><BR><BR></DT>
+<DD> Yes. Subroutines that contain or do nothing will be optimized out.</DD>
+GCC assumes that subroutines at this optimization level that contain</DD>
+nothing but inline assembly code [asm("....");] are basically empty</DD>
+so these subroutines are ignored and not included during compile.</DD>
+To prevent this from happening, use [asm volatile("....");] instead.<BR><BR></DD>
+<DT><A NAME="ARMSlow"><B> What operations are particularly slow on the ARM processor?</B></A><BR><BR></DT>
+<DD> Division and modulus. The ARM has no division instruction so these are</DD>
+painfully slow. Whenever possible, use >> (right shift) or multiply by</DD>
+the reciprocal instead. If you absolutely need to use division then use</DD>
+the routines in the GBA BIOS. One report has the BIOS divison code</DD>
+operating ~2.5x faster than GCC division.<BR><BR></DD>
+<DT><A NAME="FunctParams"><B> Which parameters are most efficient to pass to a function?</B></A><BR><BR></DT>
+<DD> u32 or s32. If you use u8,s8,u16 or s16 then the compiler will automatically</DD>
+generate code to force the upper bits of a 32 bit register to zero's.</DD>
+(i.e. The compiler uses shifts to simulate '& 0xff' for 8 bit parameters</DD>
+and '& 0xffff' for 16 bit parameters.) If you pass 32 bit values then</DD>
+these extra instructions are eliminated.<BR><BR></DD>
+<DT><A NAME="StructPack"><B> My structure have a minimum "sizeof" of 8. How can it be made smaller?</B></A><BR><BR></DT>
+<DD> This occurs because the compiler pads everything to be long</DD>
+aligned by default. You can change this behaviour on a file</DD>
+level by using the compiler option <b>-mstructure-size-boundary=</b>X.</DD>
+You can change this behaviour on an individual structure level</DD>
+by using:<br><b>struct Point8Bin {char x; char y;} __attribute__</DD>
+((packed));</b> (Info from Sam Nova)<br> or by using<br><b>struct POINTTemp</DD>
+{char x; char y;} __attribute__ ((packed));<br>typedef struct</DD>
+POINTTemp Point8Bin;</b> (Info from Bob Koon)<BR><BR></DD>
+<HR>
+<DT><A NAME="MBBoot"><B> How do I build a ROM image that will be multiboot (MBV2,etc) compatible?</B></A><BR><BR></DT>
+<DD> #define MULTIBOOT const int __gba_multiboot;<br></DD>
+Then use it like this: MULTIBOOT<br></DD>
+(Putting the MULTIBOOT in your main project file, close to the top, might be useful.)<BR><BR></DD>
+<DT><A NAME="DKAMalloc"><B> Does malloc use internal or external WRAM?</B></A><BR><BR></DT>
+<DD> It uses the label __eheap_start to indicate the start of malloc space</DD>
+which grows upward. This label is defined in the internal link script</DD>
+or in an external link script if you provide one. __eheap_start usually</DD>
+points to the start of unused external WRAM space.<BR><BR></DD>
+<DT><A NAME="VMEError"><B> Why do I get "Virtual memory exhausted: Invalid argument"?</B></A><BR><BR></DT>
+<DD> You either need the latest version of the dev kit OR you need a different</DD>
+cygwin1.dll. Go to <a href="http://www.cygwin.com/" target=_blank>http://www.cygwin.com</a> and get the latest Cygwin DLL.<BR><BR></DD>
+<DT><A NAME="DKAInt"><B> How do I use interrupts with DevKitAdvance?</B></A><BR><BR></DT>
+<DD> DKA does not support interrupts by default. To add this support you need</DD>
+to use a crt0.o file that has interrupt support enabled. Then you need to</DD>
+follow someone's example code for using interrupts in your own code.<BR><BR></DD>
+<DT><A NAME="DKACrt"><B> How do I provide my own crt0.o instead of using the default crt0.o?</B></A><BR><BR></DT>
+<DD> You need to do all of the following:<br></DD>
+<b>a)</b> When linking use -nostartfiles so that the default crt0.o, crtbegin.o, and crtend.o will be ignored.<br></DD>
+<b>b)</b> Compile your crt0.S file with something like: as -o crt0.o crt0.s<br></DD>
+(The S in crt0.S is capitalized so that the file will be preprocessed by gcc, i.e.</DD>
+#define, etc, can be used in .S files if you do that.)<br></DD>
+<b>c)</b> If you are using C++ then you need to copy DevKitAdv files crtbegin.o and</DD>
+crtend.o to the local project directory.<br></DD>
+<b>d)</b> Add crt0.o to the START of the list of .o files to link to to your project.</DD>
+(If it is not at the start of the list then the program entry point will be wrong.)</DD>
+Also add crtbegin.o and crtend.o to the list of .o files to link if you are using C++.<BR><BR></DD>
+<DT><A NAME="DKALS"><B> How do I provide my own lnkscript instead of using the default lnkscript?</B></A><BR><BR></DT>
+<DD> DevKitAdvance has a default link script file that is built-in to the GCC compiler</DD>
+and it is used by default unless you specify your own link script file. Add the</DD>
+following option at the linking stage to use your own link script: -T lnkscript<br></DD>
+(Where lnkscript is the name of your link script file.)<BR><BR></DD>
+<HR>
+<DT><A NAME="NoReport"><B> What can cause problems without reporting an error ?</B></A><BR><BR></DT>
+<DD> "On windows using gcc [editors & Neil's note: some versions anyway] checks</DD>
+for the existence of include files case insensitivly,  but it only includes</DD>
+the file if the case is exact. Getting it wrong results in the compiler</DD>
+reporting no error but also not including he file causing all sorts of</DD>
+problems downstream." (Info from Neil Graham)<br><br></DD>
+"I used objcopyroda [editors note: this should also apply to objcopy]</DD>
+to make a binary into an object file. It broke everything. I tracked it</DD>
+down to the fact that my file wasn't a multiple of 4 bytes long.</DD>
+Appending two bytes to the binary fed to objcopyroda fixed the problem."</DD>
+(Info from Neil Graham)<BR><BR></DD>
+<HR>
+<DT><A NAME="InstTiming"><B> ARM docs are confusing. How do I figure out how many clock cycles an instruction takes?</B></A><BR><BR></DT>
+<DD> It depends on if it's an ARM instruction, Thumb instruction, operating</DD>
+in 16 bit or 32 bit memory, and the number of wait states of the memory.</DD>
+ARM instructions are 32 bit. Thumb are 16 bit. An ARM instruction in</DD>
+32 bit memory takes 1 fetch but 2 fetches in 16 bit memory. Wait</DD>
+states from ROM depend on if it's the first access (non sequential)</DD>
+or the next access (sequential). If you have the prefetch</DD>
+buffer disabled then you will hit the first access many times during ROM fetch.</DD>
+<table></DD>
+  <tr></DD>
+    <td rowspan="2" colspan="2">&nbsp;</td></DD>
+    <td>IRAM</td></DD>
+    <td>ERAM</td></DD>
+    <td>ROM</td></DD>
+    <td>ROM</td></DD>
+    <td>ROM</td></DD>
+  </tr></DD>
+  <tr></DD>
+    <td>(0)</td></DD>
+    <td>(2)</td></DD>
+    <td>(3/1)</td></DD>
+    <td>(4/2)</td></DD>
+    <td>(PF)</td></DD>
+  </tr></DD>
+  <tr></DD>
+    <td rowspan="2">ARM</td></DD>
+    <td>S . .</td></DD>
+    <td>1</td></DD>
+    <td>6</td></DD>
+    <td>4</td></DD>
+    <td>6</td></DD>
+    <td>1</td></DD>
+  </tr></DD>
+  <tr></DD>
+    <td>N . .</td></DD>
+    <td>1</td></DD>
+    <td>6</td></DD>
+    <td>6</td></DD>
+    <td>8</td></DD>
+    <td>-</td></DD>
+  </tr></DD>
+  <tr></DD>
+    <td rowspan="2">Thumb</td></DD>
+    <td>S . .</td></DD>
+    <td>1</td></DD>
+    <td>3</td></DD>
+    <td>2</td></DD>
+    <td>3</td></DD>
+    <td>1</td></DD>
+  </tr></DD>
+  <tr></DD>
+    <td>N . .</td></DD>
+    <td>1</td></DD>
+    <td>3</td></DD>
+    <td>4</td></DD>
+    <td>5</td></DD>
+    <td>-</td></DD>
+  </tr></DD>
+</table><br></DD>
+Examples:<br></DD>
+<b>mov r0,#0</b> = 1S, Thumb in ERAM -> 3 cycles<br></DD>
+<b>b myLabel</b> = 2S + 1N, Thumb in 3/1 ROM (Prefetch off) -> 8 cycles<BR><BR></DD>
+<DT><A NAME="UseARM"><B> Why use ARM instructions at all since they often seem to take longer and take up more memory than Thumb instructions?</B></A><BR><BR></DT>
+<DD> Many ARM instructions are more powerful than Thumb and can often</DD>
+do twice as many things, or more, as the same number of Thumb instructions.</DD>
+If you use ARM in internal WRAM then they run at the same speed as Thumb</DD>
+so all of the advantages of ARM over Thumb become available.<BR><BR></DD>
+<DT><A NAME="Shifts"><B> How do you do shift & rotates in assembly language?</B></A><BR><BR></DT>
+<DD> In Thumb assembly, it's not too complicated. Example: <b>lsl r0,r1</b></DD>
+means r0 = r0 << r1.<br><br></DD>
+In ARM assembly, there are no dedicated shift or rotate instructions.</DD>
+Instead, you use shifts & rotates as optional modifiers for other instructions.</DD>
+Example: <b>mov r0,r1,lsl r2</b> means r0 = r1 << r2 and <b>add r0,r1,r2,lsl r3</b></DD>
+means r0 = r1 + (r2 << r3).<BR><BR></DD>
+<HR>
+<DT><A NAME="Shift8bConst"><B> Why does "mov r0,#0x4000000" compile but "mov r0,#0x4000006" gives errors?</B></A><BR><BR></DT>
+<DD> The reason is that you can't use "mov" or "mvn" to load</DD>
+just any random 32bit value. The value you are trying to load</DD>
+must meet the form factor of (8 bit value) << (x*2). In other words,</DD>
+the compiler will try to fit your value into an 8 bit quantity</DD>
+and rotate it left (yes, rotate, not shift) x*2 number of bits (if needed)</DD>
+to satisfy your requirements. (where x=0-15) To load a purely random 32bit</DD>
+value you need to use <b>ldr r0,MyValue</b> and <b>MyValue: .word 0x4000006</b>.</DD>
+(Where the .word portion is in a non-executing area. i.e. After a b or bx instruction.)</DD>
+Read the following question for an optimization alternative.<br><br></DD>
+To be technically correct, the rotate is actually a right rotate since the</DD>
+ARM hardware can't do left rotates. But the effect is the same. (Info from Joat.)<BR><BR></DD>
+<DT><A NAME="OptILoad"><B> How do I implement an optimizing immediate 32bit load?</B></A><BR><BR></DT>
+<DD> If you wish to load an immediate 32bit value into a register</DD>
+and this value is to be determined at compile time, you may want</DD>
+the compiler to automatically decide whether to use "mov","mvn",</DD>
+or "ldr" to accomplish what you are trying to do most efficiently.</DD>
+This can be accomplished by using <b>ldr r</b>X<b>,=</b>Y and the <b>.pool</b></DD>
+directive. Example:<br><b>ldr r0,=0x4000006<br>...<br>.pool</b><br>(The pool</DD>
+directive must follow the ldr instruction and it must be</DD>
+in a non-executing area. i.e. After a "b" or "bx" instruction.)</DD>
+If the value fits the "8 bit value << z" form factor (discussed</DD>
+in the last question above) then a "mov" instruction will be used.</DD>
+If it doesn't, then a "ldr" and a ".word" will be generated to</DD>
+load the desired value. The ".word" will be inserted after the</DD>
+".pool" directive.<BR><BR></DD>
+<DT><A NAME="IncArray"><B> How do I access a global C array or global C variables from assembly code?</B></A><BR><BR></DT>
+<DD> All you have to do is just use it. You don't need to import</DD>
+or export anything. Let's assume you have a C array MyArray</DD>
+that you want to use. The following code will put a pointer</DD>
+to the start of this array in r0:<br></DD>
+<b>ldr r0,pMyArray<br></DD>
+...<br></DD>
+pMyArray: .word MyArray</b><br></DD>
+You can use the above code to access a C variable as well. In the</DD>
+case of a u32 variable, to read the value of that variable into r1</DD>
+you need the following in addition to the above code:<br></DD>
+<b>ldr r1,[r0]</b><BR><BR></DD>
+<DT><A NAME="EmptyBits"><B> When I compile assembly code to go into section .iwram, only empty (0x00) code is copied from ROM to IWRAM. Why?</B></A><BR><BR></DT>
+<DD> It is not enough to just do the following:<br></DD>
+<b>.SECTION .iwram</b><br></DD>
+you need to do the following instead:<br></DD>
+<b>.SECTION .iwram,"ax",%progbits</b><br></DD>
+or otherwise the code that is put in ROM, to be copied to IWRAM,</DD>
+for some reason is composed only of the value 0x00.</DD>
+If you use the GCC command line option -save-temps when compiling</DD>
+a C file then you will notice similar directives in the resulting .s</DD>
+temporary files. Search this FAQs on the keyword 'progbits' for</DD>
+other examples. ** NOTE: The GNU GAS documentation says to use the</DD>
+format @progbits, instead of %progbits, but this applies to all</DD>
+platforms EXCEPT the ARM platform since the ARM platform uses @ as</DD>
+the comment character in assembly files. **<BR><BR></DD>
+<DT><A NAME="GasDefine"><B> Is it possible to do something similar to #define in assembly files?</B></A><BR><BR></DT>
+<DD> Yes. You can do this by having gcc pre-process your file and then pass</DD>
+the result along to GAS. This is done by invoking GCC instead of GAS.</DD>
+In order for that to happen, rename the file extension from .s to .S.</DD>
+You will need to rename the file extension in your makefile as well.<BR><BR></DD>
+<HR>
+<DT><A NAME="GBAFlash"><B> Are there any GBA flash carts available?</B></A><BR><BR></DT>
+<DD> Yes, 64mbit Visoly carts from <a href="http://www.lik-sang.com/" target=_blank>http://www.lik-sang.com</a><br></DD>
+There are also 64mbit official flash carts but only from Nintendo</DD>
+for licensed developers.<BR><BR></DD>
+<DT><A NAME="GBAFCCode"><B> Will Bung GB/GBC flash carts, or similar, allow me to run GBA code on the GBA?</B></A><BR><BR></DT>
+<DD> No. The voltages are different, the lower address bus is multiplexed with the data bus,</DD>
+and the data bus is 16 bits wide instead of the 8 bit width of GB/GBC carts.</DD>
+It won't work. :-(<BR><BR></DD>
+<DT><A NAME="MakeCart"><B> How much modifications to an existing GBA cart would need to be done to make a GBA flash cart?</B></A><BR><BR></DT>
+<DD> It's not as simple as replacing a ROM chip with a flash ROM.</DD>
+GBA ROMs are not even remotely similar, interface wise, to standard ROMS</DD>
+or flash ROMS. Read "How does the GBA ROM cart interface work?" below.<BR><BR></DD>
+<DT><A NAME="CartDetect"><B> How does the GBA detect whether the cart is for GB/GBC or for GBA?</B></A><BR><BR></DT>
+<DD> The cart connector inside of the GBA uses a switch to detect the cart type.</DD>
+If there are two small grooves on the back of the cart on the sides, then</DD>
+the GBA recognizes it as a GBA cart. These grooves are detected by a switch</DD>
+in the cart connector in the GBA. No grooves cause the switch to flip and 5 volts</DD>
+(gb/gbc carts) to be put on the cart instead of 3.3 volts (GBA carts). If you</DD>
+try to defeat this system you will maybe end up destroying a cart and maybe</DD>
+damage your GBA.<BR><BR></DD>
+<DT><A NAME="GBCFCCode"><B> Will Bung flash carts, or similar, allow me to run GB/GBC code on the GBA?</B></A><BR><BR></DT>
+<DD> Yes, but you may not be happy with the results. GBC game graphics appear much darker</DD>
+on the GBA screen than on the GBC screen.<BR><BR></DD>
+<DT><A NAME="GBADetect"><B> Is there any way for a GB/GBC cart to detect if it's plugged into a GBA?</B></A><BR><BR></DT>
+<DD> Yes, you can check register B on reset. If bit 0 of register B is set then it's a GBA,</DD>
+otherwise it's a GB/GBC/SGB/GBP. Register B bits 1-7 are reserved for future use.</DD>
+(Info from DuoDreamer & others)<BR><BR></DD>
+<DT><A NAME="Mirroring"><B> What does mirroring mean?</B></A><BR><BR></DT>
+<DD> That means that multiple large blocks of memory contain the exact same information.</DD>
+In the case of gamepak memory, mirroring is used for a specific purpose. (Read the</DD>
+next question.) In the case of mirroring in other areas of memory, this is usually</DD>
+an artifact of simplistic hardware design.<BR><BR></DD>
+<DT><A NAME="MirrorGP"><B> I've read there are mirror addresses for different speed gamepaks. Why?</B></A><BR><BR></DT>
+<DD> It is cheaper (right now) to make low or slow speed gamepaks. As a result,</DD>
+Nintendo will probably use low speed gamepaks until prices drop even more.</DD>
+If you dedicate separate memory spaces for different speed gamepaks then</DD>
+this is an easy way for the hardware to automatically know what speed</DD>
+gamepack is being used and you could mix several different speed ROMs in the</DD>
+same gamepak if really needed.<BR><BR></DD>
+<DT><A NAME="Prefetch"><B> What is the prefetch buffer?</B></A><BR><BR></DT>
+<DD> The prefetch buffer can be used to get bytes from game ROM before you</DD>
+actually need them. It only works for ROM and not other forms of memory</DD>
+and it is off by default. The advantage of turning it on is that it will</DD>
+prefetch ROM data while the bus is idle. This allows some sequential</DD>
+accesses to occur at 0 wait states. The disadvantage of turning on prefetch</DD>
+is that it uses ~10% more battery power.<BR><BR></DD>
+<DT><A NAME="CartRead"><B> How does the GBA ROM cart interface work?</B></A><BR><BR></DT>
+<DD> GBA ROMs are special chips that contain a standard ROM, address latches,</DD>
+and address counters all on one chip. Cart accesses can be either sequential</DD>
+or non-sequential. The first access to a random cart ROM location must be</DD>
+non-sequential. This type of access is done by putting the lower 16 bits</DD>
+of the ROM address on cart lines AD0-AD15 and setting /CS low to latch</DD>
+address lines A0-A15. Then /RD is strobed low to read 16 bits of data from</DD>
+that ROM location. (Data is valid on the rising edge of /RD.) The following</DD>
+sequential ROM location(s) can be read by again strobing /RD low. Sequential</DD>
+ROM access does not require doing another /CS high-to-low transitions because</DD>
+there are count up registers in the cart ROM chip that keep track of the next</DD>
+ROM location to read. Address increment occurs on the low-to-high edge of all</DD>
+/RD. In theory, you can read</DD>
+an entire GBA ROM with just one non-sequential read (address 0) and all of</DD>
+the other reads as sequential so address counters must be used on most address</DD>
+lines to exactly emulate a GBA ROM. However, you only need to use address latch /</DD>
+counters on A0-A15 in order to satisfy the GBA since A16-A23 are always</DD>
+accurate. (Thanks to Christian Grenier for Logic Analyzer data posted to</DD>
+gbadev mailing list ( <a href="http://groups.yahoo.com/group/gbadev" target=_blank>http://groups.yahoo.com/group/gbadev</a> ) Apr 11,2001.)<BR><BR></DD>
+<DT><A NAME="MaskRom"><B> Is there a datasheet available for the GBA ROMS?</B></A><BR><BR></DT>
+<DD> MX23L3206-12B: made by <a href="http://www.macronix.com/" target=_blank>http://www.macronix.com</a> but they do not provide</DD>
+documentation for this chip online nor do they provide it if you contact them.</DD>
+LHMY5MT8: Made by Sharp but they don't provide datasheets either.<BR><BR></DD>
+<DT><A NAME="Cart8Pin"><B> What type of eeprom memory is in the 8-pin chip in Mario Advance?</B></A><BR><BR></DT>
+<DD> This appears to be a MPS-bus type eeprom. <a href="http://www.xicor.com/" target=_blank>http://www.xicor.com</a> has similar chips.</DD>
+(Thanks to Dark Fader.)<BR><BR></DD>
+<DT><A NAME="NGPCCart"><B> Can NeoGeo Pocket flash carts/copier be used with the GBA?</B></A><BR><BR></DT>
+<DD> No. All versions of the NeoGeo Pocket use an 8 bit non-multiplexed</DD>
+data bus where as the GBA uses a 16 bit multiplexed data bus.<BR><BR></DD>
+<DT><A NAME="LargestROM"><B> What is the largest size ROM supported by GBA?</B></A><BR><BR></DT>
+<DD> The GBA cart interface has 24 address lines. Also there are</DD>
+16 data lines. 24 address lines = 2^24 = 16.7 million locations</DD>
+which means 16M x 16bit or 32M x 8bit. Which is a total of</DD>
+32MBytes or 256Mbits of memory space. To put more memory</DD>
+than this in a cart would require some form of bankswitching.<br><br></DD>
+ROM has 3 different address ranges: 0x08000000 - 0x09ffffff, 0x0a000000 -</DD>
+0x0bffffff, and 0x0c000000 - 0x0dffffff. Each of these ranges are mirrors</DD>
+of each other. (i.e. They overlay each other. ) Read the mirroring question</DD>
+above for more info.<BR><BR></DD>
+<DT><A NAME="NFCCrash"><B> Why do official Nintendo flash carts sometimes crash. Can you write to them?</B></A><BR><BR></DT>
+<DD> Standard Nintendo flash carts have to be modified before you can actually</DD>
+write to them. This is done by removing resistor R7 and putting it at empty</DD>
+location R8. But, you can temporarily cause the ROM contents to disappear</DD>
+(i.e. the cart appears to crash) on unmodified or modified carts by changing</DD>
+modes in the flash chip. (i.e. By writing to it with random values. The common way</DD>
+to fix this is by power off/on.) Carts that crash often are running code</DD>
+that does writes to ROM but the code author is unaware that this is occurring.</DD>
+The first write that you do to flash sets up a particular mode or is ignored,</DD>
+depending on it's value. For more information on the available flash modes</DD>
+then check out the datasheet for LH28F320BJE on <a href="http://www.sharpmeg.com/" target=_blank>http://www.sharpmeg.com</a>.<BR><BR></DD>
+<DT><A NAME="BackupTypes"><B> What type of backup methods are currently used in GBA carts?</B></A><BR><BR></DT>
+<DD> SRAM - Battery backed up static RAM. It can be up to 64K bytes but it's usually</DD>
+32K bytes in size. It is located in the memory map from 0xe000000 to 0xe00ffff.</DD>
+(Examples of games that use 32K RAM backup: FZero, etc.)<br><br></DD>
+Flash ROM - This is memory which can be up to 64K bytes and it is usually that</DD>
+exact size. It is located in the memory map from 0xe000000 to 0xe00ffff.</DD>
+Reading Flash ROM is the same as reading SRAM; however, writing to Flash ROM</DD>
+is a different process due to the fact that Flash chips often have different</DD>
+modes of operation. Consult Sanyo & Atmel flash data sheets for more info.</DD>
+Some of the manufacturers guarantee a minimum of 10,000 rewrites per 1 sector</DD>
+so these devices have a limited life compared to SRAM. (Examples of games that</DD>
+use 64K Flash ROM backup: GT:Grand Touring Car Championship, Chu Chu Rocket, etc.)<br><br></DD>
+EEPROM - This uses the /RAMCS, A23, and D0 of the cart bus and is a serial connection.</DD>
+It usually is found in 4kbit or 64kbit size, but because of it's serial configuration,</DD>
+it could theoretically be any size. The maximum useable ROM size is 128MBits when using</DD>
+this device. Some of the manufacturers guarantee a minimum of 100,000 rewrites per</DD>
+address so these devices have a limited life compared to SRAM. (Examples of games that</DD>
+use EEPROM backup: Mario Advance, Final Fight, Hot Potato, Super Street Fighter II, etc.)<BR><BR></DD>
+<DT><A NAME="CartEmulate"><B> Is is possible to use a PC parallel port or a PC I/O card to emulate a GBA cart?</B></A><BR><BR></DT>
+<DD> No. GBA bus speeds are just too fast for pc parallel port or PC I/O cards to keep up.<BR><BR></DD>
+<DT><A NAME="CompactFlash"><B> Has anyone tried using CompactFlash to design a GBA flash cart?</B></A><BR><BR></DT>
+<DD> These cards are too slow to be attached to the GBA cart interface.<BR><BR></DD>
+<DT><A NAME="CartHeader"><B> What minimum information must all carts contain to boot & run?</B></A><BR><BR></DT>
+<DD> As a minimum they must contain the following information:<br></DD>
+Nintendo Graphics Logo: ROM Locations $4 to $9f.<br></DD>
+96:  $96 stored at ROM location $b2.<br></DD>
+Complement Check: Correct complement value at ROM location $bd.<br><br></DD>
+To calculate the Complement check:<br></DD>
+1) Add all the values from ROM locations $a0 to (and including) $bc.<br></DD>
+2) Add $19 to this value.<br></DD>
+3) Exclusive OR with $ff.<br></DD>
+4) Save the 8 least significant bits of the result to ROM location $bd.<BR><BR></DD>
+<HR>
+<DT><A NAME="FAIdeas"><B> I'm having problems getting my FA linker to work. Ideas?</B></A><BR><BR></DT>
+<DD> DON'T USE BATTERIES. Read more below. Also check out these FAQs:</DD>
+<a href="http://fafaq.gbaemu.com/" target=_blank>http://fafaq.gbaemu.com</a><BR><BR></DD>
+<DT><A NAME="FAVDiff"><B> What is the difference between Flash Advance & Visoly?</B></A><BR><BR></DT>
+<DD> They are the same thing. Flash Advance (or FA for short) is</DD>
+probably the more accurate name for these flash carts. The</DD>
+programmer is often referred to as the Flash Advance Linker.<BR><BR></DD>
+<DT><A NAME="VisolyFC"><B> What are the specs of the FA flash carts?</B></A><BR><BR></DT>
+<DD> There is a 64Mbit version that contains 128kbytes of</DD>
+game save SRAM. You can put up to two games on this cart with each</DD>
+game having access to 64kbytes of game save SRAM.<br><br></DD>
+The 128Mbit version contains 256kbytes of game save SRAM</DD>
+and allows up to 4 games to be stored on a cart. Each game</DD>
+has access to 64kbytes of game save SRAM.<br><br></DD>
+All of the these carts have game save flash emulation.</DD>
+Only the "Pro" carts contain game save EEPROM emulation as well.<BR><BR></DD>
+<DT><A NAME="VisolyDiff"><B> Should I get a tall (65mm) or a short (44mm) FA cart?</B></A><BR><BR></DT>
+<DD> The short (known as "Turbo") FA carts are rated for 10 nanosecond faster</DD>
+read access timings so they are, on average, more reliable than the taller carts.</DD>
+(i.e. A tall 64M cart uses 1 Intel 28F640J3A flash chip where the</DD>
+Turbo 64M cart uses 2 Intel 28F320J3A flash chips which are slightly faster.)<br><br></DD>
+The Turbo 64M carts are rated at 10 nanoseconds faster than Turbo 128M carts.</DD>
+As a result, on average, Turbo 64M carts are slightly more reliable than any</DD>
+of the other FA flash carts. (Turbo 128 uses 2 Intel 28F640J3A flash chips.)<BR><BR></DD>
+<DT><A NAME="GBAFlash"><B> Where can I get a FA flash cart?</B></A><BR><BR></DT>
+<DD> <a href="http://www.lik-sang.com/" target=_blank>http://www.lik-sang.com</a> You can probably find other sources as</DD>
+well by doing a <a href="http://www.google.com/" target=_blank>http://www.google.com</a> search for Flash Advance.<BR><BR></DD>
+<DT><A NAME="VisolyFCP"><B> What type of power supply does the FA flash cart programmer require?</B></A><BR><BR></DT>
+<DD> It uses 6 AAA batteries or a power adapter. (There has been one report</DD>
+that it doesn't work reliably even with brand new batteries so a power</DD>
+adapter was used instead.) The power adapter needs to meet the following</DD>
+requirements: 8 to 12 volts DC, 150 milliAmps(mA) or greater, center is negative.<BR><BR></DD>
+<DT><A NAME="VisolyCrash"><B> Why does the FA flash cart sometimes crash when testing code?</B></A><BR><BR></DT>
+<DD> Some people experience this problem and others don't. FA "Turbo 64M" carts</DD>
+are least likely to exhibit this problem. Sometimes this will even only occur</DD>
+after the cart warms up. This appears to be due to the cart flash &/or logic</DD>
+sometimes being too slow for reliable operation. (i.e. The flash cart sometimes</DD>
+can't handle 3 wait/1 wait cart access timing.) To greatly improve reliability</DD>
+for problem flash carts, set the cart timing to 4 wait/2 wait. (i.e. Write 0 to</DD>
+0x4000204 [WAITCNT]) Most commercial carts are designed for 3 wait/1 wait</DD>
+cart access. As a result, those testing commercial code are most likely to</DD>
+experience these problems.<BR><BR></DD>
+<DT><A NAME="VisErase"><B> How many times can you reprogram the FA 64M flash cart?</B></A><BR><BR></DT>
+<DD> The flash chip in that cart (Intel 28F640J3A) has an Erase/Reprogram</DD>
+lifetime of a minimum of 100,000 per block. So, you will probably wear</DD>
+out your cart connector long before you wear out the flash chip. :)<BR><BR></DD>
+<DT><A NAME="CartRWSRAM"><B> How do I access FA backup SRAM?</B></A><BR><BR></DT>
+<DD> Make sure that you only use 8 bit read or writes and then try</DD>
+something like the following:<br><b></DD>
+typedef  unsigned char  u8;<br></DD>
+#define CART_SRAM 0xe000000<br></DD>
+*(u8 *)(CART_SRAM+offset) = i; </b>// Write i to cart backup SRAM location + offset<br></DD>
+<b>i = *(u8 *)(CART_SRAM+offset); </b>// Read cart backup SRAM location + offset<BR><BR></DD>
+<DT><A NAME="FAMFlash"><B> Is it possible to write to FA main program flash from GBA code?</B></A><BR><BR></DT>
+<DD> Yes. Download FLinker from <a href="../index.html" target=_blank>http://www.devrs.com/gba</a> in the Apps/Misc section.</DD>
+It contains cartlib.c that allows you to do this. When you write to the flash</DD>
+chip you are actually setting bits to zero on the chip. If you do another write</DD>
+to the same flash location you can only clear additional bits. You can not set</DD>
+bits by using a write. In order to restore a memory location to all 1's you must</DD>
+erase it. Erasing can only be done by erasing a whole block. If you have an</DD>
+older full-size Flash Advance cart, a block contains 128k bytes. The newer</DD>
+short "Turbo" carts use two interleaved chips with an effective block size</DD>
+of 256k bytes. As mentioned above, you can erase each block a minimum of</DD>
+100,000 times but there are no guarantees above that point. The flash data</DD>
+sheet mentions that, on average, a block erase takes 1 second but it could</DD>
+have a worst case time of 5 seconds<BR><BR></DD>
+<HR>
+<DT><A NAME="PCGCable"><B> I want to make a PC<->GBA link cable. Where do I start?</B></A><BR><BR></DT>
+<DD> The GBA has several different link port communications modes and there</DD>
+currently are no general purpose PC<->GBA link cables that can handle</DD>
+several different comms modes (except the MBV2.)</DD>
+Here are the 3 most popular PC<->GBA style link cables:<br><br></DD>
+<b>1) Multiboot</b> - This would be a cable that supports "multiboot" so that</DD>
+you can boot the GBA just using the link port (i.e. no cart installed.)</DD>
+Check the links below for more info on what hurdle there are in making</DD>
+this type of cable.<br><br></DD>
+<b>2) UART Comms</b> - This type of cable allows you to connect the GBA</DD>
+to a PC serial port. You need voltage conversion logic (max3222, max3232,</DD>
+etc) for this to work. With this type of cable you can use GNU GDB to</DD>
+do remote debugging of GBA software (i.e. debug in-circuit GBA code using a PC.)</DD>
+Link port pin SC is a handshake input in UART mode, however, on power up</DD>
+this pin is an output pin. As a result, you should put a resistor (1k ohm will work)</DD>
+between this pin and any voltage conversion logic to prevent 2 outputs from</DD>
+shorting each other.<br><br></DD>
+<b>3) Normal Comms</b> - This is probably the simpliest of any of the PC<->GBA</DD>
+cable ideas, using to a PC parallel port. You *might* be able to use</DD>
+just wires and resistors (1k ohm - to do voltage conversion from 3.3v<->5v)</DD>
+with no other parts needed. Make the PC the clock master for this setup. (If</DD>
+you make the GBA clock master then any PC interrupt might cause loss of data.)<BR><BR></DD>
+<DT><A NAME="MBSerial"><B> Can you modify a GBA link cable to connect to a COM serial port to support multiboot?</B></A><BR><BR></DT>
+<DD> There are many reasons you can't easily do this. The first reason is</DD>
+that a standard serial COM port uses 1/8/1 format but GBA multiplayer /</DD>
+multiboot link mode uses 1/16/1 format. (format = Start bit/Data Bits/Stop Bit)<BR><BR></DD>
+<DT><A NAME="MBParallel"><B> Can you modify a GBA link cable to connect to a PC parallel port to support multiboot?</B></A><BR><BR></DT>
+<DD> Yes but you either need to run your PC only in DOS mode or else you</DD>
+need a small microprocessor or programmable logic in your cable. The</DD>
+reason is that the serial data in multiboot mode (which uses multiplayer</DD>
+comms mode) is asynchronous data which must be clocked in & out at 115200</DD>
+bits per second. As a result, you need very precise timing in order to be</DD>
+able to do this. This kind of timing using a "dumb" cable is only available</DD>
+when using DOS or by using special protected mode programming on a PC when</DD>
+using windows. In addition, you must make sure that no non-maskable interrupt</DD>
+occurs as well. It just makes life easier to use a "smart" cable instead.<br><br></DD>
+In normal comms mode you can use a relatively dumb cable (just wires & voltage</DD>
+conversion) since the GBA relies on the PC to synchronize the flow of each</DD>
+data bit into & out of the GBA.<BR><BR></DD>
+<DT><A NAME="MBRate"><B> What data transfer rate can be expected in multiboot mode?</B></A><BR><BR></DT>
+<DD> The GBA uses multiplayer communications mode fixed at 115200 bps to send</DD>
+multiboot data. 18 bits (start bit + 16 data bits + stop bit) are sent from</DD>
+master to slave and then the master waits for 18 bits from the slave. This</DD>
+translates to a transfer rate of 115200/18 = 6400 words or 12800 bytes/sec.</DD>
+Since communication occurs in only one direction at any one given time, this</DD>
+means the amount of data that you can send in any one direction, per given</DD>
+amount of time, is cut in half. So effectively in this mode, the theoretical</DD>
+limit is 6.4k bytes/sec transfer in one direction.<br><br></DD>
+While the theoretical limit is 6.4k bytes/sec for multiplayer comms mode,</DD>
+multiboot effective maximum transfer rate appears to be around 5k bytes/sec</DD>
+from tests. This less than ideal rate might be due to the fact that data</DD>
+tranferred during multiboot is key encrypted and must be decrypted on the</DD>
+receive end.<BR><BR></DD>
+<DT><A NAME="MBEncrypt"><B> Is there encryption in multiboot transfer mode?</B></A><BR><BR></DT>
+<DD> During transfer negotiations, the slave GBA sends a random number</DD>
+to the master GBA. The master then uses this number or key to encrypt</DD>
+data that is sent to the slave. As a result, if you did a data capture</DD>
+of the transferred data it would appear different each time you do</DD>
+a transfer for a given multiboot image.<BR><BR></DD>
+<DT><A NAME="LinkShape"><B> Is the GBA game link port physically different from the GBC link port?</B></A><BR><BR></DT>
+<DD> The only difference is that there is an extra notch on the GBA</DD>
+link port. This is to prevent GBA-Only link cables from being used</DD>
+on a GBC. GBC link cables will work fine to connect two GBA's that</DD>
+wish to link to play a GBC game. A GBC link cable probably won't</DD>
+work for GBA link games due to link electrical differences.<BR><BR></DD>
+<DT><A NAME="LinkVolts"><B> What is the voltage on the GBA game link port?</B></A><BR><BR></DT>
+<DD> It is 3.3 volts when using a GBA cart. It is 5 volts when using</DD>
+a GB/GBC cart.<BR><BR></DD>
+<DT><A NAME="LinkModes"><B> There appear to be many link communication modes. Which are realistic?</B></A><BR><BR></DT>
+<DD> The GBA supports many game link communication (comms) modes but</DD>
+most are not realistic for commercial games because they require special</DD>
+cables. So far, there is one standard GBP/GBC cable (GB cable has same</DD>
+wiring but physically larger connectors) and one common GBA cable. This</DD>
+multiplayer GBA cable is specifically designed to support multiplayer</DD>
+comms mode. It also supports low-speed (256kbits/sec) normal comms mode</DD>
+(2mbits/sec high-speed normal comms mode is currently only supported by</DD>
+wireless-style devices) but ONLY from higher priority to lower priority.</DD>
+(i.e. Master can talk to slave #1 but slave #1 can't talk to master, slave</DD>
+#1 can talk to slave #2 but slave #2 can't talk to slave #1, etc...) This</DD>
+is due to the way the cable is wired. To fully take advantage of GBA normal</DD>
+comms mode (di-directional comms) you need to use a standard GB/GBC cable.</DD>
+Unfortunately, it gets confusing when there are multiple cable</DD>
+choices for the GBA so it's probably highly likely that the currently</DD>
+common GBA multiplayer cable will become a standard for commercial</DD>
+games. In theory, the GBA multiplayer cable can support up to 256k bits/sec</DD>
+for one-way comms when used in low-speed normal comms mode and the GB/GBC</DD>
+cable can not (according to Nintendo anyway.) This would probably be due to</DD>
+the quality of the cables themselves. General purpose comms mode is</DD>
+unique in that it, in some form, supports all possible cable combinations.</DD>
+However, due to it's simplicity and low-level nature, it can be very</DD>
+software intensive to use this mode. Serial transfer algorithms that are</DD>
+done in hardware in other modes must strictly be handled in software in</DD>
+this mode.<BR><BR></DD>
+<DT><A NAME="LinkPins"><B> What are the pin signals on the link interface?</B></A><BR><BR></DT>
+<DD> NOTE: When looking at the top of the GBA with the battery-side of the</DD>
+GBA facing you (link port center notch is up), pin 1 is on the</DD>
+top row to the far right. Pin 2 is on the bottom row below pin 1. etc.<br><br></DD>
+Pin# - Signal - FullName - PositionOnConnector<br></DD>
+1 - PWR - +3.3Volts - UpperRight (+5Volts when using GB/GBC cart.)<br></DD>
+2 - SO - SerialOut - LowerRight<br></DD>
+3 - SI - SerialIn - UpperMiddle<br></DD>
+4 - SD - SerialData - LowerMiddle<br></DD>
+5 - SC - SerialClock - UpperLeft<br></DD>
+6 - GND - Ground - LowerLeft<BR><BR></DD>
+<DT><A NAME="CommsCode"><B> Are there any things that should be avoided when writing comms code?</B></A><BR><BR></DT>
+<DD> Make sure that if you do any DMA's that they are short enough not to</DD>
+disturb comms communications if you send more than one communication</DD>
+per frame. i.e. If you send one comms transfer followed by a second</DD>
+transfer, make sure that any DMA is not longer than the length of time</DD>
+it takes to send one comms transfer. The CPU is halted during DMA so</DD>
+an extensively long DMA may cause you to lose the next transfer due to</DD>
+the fact that GBA hardware can only buffer one comms transfer at a time.<BR><BR></DD>
+<DT><A NAME="PCGB4"><B> I found a PC parallel port to GBA link port cable that contains only 4 wires. What's it for?</B></A><BR><BR></DT>
+<DD> It very possibly is a Pelican Game Downloader cable for the GB/GBC consoles.</DD>
+Check <a href="http://www.pelicanacc.com/" target=_blank>http://www.pelicanacc.com</a> for more info.<BR><BR></DD>
+<HR>
+<DT><A NAME="ResetButton"><B> Is there any way to add a reset button to the GBA?</B></A><BR><BR></DT>
+<DD> Yes, and it can be quite a handy feature if multiboot mode is</DD>
+figured out for development purposes. Just press the reset button</DD>
+to return to multiboot mode.<br></DD>
+To add a reset button you'll need to be handy with a soldering iron and</DD>
+happy with the fact that you are voiding your warranty by messing with</DD>
+your GBA. Remove the back cover of your GBA using a very small flat head</DD>
+screwdriver in the funky tri-wing screws. Next, loosen the clamp that holds</DD>
+the LCD flat cable to the top of the board. To do this you need</DD>
+to very gently pry the plastic clip out on each side of the cable.</DD>
+THIS CLIP IS NOT DESIGNED TO COME OFF, JUST TO BE LOOSENED. SO DO NOT</DD>
+TRY TO PRY IT COMPLETELY OFF. Once this clip is loosened you should</DD>
+be able to remove this cable with NO force. Next unscrew the board</DD>
+and remove it. Flip it over. Just to the right of where the direction</DD>
+pad buttons are located is a small hole labeled "RESET". (The hole will</DD>
+be directly above the letter E in RESET.) Solder a wire</DD>
+from this hole to a switch. Solder a wire from the other side of this</DD>
+switch to the last pin on the cart connector that is closest to the</DD>
+direction pad buttons area. Put the board back in the GBA. Install the</DD>
+LCD cable. Press the LCD cable clip back in place so that the LCD cable</DD>
+is snug again. Put everything else back together. Do a short prayer,</DD>
+tibetan dance, or a ceremony of your choice for good luck. Hopefully</DD>
+your GBA will still work, assuming you did everything right. Test.<BR><BR></DD>
+<DT><A NAME="AdjScrew"><B> There is a small adjustment screw below the serial # of US GBA's. What's it for?</B></A><BR><BR></DT>
+<DD> This is a voltage adjustment for the LCD display. DO NOT TOUCH IT.</DD>
+Messing with it can greatly shorten the lifetime of your LCD display.</DD>
+LCD displays must have an average of 0 volts DC on them (i.e. The positive</DD>
+and negative voltages put on them must nearly perfectly cancel out when</DD>
+you average the voltages over time.) If they don't average out to 0 volts</DD>
+then the LCD plating materials will start to come off which</DD>
+slowly destroys the display over time.<BR><BR></DD>
+<DT><A NAME="Conserve"><B> How do I conserve battery power when developing GBA software?</B></A><BR><BR></DT>
+<DD> The main things would be to use 4/2 rom wait state timing and to leave</DD>
+the ROM prefetch turned off. 3/1 rom wait states uses about 20% more power.</DD>
+ROM prefetch increases power usage by about 10%. If using Visoly flash</DD>
+carts, keep in mind that Turbo 64M uses ~15% more and Turbo 128M uses ~35%</DD>
+more battery power than the older 64M carts. (Turbo carts are all small carts.)<BR><BR></DD>
+<DT><A NAME="3point"><B> Where can I get a 3-point screwdriver to open the GBA case?</B></A><BR><BR></DT>
+<DD>Try one of these links:<br></DD>
+<a href="http://www.panamericantool.com/triwing1.html" target=_blank>http://www.panamericantool.com/triwing1.html</a><br></DD>
+<a href="http://www.starkelectronic.com/eclsd.htm" target=_blank>http://www.starkelectronic.com/eclsd.htm</a><br></DD>
+<a href="http://www.firefly-hk.com/" target=_blank>http://www.firefly-hk.com</a><BR><BR></DD>
+<DT><A NAME="GSHacking"><B> Can I hack the GameShark GBA (Action Replay GBX) to use the USB hardware for other stuff?</B></A><BR><BR></DT>
+<DD> Probably, but realize that it uses the following chips: Cypress</DD>
+CY7C63743-SC Low-Speed USB chip, SST 39VF200A-90 2mbit flash, & Actel</DD>
+A54SX08A-FTQ100 FPGA. Since it contains a low-speed, rather than full-speed</DD>
+or high speed chip, it will not be able to transfer data very quickly over</DD>
+USB. Low-speed chips are designed mainly for low-speed mice, keyboards, etc.</DD>
+Here is an excerpt from page 31 of USB Complete: "Although the low-speed bus</DD>
+is 1.5 Megabits per second, the fastest guaranteed delivery for a single</DD>
+transfer is 8 bytes in 10 milliseconds, or 800 bytes per second."</DD>
+This particular USB chip has an embedded burned EPROM (that can't be erased)</DD>
+so you can't just upgrade it with a faster chip.<BR><BR></DD>
+<HR>
+<DT><A NAME="Photoshop"><B> Why are JPEGs produced by Photoshop so large?</B></A><BR><BR></DT>
+<DD> That is because they sometimes put up to 7k bytes worth of comments</DD>
+and thumbnails into their file. Use JPEGTRAN.EXE to remove these</DD>
+and to compress the huffman tables. You can get it from devrs.com/gba</DD>
+(Look in the the Apps/Misc section.)<BR><BR></DD>
+<DT><A NAME="JPEGSample"><B> I plan to put a JPEG & JPEG viewer into ROM. Should I down sample to save space?</B></A><BR><BR></DT>
+<DD> No. A 256 color image won't JPEG compress or view very well and you won't</DD>
+save any ROM space by doing so. Leave the image at 16 million colors</DD>
+when you convert it to JPEG and put it in ROM.<BR><BR></DD>
+<HR>
+<DT><A NAME="VCDep"><B> I am getting the following error when I build the project: "fatal error U1087: cannot have : and :: dependents for same target". Why?</B></A><BR><BR></DT>
+<DD> Your strings supplied for either the Devkit Advance directory or the</DD>
+Project Directory have spaces in them. Choose a folder that has no spaces</DD>
+in its path. (Info from Ian Stocker)<BR><BR></DD>
+<DT><A NAME="VCUndef"><B> I get the following error when I build: "undefined reference to [function name]" and the build fails. Why?</B></A><BR><BR></DT>
+<DD> You are referring to a function from another source file, and this source</DD>
+file is not getting compiled. Make sure you have included it in the list of</DD>
+object files to build, which is the macro "O_FILES" in the makefile.</DD>
+(Info from Ian Stocker)<BR><BR></DD>
+<HR>
+<DT><A NAME="Padding"><B> How do I pad a ROM or raw data to a given size?</B></A><BR><BR></DT>
+<DD> There are at least 2 different methods of doing this:<br></DD>
+<b>1)</b> Get one of the standard GBA ROM "fixer" programs to fix a ROM. (i.e. GBAFix, etc.)</DD>
+These programs often not only fix header area info but also pad to the next</DD>
+larger 2^X file size.<br><br></DD>
+<b>2)</b> Use the following DOS commands to pad a ROM or raw data to any size you want:<br></DD>
+<b>copy /b </b>filein.bin<b>+</b>largefile.bin temp.bin<br></DD>
+<b>subset 0 </b>filesize temp.bin fileout.bin<br><br></DD>
+largefile.bin is just any large file that probably should contain</DD>
+all 0xff's. (All 0xff's allow the file to compress well and write to</DD>
+flash carts a little faster.) The "copy" appends this file to the end</DD>
+of your data file and the "subset" trims the file size to exactly</DD>
+"filesize" bytes in size.<br><br></DD>
+You can generate your own largefile.bin by taking any small size file</DD>
+(preferably containing only 0xff data) and replicating it's size by</DD>
+using several "copy /b" commands. (Get <b>subset</b> [for DOS & linux]</DD>
+from <a href="../index.html" target=_blank>http://www.devrs.com/gba/</a> . Look in the Apps / Misc section.)<BR><BR></DD>
+<DT><A NAME="Disassemble"><B> What disassemblers are available for ARM/Thumb?</B></A><BR><BR></DT>
+<DD> IDA Pro - An expensive package from here: <a href="http://www.datarescue.com/" target=_blank>http://www.datarescue.com</a><br><br></DD>
+ARMSD - This comes in the 30 day trial version of the ARM SDT C compiler.<br><br></DD>
+OBJDUMP - This comes with the GCC binutils. Use option --disassemble.</DD>
+Note that it only works on .ELF or .a files.<br><br></DD>
+Mappy - This GBA emulator has an export disassembly option.<BR><BR></DD>
+<HR>
+<DT><A NAME="CustGame"><B> If I make a custom game, how do I go about selling it?</B></A><BR><BR></DT>
+<DD> Many publishers do not accept original titles. Rather than saying</DD>
+other things that can be interpreted as pessimistic, this will be left</DD>
+as an excercise for the reader to research, since results may vary.<BR><BR></DD>
+<DT><A NAME="AmDev"><B> What does Nintendo think about amateur GBA development?</B></A><BR><BR></DT>
+<DD> Nintendo is in business to make money and to maximize their profit</DD>
+returns. They may have other motivations as well but it is probably</DD>
+safe to assume that this motivation is high in their list of priorities.</DD>
+As such, I'm sure they are not opposed to the idea of selling as much</DD>
+of their product as possible with as little competition as possible.</DD>
+If you are doing anything that you think they might interpret as</DD>
+cutting into their profits then that's probably a bad sign. The</DD>
+following is a suggested list of things that could conceivably be</DD>
+interpreted as profit infringement. If you are not actively doing</DD>
+any of the following then you are probably not a top priority on</DD>
+their concern list (i.e. And some of the Nintendo employees</DD>
+probably admire what you are doing, even if that's off the record. ;-):<br></DD>
+<b>a)</b> You are distributing copyright games, of which Nintendo has</DD>
+licensed, on a website or by any other distribution method.<br></DD>
+<b>b)</b> You are openly or otherwise sharing what they might</DD>
+consider NDA material which might encourage third party clone</DD>
+units of their console hardware. (It has been reported on several</DD>
+occasions that their lawyers will target anything that looks identical</DD>
+in appearance to their NDA material.)<br></DD>
+<b>c)</b> You are producing/making hardware or software which may</DD>
+be confused with official hardware or software and cause a source</DD>
+of confusion for their customers. (For instance, Nintendo instigated</DD>
+legal action for songboy.com to be renamed to prevent confusion. It</DD>
+is now songpro.com)<br></DD>
+<b>d)</b> You are posting bogus (even if unknowingly) specifications</DD>
+about their products on a website. (There have been no circulated</DD>
+reports of this being a problem with Nintendo, but, just don't</DD>
+do it. You confuse us all when you do that. ;-)<BR><BR></DD>
+</DL>
+</font>
+</body>
+
+<!-- Mirrored from www.devrs.com/gba/files/gbadevfaqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:58:07 GMT -->
+</html>

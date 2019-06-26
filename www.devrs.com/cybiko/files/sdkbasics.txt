@@ -1,0 +1,205 @@
+Setting up Cybiko SDK for beginning software developers
+-------------------------------------------------------
+ by CyBuilder, v0.1127
+
+
+0. Programming for the Cybiko is done in the C/C++ language.
+  Any good ANSI C tutorial book will get you started in the
+  right direction. You don't need to know C++ to program
+  for the Cybiko but you can program in C++ for it if you wish.
+
+
+1. First, you need to install the Cybiko SDK. If you've
+  already done this then skip to step 3.
+
+   Go to http://www.cybiko.com/devsarea
+  Click on where it says 'Click here to get CySDK.'
+  If it asks for your CyName & Password then enter these.
+  (If you don't have these then click on 'Sign Up'.
+   Upon completion of applying for a CyName & Password,
+  repeat the step above.)
+
+   Click on where it says 'Click here to get the SDK.'
+  If you're using Internet Explorer you may be given an option
+  to run this file instead of saving it to disk. If you use
+  this run option then you can ignore the rest of step 1
+  and skip ahead to step 2.
+
+   If you select the 'save to disk' option, then write down
+  the filename that is displayed. It probably looks similar
+  to 'cybiko_sdk_1018.exe' but the letters or numbers may
+  differ some.
+   Save this file in the c:\windows directory.
+   Next, click on the windows Start button and select 'Run.'
+  Click on Browse and go to the C:\windows directory. Locate
+  the filename that you wrote down above and double-click on it.
+
+
+2. Accept the default installation directory that is given
+  when installing the SDK. This will be the following:
+   c:\Program Files\Cybiko\SDK
+
+   Choose the 'Typical' setup type when asked.
+
+   Use the default folder name that is suggested.
+
+   Select 'Yes, I want to restart my computer now' when it's presented.
+
+
+3. Next, you need to decide what text editor you want to use
+  to write or modify code. A nice editor will show you the
+  current line number where your cursor is located. (This is
+  important for locating lines with errors that are reported
+  by the SDK C compiler.) Here are some options:
+
+    Microsoft Word - This is an over kill for software
+      development and isn't best suited for software development
+      but you can use it. Always load & save files as 'txt files.'
+      Otherwise, the SDK compiler won't be able to read your files.
+
+    Notepad - This is usually found under Programs/Accessories
+      when you click on the windows Start button. It works but
+      the fact that no line number is given is a real pain when
+      trying to locate line XXX that the compiler complains
+      about containing a bug. Also, when creating a new file,
+      this editor will always tack .txt on the end. This is
+      highly annoying. You can get around this by using windows
+      explorer to rename a file, for instance, from 'test.c.txt'
+      to 'test.c' so that the SDK compiler can use the file.
+      This isn't a problem and doesn't occur for existing files.
+
+    DOS Edit - This is nice editor in that it shows you line
+      numbers. Unfortunately, you have to learn DOS to use it.
+      If you DO know how to use DOS then just type 'edit' at a
+      DOS prompt.
+
+    Third Party Editors -
+      http://www.ultraedit.com
+      http://www.multiedit.com
+
+
+4. Now we are ready to compile a demo game that comes with
+  the SDK and transfer it to the Cybiko. Once we have had
+  success with this we can then try modifying code and see
+  the results.
+
+   Using the windows Start button select Programs/Windows Explorer.
+  Select the following directory by clicking on various folders:
+   c:\Program Files\Cybiko\SDK\demos
+
+   Next we need to select one of the demo games to compile. For
+  this example lets use Tic Tac Toe. Click on that folder to open
+  it. Now, we can compile the source code for this game just by
+  double-clicking on the 'Make' file. Go ahead and do this now.
+  This will open a DOS window and all kinds of information will
+  be shown. This should compile fine without any errors being
+  reported. The last line will read 'Press any key to continue...'
+  Do as it says and then click on the X in the upper right corner
+  to close this window. You have now successfully compiled your
+  first Cybiko program! It will have the filename 'Tic-Tac-Toe.app'
+
+   To make things easier, let's make it so that we can compile this
+  program by just clicking an icon on your desktop. Right click on
+  the Make icon in the windows explorer. This will bring up a menu.
+  Select Copy. Now close the windows explorer by clicking on the
+  upper right window X.
+   Put the windows pointer over an empty spot on your windows deskop
+  and right click. Select 'Paste Shorcut' on the menu. This will add
+  an icon to your desktop that has the name 'Shortcut to make'. To
+  prevent confusion with other games, let's rename it. Single click
+  on the letters of this icon. Rename it to read 'Shortcut to make
+  Tic Tac Toe.'
+
+
+5.  Now, anytime we want to recompile the tic tac toe source code,
+  we just double click on this desktop icon.
+
+
+6. Let's test the program you just compiled. To do this you need to
+  turn on your Cybiko and then plug the serial link cable into your
+  Cybiko and a serial port on your PC.
+
+   Next, we need to startup the transfer program provided with the
+  SDK. Under the windows Start button select Programs/Cybiko SDK/
+  Console. A window should pop up with the name 'Cybiko Console
+  Terminal.' Click on the bottom line of this window and type
+  'ver' and then the Enter key. You should see 'CyOS v. 1.2.xx ....'
+  If you don't see this then you have a cabling problem or you
+  need to try another COM port. If this is the case, go up and
+  select Port and try another COM (serial) port. If you still
+  don't see anything when you type 'ver' (enter) then try a
+  different baud rate.
+
+   Let's assume that you got the 'CyOS' message. Go up and select
+  File/Send File(s). Now browse to the directory c:\Program Files\
+  Cybiko\Sdk\demos\tic_tac_toe and then double click on
+  Tic-Tac-Toe.app. You should see a progress bar as this game is
+  sent to the Cybiko. You should then see a message like 'receive
+  successfull' in the Cybiko Console Terminal window.
+
+
+7. You are now ready to try out this game you just sent to your
+  Cybiko. If this is the FIRST time you have sent this game to
+  your Cybiko then you will need to turn your Cybiko off and then
+  on again so that it can locate the new game. You only need to
+  do this the first time. If you make changes to the Tic Tac Toe
+  source code, recompile, and retransfer the game, you do not
+  have to cycle the power again. You only have to do it the FIRST
+  time.
+
+
+8. You should now try out the Tic Tac Toe game. It should run just fine.
+
+
+9. Now, lets slightly modify the game and test our results!
+  To do this, fire up your favorite text editor that you selected
+  in step 3. For this example, we will use windows Notepad.
+
+   Startup Notepad by selecting Programs/Accessories/Notepad.
+  Select File/Open in Notepad. On the bottom line change the
+  'Files of type' to 'All files (*.*).' Browse to the following
+  directory:
+    c:\Program Files\Cybiko\Sdk\demos\tic_tac_toe\src
+
+   Double click on TicTacToe.c. Scroll down to the bottom of this
+  file. About 22 lines from the bottom you will see the text:
+
+      "%s\nPLAYER %d Games Won\nCYBIKO %d Games Won", 
+
+   Change this to the following:
+
+      "%s\nGURU %d Games Won\nCYBIKO %d Games Won", 
+
+   Go up to File and select Save.
+  Now, repeat steps 5 & 6 and then play another game of
+  Tic Tac Toe. This time you should see GURU instead of
+  PLAYER at the end of the game. You now have modified
+  and tested your first Cybiko code!
+
+
+10. If you wish to create your own code projects then a
+   good starting point would be to modify one of these
+   existing demo games.
+
+    It is the job of the 'makefile' file to figure out
+   what source code files in your project have changed and
+   only compile those files. You have to modify 'makefile'
+   so that it is "intelligent" about what should happen
+   during code compiling.
+
+    Be warned, though, that modifying 'makefile' files
+   is for more advanced programmers. You should also
+   use something like windows 'notepad' to do this since
+   ascii tabs in the file must be preserved in order for
+   this file to work right.
+
+    Doing a web search for 'makefile tutorials' might help.
+
+    Have fun!
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+
+   Parts for Sale
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ READ THE COMPLETE C3 FAQs BEFORE CONSIDERING ORDERING
+ A C3 PROGRAMMER!
+http://www.devrs.com/gb/files/c3faqs.html
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Description                          Part Number          Price (US Dollars)
+-----------                          -----------          ------------------
+
+C3 Cart (MBC1,4MBit,Battery)         C3Cart               NO LONGER AVAILABLE (25.00)
+
+4Mbit Flash EPROM - PLCC Package     ATMEL AT49F040-12JC  15.00
+(GB Basic installed for testing part after installation)
+
+3.8MM Tool Bit-OUT OF STOCK          MCM#22-1145           5.00
+(GB cart opener, N64 cart opener, SNES cart opener)
+
+4.5MM Tool Bit-OUT OF STOCK          MCM#22-1150           5.00
+(N64 case opener, SNES case opener)
+
+Carbon Copy Card (C3) cart label     C3 cart label         1.50
+(For those building their own cart.)
+(No shipping charge for label.)
+
+GameBoy Cartridge Connector          MCM#83-2285           5.00
+
+C3 Programmer PCBoard                C3PCBoard            10.00
+
+Partial C3 Programmer Kit-OUT OF STOCK  C3KIT1               20.00
+(Includes C3PCBoard, connectors (J1,J2, & J3),
+ bridge rectifier (B1), & power switch.)
+
+C3 Programmer-OUT OF STOCK           C3 Programmer       NO LONGER AVAILABLE (100.00)
+
+(This only works for GB/GBC/PocketGB/SuperGB. Not GBA compatible.)
+(30 day money back if not satisfied.)
+
+
+
+Please add 5.00 for world-wide shipping & handling.
+
+
+Send payment (PayPal.com) to jeff@devrs.com
+or (Money Order or Western Union wire transfer) to:
+
+ Jeff Frohwein
+ 719 Oakcrest St. #3
+ Iowa City IA 52246
+ USA

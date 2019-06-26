@@ -1,0 +1,274 @@
+
+               GB Basic V2.10 Documentation
+
+ GB Basic is a floating-point BASIC interpreter for GameBoy that
+allows you to write & execute programs up to 7.4K bytes in size.
+If it is used in a cart with RAM then a program can be SAVEd and
+LOADed at a later time.
+
+ Currently string variables are not supported, but may be in the
+future.
+
+ Long variable names are not supported. Variable names may be
+a letter or a letter and a number.
+
+ Each line requires a line number.
+
+ &H may be used for entering hex values. (Ex: POKE &HFF00,&HFF)
+
+The following commands are supported:
+
+ABS(x)           -       Return the absolute value of x.
+
+AUTO             -       Enable Auto load & run program on reset.
+                         (Note: Use AUTO command last since SAVE
+                          disables auto mode.)
+
+CLEAR            -       Clear all variables.
+
+CLS              -       Clear the screen
+
+COLOR x          -       Set drawing color to x. 0=Black, 1=Dark Gray,
+                         2=Light Gray, 3=White, & 4=XOR. (Defaults
+                         to XOR on program execution.)
+
+COS(x)           -       Return the cosine of x given in radians.
+
+DIM              -       Only single dimension arrays are currently
+                         supported. If not explicitly defined by a
+                         DIM statement, it is assumed to be a size
+                         of 10 upon first reference.
+
+DATA x,...       -       Data in program.
+
+DELAY x          -       Delay from 10ms to 655 seconds.
+                         (Delay length = x * 10ms)
+
+END              -       End program.
+
+FOR/NEXT         -       Program loop.
+
+FREE             -       Display remaining amount of free memory.
+
+GOSUB            -       Execute a subroutine.
+
+GOTO             -       Goto specific line.
+
+IF/THEN          -       Conditional execution.
+
+INPUT            -       Input data from user.
+
+INT(x)           -       Returns the integer of x.
+
+KEYPAD(x)        -       If x=0, the following bits are returned
+                         if that button is pressed.
+                           128 - Start    8 - Down
+                            64 - Select   4 - Up
+                            32 - B        2 - Left
+                            16 - A        1 - Right
+                         If x>0, then x is ANDed with the bits
+                         above. If the result = zero, 0 is returned.
+                         If result <> zero, a 1 is returned.
+
+LET              -       Assign a value to a variable. (Optional)
+
+LINE x1,y1,x2,y2 -       Draw a line on the screen using COLOR.
+                         (0<=x<=127,0<=y<=119)
+
+LINK x           -       Link 0 - Don't use game link port.
+                         Link 1 - Configure port for external terminal.
+                         Link 2 - Configure port for external keyboard.
+
+                          Gameboy must be reset or power must be cycled
+                         for changes to take effect. The last setting is
+                         saved in battery backed RAM. (External terminal
+                         won't currently work when SERVOs are enabled
+                         because of interrupt conflicts.)
+
+LIST [x][-][x]   -       List lines of the program. Starting and/or
+                         ending line numbers are optional.
+
+LOAD             -       Load program from battery-backed RAM.
+
+LOCATE y,x       -       Position cursor with coordinates y,x.
+
+MEMTOP x         -       Set Last address of RAM for GB Basic to use.
+                         On power up or reset this defaults to $dfff.
+                         Lowering this value reserves memory for
+                         USR for example. NOTE: All variables are
+                         CLEARed when this instruction is executed.
+
+NEW              -       Erase all program lines in memory.
+
+PEEK(x)          -       Return value of a memory location x.
+
+POINT x,y        -       Draw a point on the screen using COLOR.
+                         (0<=x<=127,0<=y<=119)
+
+POKE x,y         -       Write value y to a memory location x.
+
+PRINT            -       Print to screen.
+
+READ             -       Read data contained in DATA statements.
+
+REG x,y          -       Sets value of cpu BC register (x) and cpu
+                         DE register (y) for entry into USR routine.
+
+REM              -       Remark. Also ' is supported.
+
+RENUM            -       Renumber program.
+
+RESTORE          -       Set DATA pointer to a specific line number. If
+                         no line number present, beginning of program.
+
+RETURN           -       Return from subroutine.
+
+RND(x)           -       Returns a random number between 0 and 1.
+                         x is ignored.
+
+RUN              -       Execute program.
+
+SAVE             -       Save program to battery-backed RAM.
+
+SCREEN x         -       If x=0, set text mode. If x=1, set graphics mode.
+
+SERVO x,y        -       Controls the position of up to 8 memory-mapped
+                         servos. SERVO 0,a defines the memory address of
+                         the servos output port and enables the servo
+                         interrupt routine. SERVO x,y outputs a high
+                         pulse to servo x for 693+(y*7.6) microseconds
+                         giving a pulse range of .7 to 2.3 ms. A value of
+                         y = 0 disables the output pulse of that servo.
+                         This pulse is sent out every 20 ms. Servos may be
+                         set before issuing SERVO 0,a to enable them. On
+                         reset, servos default to off (y=0) and disabled.
+                         NOTE: When enabled, servos slow down system about
+                         15% due to servo interrupt servicing. Use SERVO 0,0
+                         to disable all servos once they have been enabled.
+                         (1<=x<=8,0<=y<=210)
+
+SGN(x)           -       Returns 1 if x > or = 0. Else returns value -1.
+
+SIN(x)           -       Return the sine of x given in radians.
+
+SINIT x,y        -       Serial Initialize: This command has 3 functions:
+                          1) Set MBC serial output baud rate. (x)
+                          2) Set MBC digital output pins. (y)
+                          3) Set the polarity of MBC serial out. (bit 0 of y)
+                         (SERIAL IS OUTPUT ON AN MBC PORT PIN. NOT ON THE
+                          GB LINK PORT CONNECTOR.)
+                         Baud Rate values for x:
+                           0 = 1200 (Only available in SPEED 0 mode.)
+                           1 = 2400
+                           2 = 4800
+                           3 = 9600
+                           4 = 14400
+                           5 = 19200
+                           6 = 38400
+                           7 = 57600 (Only available on GBC in SPEED 1 mode.)
+                         Digital Outputs bits:
+                          MBC1: 0=Pin6, 1=Pin7
+                          MBC5: 0=Pin29, 1=Pin28, 2=Pin27, 3=Pin26
+                         For serial output:
+                          If bit 0 of y = 0, serial idle level is low.
+                          If bit 0 of y = 1, serial idle level is high.
+
+SOUT x           -       Serial output value x on MBC output port pin.
+                          For MBC1, serial output on pin 6 of MBC1.
+                          For MBC5, serial output on pin 29 of MBC5.
+                         (SERIAL IS OUTPUT ON AN MBC PORT PIN. NOT ON THE
+                          GB LINK PORT CONNECTOR.)
+
+SOUND x,y        -       Generate a sound of frequency x for y * 10 milli-
+                         seconds. If y=65535, sound will stay on infinitely.
+                         If y=0, sound is turned off.
+
+SPEED x          -       x=0, Set single speed mode. (Default on powerup.)
+                         x=1, Set double speed mode.
+                         (Only has an effect on GB Colo(u)r.
+
+SQR(x)           -       Returns the square root of x.
+
+STEP             -       Used with FOR for specifying increment.
+
+STOP             -       Same as end but displays line number last executed.
+
+TAB(x)           -       Used with PRINT command for moving cursor to
+                         column x.
+
+TAN(x)           -       Returns the tangent of x given in radians.
+
+USR(x)           -       Call user assembly language program at address x.
+                         Return value reflects cpu HL registers contents.
+
+Revision History
+----------------
+
+V1.0  - Original release
+V1.01 - Rearranged on-screen keyboard.
+        Reassigned key controls.
+        Fixed exponent display problem.
+V1.02 - Completed RENUM routine.
+        Added restore [line#] ability.
+        Added hex entry of numbers using prefix &h.
+V1.03 - Fixed 'cursor disappear' when arrow buttons pressed.
+        Greatly speeded up CLS command.
+        Added SCREEN, POINT, & LINE routines.
+        Break now works for lines that GOTO themselves.
+        Rearranged on-screen keyboard again for faster entry.
+V1.04 - Select & Start are BOTH now required to break.
+        This was done to allow individual buttons to be pressed
+        and read with the new KEYPAD command.
+        Added COLOR command.
+V1.05 - Added AUTO command.
+        Credit screen disappears after 10 seconds.
+V1.06 - Fixed bugs in LIST options. Up & down buttons now
+        speed up or slow down LIST command. Pressing break
+        now halts LIST command.
+        Added SOUND command.
+V1.07 - Added SERVO command.
+        Changed DELAY increments from 1ms to 10ms
+         in order to implement SERVO command.
+        Select Button is now a caps lock.
+        Credit screen now disappears after 4 seconds.
+        Carat symbol added to onscreen menu.
+        FOR,GOTO,INPUT,LIST,NEXT,PRINT,RUN & THEN
+         now can be entered by first letter followed by period.
+V1.08 - Shift & Caps Lock now supported on external keyboard.
+        CLS now redraws onscreen menu properly in text mode.
+        Basic commands can now be entered in lower or upper case.
+        DELAY added to 'first letter' list above.
+V1.10 - Fixed bug that would randomly display line numbers
+         incorrectly.
+        Game link port now supports external terminal I/O.
+        Added LINK command to configure game link port.
+        V1.08 didn't work on VGB. Haven't figured out why yet.
+V1.20 - MAJOR BUG FIXES.
+        Added better handshaking to link port for reliable
+         file download using GB Terminal.
+        Fixed bug in floating point conversion that would
+         randomly mess up many functions due to interrupts.
+        Writing to screen is now much more reliable with no
+         more random trash displayed on screen.
+        SERVO 0,0 now disables all servo output pulses.
+        Added MEMTOP, REGBC, REGDE, & USR commands.
+V1.21   Individual servos pulses may now be turned off by
+        issuing SERVO x,0. On many servos this lowers battery
+        drain when they're not in use.
+V1.22   Swapped command/button positions on intro screen.
+         Suggestted by David Nathan.
+        Fixed bug where SOUND < 256 duration would
+         play continuously. Reported by John Montalbano.
+        Fixed error messages for DIM that were not
+         correct. Reported by Oliver Wittchow.
+        Entry of "2g.1" caused software lockup.
+         Reported by Marc Rawer.
+V2.00   Initial support for GB Colo(u)r.
+        Commands SLOW & FAST added to allow changing
+         between single & double speed modes on the GBC.
+V2.10   Replaced FAST & SLOW with SPEED 0 & SPEED 1 to
+         conserve reserved keyword space.
+        Replaced REGBC x & REGDE y with REG x,y to
+         conserve reserved keyword space.
+        Added SINIT & SOUT for RS232 serial & digital output
+         on Nintendo MBC spare digital output pins.

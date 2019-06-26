@@ -1,0 +1,596 @@
+  
+  
+
+                                   GBDoK (v1.2) 
+
+                       (by Manfred Linzner (aka Pink/Abyss) and Jason (aka Icehawk) ) 
+
+
+
+
+Table of Contents: 
+
+0.  Introduction 
+0.1 Overview 
+0.2 History 
+
+1.  Graphics 
+1.0 Important Notes 
+1.1 Background 
+1.2 Color Gameboy Support 
+1.3 Display 
+1.4 Display Modes 
+1.5 Sprites Window 
+1.6 Window 
+
+2.  Miscellaneous 
+2.1 Interrupts 
+2.2 Joypad 
+
+3. Memory 
+3.1 Banks 
+3.2 How to include binary data-banks to your ROM image 
+
+4.  Color Gameboy Programming Info 
+4.1 How to set your ROM to CGB-Mode 
+4.2 How to write real CGB comaptible Code 
+5. References 
+5.1 Webpages 
+5.2 IRC Channels 
+  
+  
+  
+  
+  
+  
+
+0.0 INTRODUCTION 
+
+0.1 Overview 
+
+This document is mainly for upcoming (color)Gameboy coders 
+who use Pascal Felber´s excellent GBDK package. 
+
+A basic knowledge of the C programming language will greatly 
+help you understand how to program for the gameboy using GBDK. 
+
+GBDK has almost no documentation about it´s internal functions 
+regarding graphics, interrupts and other important things. 
+This document tries to give you an quick overview about all 
+GBDK-functions and explains some ColorGameboy specific details. 
+  
+
+0.2 History 
+
+13.05.99 Version 1.2
+- Updated links.
+- Updated text version to by syncronized with the HTML version.
+- Added a few lines here and there due to personal experience. 
+
+13.05.99 Version 1.1 
+- Converted the whole document to HTML 
+- Severall bug-fixes and additions 
+
+28.01.99 Version 1.00 
+- Added information about including binary files as additional ROM BANKS. 
+- Fixed section 4.2 (ATTRIBUTES must be set first!) 
+- Added alot of descriptions to the routines described. 
+- A little bit of bug fixes and added routines. 
+
+22.01.99 Version 0.9 
+- Corrected some bugs 
+- Added BANK-Switching info 
+- Added history 
+
+12.01.99 Version 0.8 
+- First public release of GBDoK 
+  
+  
+  
+
+1. Graphics 
+
+1.0 Important Notes 
+
+The Gameboy Uses an LCD display with a resolution of 
+160x144. The supported sprites are 8x8 and 8x16. There 
+is no way to use 32x32 sprites, so don't ask. The 
+gameboy supports a max of 40 sprites with 10 on one 
+horizontal axis at one time. 
+
+Before writing any data to the videomem you have to disable 
+the LCD-Display (display_off();). 
+
+On a real gameboy you are not able to upload data to the 
+videomem while the LCD is processing. 
+Gameboy emulators may not suffer from this problem. 
+
+If your programm needs to write to the videomem while displaying 
+something you have to be in the Vertical-Blank.It´s also possible 
+to write data to the videomem while being in the Horizontal-Blank 
+but this needs a special interrupt handling. 
+
+Also have in mind that most emulaotrs will fill all 
+RAM/ROM with zeros. A real gameboy won´t do that. At the end of 
+all programs, it is a good habit to fill at least the visible 
+screen data to all 0s. 
+
+All of the information provided is compiled from various 
+sources and own experiences. This document is for educational 
+purposes and ´homebrew´ GB-development. 
+
+GameBoy and CGB is copyrighted by Nintendo Co., LTD. 
+
+1.1 Background 
+
+void hide_bkg(); // Disable background 
+
+Calling hide_bkg(); turns all the background tiles off. The sprites are still visible. This command does not work with no$gmb.
+  
+
+void show_bkg(); // Enable Background 
+
+Calling show_bkg()/SHOW_BKG; turns all the background tiles. This is used to 
+turn them on after using the hide_bkg(); 
+
+* Note : On the Gameboy Color, the background tiles start automatically, 
+however, on the gameboy and gameboy pocket, they initially start 
+off, so call a SHOW_BKG; after you load your background data. 
+  
+
+void scroll_bkg(int x, int y); // Scroll background x/y >=0 <=255 
+  
+
+void set_bkg_data(int first_tile, int nb_tiles, unsigned char *data); 
+/* -128 <= first_tile <= 127 * -128 <= first_tile+nb_tiles <= 127 * nb_tiles >= 1 */ 
+
+set_bkg_data is used to load the background tiles and palette information into 
+memory. first_tile is the first tile that you want to load data into, usually 0. 
+nb_tiles is the number of tiles you want to load into memory. *data is a pointer 
+to the unsigned char that the tiles are stored in. 
+  
+
+void set_bkg_tiles(int x, int y, int w, int h, unsigned char *tilelist); 
+/* 0 <= x <= 31 * 0 <= y <= 31 * 1 <= w <= 32-x * 1 <= h <= 32-y */ 
+set_bkg_tiles puts the tile data onto the screen. You must load the tiles into 
+memory using set_bkg_data first. x is the starting location in tiles (pixels / 8) 
+to load the data into. y is the starting location in tiles (pixels / 8) to load the 
+data into. w is the width of the data you want to load in tiles. h is the height 
+in tiles of the data you want to put on the screen. *tilelist is a pointer to 
+an unsigned char that has a tile map of what you want to be displayed. 
+  
+
+1.2 Color Gameboy Support 
+
+* Note: Before you can set the color attributes for a tile 
+you have to switch to the 2nd video-memory bank (VBK_REG=1). 
+The CGB can now address upto 512 tiles 
+(by use of BIT 3 from the attribute byte) 
+  
+
+The attribute byte looks like this: 
+
+BIT 0-2: Palettenumber (0-7) 
+BIT 3 : Character Bank select 
+BIT 5 : Flip Tile Horizontal 
+BIT 6 : Flip Tile Vertical 
+BIT 7 : Background Priority 
+  
+
+VBK_REG = 1; /* Use this before setting tile-attributes */ 
+VBK_REG = 0; /* Use this before setting tile-offsets */ 
+VBK_REG sets the Video Bank Register. When set to zero, it loads the 
+tile data into the background. When set to one, it loads the palette 
+data into the background. You're supposed to set the palette data 
+before you set the tile data. 
+  
+
+void set_bkg_palette(UBYTE first_palette,UBYTE nb_palettes,UWORD *rgb_data); 
+
+set_bkg_palette loads the palette data into memory so the gameboy color 
+can access it. first_palette is the first palette to be loaded. nb_palettes 
+is the number of palettes to load. *rgb_data is a pointer to where the 
+palette data is located. 
+* Note : Never forget to set all 8 palettes after another 
+It´s not safe to set individual palettes 
+* Note/Plug : Jason's Colors.h has the most common colors predefined for use 
+with gbdk projects. 
+  
+
+void set_sprite_palette(UBYTE first_palette,UBYTE nb_palettes,UWORD *rgb_data); 
+
+set_sprite_palette loads the sprite palette into memory so the gameboy color 
+can access it. first_palette is the first palette to be loaded. nb_palettes 
+is the number of palettes to load. *rgb_data is a pointer to where the 
+palette data is located. 
+* Note : Never forget to set all 8 palettes after another 
+It´s not safe to set individual palettes 
+* Note/Plug : Jason's Colors.h has the most common colors predefined for use 
+with gbdk projects. 
+  
+
+/* GB type (GB, PGB, CGB) */ 
+/* Read this byte to determine the type of Gameboy*/ 
+
+extern UBYTE _cpu; 
+
+#define DMG_TYPE 0x01 /* Original GB or Super GB */ 
+#define MGB_TYPE 0xFF /* Pocket GB or Super GB 2 */ 
+#define CGB_TYPE 0x11 /* Color GB */ 
+
+So if you want to be backwards compatible to the normal gameboy use this: 
+
+if(_cpu == 0x11) { 
+color-related material 
+} 
+
+where 0x11 can also be replaced with CGB_TYPE.
+  
+
+1.3 Display 
+
+void display_on(); 
+display_on() turns the display on. 
+
+void display_off(); 
+display_off() turns the display off. 
+  
+
+1.4 Display Modes 
+
+void mode(int m); 
+
+**mode defines** 
+
+M_TEXT_OUT 
+M_DRAWING 
+M_TEXT_INOUT 
+
+These modes are used for the GBDK built in libraries. M_TEXT_OUT allows puts 
+and other text-oriented tools to be used. M_DRAWING allows GBDK's plot 
+and other routines (such as directy.h downloadable from Jason's site) 
+to be used. M_TEXT_INOUT allows for puts and gets to be used. 
+  
+
+1.5 Sprites 
+
+void show_sprites(); /* Enable Sprites */ 
+
+show_sprites() displays sprites properly configured on the visible screen. 
+* Note : Newer GBDK versions support SHOW_SPRITES; 
+  
+
+void hide_sprites(); /* Disable Sprites */ 
+
+hide_sprites() makes all sprites not visible. 
+  
+
+void sprites8x8(); /* Set Spritesize to 8x8 */ 
+
+Sets the sprites to be eight pixels wide by eight pixels tall. 
+* Note : Newer GBDK versions support SPRITES_8x8; 
+  
+
+void sprites8x16(); /* Set Spritesize to 8x16 */ 
+
+Sets the sprites to be eight pixels wide by sixteen pixels tall. 
+* Note : Newer GBDK versions support SPRITES_8x16; 
+  
+
+void set_sprite_data(int first_tile, int nb_tiles, unsigned char *data); 
+
+/* 0 <= first_tile <= 255 * 0 <= first_tile+nb_tiles <= 255 * nb_tiles >= 1 */ 
+set_sprite_data loads data into the sprite ram area. By doing this, sprites 
+are able to contain the patterns you have designed. first_tile is the first 
+tile from the data to be loaded. nb_tiles is the number of tiles that you 
+want to be loaded. *data is a pointer to an unsigned char that contains the 
+tile data you want to be loaded. 
+  
+
+void set_sprite_tile(int nb, int tile); /* 0 <= nb <= 39 * 0 <= tile <= 255 */ 
+
+set_sprite_tile configures sprites so that they can be visible by loading 
+the sprite tile into the selected sprite. nb refers to which of the 40 visible 
+sprites you would like to load data into. tile is an integer refering to which 
+tile from the loaded data set in set_sprite_data you want to be accessed by 
+the sprite. 
+  
+
+void set_sprite_prop(int nb, int prop); /* 0 <= nb <= 39 */ 
+
+** sprite propperties (use with set_sprite_prop) ** 
+S_PALETTE 
+S_FLIPX 
+S_FLIPY 
+S_PRIORITY 
+set_sprite_prop sets properties for each sprite. S_PALETTE (gameboy color 
+only) contains the palette information. S_FLIPX allows the x-axis to be 
+flipped/mirrored. S_FLIPY allows the y-axis to be flipped/mirrored. S_PRIORITY 
+contains data referring to if this tile should be on top of other tiles or not. 
+
+void move_sprite(int nb, int x, int y); 
+
+/* 0 <= nb <= 39 * 0 <= x <= 255 * 0 <= y <= 255 */ 
+move_sprite moves the specified sprite to another x-y location. nb is the number of 
+the sprite (0-39) that you would like to move. x is the new x-location for the sprite. 
+y is the new y-location for the sprite. 
+  
+
+1.6 Window 
+
+void show_window(); 
+show_window() displays the window. 
+
+void hide_window(); 
+hide_window() hides the window. 
+
+void move_win(UBYTE x,UBYTE y); 
+move_win(x,y) moves the window to another location. x is the new x location for the window. 
+y is the new y location for the window. 
+
+void scroll_win(BYTE x,BYTE y); /*Move Window relative to current position*/ 
+scroll_win scrolls the window to another location. x is how many pixels horizontally you 
+would like to scroll the window. y is how many pixels vertically you would like to 
+scroll the window. 
+  
+
+2. Miscellaneous 
+
+2.1 Interrupts 
+
+Note: Use disable_interrupts() before setting new interrupts. 
+
+void enable_interrupts(); 
+enable_interrupts() sets the interrupts to active. Using this allows routines 
+set for interrupts to be called. 
+
+void disable_interrupts(); 
+disable_interrupts() disables the interrupts. Many routines use disabled interrupts to 
+perform their tasks. 
+
+void add_VBL(int_handler h); 
+While interrupts are disabled, add_VBL(h) allows routines to be run when the 
+vblank interrupt flag is called. h is the routine to perform. 
+
+void add_LCD(int_handler h); 
+While interrupts are disabled, add_VBL(h) allows routines to be run when the 
+lcd interrupt flag is called. h is the routine to perform. 
+
+void add_TIM(int_handler h); 
+While interrupts are disabled, add_VBL(h) allows routines to be run when the 
+timer interrupt flag is called. h is the routine to perform. 
+
+void add_SIO(int_handler h); 
+While interrupts are disabled, add_VBL(h) allows routines to be run when the 
+serial input/output interrupt flag is called. h is the routine to perform. 
+
+void add_JOY(int_handler h); 
+While interrupts are disabled, add_VBL(h) allows routines to be run when the 
+joystick interrupt flag is called. h is the routine to perform. 
+
+set_interrupts(UBYTE flags); 
+Interrupt-Flags 
+VBL_IFLAG 
+LCD_IFLAG 
+TIM_IFLAG 
+SIO_IFLAG 
+JOY_IFLAG 
+set_interrupts(flags) specifies which interrupts to call. 
+* Note : (Use "|" to combine them) 
+* Mote : VBL_IFLAG should always be set. 
+  
+
+2.2 Joypad 
+
+**Joypad defines** 
+
+J_START = Start button 
+J_SELECT = Select button 
+J_B = B 
+J_A = A 
+J_DOWN = Down arrow on joypad 
+J_UP = Up arrow on joypad 
+J_LEFT = Left arrow on joypad 
+J_RIGHT = Right arrow on joypad 
+
+int joypad(); 
+joypad() returns a byte containing which buttons from the joypad defines are pressed 
+
+int waitpad(int mask); 
+waitpad(mask) stops executing the program until the button(s) specified in mask are pressed. 
+
+void waitpadup(); 
+waitpadup() stops executing the program until all buttons on the pad are released. 
+  
+
+example: 
+
+int i,x,y; 
+
+i = joypad(); 
+if(i & J_START) pause(); 
+if(i & J_UP) y--; 
+if(i & J_DOWN) y++; 
+if(i & J_LEFT) x--; 
+if(i & J_RIGHT) x++; 
+  
+
+3. Memory 
+
+3.1 Banks 
+
+
+GBDK doesn´t supports Memory-BANKS automatically. 
+You have to link them with the compiler. GBDK i.e. can´t 
+split huge data into several roms. You have to 
+handle the BANKS yourself with direct memory adressing. 
+
+The best way of handling BANKs is to put all your 
+program-code into BANK(0) and your data-code into BANK (1-31). 
+  
+  
+
+Using the MBC1 memory bank controller 
+------------------------------------- 
+#define SWITCH_ROM_MBC1(b) \*(unsigned char *)0x2000 = (b) 
+SWITCH_ROM_MBC1(b) switches the current changable 16k ROM to the bank specified by b. 
+
+#define SWITCH_RAM_MBC1(b) \*(unsigned char *)0x4000 = (b) 
+SWITCH_RAM_MBC1(b) switches the RAM bank to the bank specified by b. 
+
+#define ENABLE_RAM_MBC1 \*(unsigned char *)0x0000 = 0x0A 
+ENABLE_RAM_MBC1 enables support for external ram. 
+
+#define DISABLE_RAM_MBC1 \*(unsigned char *)0x0000 = 0x00 
+DISABLE_RAM_MBC1 disables support for external ram. 
+
+Using the MBC5 memory bank controller 
+------------------------------------- 
+
+Note! Using MBC5 and bankswitching seems to have a slight error in the code. 
+
+#define SWITCH_ROM_MBC5(b) 
+\*(unsigned char *)0x2000 = (b)&0xFF; \*(unsigned char *)0x3000 = (b)>>8 
+SWITCH_ROM_MBC5(b) switches the current changable 16k ROM to the bank specified by b. 
+
+#define SWITCH_RAM_MBC5(b) \*(unsigned char *)0x4000 = (b) 
+SWITCH_RAM_MBC5(b) switches the RAM bank to the bank specified by b. 
+
+#define ENABLE_RAM_MBC5 \*(unsigned char *)0x0000 = 0x0A 
+ENABLE_RAM_MBC1 enables support for external ram. 
+
+#define DISABLE_RAM_MBC5 \*(unsigned char *)0x0000 = 0x00 
+DISABLE_RAM_MBC1 disables support for external ram. 
+
+void hiramcpy(UBYTE dst,const void *src,UBYTE n); 
+hiramcpy copies procedures from ROM to RAM. 
+  
+
+3.2 How to include binary data-banks to your ROM image 
+
+If you want to include binary code into your program 
+you can use the following procedure. 
+
+- Compile a standard 32KB ROM Image 
+- Set BYTE 0x147 to 1 (ROM+MBC1) 
+- Set BYTE 0x148 to your used romsize 
+- Add your 16KB Binaryfile to that image 
+  (i.e. on MS-DOS systems simply use COPY /b main.gb + bank01.gb final.gb) 
+  
+
+0 - 256Kbit = 32KByte = 2 banks 
+1 - 512Kbit = 64KByte = 4 banks 
+2 - 1Mbit = 128KByte = 8 banks 
+3 - 2Mbit = 256KByte = 16 banks 
+4 - 4Mbit = 512KByte = 32 banks 
+5 - 8Mbit = 1MByte = 64 banks 
+6 - 16Mbit = 2MByte = 128 banks 
+
+52 - 9Mbit = 1.1MByte = 72 banks 
+53 - 10Mbit = 1.2MByte = 80 banks 
+54 - 12Mbit = 1.5MByte = 96 banks 
+  
+
+- Finally use RGBFIX95 to pad your file and  fix all the other stuff. 
+
+For accessing this (extern) data from C you can use this method: 
+
+UBYTE *data,externdata; 
+data=(UBYTE*)0x4000; 
+
+SWITCH_ROM_MBC1(2)  // Switch to ROM Bank 2 
+externdata=*data;                       // Here you already access BANK 2 
+SWITCH_ROM_MBC1(1) // Switch back to ROM Bank 1 
+  
+
+4. Color Gameboy Programming Info: 
+
+4.1 How to set your ROM to CGB-Mode 
+
+- Write 0x80 to rombyte-offset 0x143 (=CGB mode) 
+   ( you can do this at link-time by setting this linkerswitch: Wl-yp0x143=0x80) 
+
+Without setting this byte most emulators will treat your program wrong (and of course the real CGB too). 
+
+0xC0 is supposed to be used for GBC-only roms, however most emulators currently do not support, this, so you can use the
+if(_cpu == 0x11) to make sure the game runs in color-only mode.
+  
+
+4.2 How to write real CGB comaptible Code 
+
+For being compatible to the real Gameboy you should use this order when coding: 
+
+- Disable LCD, Disable Interrupts (see 1.3 and 2.1) 
+- Identify if the Gameboy you are currently running on is a CGB (see 1.2) 
+- Transfer color palettes (see 1.2) 
+- Transfer VRAM (video-memory) (see 1.1) 
+- Transfer attributes to Bank1 (see 1.1 and 1.2) 
+- Transfer tilesoffsets to Bank0 (BF CHR Code Transfer) (see 1.1) 
+- Enable LCD Display (see 1.3) 
+- Go on with your normal code.... 
+  
+
+5. References 
+
+5.1 Webpages 
+
+
+Gameboy Developer's Kit 
+Pascal Felber 
+Needed to compile your C files. 
+http://www.gbdev.org/GBDK/ 
+
+SHIN´EN Entertainment 
+Manfred Linzner 
+Makers of the GHX Soundengine (a commercial gameboy soundengine). 
+Find GBDoK here.
+http://www.shinen.com/GBDoK/GBDoK.html 
+
+Gameboy Development News
+Jason 
+Daily updated site telling about the day's development. Also contains ASM and C examples, utilities and misc. shit. 
+Find GBDoK here.
+http://www.gbdev.org/news/ 
+
+Gameboy Mailing List 
+The maintainer of this list is Kalle Pihlajasaari. 
+Mailing list... don't e-mail with ROM requests or stuff answered on webpages/this doc. 
+http://www.ip.co.za/people/kalle/gb/list.htm 
+
+Gameboy Webring 
+Genetic Fantasia 
+List of several gameboy development webpages 
+http://www.geneticfantasia.com/html/webring.html 
+
+No$Gmb 
+Martin Korth 
+Best all-around gameboy emulator and debugger. Shareware, though. 
+http://www.work.de/nocash 
+
+DBOY 
+BouKiChi 
+Freeware Gameboy Color/SGB emulator based off of an early VGB. 
+http://members.xoom.com/foo01/ 
+
+Harry Mulder's Gameboy Development 
+Harry Mulder 
+Author of Gameboy Tile Deisgner and Gameboy Map Builder. 
+http://www.casema.net/~hpmulder/ 
+
+Gamelist's Mailing List Archive 
+Gamelist 
+Rarely updated archive of the mailing list. Visit here before mailing the list. 
+http://www.geocities.com/SiliconValley/Platform/6906/ 
+
+Bung Enterprises 
+Bung 
+Makers of flash carts and other goodies to test your gameboy programs on the GB/CGB. 
+http://www.bung.com.hk/ 
+  
+
+IRC Channels 
+
+#gbdev on EFNET
+Contains many serious gameboy developers with the occasional 31337 hax0r.
+  
+  

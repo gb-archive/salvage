@@ -1,0 +1,60 @@
+ ARM GCC is probably the ideal, low cost C/C++ compiler
+for gp32 dev. It's not the fastest ARM compiler available,
+but it is free. Here is v1.1 of a crt0.S and lnkscript
+that I wrote for gcc for the gp32
+
+  http://www.devrs.com/gp32/files/gcc/
+
+ It is designed to work with ported official libs or with a
+setup that uses no official libs.
+
+1) Make a directory for installation of this gcc package.
+  For this example, we will use c:\bin\gcc304 but this
+  will be reference below as %rootdir%\gcc304
+
+2) Get FireFly's GCC 3.0.4 port from here and unzip it
+  in the directory we just created:
+
+    http://darkfader.net/gp32
+
+   This is a generic ARM C/C++ compiler for windows. It is
+  optimized for ARM9 by default.
+
+3) Copy the file arm-elf-objcopy.exe from directory:
+     %rootdir%\gcc304\bin
+   to the following directory:
+     %rootdir%\gcc304\arm-elf\bin
+   Now rename the new copied file to the following:
+     objcopy.exe
+
+   This will make it easier later when we are compiling files.
+
+4) From here http://www.devrs.com/gp32/files/gcc/libs/ get the
+  following files:
+    crt0.o crtbegin.o crtend.o user_init.o
+  and put them into the following directory:
+    %rootdir%\gcc304\arm-elf\lib\gcc-lib
+
+5) Now install the official libs that have been ported to gcc.
+  These are all the files from http://www.devrs.com/gp32/files/gcc/libs/
+  that have the following format: lib*.a
+
+   I prefer to install these in c:\bin\gp32lib as a central location
+  so that I can use multiple C compilers, for testing code on each
+  compiler. However, if you only plan to use one C compiler, you may be
+  successful by copying them to the following directory:
+    %rootdir%\gcc304\arm-elf\lib\gcc-lib
+
+6) Using a text editor (windows NOTEPAD will work) modify your
+  autoexec.bat file to contain the following line. Putting it at the
+  bottom of the file will work:
+    SET PATH=%rootdir\gcc304\arm-elf\bin;%PATH%
+  (REPLACE %rootdir% WITH YOUR ACTUAL PATH NAME!!)
+  Save the file & exit text editor.
+ 
+7) Reboot your computer so the autoexec.bat changes will take effect.
+
+8) Get one of the example files from http://www.devrs.com/gp32/files/gcc/
+  and unzip it in a new folder. Get to a command line interface (open a
+  DOS window if using win95/win98) and type the command MAKE to compile
+  the example.

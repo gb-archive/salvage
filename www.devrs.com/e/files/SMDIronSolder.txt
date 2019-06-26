@@ -1,0 +1,110 @@
+Soldering high-density lead pitch SMD parts using a soldering iron
+------------------------------------------------------------------
+ by Jeff Frohwein, 2003-Feb-20th
+
+ The key to successfully pulling this off is to use soldering
+flux, a solder-coated pc board (silver colored finish, not raw
+copper appearance), and not use any solder, unless really
+necessary. The detailed steps are below.
+
+ Note that a soldermasked board is not always necessary for
+this type of work. Using a little bit of flux or solder wick
+makes it easy to clean up solder mistakes on the board and
+end up with professional looking results, even after making
+several or many mistakes.
+
+
+1) Clean your pc board with a dry cloth to help remove any dust
+   or particles that might make life more difficult.
+
+2) Obtain some rosin soldering flux (such as Radio Shack #64-021
+   or similar) and using a resistor lead, or similar, apply a
+   very small bit of rosin to all of the chip pads on the
+   circuit board. You only need a very small amount. If the
+   applied flux is twice as thick on the board as the chip
+   lead thickness then that is plenty.
+
+3) Do *NOT* attempt to skip step 2. Using flux is critical for
+   this to work, otherwise you may end up with a big mess. You
+   will then need to go out and buy some flux and proceed to
+   step 12.
+
+4) Carefully center the chip over the flux and set it in place.
+   Using an Exact-o knife or other object, carefully slide each
+   side of the chip until the pins of the chip perfectly align
+   with the pc board pads. Once it is in place, you need to use
+   one finger and *gently* apply a minimum amount of pressure
+   to keep the chip from moving until you have a chance to solder
+   it.
+
+5) Using a fine-tipped soldering iron, clean the tip on a wet
+   sponge and then touch one of the corner pins of the chip for
+   about 1/4 of a second. If all goes well the minimal amount
+   of solder on the pc board will be enough to solder the pin
+   in place. You might consider putting some solder on the iron
+   before doing this, but if you do, it should only be enough
+   to coat the tip of the iron. If the tip has a "blob" of
+   solder on it then you need to wipe that off, first, or else
+   you will short 2 or more pins together, in which case you
+   will need to proceed to step 12.
+
+6) Align the other corner of the chip and then repeat step 5.
+
+7) Carefully check that all IC pins are still aligned and that
+   the chip is flat against the pc board. If so, go on to
+   step 8. If not, reheat each corner and align it until it
+   is right.
+
+8) All you need to do now is lightly touch the soldering iron
+   to each pin for about 1/4 second. Do not turn this into a
+   long, drawn-out process because the flux is slowly drying
+   on you. If needed, add a bit more flux if it is becoming dry.
+
+9) Visually inspect all pins to make sure you soldered them all.
+
+10) Using a sharp knife or extra resistor lead, go along each
+   chip connection and lightly push on the foot of each chip
+   leg at a 45 degree angle, from the side. If you can visually
+   see any leg slightly move then you know that it did not solder
+   to the board and needs to be soldered again. It really helps
+   to have a powerful light and/or magnifying lens at this point.
+
+11) If you develop a short between two legs then apply a very
+   small amount of flux, if there is not some there already, to
+   the short. You now have the choice of using a sharp, heat
+   resistant instrument to scrape between the legs after you
+   heat the joint, or try step 12. Most metal instruments are
+   not a good idea for use here because they will stick to the
+   solder. (A stainless-steel surgical instrument might work
+   well though.)
+
+12)
+  A) I have found the following to always be effective for removing
+   shorts between legs but it takes some practice. However, it
+   should not be used on parts that are very sensitive to shock.
+   The general idea is to heat the joint, and while the solder is
+   still liquid, to basically slam the pc board against a hard
+   surface along the edge of the board. However, the resulting
+   solder that gets jarred loose can become a problem for other
+   components of the board. So if you plan to do this, you need
+   to cover the rest of the
+   pc board with a paper towel or similar. Cut out a hole in the
+   towel that is just large enough for using the soldering iron.
+   Then use electrical tape or similar to secure the edges of the
+   hole in the paper towel to the pc board. This is about the
+   only way to prevent very tiny solder blobs from lodging in
+   adjacent SMD chips.
+
+  B) This suggestion comes from Artur Jasowicz: "As far as
+   removing shorts from in-between pins, I've been successful
+   with using Desoldering Braid like RadioShack's part 64-2090.
+   Another technique I'd recommend is using sharp exacto knife
+   to cut excess solder from in-between the pins and then
+   re-flux the solder, which will suck extra solder from the
+   edge to under the pin."
+
+Have fun!
+
+
+
+

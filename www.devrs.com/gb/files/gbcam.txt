@@ -1,0 +1,89 @@
+GB Camera Tech Info V1.2 by Jeff F.
+-----------------------------------
+
+  The GameBoy Camera has memory mapped I/O registers
+ in the cart RAM area ($a000-$bfff). The GameBoy
+ Camera also has 16 x 8KByte RAM banks for a total
+ of 128KBytes of cart RAM.
+
+  Writing a value of $0 to $f to address $4000 selects
+ a cart RAM bank for access. Writing a value of $10 to
+ this address selects the Camera I/O registers instead.
+ Here are the known registers:
+
+  A000 (R/W) (bit 0 is set low when hardware is ready)
+  A001 (W)
+  A002 (W)
+  A003 (W)
+  A004 (W)
+  A005 (W)
+  A006-A035 (W)
+
+  Many places in the GameBoy Camera software a 1 is
+ written to bit 0 of $a000. The software then reads
+ this bit and halts until it is set to a 0 by the
+ hardware. It is this halt condition that prevents
+ the GameBoy Camera ROM from executing on GB emulators.
+
+  Since all of the registers are written but most
+ are never read, there must be some sort of DMA that
+ automatically writes camera output data to cart RAM.
+
+
+Save RAM Format
+---------------
+
+   0000 -  11fb Scratch pad ram #1 (ignore)
+   11fc -  1ffb "Game Face" Photo (16x14 tiles)
+   1ffc -  1fff Scratch pad ram #2 (ignore)
+
+ Photo #1
+   2000 -  2dff Large Photo (16x14 tiles)
+   2e00 -  2eff Small Photo (4x4 tiles)
+   2f00 -  2fff Photo Info
+
+ Photo #2
+   3000 -  3dff Large Photo (16x14 tiles)
+   3e00 -  3eff Small Photo (4x4 tiles)
+   3f00 -  3fff Photo Info
+
+ ... etc ...
+
+ Photo #30
+  1f000 - 1fdff Large Photo (16x14 tiles)
+  1fe00 - 1feff Small Photo (4x4 tiles)
+  1ff00 - 1ffff Photo Info
+
+
+ The Large Photo is stored as standard GB tiles
+and they are present on the screen in this format:
+
+ $00,$01,$02,$03,$04,$05,$06,$07,$08,$09,$0a,$0b,$0c,$0d,$0e,$0f
+ $10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$1a,$1b,$1c,$1d,$1e,$1f
+ ....
+ $d0,$d1,$d2,$d3,$d4,$d5,$d6,$d7,$d8,$d9,$da,$db,$dc,$dd,$de,$df
+
+ The Small Photo is identical to the large photo but
+much smaller and is presented like this:
+
+ $e0,$e1,$e2,$e3
+ $e4,$e5,$e6,$e7
+ $e8,$e9,$ea,$eb
+ $ec,$ed,$ee,$ef
+
+ The format of the Photo Info is not yet known but is not
+needed for viewing GB camera photos.
+
+Photo Info Block
+----------------
+
+
+ The last byte of the Photo Info area seems to indicate
+ whether the photo is active or deleted plus area 011b2-011cf
+ seems to be a part of this as well I think.
+
+ $17 = active,  00010111
+ $6e = deleted, 01101110
+ $00 = active,  00000000
+
+

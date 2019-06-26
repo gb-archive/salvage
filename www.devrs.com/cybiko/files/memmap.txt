@@ -1,0 +1,43 @@
+Cybiko Memory Map v1.0121
+-------------------------
+ By Jeff Frohwein
+
+ The Cybiko uses a Hitachi H8S/2241 as the main CPU.
+It operates in Advanced mode #6.
+
+V1 = Version 1 cybiko Hardware Only
+V2 = Version 2 cybiko Hardware Only
+
+Whole Range
+-----------
+
+ 000000 - 007fff Internal CPU (CyOS Boot Loader) ROM
+
+ 010000 - 07ffff  Repeats of CyOS Flash (V2)
+ 100000 - 13ffff 256KByte CyOS Flash (V2)
+ 140000 - 1fffff  Repeats of CyOS Flash (V2)
+
+ 200000 - 27ffff 256K(V2)/512K(V1)Byte Internal RAM
+ 280000 - 2fffff   Repeat of Internal RAM
+ 300000 - 37ffff   Repeat of Internal RAM
+ 380000 - 3fffff   Repeat of Internal RAM
+
+ 400000 - 43ffff 256KByte Expansion Card RAM
+ 440000 - 5fffff   Repeats of Expansion RAM
+
+ 600000 - ffebff Empty
+
+ ffec00 - fffbff 4KBytes Internal CPU RAM
+
+ fffe40 - ffff07 Internal I/O Registers
+
+ ffff28 - ffffff Internal I/O Registers
+
+ Note1: Internal 512KByte File Flash & Expansion Card 1MByte
+        File Flash are not memory mapped. They are accessed
+        through a serial buss.
+
+ Note2: Memory areas that repeat are an artifact that's
+        caused by simple hardware design techniques. It
+        is not a good idea to rely upon these areas since
+        they can disappear in future hardware versions.

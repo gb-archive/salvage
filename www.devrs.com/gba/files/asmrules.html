@@ -1,0 +1,123 @@
+<html>
+
+<!-- Mirrored from www.devrs.com/gba/files/asmrules.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:58:07 GMT -->
+<head>
+<title>asmrules</title>
+
+<meta name="generator" content="Created Using Yahoo! PageBuilder 2.60.14/2.0"></head><body bgcolor="#FFFFFF" link="#0000FF" vlink="#FF0000" text="#000000">
+<table border=0 cellspacing=0 cellpadding=0 width=650 align="center"><tr
+valign="top" align="left"> <td><img
+src="http://www.geocities.com/clipart/pbi/c.gif" height=1 width=1></td>
+<td><img src="http://www.geocities.com/clipart/pbi/c.gif" height=1
+width=6></td> <td><img src="http://www.geocities.com/clipart/pbi/c.gif"
+height=1 width=1></td> <td><img
+src="http://www.geocities.com/clipart/pbi/c.gif" height=1 width=9></td>
+<td><img src="http://www.geocities.com/clipart/pbi/c.gif" height=1
+width=619></td> <td><img src="http://www.geocities.com/clipart/pbi/c.gif"
+height=1 width=7></td> <td><img
+src="http://www.geocities.com/clipart/pbi/c.gif" height=1 width=4></td>
+<td><img src="http://www.geocities.com/clipart/pbi/c.gif" height=1
+width=3></td> <td><img src="http://www.geocities.com/clipart/pbi/c.gif"
+height=1 width=1></td></tr><tr valign="top"> <td colspan=9
+height=12></td></tr><tr valign="top"> <td bgcolor="#FFFFCC" align="center"
+colspan=8 rowspan=1 width=650><font size="+3"><span style="font-size:36">GCC
+Inline Assembly<br>Rules of Engagement<br><br></span></font><span
+style="font-size:14">By Dylan Cuthbert<br></span><i><span
+style="font-size:14">Last Updated: 8th July 2000</span></i></td> <td
+colspan=1 height=144></td></tr><tr valign="top"> <td colspan=9
+height=23></td></tr><tr valign="top"> <td colspan=4 height=22></td> <td
+align="center" colspan=1 rowspan=1 width=619><b><font size="+1"><span
+style="font-size:18">Debriefing</span></font></b></td> <td colspan=4
+height=22></td></tr><tr valign="top"> <td colspan=9 height=6></td></tr><tr
+valign="top"> <td colspan=1 height=495></td> <td bgcolor="#EEFFFF" colspan=6
+rowspan=1 width=646><span style="font-size:14">This page attempts to list a
+no. of rules to follow when using GCC's </span><a
+href="http://www.gnu.org/software/gcc"><span style="font-size:14">(Gnu
+Compiler Collection)</span></a><span style="font-size:14"> extended asm
+feature.&nbsp; This feature is very powerful when used properly, and very
+dangerous when used incorrectly.<br><br>The basic format of the inline asm
+is:<br><br>asm(&nbsp; &quot;cmd %0, %1, %2&quot; : &quot;=X&quot; ( x ) :
+&quot;Y&quot; ( y ), &quot;Z&quot; ( z ) : &quot;R1&quot;, &quot;R2&quot;,
+&quot;R3&quot; );<br><br>The statement consists of four parts separated by
+colons.&nbsp; The first part is the asm statement itself which is described
+by a string literal.&nbsp; This string is a template and by using
+&quot;%&quot;, operands or information from the compiler can be inserted in a
+similar way to printf.&nbsp; For example, %5 will insert operand 5 (or the
+sixth operand as counting begins at 0).&nbsp; %= will insert a unique number
+useful for generating labels.<br><br>The second and third sections of the
+statement describe the operands the asm statement needs.&nbsp; The second
+section describes the outputs (write-only or read/write), and the third
+section describes the inputs (read-only).&nbsp; They consist of a comma
+separated list of a string literal describing the operand constraint, and in
+brackets, the operand itself.&nbsp; The string is called an </span><a
+href="http://gcc.gnu.org/onlinedocs/gcc_20.html#SEC219"><span
+style="font-size:14">operand constraint</span></a><span
+style="font-size:14">.&nbsp; Click the link for an exhaustive list of
+constraints and explanations.&nbsp; <br><br>The most common constraints are
+&quot;r&quot; (&quot;=r&quot;) and &quot;m&quot; (&quot;=m&quot;).&nbsp;
+&quot;r&quot; tells the compiler that the asm statement requires an
+</span><b><span style="font-size:14">integer</span></b><span
+style="font-size:14"> register to hold the variable (use &quot;f&quot; to
+specify floating point registers).&nbsp; &quot;m&quot; tells the compiler
+that the asm statement requires a memory address pointing to the
+variable.&nbsp; Note, however, the variable specification doesn't change, ie.
+don't use '&quot;m&quot; (&amp;var)' as that will give you the address of the
+</span><b><span style="font-size:14">address</span></b><span
+style="font-size:14"> of the variable in question.<br><br>The fourth section
+of the statement are what GCC refers to as &quot;clobbers&quot;.&nbsp; This
+list specifies the &quot;side-effects&quot; of the asm statement that the
+compiler can't see.&nbsp; For example, if the asm statement *must* at all
+costs write to register $6 then you must specify &quot;$6&quot; in the
+clobber list.&nbsp; Also, if you write to memory that </span><b><span
+style="font-size:14">hasn't</span></b><span style="font-size:14"> been
+specified with the &quot;=m&quot; or &quot;+m&quot; operand constraint you
+</span><b><span style="font-size:14">must</span></b><span
+style="font-size:14"> specify the special keyword &quot;memory&quot; in the
+clobber list.&nbsp; Don't use the &quot;memory&quot; clobber specification
+lightly though, as it requires the compiler to save all register-loaded
+values immediately before the asm statement.&nbsp; In almost every case
+&quot;=m&quot; or &quot;+m&quot; should suffice.<br><br></span><i><span
+style="font-size:14">(please bear in mind, this is most definitely not an
+exhaustive or even close to definitive guide and is intended, simply, to be a
+quick brush-up of the essentials.&nbsp; For further reading also try
+</span></i><a href="http://gcc.gnu.org/onlinedocs/gcc_4.html#SEC97"><i><span
+style="font-size:14">GCC's guide </span></i></a><i><span
+style="font-size:14">and</span></i><a
+href="http://www.delorie.com/djgpp/doc/"><i><span style="font-size:14">
+DJGPP's couple of guides</span></i></a><i><span style="font-size:14"> which
+are i386 oriented but still very useful)</span></i></td> <td colspan=2
+height=495></td></tr><tr valign="top"> <td colspan=9 height=17></td></tr><tr
+valign="top"> <td colspan=2 height=22></td> <td align="center" colspan=4
+rowspan=1 width=636><b><font size="+1"><span
+style="font-size:18">Rules</span></font></b></td> <td colspan=3
+height=22></td></tr><tr valign="top"> <td colspan=9 height=5></td></tr><tr
+valign="top"> <td colspan=3 height=280></td> <td bgcolor="#FFDDCD" colspan=3
+rowspan=1 width=635><span style="font-size:14">1. </span><b><span
+style="font-size:14">Never</span></b><span style="font-size:14"> write to an
+input argument.&nbsp; Bear in mind an input argument is </span><b><span
+style="font-size:14">any</span></b><span style="font-size:14"> argument
+within the third ':' delimited section of the asm statement.<br>2.
+</span><b><span style="font-size:14">Never</span></b><span
+style="font-size:14"> read from an &quot;=r&quot;/&quot;=m&quot; (ie. output)
+operand (unless you have already modified it).<br>3. </span><b><span
+style="font-size:14">Never</span></b><span style="font-size:14"> read from an
+input operand *after* you have written to an output operand (the compiler
+often optimally uses the same register or memory location).&nbsp; If you need
+to do this use the &quot;=&amp;r&quot; or &quot;=&amp;m&quot; constraint
+which tells the compiler the output must be unaliased and therefore
+guarantees a different register/memory location to be supplied.<br>4. There
+is no no. 4.<br>5. If you write to memory that hasn't been specified with
+&quot;=m&quot; or &quot;+m&quot; then you </span><b><span
+style="font-size:14">must</span></b><span style="font-size:14"> specify
+&quot;memory&quot; in the clobber list.<br>6. Never attempt to read or write
+more than the size of the operands specified, eg. if you use &quot;=r&quot;
+(val) where val is an int, and in the asm statement you perform, for example,
+(MIPS) an mfc1 (an operation affecting 64 bits), the compiler only thinks
+you've overwritten 32 bits and </span><b><span
+style="font-size:14">won't</span></b><span style="font-size:14"> preserve the
+full values across function calls and the like.<br>7. Avoid clobbering
+arbitrary registers -
+ in almost every case you can specify that you want to clobber a register by simply specifying an extra (albeit unused) output.&nbsp; The clobber list is intended primarily for asm instructions that have no choice as to which register they write to; often the case with Intel chips but rarely, if ever, the case with Motorola or Mips.<br>8. Follow these rules </span><b><span style="font-size:14">strictly</span></b><span style="font-size:14">, there is </span><b><span style="font-size:14">no</span></b><span style="font-size:14"> gray area with regards to inline asm, you'll only invite upon yourself a world of hurt when the compiler decides to optimize things a little differently.</span></td>	<td colspan=3 height=280></td></tr><tr valign="top">	<td colspan=9 height=32></td></tr><tr valign="top">	<td colspan=2 height=22></td>	<td align="center" colspan=4 rowspan=1 width=636></td>	<td colspan=3 height=22></td></tr></table></body>
+
+<!-- Mirrored from www.devrs.com/gba/files/asmrules.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:58:07 GMT -->
+</html>

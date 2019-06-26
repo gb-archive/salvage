@@ -1,0 +1,90 @@
+Contact:	FOR IMMEDIATE RELEASE
+Joe Fowler 650/210-1560 - joe.fowler@scenix.com
+SCENIX ANNOUNCES ETHERNET EVALUATION KIT FOR SX-STACK
+Ordering Options Include E-Commerce Web Site
+
+ Mountain View, Calif. - Aug. 31, 2000 - Scenix, a leading supplier of
+solutions for embedding the Internet, today announced the availability of
+the Ethernet Evaluation Kit for use with its SX-Stack network protocol
+stack. The kit, which has a 10-baseT Ethernet physical interface, allows
+OEMs to quickly and easily evaluate and become familiar with using the
+Scenix TCP/IP protocol stack.  This will enable them to design Internet
+connectivity into embedded applications that require an Ethernet networking
+capability.  In addition to such applications as  new remote access and
+monitoring devices and industrial control systems, this includes providing a
+bridge to the Internet for legacy devices that are already Ethernet-connected.
+
+ The kit contains a demonstration board, an AC power supply, a 9-pin-to-9-pin
+serial cable, a CD-ROM containing source code and other information, and a
+user's guide.  It can be ordered both from Scenix' local distributors and
+on-line at the Montereytools.com e-commerce Web site.
+
+ "When we introduced the SX-Stack running on our single-chip Embedded
+Internet Processor a year ago, we were the first company to include such
+commonly used physical interfaces as UARTs and I2C along with the TCP/IP
+protocol software modules," said Stephan Thaler, Scenix' vice president of
+marketing.  "Since then, there's been a growing demand from our customers
+for an Ethernet physical interface.  The Ethernet Evaluation Kit is the
+first part of our answer to that demand.  It lets designers use an SX Series
+Embedded Internet Processor in conjunction with an external chip that
+executes the PHY portion of the Ethernet interface to quickly develop and
+evaluate embedded solutions with both Internet and Ethernet connectivity."
+
+SX-Stack Source Code On CD-ROM
+ The Ethernet Evaluation Kit gives designers hands-on experience with the
+SX-Stack, which is a configurable combination of standard Internet protocols
+implemented as Virtual Peripheral(tm) modules (software implementations of
+peripheral and other functions).  The modules constituting the SX-Stack are:
+
+ * The Point-to-Point Protocol (PPP)
+ * The Internet Protocol (IP) and Internet Control Message Protocol (ICMP)
+ * The User Datagram Protocol (UDP) and Transmission Control Protocol (TCP)
+ * The Simple Mail Transfer Protocol (SMTP), Hypertext Transfer Protocol
+ (HTTP) and Post Office Protocol (POP3)
+
+ The source code for the protocol modules is contained on the CD-ROM that
+comes with the evaluation kit.  Two configurations are offered.  One, the
+iSX Web Server, consists of the PPP, TCP/IP and HTTP Virtual Peripheral
+modules, and allows a standard browser to access and view stored Web pages.
+The other is the eSX E-Mail Appliance, which consists of the PPP, TCP/IP,
+SMTP and POP3 modules, and allows both transmission and reception of e-mail
+messages.
+
+The Demonstration Board
+ The demonstration board includes a 50 MIPS SX52BD Embedded Internet
+Processor and an external 10-baseT Ethernet interface chip.  The iSX Web
+Server and eSX E-Mail Appliance are loaded into the flash/EEPROM memory of
+the processor.  An external EEPROM chip is provided for storing Web page
+content.  Also included are two DB-9 serial port connections, clock
+circuitry, LEDs, a reset button, and a DC power-in plug.
+
+Price and Availability
+ The Ethernet Evaluation Kit is priced at $99.00.  It is available through
+the company's worldwide network of distributors and representatives, and
+from the Montereytools.com e-commerce Web site.
+
+Scenix
+ Headquartered in Mountain View, California, Scenix provides communications
+software and controllers for embedded applications, with a market emphasis
+on embedding the Internet in everyday things.  Scenix is the leading
+supplier of Virtual PeripheralTM software modules, which are functions that
+are conventionally implemented in hardware.  The company's software
+system-on-a-chip approach reduces time to production and system cost, while
+providing greater flexibility, compared to traditional design approaches. 
+
+Recognition includes:
+
+* "Best Products of 2000, Controllers," by ChipCenter (an on-line affiliate
+of Electronic Engineering Times) for the SX52BD100 communications controller* 
+* "Investor's Choice" award, December 1999, as one of the top 10 privately
+held companies at the Technologic Partners "Technology Outlook Conference"
+* "50 Hot Products of 1999" by EDN Europe for the SX-Stack TCP/IP network
+protocol stack*  "100 Hot Products of 1998" by EDN for the 100 MIPS SX Series
+communication controller 
+* "10 Top Processor List of 1998" by Electronic News for the 100 MIPS SX
+Series communication controller 
+Additional information on Scenix and its products can be found on the Web at
+<www.scenix.com>.# # #
+
+(tm)	Virtual Peripheral is a trademark of Scenix Semiconductor, Inc.
+SX-Stack/Ethernet Evaluation Kit Available/2-2-2

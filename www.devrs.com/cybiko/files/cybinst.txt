@@ -1,0 +1,58 @@
+Downloading Instructions, 2001-Jan-1
+------------------------------------
+
+ [If you want to send comments or bug reports email
+  them to CyBuilder@hotmail.com. Due to the volume
+  of mail I get, I can not reply to most of them.
+  Get the latest version from:
+    http://www.devrs.com/Cybiko ]
+   NOTE: IF YOU POST THIS GAME ON YOUR WEB PAGE YOU
+   MUST POST A LINK TO THE WEB ADDRESS ABOVE SOMEWHERE
+   ON YOUR WEB SITE.
+
+
+0)  Please note that these instructions DO NOT WORK for
+   boot logos. For these, you need to use these instructions
+   instead:  http://www.devrs.com/cybiko/files/logoinst.txt
+
+1)  First, download and install CyberLoad v1.16 build 121,
+   or later, if you have an older version than this.
+
+2)  Download the game or application and save it in your
+   "CyberLoad\local_files\user_files" folder. The complete
+   file path name will probably be the following:
+
+     c:\Program Files\Cybiko\CyberLoad\local_files\user_files
+
+    From now on, the game or application will just be referred
+   to as "the app".
+
+3)  If the app has a file name which ends with .app, then go to
+   step 5.
+
+4)  If the app has a file name which ends with .zip, then you
+   need to UnZip this file using WinZip or some similar program.
+   If you do not see WinZip installed on your computer then go to
+   http://www.winzip.com and download their evaluation copy.
+   Install it and then use it to UnZip the app. You should now
+   see an app file name the ends with .app.
+
+    [NOTE: The reason many files are Zipped it makes their file
+     size smaller AND Netscape users often have problems
+     downloading file names that end with .app ]
+
+5)  Turn on your Cybiko and then connect the PC-to-Cybiko cable
+   to one of your serial ports on the computer.
+
+6)  Start up CyberLoad.
+
+7)  Look for the "MyComputer" box on the left side of the
+   CyberLoad window. If there is a + on the left of the text
+   "My Computer" then click on the +. This will show you a -
+   and "User Files". If there is a + to the left of "User Files"
+   then click on it. This will show you a - and all of the
+   games/apps in the "CyberLoad\local_files\user_files" folder.
+
+8)  Select the app under "User Files" and transfer it to the Cybiko.
+
+9)  All Done!

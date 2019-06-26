@@ -1,0 +1,217 @@
+// *** Slave boot demo code v1.21 ***
+//
+//   The following GCC code will send a multiboot ROM image
+// (Client) to a slave GBA unit and it will automatically
+// start running on the slave unit.
+//
+//   The small Client ROM image in this example will fill
+// the slave screen with black and draw a white diagonal
+// line on top of that. Nothing fancy. :P
+//
+// To execute this code call:
+//    SendMBImageToClient ();
+//
+// To convert a multiboot binary image to foo[]={} format
+// use B2X from devrs.com/gba in the Apps/Misc section:
+//    b2x -c -u < in.bin > out.h
+//
+// If you are using DevKitAdvance to compile this code then
+// you need to use the -mthumb option during the compile
+// .c to .o stage or else the "DelayCycles" routine will
+// give compile errors.
+
+typedef     unsigned char           u8;
+typedef     unsigned short int      u16;
+typedef     unsigned int            u32;
+
+const u8 Client [336] = {
+ 0x2e,0x00,0x00,0xea,0x24,0xff,0xae,0x51,0x69,0x9a,0xa2,0x21,0x3d,0x84,0x82,0x0a,
+ 0x84,0xe4,0x09,0xad,0x11,0x24,0x8b,0x98,0xc0,0x81,0x7f,0x21,0xa3,0x52,0xbe,0x19,
+ 0x93,0x09,0xce,0x20,0x10,0x46,0x4a,0x4a,0xf8,0x27,0x31,0xec,0x58,0xc7,0xe8,0x33,
+ 0x82,0xe3,0xce,0xbf,0x85,0xf4,0xdf,0x94,0xce,0x4b,0x09,0xc1,0x94,0x56,0x8a,0xc0,
+ 0x13,0x72,0xa7,0xfc,0x9f,0x84,0x4d,0x73,0xa3,0xca,0x9a,0x61,0x58,0x97,0xa3,0x27,
+ 0xfc,0x03,0x98,0x76,0x23,0x1d,0xc7,0x61,0x03,0x04,0xae,0x56,0xbf,0x38,0x84,0x00,
+ 0x40,0xa7,0x0e,0xfd,0xff,0x52,0xfe,0x03,0x6f,0x95,0x30,0xf1,0x97,0xfb,0xc0,0x85,
+ 0x60,0xd6,0x80,0x25,0xa9,0x63,0xbe,0x03,0x01,0x4e,0x38,0xe2,0xf9,0xa2,0x34,0xff,
+ 0xbb,0x3e,0x03,0x44,0x78,0x00,0x90,0xcb,0x88,0x11,0x3a,0x94,0x65,0xc0,0x7c,0x63,
+ 0x87,0xf0,0x3c,0xaf,0xd6,0x25,0xe4,0x8b,0x38,0x0a,0xac,0x72,0x21,0xd4,0xf8,0x07,
+ 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+ 0x30,0x31,0x96,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xf0,0x00,0x00,
+ 0x12,0x00,0xa0,0xe3,0x00,0xf0,0x29,0xe1,0x70,0xd0,0x9f,0xe5,0x1f,0x00,0xa0,0xe3,
+ 0x00,0xf0,0x29,0xe1,0x60,0xd0,0x9f,0xe5,0x00,0x00,0x81,0xe5,0x4c,0x00,0x9f,0xe5,
+ 0x4c,0x10,0x9f,0xe5,0xb0,0x00,0xc1,0xe1,0x00,0x00,0xa0,0xe3,0x44,0x10,0x9f,0xe5,
+ 0xb0,0x00,0xc1,0xe1,0x06,0x14,0xa0,0xe3,0x96,0x2c,0xa0,0xe3,0x00,0x00,0xa0,0xe3,
+ 0xb2,0x00,0xc1,0xe0,0x01,0x20,0x52,0xe2,0xfc,0xff,0xff,0x1a,0x06,0x14,0xa0,0xe3,
+ 0x02,0x09,0xa0,0xe3,0x01,0x00,0x40,0xe2,0xa0,0x20,0xa0,0xe3,0x02,0x00,0x81,0xe4,
+ 0x1e,0x1e,0x81,0xe2,0x01,0x20,0x52,0xe2,0xfb,0xff,0xff,0x1a,0xfe,0xff,0xff,0xea,
+ 0x03,0x04,0x00,0x00,0x00,0x00,0x00,0x04,0x04,0x00,0x00,0x04,0x00,0x7f,0x00,0x03,
+ 0xa0,0x7f,0x00,0x03,0x30,0x00,0x2d,0xe9,0x1e,0x4e,0xa0,0xe3,0x94,0x01,0x05,0xe0
+};
+
+const u8 Header [] = {
+ 46,0,0,234,36,255,174,81,105,154,162,33,61,132,130,10,
+ 132,228,9,173,17,36,139,152,192,129,127,33,163,82,190,25,
+ 147,9,206,32,16,70,74,74,248,39,49,236,88,199,232,51,
+ 130,227,206,191,133,244,223,148,206,75,9,193,148,86,138,192,
+ 19,114,167,252,159,132,77,115,163,202,154,97,88,151,163,39,
+ 252,3,152,118,35,29,199,97,3,4,174,86,191,56,132,0,
+ 64,167,14,253,255,82,254,3,111,149,48,241,151,251,192,133,
+ 96,214,128,37,169,99,190,3,1,78,56,226,249,162,52,255,
+ 187,62,3,68,120,0,144,203,136,17,58,148,101,192,124,99,
+ 135,240,60,175,214,37,228,139,56,10,172,114,33,212,248,7,
+ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,48,49,150,0,0,0,0,0,
+ 0,0,0,0,0,240,0,0
+};
+
+#define REG_BASE        0x4000000
+#define REG_SIOMULTI1   (REG_BASE + 0x122)
+#define REG_SIOCNT      (REG_BASE + 0x128)
+#define REG_SIOMLT_SEND (REG_BASE + 0x12a)
+#define REG_RCNT        (REG_BASE + 0x134)
+
+typedef struct {
+  u32 reserve1[5];      //
+  u8 hs_data;           // 20 ($14) Needed by BIOS
+  u8 reserve2;          // 21 ($15)
+  u16 reserve3;         // 22 ($16)
+  u8 pc;                // 24 ($18) Needed by BIOS
+  u8 cd[3];             // 25 ($19)
+  u8 palette;           // 28 ($1c) Needed by BIOS - Palette flash while load
+  u8 reserve4;          // 29 ($1d) rb
+  u8 cb;                // 30 ($1e) Needed by BIOS
+  u8 reserve5;          // 31 ($1f)
+  u8 *startp;           // 32 ($20) Needed by BIOS
+  u8 *endp;             // 36 ($24) Needed by BIOS
+  u8 *reserve6;         // 40 ($28)
+  u8 *reserve7[3];      // 44 ($2c)
+  u32 reserve8[4];      // 56 ($38)
+  u8 reserve9;          // 72 ($48)
+  u8 reserve10;         // 73 ($49)
+  u8 reserve11;         // 74 ($4a)
+  u8 reserve12;         // 75 ($4b)
+} MBStruct;
+
+MBStruct mp;
+
+// Delay for X cpu cycles
+
+void DelayCycles (u32 cycles)
+   {
+#ifdef  __GNUC__
+  /* GCC code16 */
+  asm("mov r2, pc");
+  asm("lsr r2, #24");
+
+  // EWRAM
+  asm("mov r1, #12");
+  asm("cmp r2, #0x02");
+  asm("beq MultiBootWaitCyclesLoop");
+
+  // ROM 4/2 wait
+  asm("mov r1, #14");
+  asm("cmp r2, #0x08");
+  asm("beq MultiBootWaitCyclesLoop");
+
+  // IWRAM
+  asm("mov r1, #4");
+
+  asm("MultiBootWaitCyclesLoop:");
+  asm("sub r0, r1");
+  asm("bgt MultiBootWaitCyclesLoop");
+#else
+  /* TCC */
+  __asm{mov r2, pc};
+  __asm{lsr r2, #24};
+  __asm{mov r1, #12};
+  __asm{cmp r2, #0x02};
+  __asm{beq MultiBootWaitCyclesLoop};
+
+  __asm{mov r1, #14};
+  __asm{cmp r2, #0x08};
+  __asm{beq MultiBootWaitCyclesLoop};
+
+  __asm{mov r1, #4};
+
+  __asm{MultiBootWaitCyclesLoop:};
+  __asm{sub r0, r1};
+  __asm{bgt MultiBootWaitCyclesLoop};
+#endif
+   }
+
+u16 xfer (u16 send)
+   {
+   *(u16 *)REG_SIOMLT_SEND = send;   // Setup 16bit value to send
+   *(u16 *)REG_SIOCNT = 0x2083;      // Init 16bit Multiplayer transfer
+
+   while(*(vu16 *)REG_SIOCNT & 0x80) // Loop until transfer has completed
+      {}
+   return (*(vu16 *)REG_SIOMULTI1);  // Return 16bit value that was received
+   }
+
+void SendMBImageToClient (void)
+   {
+   u8 debug = 1;
+   u8 palette;
+   u16 i;
+   u16 key;
+   u32 length;
+
+   *(u16 *)REG_RCNT = 0;             // non-general purpose comms
+
+   // Wait until slave boy is awake
+   // and ready to be activated. =P
+   do
+      {
+      DelayCycles(921000); //delay ~18ms
+
+      i = xfer (0x6202);
+      }
+   while (i != 0x7202);
+
+   i = xfer (0x6100);
+
+   // Send first 4 bytes of ROM image (Branch instr)
+   xfer ((Client[1] << 8) + Client[0]);
+   xfer ((Client[3] << 8) + Client[2]);
+
+   // Send known good client header
+   for (i=2; i<96; i++)
+      xfer ((Header[i*2+1] << 8) + Header[i*2]);
+
+   i = xfer(0x6202);
+
+   mp.cb = 2;
+   mp.pc = 0xd1;
+   mp.startp = (u8 *)&Client [0xc0];
+   length = sizeof(Client) - 0xc0;
+   length = (length + 15) & ~15; /* 16 byte units */
+   if (length < 0x1c0) length = 0x1c0;
+   mp.endp = (u8 *)&Client [0xc0] + length;
+
+   palette = 0xc1;
+   mp.palette = palette;
+
+   i = xfer(0x6300+palette);
+   i = xfer(0x6300+palette);
+
+   mp.cd[0] = i;
+   mp.cd[1] = 0xff;
+   mp.cd[2] = 0xff;
+
+   key = (0x11 + (i & 0xff) + 0xff + 0xff) & 0xff;
+   mp.hs_data = key;
+
+   i = xfer(0x6400 | (key & 0xff));
+
+   // Execute BIOS routine to transfer client binary to slave unit
+   asm volatile (
+      " ldr r0,=mp\n"
+      " mov r1,#1\n"
+      " swi 0x25\n"       //NOTE!!!!! Use 0x250000 for ARM C Compiler mode.
+      :  // Outputs       // 0x25 here will only work for Thumb mode.
+      :  // Inputs
+      : "r0","r1","r2","r8","r9","r10","r11","r12"     // Regs crushed & smushed
+      );
+
+   }
+

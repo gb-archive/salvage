@@ -1,0 +1,69 @@
+Flash Card Quiz
+---------------
+ by CyBuilder@hotmail.com
+
+ This application for cybiko allows you generate your
+own Question / Answer quiz. You can either generate
+the quiz using "Text Editor & Journal" on the cybiko
+(or probably any other cybiko text editor) or you can
+generate it on a PC (using windows Notepad) and then
+transfer the quiz to the cybiko using CyberLoad.
+
+ When you run this application, the first question is
+shown on the screen. You then can press any button to
+see both the question and the answer. Pressing any
+button at this point will take you to the next question.
+The questions will start all over after the last question.
+
+ When you run this application, it reads the questions
+and answers from a file 'quiz.txt'. This is the file
+that you must generate on the cybiko or on a PC and
+transfer it to the cybiko. Here is an example 'quiz.txt':
+
+Question: What is "#" ?
+Answer: "#"
+5+5#10
+4+3#7
+2+2#4
+
+ The first line of this file is the template for the
+question. The second line is the template for the
+answer. The # is used to indicate where to put the
+questions and the answers in the template.
+ On the third line and all other lines, the # is used
+to separate the questions from the answers.
+
+ Questions and answers may be up to 3 lines long. This
+is approximately 75 characters or so.
+
+ If you don't wish to use a template for your questions
+or answers then just put a # alone on those lines. Example:
+
+#
+#
+What color are apples?#red
+Why ask why?#Good question.
+4+4=?#8
+
+ Now... you've got no excuse for failing your chemistry
+class test because you didn't have any good way of studying
+the periodic element symbols. ;)
+
+    !!!TIP!!!
+    Copy this demonstration quiz.txt or your own quiz.txt
+    file to this directory:
+
+     C:\Program Files\Cybiko\CyberLoad\local_files\user_files
+
+    Now you can use CyberLoad to transfer your quiz.txt to
+    your cybiko.
+
+    To install FCQuiz.app application on your cybiko, copy
+    it to the same directory shown above and then run
+    Cyberload.
+
+    Use WinZip from http://www.winzip.com to convert fcquiz.zip
+    to FCQuiz.app.
+
+
+ CB

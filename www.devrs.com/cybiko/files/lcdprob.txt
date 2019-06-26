@@ -1,0 +1,30 @@
+Do NOT take your Cybiko apart & play with the LCD !
+---------------------------------------------------
+ by Jeff Frohwein, v1.0123
+
+ In my quest to figure out how the cybiko LCD screen
+interfaces to the main circuit board, I disassembled
+my unit completely. I Then attempted to pry the LCD
+loose from the board it was mounted on. It was held
+in place by two small plastic "hooks." Once these
+hooks gave way, the LCD cable was extended beyond
+it's ability to safely flex. The result? THE DISPLAY
+NO LONGER WORKS! Ugh... Now I've got a totally useless
+cybiko. Well.. maybe not totally useless. I might
+can use it for a CyWIG setup on the PC side because
+everything else still works.
+
+ The plus side of all of this is that I was able to
+locate the part number for the LCD display chip that
+was otherwise hidden under the cable itself. The
+actual display chip is mounted on the flexible LCD
+cable and is a Hitachi HD66421 part. It has internal
+display RAM and handles the complex LCD display signals
+necessary to update the LCD itself. Here are various
+web links that offer more information on this part:
+
+ http://www1.hitachi.com.hk/eng/publications/npb/21-04.htm
+ http://global.hitachi.com/New/cnews/E/1998/980907B.html
+ http://www.hitachi-eu.com/hel/ecg/products/micro/lcd_lineup.htm
+
+Jeff

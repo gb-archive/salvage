@@ -1,0 +1,42 @@
+Creating a PDF or BMP document from any Windows app
+ (without needing to buy PDFWrite from Adobe)
+---------------------------------------------
+
+Info from Bob Blick <bob at TED dot NET>:
+
+0. Get both Ghostscript and GSview from here. Install Ghostscript first
+and then GSview:  http://www.cs.wisc.edu/~ghost/
+
+1. Have a postscript printer driver installed in Windows. I chose the
+QMS PS 2220 because it is an 11x17 printer. Note: I don't actually have the
+printer. For connection, choose FILE: not an LPT port.
+
+2. From your cad program, or your word processor, whatever, print to this
+new printer choosing whatever paper size you want(my choices are usually
+either letter 8.5x11 or Tabloid 11x17). Up pops a file requester, name it
+something and suffix it .prn
+
+3. Open up GSview and load in this prn file.
+
+4. Then use the Print command [editors note: Convert command on GSview 4.3]
+and choose "pdfwrite" for the device and "print to file". Choose a resolution
+that's big, like 300 or 600dpi. Up pops a requester. Give it a name ending in .pdf
+
+That's all it takes to make a PDF. I have subsequently figured out that to
+get the pdf to view properly in a landscape format you need to ignore what
+it looks like in GSview and select or create paper that is wide("ledger"
+works for 11x17 plots but you have to create custom paper for letter size
+landscape. Create this paper in GSview under "Media"
+
+OK, say you want to make a bitmap for display on a web page. Follow steps
+1 through 3 above and then do this:
+
+4. Use the print command in GSview but choose "bmp256" as the device along
+with "print to file". Up pops the file requester and name it something
+ending in .bmp . Note: you can also use bmpmono or bmp16 depending on
+compatibility with the program you use in step 5. Choose a resolution that
+makes sense for web viewing or higher if you want to do smoothing in your
+graphics program later.
+
+5. Open this .bmp in a graphics program that lets you save in GIF or JPEG
+and save it how you like.

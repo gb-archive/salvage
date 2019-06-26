@@ -1,0 +1,61 @@
+;*
+;* Switching CPU speeds on the GBC
+;*  written for RGBASM
+;*
+
+;  This is the code needed to switch the GBC
+; speed from single to double speed or from
+; double speed to single speed.
+;
+; Note: The 'nop' below is ONLY required if
+; you are using RGBASM version 1.10c or earlier
+; and older versions of the GBDK assembly
+; language compiler. If you are not sure if
+; you need it or not then leave it in.
+;
+;  The real opcodes for 'stop' are $10,$00.
+; Some older assemblers just compiled 'stop'
+; to $10 hence the need for the extra byte $00.
+; The opcode for 'nop' is $00 so no harm is
+; done if an extra 'nop' is included
+
+; *** Set single speed mode ***
+
+SingleSpeedMode:
+        ld      a,[rKEY1]
+        rlca            ; Is GBC already in single speed mode?
+        ret     nc      ; yes, exit
+        jr      CPUToggleSpeed
+
+; *** Set double speed mode ***
+
+DoubleSpeedMode:
+        ld      a,[rKEY1]
+        rlca            ; Is GBC already in double speed mode?
+        ret     c       ; yes, exit
+
+CPUToggleSpeed:
+        di
+
+        ld      hl,rIE
+        ld      a,[hl]
+        push    af
+
+        xor     a
+        ld      [hl],a         ;disable interrupts
+        ld      [rIF],a
+
+        ld      a,$30
+        ld      [rP1],a
+
+        ld      a,1
+        ld      [rKEY1],a
+
+        stop
+        nop
+
+        pop     af
+        ld      [hl],a
+
+        ei
+        ret

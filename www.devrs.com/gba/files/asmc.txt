@@ -1,0 +1,291 @@
+// Mixing ARM and/or Thumb Assembly Code with C when using GCC
+// by Jeff Frohwein
+// Some contributions from Dennis Ranke (exoticorn/icebird)
+//   v1.0225 - Original Release
+//   v1.0311 - Bug fix. Replaced STMED & LDMED with STMFD & LDMFD.
+//   v1.0314 - No longer saving R14 on stack. Not needed.
+//   v1.0316 - Added a few more comments.
+//   v1.0606 - Added "volatile" to routines to prevent optimization removal when using -O3
+//   v1.0810 - Added info about which registers can be destroyed.
+//   v1.1001 - Added info about .CODE xx inserted after all asm("") statements.
+//   v1.1012 - Added info about including immediate data in asm("")
+//   v1.1017 - Added info about .include inside a asm("") statement.
+//   v2.0223 - Added info about extern requiring "C" to prevent name
+//             mangling in C++. Also added .TYPE and .SIZE to functions.
+//   v2.0408 - Added \n\ info for inline asm. Info from Pete D.
+
+  The first half of this document describes including assembly
+ code inside of your .c files. The second half describes linking
+ a stand-alone .s assembly file in with your project. These examples
+ only apply for GCC and NOT the arm SDT compiler.
+
+  The normal code used in GBA games is C that is compiled to Thumb
+ asm. Thumb code tends to be smaller than ARM code and has better
+ performance when executed from ROM. If you plan to mix Thumb
+ and ARM code then you need to use the following compiler option:
+
+  GCC allows you to destroy r0,r1,r2,r3, & r12 in your own stand-alone
+ assembly code procedures. All other registers must be preserved.
+ In this aspect, GCC follows the APCS (Arm Procedure Call Standard).
+ However, this does not apply to inline assembly code in C. For inline
+ assembly you may destroy registers but you must specify which you have
+ destroyed.
+
+  First, make sure that you add '-mthumb-interwork' to your compile
+ options for both the compiler (GCC) and the assembler (GAS).
+
+  -mthumb-interwork
+       Generate code which supports calling between the ARM
+      and THUMB instruction sets. Without this option the two
+      instruction sets cannot be reliably used inside one program.
+      The default is `-mno-thumb-interwork', since slightly larger
+      code is generated when `-mthumb-interwork' is specified.
+
+ NOTE: The following inline examples assume you are using a thumb
+      C compiler. If you are using DevKitAdvance, or GCC 3.0 or
+      later, then your C compiler supports both thumb & ARM. As a
+      result, you need to use the following compiler option to
+      force thumb mode: -mthumb
+
+Single Line Assembly in C
+-------------------------
+
+  For 'simple' Thumb asm routines in Thumb C code you can use a single-line
+ asm (""); instruction: Example:
+
+   asm (" mov r0,#0");
+
+  You may need to insert "volatile" after the "asm" statement.
+ Read below for the reason why. Note that if you are compiling
+ C code into Thumb assembly then a .CODE 16 is inserted by the
+ C compiler after every asm(""); statement. If you are compiling
+ C code into ARM assemebly then a .CODE 32 is inserted by the
+ C compiler after every asm(""); statement. This means that the
+ following will not work when compiling C code to Thumb assembly:
+
+    asm(" .arm");
+    asm(" mov r0,r1");
+
+  Instead, you must do the following (.arm and .code 32 are the same thing):
+
+    asm(" .arm
+          mov r0,r1");     // NOTE: This works on GCC 2.9 & earlier.
+  OR
+
+    asm(" .arm\n"
+        " mov r0,r1\n");   // NOTE: This works on all versions of GCC.
+
+  OR
+
+    asm(" .arm\n\
+          mov r0,r1\n");   // NOTE: This works on all versions of GCC.
+
+   If you don't want to mess with the above format then try the
+  following line. This allows you to inline assembly code in
+  standard assembler format (Be sure to modify your makefile or
+  MakeDepend file so that changes to my_file.s cause a recompile
+  of the C file that is including my_file.s):
+
+    asm volatile (".include \"my_file.s\"");
+
+Immediate data in Assembly in C
+-------------------------------
+
+ To include immediate values into inline assembly code,
+it is easiest to use the following format:
+
+    asm(" ldr r0,=0x12345678");
+
+ Replace 0x12345678 with the value you require. This method
+will auto-optimize to the smallest code and it will put the
+actual data, if needed, into the nearest .pool section.
+
+Inline Assembly Examples
+------------------------
+
+//
+// *********** Mixing Assembly IN c code examples ************
+
+// Draw pixel in GBA graphics modes 3/5 in Thumb asm (slow)
+// Entry: px = pixel X coordinate
+//        py = pixel Y coordinate
+//      colr = pixel color
+void PutPixel16 (u32 px, u32 py, u32 colr)
+   {
+   // r0 = px
+   // r1 = py
+   // r2 = colr
+   // Since input parameters are stored in the lower registers,
+   //  it's more efficient to use the upper registers for
+   //  your asm code whenever possible.
+   // For less routine overhead, use 'u32' function parameters
+   //  instead of 'u8' or 'u16'. These smaller types automatically
+   //  perform the following additional overhead: u8: v=v&0xff; u16: v=v&0xffff.
+   //  When using optimization level -O3 or higher, asm routines may be
+   //  removed automatically by the compiler unless you use the "volatile"
+   //  keyword after the "asm" keyword.
+
+   asm volatile("
+      mov    r3,%0
+
+      mov    r5, #240
+      lsl    r5, r5, #1          @ r5 = 480
+
+      mul    r5,r5,r3
+      mov    r4,%1
+      add    r5,r5,r4
+      add    r5,r5,r4
+
+      mov    r3,#192
+      lsl    r3, r3, #19         @ r3 = 0x6000000
+
+      add    r3,r3,r5
+      mov    r4,%2
+      strh   r4,[r3]
+      " :
+      /* No output */ :                 // No output is returned from this routine.
+      "r" (py), "r" (px), "r" (colr) :  // Define the routine inputs (%0,%1,%2).
+      "r3", "r4", "r5" );               // Specific which registers we destroy.
+                                        // For more info on 'asm' read the GCC docs at gnu.org
+   }
+
+// Draw pixel in GBA graphics modes 3/5 in ARM asm (fast)
+// Entry: px = pixel X coordinate
+//        py = pixel Y coordinate
+//      colr = pixel color
+void PutPixel32 (u32 px, u32 py, u32 colr)
+   {
+   // r0 = px
+   // r1 = py
+   // r2 = colr
+   // Since input parameters are stored in the lower registers,
+   //  it's more efficient to use the upper registers for
+   //  your asm code whenever possible.
+   // For less routine overhead, use 'u32' function parameters
+   //  instead of 'u8' or 'u16'. These smaller values automatically
+   //  perform the following additional overhead: u8: v=v&0xff; u16: v=v&0xffff.
+   //  When using optimization level -O3 or higher, asm routines may be
+   //  removed automatically by the compiler unless you use the "volatile"
+   //  keyword after the "asm" keyword.
+
+   asm volatile ("
+@ Enter ARM Mode
+      adr    r3,2f             @ Get address of label 2 (f means the label
+                               @  is below[f=forward] instead of above[b=backward])
+      bx     r3
+
+      .ALIGN                   @ This is required before all ARM code.
+                               @ It is identical to .ALIGN 4
+
+      .ARM                     @ ..or you can use .CODE 32 here
+
+2:
+      mov    r4,#480
+      mul    r5,r4,r1
+      movs   r4,r0,lsl #1
+      add    r5,r5,r4
+
+      mov    r3,#0x6000000     @ MOV Rx,#x attempts to shift an 8-bit value to
+                               @  to implement your request. Any other format will
+                               @  generate an error. Use LDR Rx,=y for other values.
+      add    r3,r3,r5
+      strh   r2,[r3]
+
+@ Enter Thumb mode
+      adr    r3,3f + 1
+      bx     r3
+
+      .THUMB                   @ ..or you can use .CODE 16 here
+3:
+      " :
+      /* No output */ :               // No output is returned from this routine
+      "r" (px), "r" (py), "r" (colr): // Define the routine inputs (%0,%1,%2) even if we don't use them
+      "r3", "r4", "r5" );             // Specific which registers we destroy
+   }
+
+//*****************************************************************
+
+// *********** Linking to assembly code (.s) from C code ************
+
+//  Both of the following routines my be in the same .s file.
+// One is written in Thumb (slow) amd the other is in ARM (fast).
+// Add the following to your .c file:
+//
+//   extern void DrawPixel16 (u32 px, u32 py, u32 colr);
+//   extern void DrawPixel32 (u32 px, u32 py, u32 colr, u32 scrnadr);
+//
+// If you are using C++ then you must use the following, instead,
+// to prevent "name mangling" of the function name:
+//
+//   extern "C" void DrawPixel16 (u32 px, u32 py, u32 colr);
+//   extern "C" void DrawPixel32 (u32 px, u32 py, u32 colr, u32 scrnadr);
+//
+// Add this .s file to your makefile and you are all setup.
+// (For an example of that, check out gfxLib on http://www/devrs.com/gba/ )
+//
+//  Note that in DrawPixel16 below, the compiler stays in native Thumb
+// mode. In DrawPixel32, the C calling routine switches to ARM mode
+// when calling DrawPixel32 because no .THUMB_FUNC is used. The
+// C calling routine expects you to switch back to Thumb mode before
+// returning. This is accomplished by the 'bx lr' here.
+//
+//  Note that .THUMB_FUNC must be used before EVERY thumb entry point
+// label from C or otherwise the assembler assumes that it is a ARM
+// entry point... even if the code is in a .THUMB section.
+
+@ Draw pixel in GBA graphics modes 3/5 in Thumb asm (slow)
+@ (void) DrawPixel16 (u32 x, u32 y, u32 color);
+        .THUMB
+        .ALIGN  2
+        .GLOBL  DrawPixel16
+        .TYPE   DrawPixel16,function   @ Not always required but useful for .map files
+        .THUMB_FUNC
+
+DrawPixel16:
+        push    {r4, r5, lr}
+
+        mov     r5, #240
+        lsl     r5, r5,#1           @ r5 = 480
+        mul     r5,r5,r1 @r3
+        mov     r4,r0
+        add     r5,r5,r4
+        add     r5,r5,r4
+        mov     r3,#192
+        lsl     r3, r3, #19         @ r3 = 0x6000000
+        add     r3,r3,r5
+        mov     r4,r2
+        strh    r4,[r3]
+
+        pop     {r4, r5}
+        pop     {r0}
+        bx      r0
+.fend1:
+        .SIZE   DrawPixel16,.fend1-DrawPixel16   @ Not always required but useful for .map files
+
+@ Draw pixel in GBA graphics modes 3/5 in ARM asm (fast)
+@ Entry: px = pixel X coordinate
+@        py = pixel Y coordinate
+@     color = pixel color
+@   scrnadr = base screen address
+@ (void) DrawPixel32 (u32 x, u32 y, u32 color, u32 scrnadr);
+
+        .ARM
+        .ALIGN
+        .GLOBL  DrawPixel32
+        .TYPE   DrawPixel32,function   @ Not always required but useful for .map files
+
+DrawPixel32:
+        stmfd   sp!,{r4-r5}
+
+        mov     r4,#480
+        mul     r5,r4,r1
+        add     r5,r5,r0,lsl #1
+        add     r4,r5,r3
+        strh    r2,[r4]
+
+        ldmfd   sp!,{r4-r5}
+        bx      lr
+.fend2:
+        .SIZE   DrawPixel32,.fend2-DrawPixel32   @ Not always required but useful for .map files
+
+*EOF*

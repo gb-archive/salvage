@@ -1,0 +1,71 @@
+// Do an integer division using GBA BIOS fast division SWI code.
+//  by Jeff F., 2002-Apr-27
+
+typedef   signed int   s32;
+
+// GCC 2.9/3.0 Version
+
+void FastIntDivide (s32 Numer, s32 Denom, s32 *Result, s32 *Remainder)
+   {
+   asm volatile
+      (
+      " mov   r0,%2   \n"
+      " mov   r1,%3   \n"
+      " swi   6       \n"   //NOTE!!!!! Put 6 here for Thumb C Compiler mode.
+      " ldr   r2,%0   \n"   //          Put 0x60000 there for ARM C Compiler mode.
+      " str   r0,[r2] \n"
+      " ldr   r2,%1   \n"
+      " str   r1,[r2] \n"
+      : "=m" (Result), "=m" (Remainder) // Outputs
+      : "r" (Numer), "r" (Denom)        // Inputs
+      : "r0","r1","r2","r3"             // Regs crushed & smushed
+      );
+   }
+
+// SDT Version
+
+void FastIntDivide (s32 Numer, s32 Denom, s32 *Result, s32 *Remainder)
+   {
+   __asm
+      {
+      mov   r0,Numer
+      mov   r1,Denom
+      swi   6, {r0,r1}, {r0,r1,r3}, {r2,r12,lr}      ; Use 0x60000 for ARM mode. See above.
+      str   r0,[Result]
+      str   r1,[Remainder]
+      }
+   }
+
+void AgbMain(void)
+   {
+   s32 Num = 129;
+   s32 Den = 10;
+   s32 Result,Remain;
+
+   FastIntDivide (Num, Den, &Result, &Remain);
+   }
+
+
+// ADS 1.1/1.2 Version
+//    Info from Jeffrey Lim.
+// (Might work with SDT as well.)
+
+struct GBADivideStructure
+{
+ int Quotient;
+ int Remainder;
+ int AbsoluteQuotient;
+};
+
+int __swi(6) Quotient(int Numerator, int Denominator);
+
+int __swi(7) Remainder(int Numerator, int Denominator);
+
+GBADivideStructure __value_in_regs __swi(6) Divide(int Numerator, int Denominator);
+
+  /* The compiler will convert a call to Quotient(5, 7) to the
+     appropriate inline SWI calls. with R0 = 5, R1 = 7 [return
+     value assumed correctly to be in R0]. Divide() will return
+     R0 = Quotient, R1 = Remainder, R2 = AbsoluteQuotient. */
+
+

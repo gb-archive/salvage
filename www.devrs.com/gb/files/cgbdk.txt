@@ -1,0 +1,284 @@
+CGBdk
+How to use CGB features with GBDK
+Written by Jason
+http://www.gbdev.org/news/
+drunk-ass@beer.com
+Last updated 5/7/99
+
+
+
+Background Demo 
+---------------
+The following should teach you step-by-step how to draw a background image and colorize it.
+
+First, include gb.h, since it's needed for everything. 
+
+	#include <gb.h> 
+
+
+Now, include cgb.h, since you need to use the gameboy color's features. It's not needed, though.
+
+	#include <cgb.h> 
+
+
+Include colors.h so you can configure a palette. Download it from http://www.gbdev.org/news/
+
+	#include <colors.h> 
+
+
+Now, you need a UWORD with the palette. Pick 4 colors from colors.h for each palette.... 
+
+	UWORD backgroundpalette[] = 
+	{
+	black, darkgray, lightgray, white,
+	blue, darkblue, aqua, cyan,
+	}; 
+
+
+Now we need background characters. You can use any tile editor to do this. GBTD and TileBuddy
+are 2 examples.
+
+	unsigned char backgroundcharacters[] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	255,0,255,0,255,0,255,0,255,0,255,0,255,0,255,0,
+	0,255,0,255,0,255,0,255,0,255,0,255,0,255,0,255,
+	255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255
+	}; 
+
+
+Now we need a map telling the bg which tile to display. The numbers refers to which tile you've
+drawn in the unsigned char backgroundcharacters. Thus a 0 would load 16 0's into that tile.
+
+	unsigned char bgmap[] = {
+	0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3
+	}; 
+
+
+Now we need a map telling which palette to use. The 0s refer to set palette 0 which is the 
+black/gray one. The 1's refer to the colored blue/cyan ones.  
+
+	unsigned char cgbmap[] = {
+	0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0
+	}; 
+
+
+Now start the program 
+
+	main()
+	{ 
+
+
+Set the background palette. The 0 is the first palette, the 2 is the number of palettes to 
+load, and the &backgroundpalette[0] points to uword 0 in the palette info (the black/gray/white 
+one). 
+
+		set_bkg_palette( 0, 2, &backgroundpalette[0] ); 
+
+
+Set the background data. The 0 is the first tile, the 4is the number of tiles to load, and the 
+backgroundcharacters refers to the unsigned char the tiles are located in. 
+
+		set_bkg_data(0,4,backgroundcharacters); 
+
+
+Switch to VBK_REG 1. This is where you load the palette info. As a result, you cannot set the
+tiles that you would see on the screen, but you can change the colors on the screen.
+
+		VBK_REG = 1; 
+
+
+Set the background tile palettes. Do this by calling a regular set_bkg_tiles while in VBK_REG 1.
+The first # is the left x spot, second # is the top y spot, 20 is width, the fourth # is the 
+height, and the last one is the map.
+
+		set_bkg_tiles( 0, 0, 20, 1, cgbmap); 
+
+
+Switch to VBK_REG 0. This is where the tiles themselves get loaded. This will change the graphics
+on screen and not the colors. Also, by doing the on-screen after the colors, you increase 
+compatability with the gameboy/gameboy pocket.
+
+		VBK_REG = 0; 
+
+
+Set the background tiles to those loaded into the VRAM. 
+
+		set_bkg_tiles( 0, 0, 20, 1, bgmap); 
+
+
+Show the background. 
+
+		SHOW_BKG; 
+
+
+Turn the display on. 
+
+		DISPLAY_ON; 
+
+
+Return 0
+
+		return(0);
+
+
+End bracket. 
+
+	} 
+
+Tada. Now to compile it, you should write a make.bat. A make.bat allows you to compile the
+source as many times as you want without having to type everything over and over. It also
+allows for you to run an emulator to test your rom so you can alt-tab between apps and
+test your source almost instantly. The make.bat needs to basically have... 
+
+d:\sdk\gbz80-gb\2-1-0\bin\lcc -Wa-l -c -o jason.o jason.c 
+  Compiles the C file into an O file for the linker.
+
+d:\sdk\gbz80-gb\2-1-0\bin\lcc -Wl-m -Wl-yp0x143=0x80 -o jason.gb jason.o 
+  Compiles the linker object into a Gameboy Cart. It also sets 0x143 to CGB-compatable 0x80.
+
+d:\gameboy\dboy jason.gb
+  Optional line to run your emulator.
+
+When you run it, a weird background colorbar should be seen.
+
+This demo is untested. It should, however, work near, if not, perfectly. If you notice any 
+errors, try changing the set_bkg_data and set_bkg_palette calls. 
+
+
+
+
+Sprite Demo
+-----------
+The following should teach you step-by-step how to draw a foreground sprite and colorize it.
+
+First, include gb.h, since it's needed for everything. 
+
+	#include <gb.h> 
+
+
+Now, include cgb.h, since you need to use the gameboy color's features. It's not needed, though.
+
+	#include <cgb.h> 
+
+
+Include colors.h so you can configure a palette. Download it from http://www.gbdev.org/news/
+
+	#include <colors.h> 
+
+
+Now, you need a UWORD with the palette. Pick 4 colors from colors.h for each palette.... 
+
+	UWORD spritepalette[] = 
+	{
+	black, darkgray, lightgray, white,
+	blue, darkblue, aqua, cyan,
+	red, darkred, green, darkgreen,
+	yellow, darkyellow, pink, purple,
+	lightflesh, brown, orange, teal,
+	}; 
+
+
+Now we need foreground sprites. You can use any tile editor to do this. GBTD and TileBuddy
+are 2 examples.
+
+        unsigned char spritetiles[] = 
+	{
+	173,173,173,173,203,203,171,171,169,169,0,0,0,0,0,0,
+	72,72,168,168,170,170,170,170,69,69,0,0,0,0,0,0,
+	148,148,149,149,137,137,137,137,8,8,0,0,0,0,0,0,
+	152,152,84,84,88,88,84,84,148,148,0,0,0,0,0,0,
+	196,196,170,170,202,202,170,170,164,164,0,0,0,0,0,0,
+	152,152,144,144,152,152,144,144,216,216,0,0,0,0,0,0,
+	};
+
+
+Now start the program 
+
+	main()
+	{ 
+
+
+Set the sprite palette. The 0 is the first palette, the 2 is the number of palettes to 
+load, and the &backgroundpalette[0] points to uword 0 in the palette info (the black/gray/white 
+one). 
+
+		set_sprite_palette(0,5,&spritepalette[0]);
+
+
+Set the sprite mode to 8x8 pixels.
+
+		SPRITES_8x8;
+
+
+Set the sprite data. Do this by putting the first sprite (0), last sprite(6), and the unsigned
+char where the tiles are located (spritetiles).
+
+		set_sprite_data(0, 6, spritetiles);
+
+
+Set the data for each sprite. Do this by first picking which of the gameboy's 40 tiles to load,
+then which tile from the loaded tile data to use.
+
+		set_sprite_tile(0,0);
+		set_sprite_tile(1,1);
+		set_sprite_tile(2,2);
+		set_sprite_tile(3,3);
+		set_sprite_tile(4,4);
+		set_sprite_tile(5,5);
+
+
+Now load the palette data to each sprite. GBDK cleverly does this in the set_sprite_prop 
+function. 
+
+		set_sprite_prop(0,0);
+		set_sprite_prop(1,1);
+		set_sprite_prop(2,2);
+		set_sprite_prop(3,3);
+		set_sprite_prop(4,4);
+		set_sprite_prop(5,0);
+
+
+Move the sprites to somewhere visible on the screen. This is done by picking which sprite,
+then the x coordinate, then the y coordinate.
+
+		move_sprite(0,20,20);
+		move_sprite(1,28,20);
+		move_sprite(2,36,20);
+		move_sprite(3,44,20);
+		move_sprite(4,52,20);
+		move_sprite(5,60,20);
+
+
+Show the sprites.
+
+		SHOW_SPRITES;    
+
+
+Return 0.
+
+		return(0);
+
+
+End bracket
+
+	}
+
+
+Tada. Now to compile it, you should write a make.bat. A make.bat allows you to compile the
+source as many times as you want without having to type everything over and over. It also
+allows for you to run an emulator to test your rom so you can alt-tab between apps and
+test your source almost instantly. The make.bat needs to basically have... 
+
+d:\sdk\gbz80-gb\2-1-0\bin\lcc -Wa-l -c -o jason.o jason.c 
+  Compiles the C file into an O file for the linker.
+
+d:\sdk\gbz80-gb\2-1-0\bin\lcc -Wl-m -Wl-yp0x143=0x80 -o jason.gb jason.o 
+  Compiles the linker object into a Gameboy Cart. It also sets 0x143 to CGB-compatable 0x80.
+
+d:\gameboy\dboy jason.gb
+  Optional line to run your emulator.
+
+When you run, a multi-colored KNOW YOUR ROLE should be displayed across the screen.
+
+This demo is untested. It should, however, work near, if not, perfectly. If you notice any 
+errors, try changing the set_bkg_data and set_bkg_palette calls. 

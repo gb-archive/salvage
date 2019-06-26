@@ -1,0 +1,275 @@
+<html>
+
+<!-- Mirrored from www.devrs.com/gp32/files/gp32devfaqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:56:08 GMT -->
+<head>
+<title>Dev'rs GP32 Dev FAQs</title>
+</head>
+<body bgcolor="#e0e0e0">
+<font face="Arial, Helvetica, sans-serif">
+<H3>Dev'rs GP32 Dev FAQs - Last Update 2002-Mar-30</H3>
+<DL>
+<DT><BR><B>General FAQs</B><BR><BR></DT>
+<DD><A HREF="#Questions"> If I have a question can I send it to devrs.com?</A></DD>
+<DD><A HREF="#OtherFAQs"> Are there any other GP32 dev FAQ references?</A></DD>
+<DD><A HREF="#BuyGP32"> Where can I get a gp32?</A></DD>
+<DD><A HREF="#FirmVersion"> How do I find out what product ID & firmware version is installed on my GP32?</A></DD>
+<DD><A HREF="#GP32Emu"> Are there any emulators for gp32 development?</A></DD>
+<DD><A HREF="#OtherEmu"> Is it possible to emulate other systems on the gp32?</A></DD>
+<DD><A HREF="#InternetPlay"> How does internet gaming work on the gp32?</A></DD>
+<DD><A HREF="#RFLink"> Is there an RF link support in the GP32?</A></DD>
+<DD><A HREF="#File"> I don't live in Korea. How do I get the GP Free Launcher?</A></DD>
+<DD><A HREF="#MakeFxe"> How do I make an .fxe file so I can run my code with the GP Free Launcher?</A></DD>
+<DD><A HREF="#Align"> Why does my code work in the emulator but not on real hardware?</A></DD>
+<DD><A HREF="#EmptyRW"> Why do some makefxe tools either crash or cause the emulator/hardware to crash?</A></DD>
+<DD><A HREF="#FileExt"> What do the various file extensions in gp32 dev mean?</A></DD>
+<DD><A HREF="#FileTransfer"> How do I transfer a file to my gp32?</A></DD>
+<DD><A HREF="#MP3Play"> Can I play an mp3 while also playing a game?</A></DD>
+<DD><A HREF="#PIDStorage"> Where is the unique Product ID stored in each gp32 console?</A></DD>
+<DD><A HREF="#GSInfo"> Where can I find information on the graphics or sound chips?</A></DD>
+<DD><A HREF="#ExtSignals"> What signals are found on the gp32 EXT connector?</A></DD>
+<DD><A HREF="#ButtonPins"> How are the console buttons connected to the CPU?</A></DD>
+<DD><A HREF="#ClockSpeed"> What is the clock speed of the GP32?</A></DD>
+<DD><A HREF="#AsmSWI"> Why do my assembly language swi calls sometimes cause problems?</A></DD>
+<DD><A HREF="#MTune"> What C/C++ compiler packages can I use for gp32 development?</A></DD>
+<DT><BR><B>SMC FAQs</B><BR><BR></DT>
+<DD><A HREF="#SMCFormat"> How is data stored on the SMC cards?</A></DD>
+<DD><A HREF="#SMCAccess"> Can games access data on the SMC card?</A></DD>
+<DD><A HREF="#SMCTypes"> Are all SMC cards basically the same?</A></DD>
+<DD><A HREF="#Encryption"> Is it true that gp32 games are encrypted?</A></DD>
+<DD><A HREF="#SMCTech"> Where can I find detailed technical specs of SMC cards?</A></DD>
+</DL>
+<DL>
+<HR>
+<DT><A NAME="Questions"><B> If I have a question can I send it to devrs.com?</B></A><BR><BR></DT>
+<DD> Please do not. About every answer that is know by devrs.com</DD>
+has been put into this FAQs file. If you have a question then</DD>
+send it to the proper gp32 development mailing list. Go to</DD>
+yahoogroups.com and search for gp32dev.<BR><BR></DD>
+<DT><A NAME="OtherFAQs"><B> Are there any other GP32 dev FAQ references?</B></A><BR><BR></DT>
+<DD> Check the following link: <a href="http://www.liftoff.dk/gp32dev" target=_blank>http://www.liftoff.dk/gp32dev</a><BR><BR></DD>
+<DT><A NAME="BuyGP32"><B> Where can I get a gp32?</B></A><BR><BR></DT>
+<DD> Check <a href="http://www.lik-sang.com/" target=_blank>http://www.lik-sang.com</a> or similar sites.<BR><BR></DD>
+<DT><A NAME="FirmVersion"><B> How do I find out what product ID & firmware version is installed on my GP32?</B></A><BR><BR></DT>
+<DD> Enter test mode to view the product ID & firmware version by pressing</DD>
+following shoulder buttons sequence:<br></DD>
+L - R - R - L - R - R - L - L<BR><BR></DD>
+<DT><A NAME="GP32Emu"><B> Are there any emulators for gp32 development?</B></A><BR><BR></DT>
+<DD> There is GeePee32:<br></DD>
+<a href="http://users.skynet.be/firefly/gp32/" target=_blank>http://users.skynet.be/firefly/gp32/</a><BR><BR></DD>
+<DT><A NAME="OtherEmu"><B> Is it possible to emulate other systems on the gp32?</B></A><BR><BR></DT>
+<DD> Yes. If you are trying to emulate an 8 bit</DD>
+system on the gp32 then the chances are very good of full-speed emulation.</DD>
+If you are trying to emulate a 16 bit system then maybe or maybe</DD>
+not. It depends on your coding skills and your ability to effectively</DD>
+use ARM assembly language.<BR><BR></DD>
+<DT><A NAME="InternetPlay"><B> How does internet gaming work on the gp32?</B></A><BR><BR></DT>
+<DD> To do this you must have an RF link adapter or a USB cable</DD>
+that connects your gp32 to a PC. The RF link seems to be the</DD>
+standard method proposed by GamePark. However, software could</DD>
+be developed by others to support gaming over USB.<BR><BR></DD>
+<DT><A NAME="RFLink"><B> Is there an RF link support in the GP32?</B></A><BR><BR></DT>
+<DD> No. You would have to buy a separate hardware adapter that plugs</DD>
+into the EXT port on the bottom.<BR><BR></DD>
+<DT><A NAME="File"><B> I don't live in Korea. How do I get the GP Free Launcher?</B></A><BR><BR></DT>
+<DD> <a href="http://english.gamepark.com/" target=_blank>http://english.gamepark.com</a><BR><BR></DD>
+<DT><A NAME="MakeFxe"><B> How do I make an .fxe file so I can run my code with the GP Free Launcher?</B></A><BR><BR></DT>
+<DD> <a href="../software.html#comp" target=_blank>http://www.devrs.com/gp32/software.php#comp</a><BR><BR></DD>
+<DT><A NAME="Align"><B> Why does my code work in the emulator but not on real hardware?</B></A><BR><BR></DT>
+<DD> The main reason appears to be due to memory alignment problems.</DD>
+The real ARM processor often requires data to be 4 byte aligned</DD>
+or else you can get unexpected results.<BR><BR></DD>
+<DT><A NAME="EmptyRW"><B> Why do some makefxe tools either crash or cause the emulator/hardware to crash?</B></A><BR><BR></DT>
+<DD> This is because some tools for making fxe files REQUIRE that</DD>
+the input file contain a non-empty Read/Write (RW) section due to the</DD>
+algorithm they use to convert to fxe format (and the emu probably</DD>
+requires this as well). [i.e. DWORD at input file offset 0xc should</DD>
+not equal DWORD at input file offset 0x14] B2fxe doesn't care if your</DD>
+RW section is empty and creates an output file that works fine</DD>
+in emulators and hardware.<BR><BR></DD>
+<DT><A NAME="FileExt"><B> What do the various file extensions in gp32 dev mean?</B></A><BR><BR></DT>
+<DD> The areas of file types that are encrypted are discussed here but</DD>
+there currently are no plans to provide information on the encryption</DD>
+method itself:<br><br></DD>
+<b>.axf</b> - ARM Executable Format (Same as .gxb format but also can contain debug info.)<br><br></DD>
+<b>.fpk</b> - Archive file for free stuff from GamePark<br><br></DD>
+<b>.fxe</b> - Scrambled (light encryption) binary file & graphic icon for</DD>
+free games/apps from GP & third party developers. You have to use</DD>
+Game Park's free launcher to run these on your gp32. When the launcher</DD>
+unscrambles these files and removes the icon, the result is identical</DD>
+to a .gxb file. They are usually found in the gp:\GPMM directory.<br><br></DD>
+<b>.gpm*</b> - Contains an SMC ID<br><br></DD>
+<b>.gps</b> - Generated by GP's PC link software. Contains username,</DD>
+password, and GP32 ID... all in encrypted format.<br><br></DD>
+<b>.gxe</b> - Binary info file : title, company, icon, encrypted stuff,..</DD>
+This file can also contain the first X number of encypted bytes</DD>
+of the binary. The remainer of the binary is found in the</DD>
+.gxc file with the same name.<br><br></DD>
+<b>.gxc</b> - Encrypted binary file. After a header, every X interval number</DD>
+of bytes in this type of file you will find Y number of  bytes of information</DD>
+that is encrypted. The rest of the file is unencrypted.<br><br></DD>
+Header (20 bytes long)<br></DD>
+Encypted binary data (Y bytes)<br></DD>
+Unencrypted binary data (X-Y bytes)<br></DD>
+Encypted binary data (Y bytes)<br></DD>
+Unencrypted binary data (X-Y bytes)<br></DD>
+...etc...<br><br></DD>
+If you remove the 20 byte header and unencrypt the file (placing it</DD>
+after any unencrypted code from the .gxe file), then the resulting</DD>
+data is identical in all other respects with a .gxb file.<br><br></DD>
+<b>.gxb*</b> - Non-encrypted binary file. This is placed in gp32 ram</DD>
+starting at location 0xc000000. The entry point is the starting</DD>
+location and the entry is performed in ARM (not thumb) mode. Here</DD>
+is the header in ARM SDT format:<br><br></DD>
+ b _SkipHeader<br></DD>
+ DCD Start of Read Only section<br></DD>
+ DCD End "<br></DD>
+ DCD Start of Read/Write section<br></DD>
+ DCD End "<br></DD>
+ DCD Start of Zero Initialized section<br></DD>
+ DCD End "<br></DD>
+ DCD 0x44450011<br></DD>
+ ... sometimes more info here...<br></DD>
+_SkipHeader<br></DD>
+ ... Init heap,etc ...<br></DD>
+ ldr r4,=C_Entry<br></DD>
+ bx r0<br><br></DD>
+<b>.smc</b> - Raw SMC card data (Similar to how raw CD data = ISO format)<br><br></DD>
+<b>.zpk</b> - Another archive file used by GamePark<br><br></DD>
+* The file extensions marked this way are unofficial extensions from third-party developers.<BR><BR></DD>
+<DT><A NAME="FileTransfer"><B> How do I transfer a file to my gp32?</B></A><BR><BR></DT>
+<DD> You can use the GP32<->PC USB cable or you can use a PC</DD>
+SMC card reader/writer such as the EMS 5in1 card reader/writer.</DD>
+There are reports that the EMS card reader is 20 to 30 times</DD>
+faster for transferring files than the USB cable.<BR><BR></DD>
+<DT><A NAME="MP3Play"><B> Can I play an mp3 while also playing a game?</B></A><BR><BR></DT>
+<DD> No. The gp32 has to devote the majority of it's processing power</DD>
+to the decoding & playing of mp3 files so no other functions are</DD>
+supported at the same time.<BR><BR></DD>
+<DT><A NAME="PIDStorage"><B> Where is the unique Product ID stored in each gp32 console?</B></A><BR><BR></DT>
+<DD> In the serial IIC-bus eeprom in the gp32.<BR><BR></DD>
+<DT><A NAME="GSInfo"><B> Where can I find information on the graphics or sound chips?</B></A><BR><BR></DT>
+<DD> There basically are no separate chips for graphics or sound processing.</DD>
+The gp32 CPU handles most of these operations. There is an external</DD>
+Samsung LPC3600 LCD timing controller but this is only used for</DD>
+generating correct signal timing for the LCD. There is also an external</DD>
+Phillips UDA1330A stereo filter IIS-bus DAC but this is only used to</DD>
+convert the final composite sound signal from digital to analog.<br><br></DD>
+The gp32 graphics hardware has no layers, tile modes, sprites, or other</DD>
+fancy hardware. It basically just has double-buffering of a bitmap-style</DD>
+screen mode.<BR><BR></DD>
+<DT><A NAME="ExtSignals"><B> What signals are found on the gp32 EXT connector?</B></A><BR><BR></DT>
+<DD> Pins: 1=3.3v, 2=nRESET, 3=nTRST, 4=JTAG[TDI], 5=JTAG[TMS],</DD>
+6=JTAG[TCK], 7=JTAG[TDO], 8=AIN0, 9=RXD0/GPF0, 10=TXD0/GPF2, 11=IIC-bus[SCL],</DD>
+12=IIC-bus[SDA], 13=nRTS0/GPF4, 14=nCTS0/GPF5, 15=RXD1/GPF1, 16=TXD1/GPF3,</DD>
+17=NoConnection(?), 18=Ground<br><br></DD>
+Refer to the CPU data sheet for more info on these signals.<BR><BR></DD>
+<DT><A NAME="ButtonPins"><B> How are the console buttons connected to the CPU?</B></A><BR><BR></DT>
+<DD> A=GPB14[pin19], B=GPB13[pin18], Start=EINT6/GPE6[pin125],</DD>
+Select=EINT7/GPE7[pin126], L=GPB12[pin17], R=GPB15[pin20],</DD>
+Up=GPB11[pin16], Down=GPB9[pin14], Left=GPB8[pin13], Right=GPB10[pin15]<br></DD>
+When read, the values will be 0 when pressed & 1 when released.<BR><BR></DD>
+<DT><A NAME="ClockSpeed"><B> What is the clock speed of the GP32?</B></A><BR><BR></DT>
+<DD> This is software selectable from many different speeds from</DD>
+~22MHz up to ~133.5MHz. The slower the selected speed, the longer</DD>
+the battery life that you will experience. However, just because</DD>
+the CPU can be set for very high speeds does not mean that the</DD>
+rest of the system (in particular the SDRAM) can handle this</DD>
+speed as well. Bios v1.5.7 defaults the clock speed to 67.8MHz.</DD>
+FireFly and others have managed to run their GP32 at up to 99MHz,</DD>
+with instruction and data cache on, without noticeable problems.</DD>
+Some people appear to experience problems at this speed.<BR><BR></DD>
+<DT><A NAME="AsmSWI"><B> Why do my assembly language swi calls sometimes cause problems?</B></A><BR><BR></DT>
+<DD> If you are using ARM SDT tools then you must make sure that you</DD>
+tell the compiler what registers are being used by bios swi</DD>
+code so that the compiler will know what registers will be</DD>
+safe and what registers will be destroyed by the swi. YOU</DD>
+MUST ALWAYS TELL THE COMPILER THAT THE LR REGISTER WILL BE</DD>
+DESTROYED. Read that last sentence one more time to commit</DD>
+it to memory. ;-) Here is the format for passing that info:<br></DD>
+<b>swi 0x</b>?<b>, {</b>input registers<b>}, {</b>output register<b>}, {lr</b>,destroyed registers<b>}</b><br></DD>
+If the swi call requires no input or output registers, then use the</DD>
+following format as an example:<br></DD>
+<b>swi 0x</b>?<b>, {}, {}, {lr</b>,destroyed registers<b>}</b><BR><BR></DD>
+<DT><A NAME="MTune"><B> What C/C++ compiler packages can I use for gp32 development?</B></A><BR><BR></DT>
+<DD> There are currently at least 3 approaches:<br><br></DD>
+<b>MS Visual C++</b> is supported by GamePark in the form of libraries</DD>
+that allow you to develop and test a game on a PC. The resulting</DD>
+compiled code will only run on a PC but this same source code can</DD>
+be compiled on other C compilers to generate binaries that will</DD>
+run on real GP32 hardware. The main drawback to VC++ is that you can</DD>
+not develop optimized ARM assembly language with this setup. GP will</DD>
+make the VC++ libraries available here when they are released:</DD>
+<a href="http://www.gameparkdev.co.kr/" target=_blank>http://www.gameparkdev.co.kr</a><br><br></DD>
+<b>ARM SDT</b> is a very efficient compiler but it is ~$4000USD.<br><br></DD>
+<b>GCC</b> is also a popular approach. There are several different</DD>
+GCC compilers that have been targeted to the ARM platform as listed</DD>
+below. For each of these packages you will need additional libraries</DD>
+or files that can be found here: <a href="gcc/index.html" target=_blank>http://www.devrs.com/gp32/files/gcc/</a><br></DD>
+1) <b>Dev Kit Advance</b> was originally intended for the GameBoy</DD>
+Advance, but it is basically a generic ARM GCC 3.0.2 C/C++ compiler for</DD>
+windows: <a href="http://www.io.com/~fenix/devkitadv" target=_blank>http://www.io.com/~fenix/devkitadv</a> Add this to your compile</DD>
+options for smaller code that is tuned for</DD>
+the ARM920T processor: <b>-mtune=arm920</b><br></DD>
+2) <b>GCC 3.0.4</b> that is available from <a href="http://darkfader.net/gp32" target=_blank>http://darkfader.net/gp32</a></DD>
+is a slightly later version of GCC that is much smaller than</DD>
+Dev Kit Advance<BR><BR></DD>
+<HR>
+<DT><A NAME="SMCFormat"><B> How is data stored on the SMC cards?</B></A><BR><BR></DT>
+<DD> The gp32 supports both FAT12 & FAT16 file formats. Any standard</DD>
+SMC card reader for windows should work fine for reading & writing</DD>
+files on the SMC card. Note that file names can only be up to 8</DD>
+characters in length, followed by a period, and 3 extension</DD>
+characters. Directory names can only be up to 8 characters long.</DD>
+The EMS 5in1 card reader from LikSang.com is known to work fine for gp32 SMC cards.<br><br></DD>
+There is also other SMC info that is read by using SMC command 0x90:<br></DD>
+The 1st ID byte identifies the manufacturer, being either Samsung (0xEC) or Toshiba (0x98).<br></DD>
+The 2nd ID byte tells you the type/size of the SMC (0x73 = 3.3V NAND 16MB / Samsung SMC)<br></DD>
+The 3rd ID byte, if it contains the value 0xA5, indicates that this</DD>
+SMC card contains a unique 16-byte SMC ID. Due to security reasons,</DD>
+Toshiba and others do not provide information for reading SMC IDs</DD>
+without first requiring you to sign a Non-Disclosure Agreement.<BR><BR></DD>
+<DT><A NAME="SMCAccess"><B> Can games access data on the SMC card?</B></A><BR><BR></DT>
+<DD> Yes. The gp32 game development libraries treat the SMC like a</DD>
+disk drive in that you can read/write files and create/destroy</DD>
+files and directories.<BR><BR></DD>
+<DT><A NAME="SMCTypes"><B> Are all SMC cards basically the same?</B></A><BR><BR></DT>
+<DD> No. Some SMC cards do not contain a unique 16 byte SMC ID</DD>
+and some SMC cards support 3.3 volts while others use 5 volts.<br><br></DD>
+The GP32 only supports 3.3 volt cards. When looking at the</DD>
+metallic pins of the SMC card, hold the card such that the</DD>
+pins are at the top of the card. If the notch on the end of</DD>
+the card is on the right then it is a 3.3 volt card, otherwise</DD>
+it is 5 volts.<br><br></DD>
+If you ever want to experiment with SMC ID encryption</DD>
+then the SMC card must contain a SMC ID. However, for</DD>
+all other uses the presence of an SMC ID is not required.</DD>
+(i.e. mp3 files, GP32 ID encryption, etc.)</DD>
+Some or all Toshiba SMC cards are known to contain an SMC ID.</DD>
+The SMC Option Code will be 0xA5 if it contains an SMC ID.</DD>
+GP32 games that are all made in one batch will contain the</DD>
+same 16 byte SMC ID code, otherwise they will be different.<br><br></DD>
+Due to security reasons, Toshiba and others do not provide</DD>
+information for reading SMC IDs without first requiring you</DD>
+to sign a Non-Disclosure Agreement.<BR><BR></DD>
+<DT><A NAME="Encryption"><B> Is it true that gp32 games are encrypted?</B></A><BR><BR></DT>
+<DD> Yes. They use secumax.com technology. Here are the two</DD>
+types that are supported:<br><br></DD>
+<b>SMC ID Encryption</b> - Games that are encrypted this way will only</DD>
+work on one particular SMC card, but the game will work on any gp32</DD>
+console. Some SMC cards have their own unique ID that</DD>
+is built into the hardware of the card itself and it can not be</DD>
+changed. The gp32 bios uses this unique ID as a key to unencrypt</DD>
+.gxe files. Most, if not all, commercial games are encrypted this way.<br><br></DD>
+<b>GP32 ID Encryption</b> - Each gp32 game console has it's own unique</DD>
+product ID. (This ID can be viewed from the gp32 test screen. Accessing</DD>
+the test screen is covered in another FAQ in this file.) Games which</DD>
+have been encrypted using the GP32 ID will work on only one gp32 console, but</DD>
+can be run from any SMC card.<BR><BR></DD>
+<DT><A NAME="SMCTech"><B> Where can I find detailed technical specs of SMC cards?</B></A><BR><BR></DT>
+<DD> <a href="http://www.ssfdc.or.jp/english/spec/index.htm" target=_blank>http://www.ssfdc.or.jp/english/spec/index.htm</a><BR><BR></DD>
+</DL>
+</font>
+</body>
+
+<!-- Mirrored from www.devrs.com/gp32/files/gp32devfaqs.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 07:56:08 GMT -->
+</html>
