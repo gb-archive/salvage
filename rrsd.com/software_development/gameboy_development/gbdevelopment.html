@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from rrsd.com/software_development/gameboy_development/gbdevelopment.htm by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 09:21:37 GMT -->
+<head>
+    <title>GameBoy Color Developer's Tools</title>
+</head>
+<body>
+<h1>GameBoy Developer's Tools</h1>
+This is a group of tools for building and testing programs for the 
+Gameboy Color on a windows PC.  The tools included are:
+<h2>SDCC-9.0</h2>
+This is a modified version of the Small Device C Compiler
+available <a href=http://sourceforge.net/projects/sdcc />here</a>.
+This package differs from the SDCC official release in the following:
+<ul>
+<li>Compiler/linker modified to support ROM bank switching on the GBZ80.  I've
+only included those files necessary to (re) build the compiler and libraries
+for the GBZ80</li>
+<li>Runtime library considerably modified.  Floating point has been 
+(re)implemented in assembler for the GBZ80.  It is much, much smaller and faster
+than the original C language version.</li>
+</ul>
+<h2>Gameboy Developer's kit by Pascal Felber</h2>
+Several people have contributed enhancements to this kit.  I've made a number of changes
+which I found necessary.  But most of the work is due to previous contributors</li>
+<h2>Examples of small applications built with these tools</h2>
+<h2>Db2gb</h2>
+This windows program used for creating gameboy graphics.
+To use this program:
+<ol>
+<li>Create *.bmp files using microsoft paint or similar program.  These
+bit maps should be a multiple of 8 bits wide and high</li>
+<li>Open all the *.bmp file with Db2gb.  This can be done by the file open 
+command.  But it's usually much easier to select a whole group of files
+with windows explorer and drop them onto Db2bgb icon or open application.</li>
+<li>Now should be able to see all your bit maps.  You select window/tile 
+to make them all visible at once.</li>
+<li>Use File/Save All to create Gameboy C code files for all these 
+bitmaps.  The tile data is shared among all the bit maps.  There
+is a tile map which contains all the icons and finally a table
+of indices into the tile map for each icon.  The makes the most
+efficient usage of the gameboy tiling scheme.</li>
+</ol>
+<h2>VGBC - Virtual Gamboy Color by Rusty Wagner</h2>
+I've found this to be indispensible for testing and debugging gameboy
+programs.
+<h2>GSound</h2>
+All you every wanted to know about gameboy sound setup.
+<h2>Music</h2>
+I found this program indispensble for experimenting with gameboy
+sound to get the sounds I want.  Once I had them, I could use the
+parameters in my code and get the same sounds.
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2487077-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+</script>
+
+</body>
+
+<!-- Mirrored from rrsd.com/software_development/gameboy_development/gbdevelopment.htm by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jun 2019 09:21:37 GMT -->
+</html>

@@ -1,0 +1,129 @@
+﻿body
+{
+	font-family: Georgia, "Times New Roman" , Times, serif;
+	background-image: url("paper.gif");
+	position:relative;
+}
+h1, h2, h3
+{
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+}
+h3 
+{
+	/*font-size: 80%;*/
+	font-weight:lighter;
+}
+dt
+{
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+	font-size:larger;
+}	
+dd
+{
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+	font-size:larger;
+}	
+a:link
+{
+	color: blue;
+}
+a:visited
+{
+	color: purple;
+}
+p.logo
+{
+	height: 7em;
+	/*left:auto;*/
+}
+td.navbar
+{
+	font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+	font-size: smaller;
+	background: white;
+	padding:0em;
+}
+td.divider
+{
+	background: black;
+	width: .5em;
+	padding:0em;
+}
+ul.navbar
+{
+	margin:0em;
+	padding:0em;
+	width: 15em;
+	float: left; 
+	padding:0em;
+}
+ul.navbar li
+{
+	background: white;
+	list-style: none;
+}
+ul.navbar a
+{
+	text-decoration: none;
+	
+}
+table.navigator
+{
+	float: right;
+}
+table.body
+{
+	margin-top: 2em;
+}
+dt
+{
+	margin-top: 1em;
+}
+img.thumbnail
+{
+	width: 96px;
+}
+img.float
+{
+	float: right;
+}
+img.pframe
+{	
+	margin:0;
+	padding:0;
+	top:0;
+	left:0;
+	border-style:none;
+	background-image:"clouds.jpg";
+	 
+}
+body.thumbnails
+{
+	background-color: White;
+	background-image: none;
+}
+
+iframe.pframe
+{
+	background-image: "/clouds.jpg";
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+}
+
+div.leftfloat {
+    color: #006;
+    float: left;
+    width: 50%;
+}
+div.latestnews 
+{
+	color: #006;
+	background: #fff;
+//    float: right;
+    border-width: 3px 3px 3px 3px;
+    border-style: solid;
+    border-color: #f00;
+    padding: 10px 10px 10px 10px;
+}
