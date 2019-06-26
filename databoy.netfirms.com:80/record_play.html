@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>DataBoy Record & Play</title>
+	</head>
+
+	<body bgcolor="#ffffff">
+		<table width="868" border="1" cellspacing="2" cellpadding="0" align="center" height="1321">
+			<tr>
+				<td>
+					<table width="864" border="0" cellspacing="0" cellpadding="0" bgcolor="#66ccff" cool gridx="16" gridy="16" height="1314" showgridx showgridy usegridx usegridy>
+						<tr height="16">
+							<td width="16" height="1313" rowspan="9"><spacer type="block" width="16" height="1313"></td>
+							<td width="176" height="48" rowspan="2"><spacer type="block" width="176" height="48"></td>
+							<td width="279" height="16"><spacer type="block" width="279" height="16"></td>
+							<td width="377" height="48" colspan="5" rowspan="2"><spacer type="block" width="377" height="48"></td>
+							<td width="15" height="465" rowspan="4"><spacer type="block" width="15" height="465"></td>
+							<td width="1" height="16"><spacer type="block" width="1" height="16"></td>
+						</tr>
+						<tr height="32">
+							<td content csheight="32" width="279" height="32" valign="top" align="center" xpos="192">
+								<div align="center">
+									<font size="+2"><b>Record and Play</b></font></div>
+							</td>
+							<td width="1" height="32"><spacer type="block" width="1" height="32"></td>
+						</tr>
+						<tr height="416">
+							<td content csheight="400" width="832" height="416" colspan="7" valign="top" xpos="16">This page is used to record serial data into flash memory and to transmit the recorded data at a later time. This feature can be used to send recorded commands or message strings to a unit under test or development.  The Record feature is only available on <a href="DataBoyPlus.html">DataBoy Plus</a>. Standard DataBoy cannot record data, but it can transmit a single, pre-recorded, fixed test message designated as File 0.
+								<p>This page contains eight software switches. Navigate the screen by moving the cursor with the Up and Down Arrow keys. Change switch selections with the Right Arrow key.</p>
+								<p>Note: Prior to entering this page, set the serial communication parameters using the <a href="setup.html">Setup Page</a>.</p>
+								<p><font size="+1">Configuring flash memory</font></p>
+								<div align="left">
+									<p>A total of 24 KBytes of flash memory is available for recording data. By setting the <i>Num files </i>switch, this memory can be configured into 1, 2, 3, or 6 files:</p>
+									<ul>
+										<li>1 file of 24 KB
+										<li>2 files of 12 KB each
+										<li>3 files of 8 KB each
+										<li>6 files of 4 KB each
+									</ul>
+									<p>In the example of Figure 1 (below), the flash has been divided into 6 files of 4KB each.</p>
+									<p>Note: Changing the number of files will cause all recorded data to be erased. A warning message will be displayed if the user attempts to change <i>Num files</i>.</p>
+								</div>
+							</td>
+							<td width="1" height="416"><spacer type="block" width="1" height="416"></td>
+						</tr>
+						<tr height="1">
+							<td content csheight="800" width="497" height="849" colspan="3" rowspan="6" valign="top" xpos="16">
+								<div align="left">
+									<p><font size="+1">Recording data</font></p>
+									<ul>
+										<li>Turn off the RXD and TXD DIP switches on the DataBoy cartridge.
+										<li>Using the RS-232 cable, connect DataBoy to a transmitting device.
+										<li>Use the <i>File select </i>switch to select a file (1-N) for recording data. 
+										<li>Use the <i>Channel</i> switch to select RXD or TXD as the input RS-232 channel. RXD is selected in Figure 1.
+										<li>Turn on the <i>Record</i> switch. A message will be displayed warning that all data in the selected file will be erased. Press the &#x2018;B&#x2019; key to continue.
+									</ul>
+									<p>At this point DataBoy will begin monitoring the selected serial channel and will record received data into memory. A horizontal progress bar near the bottom of the screen will indicate how much data has been recorded. In Figure 1 the progress bar indicates that File 3 is slightly more than half full. Recording will stop when the file is full or the user presses the &#x2018;A&#x2019; key.</p>
+									<p><font size="+1">Playing back recorded data</font></p>
+									<ul>
+										<li>Using the RS-232 cable, connect DataBoy to a receiving device.
+										<li>Turn on the RXD or TXD DIP switch on the DataBoy cartridge. This will connect DataBoy's RS-232 driver to the line selected by the DIP switch.
+										<li>Select a file (0-N) using the <i>File select</i> switch. The character count in the selected file will be displayed at the bottom of the screen. Note: File 0 contains a pre-recorded test message that reads: &quot;This is a test.&quot;.
+										<li>Set the <i>Repeat</i> switch (Off/On). &quot;Off&quot; will cause the file to be transmitted once. &quot;On&quot; will transmit the file repeatedly until the &#x2018;A&#x2019; key is pressed.
+										<li>Set the <i>Char delay</i> switch (0-10 ms). This is the idle time between transmission of consecutive characters.
+										<li>Set the <i>Mesg delay</i> switch (0, 1, 2, 4, 8,16, 32, 64, 128 ms). This is the idle time between the end of a message and the start of the next message. This parameter applies only to the multi-drop mode (Parity = A/D), where the start of a message is indicated by a character with the parity bit set. <i>Mesg delay</i> is ignored if multi-drop mode is not active.
+										<li>Turn on the <i>Play</i> switch.
+									</ul>
+									<p>At this point DataBoy will begin transmitting characters from the selected file. As data is transmitted, a horizontal progress bar near the bottom of the screen will be updated. Pressing the &#x2018;A&#x2019; key will terminate transmission.</p>
+									<p>If multi-drop mode is enabled, any characters recorded with the parity bit set, will be transmitted with the parity bit set. Thus, the 9th bit in a 9-bit protocol is preserved.</p>
+								</div>
+							</td>
+							<td width="15" height="849" rowspan="6"><spacer type="block" width="15" height="849"></td>
+							<td width="320" height="1" colspan="3"><spacer type="block" width="320" height="1"></td>
+							<td width="1" height="1"><spacer type="block" width="1" height="1"></td>
+						</tr>
+						<tr height="303">
+							<td width="335" height="303" colspan="4" valign="top" align="left" xpos="528"><img src="record_play1.gif" alt="" name="Freeze1" height="288" width="320" border="2"></td>
+							<td width="1" height="303"><spacer type="block" width="1" height="303"></td>
+						</tr>
+						<tr height="64">
+							<td content csheight="32" width="304" height="64" colspan="2" valign="top" xpos="528"><b>Figure 1</b>. Recording serial data.</td>
+							<td width="31" height="64" colspan="2"><spacer type="block" width="31" height="64"></td>
+							<td width="1" height="64"><spacer type="block" width="1" height="64"></td>
+						</tr>
+						<tr height="304">
+							<td width="335" height="304" colspan="4" valign="top" align="left" xpos="528"><img src="record_play2.gif" alt="" height="288" width="320" border="2"></td>
+							<td width="1" height="304"><spacer type="block" width="1" height="304"></td>
+						</tr>
+						<tr height="81">
+							<td content csheight="48" width="304" height="81" colspan="2" valign="top" xpos="528"><b>Figure 2</b>. Playing back recorded data.</td>
+							<td width="16" height="81"><spacer type="block" width="16" height="81"></td>
+							<td width="15" height="177" rowspan="2"><spacer type="block" width="15" height="177"></td>
+							<td width="1" height="81"><spacer type="block" width="1" height="81"></td>
+						</tr>
+						<tr height="96">
+							<td width="16" height="96"><spacer type="block" width="16" height="96"></td>
+							<td content csheight="47" width="304" height="96" colspan="2" valign="top" xpos="544"><font size="-1">Note: These screenshot were made using the NO$GMB Game Boy emulator.</font></td>
+							<td width="1" height="96"><spacer type="block" width="1" height="96"></td>
+						</tr>
+						<tr height="1" cntrlrow>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="176" height="1"><spacer type="block" width="176" height="1"></td>
+							<td width="279" height="1"><spacer type="block" width="279" height="1"></td>
+							<td width="42" height="1"><spacer type="block" width="42" height="1"></td>
+							<td width="15" height="1"><spacer type="block" width="15" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="288" height="1"><spacer type="block" width="288" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="15" height="1"><spacer type="block" width="15" height="1"></td>
+							<td width="1" height="1"><spacer type="block" width="1" height="1"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<p></p>
+	</body>
+
+</html>
+
+
+
+
+

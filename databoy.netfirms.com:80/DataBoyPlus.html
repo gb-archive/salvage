@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>DataBoy Plus</title>
+	</head>
+
+	<body bgcolor="#ffffff">
+		<table width="624" border="1" cellspacing="2" cellpadding="0" align="center" height="1196">
+			<tr>
+				<td>
+					<table width="787" border="0" cellspacing="0" cellpadding="0" bgcolor="#66ccff" cool gridx="16" gridy="16" height="1210" showgridx showgridy usegridx usegridy>
+						<tr height="16">
+							<td width="16" height="1209" rowspan="9"><spacer type="block" width="16" height="1209"></td>
+							<td width="16" height="128" rowspan="3"><spacer type="block" width="16" height="128"></td>
+							<td width="144" height="64" rowspan="2"><spacer type="block" width="144" height="64"></td>
+							<td width="272" height="16" colspan="2"><spacer type="block" width="272" height="16"></td>
+							<td width="272" height="64" colspan="2" rowspan="2"><spacer type="block" width="272" height="64"></td>
+							<td width="66" height="192" colspan="2" rowspan="4"><spacer type="block" width="66" height="192"></td>
+							<td width="1" height="16"><spacer type="block" width="1" height="16"></td>
+						</tr>
+						<tr height="48">
+							<td content csheight="32" width="272" height="48" colspan="2" valign="top" align="center" xpos="176"><font size="+2"><b>DataBoy Plus</b></font></td>
+							<td width="1" height="48"><spacer type="block" width="1" height="48"></td>
+						</tr>
+						<tr height="64">
+							<td content csheight="64" width="688" height="64" colspan="5" valign="top" xpos="32">DataBoy Plus is a more advanced version of software that has some features not available in the standard software. The difference between these two versions is strictly software, the hardware is identical.</td>
+							<td width="1" height="64"><spacer type="block" width="1" height="64"></td>
+						</tr>
+						<tr height="64">
+							<td content csheight="1072" width="400" height="1081" colspan="3" rowspan="6" valign="top" xpos="16">
+								<div align="left">
+									<p><font size="+1">Time-stamps.</font></p>
+									<p>In live Data Scope, DataBoy Plus can record a time-stamp with each captured character. The time-stamp of any captured character can be viewed in freeze mode by placing the cursor on the character. Time-stamps are displayed with a resolution of one millisecond relative to the first character in the buffer and are accurate to approximately one millisecond. In the example shown in Figure 1, the cursor is on character #289 which has a time-stamp of 475 milliseconds.</p>
+									<p>Time-stamps are stored as 16-bit values and are derived from a 16-bit, free-running counter clocked at 2.048 kHz. This counter (and the derived time-stamps) will overflow and wrap after 32 seconds.</p>
+									<p>Time-stamps are enabled on the Setup Page. Enabling time-stamps has two adverse side effects. First, the buffer storage capacity is reduced in half. Second, power consumption in live Data Scope page increases by about 60%. It is therefore advisable to disable time-stamps when not being used.</p>
+									<p><font size="+1">Multi-drop mode (9-bit protocol)</font></p>
+									<p>DataBoy Plus supports a multi-drop mode, also called a 9-bit protocol.  This mode is used in systems where a master is connected to several slave devices on a common serial bus.  Packets of data sent by the master are designated for a particular slave by the inclusion of an address character at the start of each packet. An additional bit is appended to each character to distinguish between address and data characters (0=data, 1=address).  In systems with 8-bit data bytes, this additional bit becomes the 9th bit; hence it is called the 9-bit protocol.  The 9th bit is transmitted following the last data bit (in place of the parity bit), and is followed by the stop bit.  The multi-drop mode is selected on the <a href="setup.html">Setup Page</a> by setting parity to A/D.   For the 9-bit protocol, the number of data bits should be set to 8.  In Data Scope, characters that have the A/D indicator bit set to &#x2018;1&#x2019; are highlighted in green, as shown in Figure 2.</p>
+									<p>An example of this type of system is the SAS protocol used in the gaming industry.  Another example is SeaTalk, a protocol used by Raymarine for interconnecting instruments on a ship.  However, in SeaTalk, the 9th bit is called the &#x201C;command&#x201D; bit. The multi-drop mode in DataBoy is compatible with both of these protocols.</p>
+									<p>Note 1: Multi-drop systems do not usually use an RS-232 bus, so in most situations a hardware adaptor will be required to connect DataBoy to such a system.</p>
+									<p>Note 2: In multi-drop mode, whenever Data Scope or Demo is selected from the menu, the display mode will default to hexadecimal. This can be overridden by pressing the &#x2018;B&#x2019; key.</p>
+									<p><font size="+1">Record and Play</font></p>
+									<p>Another feataure supported in DataBoy Plus is the ability to record data in flash memory for playback.  For details click <a href="record_play.html">here</a>.</p>
+								</div>
+							</td>
+							<td width="32" height="1081" rowspan="6"><spacer type="block" width="32" height="1081"></td>
+							<td width="272" height="64" colspan="2"><spacer type="block" width="272" height="64"></td>
+							<td width="1" height="64"><spacer type="block" width="1" height="64"></td>
+						</tr>
+						<tr height="304">
+							<td width="338" height="304" colspan="4" valign="top" align="left" xpos="448"><img src="Freeze1.gif" alt="" height="288" width="320" border="2"></td>
+							<td width="1" height="304"><spacer type="block" width="1" height="304"></td>
+						</tr>
+						<tr height="112">
+							<td width="16" height="112"><spacer type="block" width="16" height="112"></td>
+							<td content csheight="48" width="304" height="112" colspan="2" valign="top" xpos="464"><b>Figure 1</b>. The character at the cursor has a time-stamp of 475 milliseconds.</td>
+							<td width="18" height="112"><spacer type="block" width="18" height="112"></td>
+							<td width="1" height="112"><spacer type="block" width="1" height="112"></td>
+						</tr>
+						<tr height="304">
+							<td width="338" height="304" colspan="4" valign="top" align="left" xpos="448"><img src="multidrop.gif" alt="" height="288" width="320" border="2"></td>
+							<td width="1" height="304"><spacer type="block" width="1" height="304"></td>
+						</tr>
+						<tr height="96">
+							<td width="16" height="297" rowspan="2"><spacer type="block" width="16" height="297"></td>
+							<td content csheight="48" width="304" height="96" colspan="2" valign="top" xpos="464"><b>Figure 2</b>. In multi-drop mode, address characters are highlighted in green.</td>
+							<td width="18" height="297" rowspan="2"><spacer type="block" width="18" height="297"></td>
+							<td width="1" height="96"><spacer type="block" width="1" height="96"></td>
+						</tr>
+						<tr height="201">
+							<td content csheight="48" width="304" height="201" colspan="2" valign="top" xpos="464"><font size="-1">Note: these screenshot were made using the NO$GMB Game Boy emulator.</font></td>
+							<td width="1" height="201"><spacer type="block" width="1" height="201"></td>
+						</tr>
+						<tr height="1" cntrlrow>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="144" height="1"><spacer type="block" width="144" height="1"></td>
+							<td width="240" height="1"><spacer type="block" width="240" height="1"></td>
+							<td width="32" height="1"><spacer type="block" width="32" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="256" height="1"><spacer type="block" width="256" height="1"></td>
+							<td width="48" height="1"><spacer type="block" width="48" height="1"></td>
+							<td width="18" height="1"><spacer type="block" width="18" height="1"></td>
+							<td width="1" height="1"><spacer type="block" width="1" height="1"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<p></p>
+	</body>
+
+</html>
+
+
+
+
+

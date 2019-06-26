@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>DataBoy Upload page</title>
+	</head>
+
+	<body bgcolor="#ffffff">
+		<table width="764" border="1" cellspacing="2" cellpadding="0" align="center">
+			<tr>
+				<td>
+					<table width="773" border="0" cellspacing="0" cellpadding="0" bgcolor="#66ccff" cool gridx="16" gridy="16" height="2693" showgridx showgridy usegridx usegridy>
+						<tr height="16">
+							<td width="772" height="16" colspan="13"><spacer type="block" width="772" height="16"></td>
+							<td width="1" height="16"><spacer type="block" width="1" height="16"></td>
+						</tr>
+						<tr height="64">
+							<td width="261" height="64" colspan="5"><spacer type="block" width="261" height="64"></td>
+							<td content csheight="32" width="246" height="64" colspan="4" valign="top" xpos="261">
+								<div align="center">
+									<font size="+2"><b>Uploading Data</b></font></div>
+							</td>
+							<td width="265" height="64" colspan="4"><spacer type="block" width="265" height="64"></td>
+							<td width="1" height="64"><spacer type="block" width="1" height="64"></td>
+						</tr>
+						<tr height="896">
+							<td width="16" height="896"><spacer type="block" width="16" height="896"></td>
+							<td content csheight="864" width="720" height="896" colspan="11" valign="top" xpos="16">
+								<div align="left">
+									<b>Using the Data Dump feature, DataBoy can transfer captured data to a PC (via serial port) for permanent storage, printing, analysis, etc. The procedure is as follows:</b></div>
+								<ul>
+									<li>On the the <a href="setup.html">Setup Page</a> set the Dump rate parameter. The is the baud rate used for Data Dump.<br>
+										Note: for Data Dump, Data bits, Parity, and Stop bits are always set to 8, N, 1.<br>
+									<li>Connect DataBoy to the target system, capture data in Live Data Scope, and then activate Freeze mode by pressing the 'A' key.<br>
+									<li>Disconnect the RS-232 cable from the target system and connect to a serial comm port on a PC. Use a DB9 to DB25 adaptor if the comm port has a DB25 connector.<br>
+									<li>Put the DataBoy RXD switch in the ON position. All other switches should be OFF.<br>
+									<li>On the PC, run a terminal emulation program such as Hyper Terminal or PROCOMM, and set the comm port parameters to Dump rate, 8 bits, no parity, 1 stop bit. Dump rate is selected on the Setup Page. This discussion assumes the user is using Hyper Terminal.<br>
+									<li>Activate data capture in Hyper Terminal by selecting &quot;Capture Text&quot; from the Transfer menu and specify a file name for saving the data.<br>
+									<li>On DataBoy, press the SELECT key while in Freeze mode. This brings up the Freeze Options menu, shown below.<br>
+									
+								</ul>
+								<div align="center">
+									<p><img src="freeze_options.GIF" alt="" height="162" width="320" border="2"></p>
+									<p><b>Figure 1. Freeze Options menu</b></p>
+								</div>
+								<ul>
+									<li>Select one of the data dump options:<br>
+									<ul>
+										<li><b>Screen dump</b> will transmit only the data shown on the screen (prior to pressing SELECT key). Data will be sent in the current display mode (ASCII or Hex). See Figures 11 and 12.<br>
+										<li><b>Buffer dump</b> will transmit all data saved in DataBoy's capture buffer. Data will be sent in the current display mode (ASCII or Hex). See Figures 11 and 12.<br>
+										<li><b>Detail screen dump</b> will transmit data displayed on the screen in a detailed format that includes error indicators and timestamp for each character. See Figure 13.<br>
+										<li><b>Detail buffer dump</b> is a detailed dump of all data in the capture buffer.<br>
+										
+									</ul>
+									<li>DataBoy will begin transmitting data to the PC and will display &#x201C;Data Dump in progress..&#x201D; on the screen.<br>
+									<li>At the end of transmission, DataBoy will display &#x201C;Data Dump complete&#x201D;. At this point the RS-232 cable can be re-connected to the target system to capture additional data, which can be uploaded to the PC as described above.<br>
+									<li>When all uploads are complete, Hyper Terminal can be taken out of the capture mode. At this point all uploaded data will have been saved in the user-specified file.<br>
+									
+								</ul>
+								<p>DataBoy will transmit data as text, formatted according to the selected data dump option. Hyper Terminal will receive and display the data on the PC screen. The screen shots below illustrate what the uploaded data will look like.</p>
+							</td>
+							<td width="36" height="896"><spacer type="block" width="36" height="896"></td>
+							<td width="1" height="896"><spacer type="block" width="1" height="896"></td>
+						</tr>
+						<tr height="80">
+							<td width="384" height="80" colspan="7"><spacer type="block" width="384" height="80"></td>
+							<td width="388" height="388" colspan="6" rowspan="2" valign="top" align="left" xpos="384"><img src="upload1.jpg" alt="" height="372" width="372" border="0"></td>
+							<td width="1" height="80"><spacer type="block" width="1" height="80"></td>
+						</tr>
+						<tr height="308">
+							<td width="32" height="308" colspan="2"><spacer type="block" width="32" height="308"></td>
+							<td width="352" height="308" colspan="5" valign="top" align="left" xpos="32"><a href="#"><img src="Freeze3.gif" alt="" name="Freeze1" height="288" width="320" border="2"></a></td>
+							<td width="1" height="308"><spacer type="block" width="1" height="308"></td>
+						</tr>
+						<tr height="80">
+							<td width="16" height="528" rowspan="3"><spacer type="block" width="16" height="528"></td>
+							<td content csheight="48" width="336" height="80" colspan="5" valign="top" xpos="16"><b>Figure 2. A screen of data in Freeze mode, displayed in ASCII format.</b></td>
+							<td width="52" height="80" colspan="2"><spacer type="block" width="52" height="80"></td>
+							<td content csheight="48" width="368" height="80" colspan="5" valign="top" xpos="404"><b>Figure 3. ASCII Screen Dump of data in Figure 2.</b></td>
+							<td width="1" height="80"><spacer type="block" width="1" height="80"></td>
+						</tr>
+						<tr height="400">
+							<td width="720" height="400" colspan="11" valign="top" align="left" xpos="16"><img src="upload2.jpg" alt="" height="391" width="705" border="0"></td>
+							<td width="36" height="400"><spacer type="block" width="36" height="400"></td>
+							<td width="1" height="400"><spacer type="block" width="1" height="400"></td>
+						</tr>
+						<tr height="48">
+							<td content csheight="32" width="704" height="48" colspan="10" valign="top" xpos="16">
+								<div align="center">
+									<b>Figure 4. Hexadecimal Screen Dump of data in Figure 2.</b></div>
+							</td>
+							<td width="52" height="528" colspan="2" rowspan="2"><spacer type="block" width="52" height="528"></td>
+							<td width="1" height="48"><spacer type="block" width="1" height="48"></td>
+						</tr>
+						<tr height="480">
+							<td width="128" height="480" colspan="3"><spacer type="block" width="128" height="480"></td>
+							<td width="592" height="480" colspan="8" valign="top" align="left" xpos="128"><img src="detail_dump2.jpg" alt="" height="473" width="464" border="0"></td>
+							<td width="1" height="480"><spacer type="block" width="1" height="480"></td>
+						</tr>
+						<tr height="48">
+							<td width="144" height="48" colspan="4"><spacer type="block" width="144" height="48"></td>
+							<td content csheight="32" width="400" height="48" colspan="6" valign="top" xpos="144">
+								<div align="center">
+									<b>Figure 4. Detailed screen dump of data in Figure 2.</b></div>
+							</td>
+							<td width="228" height="48" colspan="3"><spacer type="block" width="228" height="48"></td>
+							<td width="1" height="48"><spacer type="block" width="1" height="48"></td>
+						</tr>
+						<tr height="272">
+							<td width="16" height="272"><spacer type="block" width="16" height="272"></td>
+							<td content csheight="272" width="720" height="272" colspan="11" valign="top" xpos="16">Figure 4 shows a Detailed screen dump. Each line of text is a record containing information related to one captured character. Each record contains the following fields:<br>
+								<ul>
+									<li>The first field (N=) contains the record number. This is the relative position of the character within the data buffer.<br>
+									<li>The second field indicates which channel the character came from (RXD or TXD).<br>
+									<li>The third field contains the ASCII representation of the character.<br>
+									<li>The fourth field contains the hexadecimal code for the character. If data is captured in multi-drop mode and the address indicator bit set to &#x2018;1&#x2019;, the hexadecimal code will be preceded by an angle bracket (&gt;).<br>
+									<li>The fifth field (E=) lists four possible error codes (Break, Framing, Parity, Overrun), as described in the section on Error Indicators. Error codes will appear in the BFPO order. A dash indicates that a particular error code is not present. In the example of figure 13, the second character (N=00002) has a framing error (F).<br>
+									<li>The last field (T=) gives the time-stamp (if time-stamps are enabled). Time-stamps are given in milliseconds relative to the first character in the buffer (N=00001).<br>
+									
+								</ul>
+								<p></p>
+							</td>
+							<td width="36" height="272"><spacer type="block" width="36" height="272"></td>
+							<td width="1" height="272"><spacer type="block" width="1" height="272"></td>
+						</tr>
+						<tr height="1" cntrlrow>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="96" height="1"><spacer type="block" width="96" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="117" height="1"><spacer type="block" width="117" height="1"></td>
+							<td width="91" height="1"><spacer type="block" width="91" height="1"></td>
+							<td width="32" height="1"><spacer type="block" width="32" height="1"></td>
+							<td width="20" height="1"><spacer type="block" width="20" height="1"></td>
+							<td width="103" height="1"><spacer type="block" width="103" height="1"></td>
+							<td width="37" height="1"><spacer type="block" width="37" height="1"></td>
+							<td width="176" height="1"><spacer type="block" width="176" height="1"></td>
+							<td width="16" height="1"><spacer type="block" width="16" height="1"></td>
+							<td width="36" height="1"><spacer type="block" width="36" height="1"></td>
+							<td width="1" height="1"><spacer type="block" width="1" height="1"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<p></p>
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
