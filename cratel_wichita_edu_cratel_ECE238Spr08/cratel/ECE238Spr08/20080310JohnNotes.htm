@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080310JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1-1"></span><p class="line867">
+</p><h1 id="Instructor_Notes">Instructor Notes</h1>
+<span class="anchor" id="line-2-1"></span><p class="line867"><em>March 10, 2008</em> <span class="anchor" id="line-3-1"></span></p><hr><p class="line874"> <span class="anchor" id="line-4-1"></span>
+</p><h2 id="Assignment_Reminders">Assignment Reminders</h2>
+<span class="anchor" id="line-5"></span><ul><li>Initial Project Proposal was do yesterday at midnight <span class="anchor" id="line-6"></span></li><li>Midterm: March 12 <span class="anchor" id="line-7"></span></li><li>Hello Noise: March 25th <span class="anchor" id="line-8"></span><ul><li>focus on sound effects for the games <span class="anchor" id="line-9"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="midterm_review">midterm review</h2>
+<span class="anchor" id="line-10"></span><ul><li>DAA <span class="anchor" id="line-11"></span></li><li><p class="line862">JR. Example: <span class="anchor" id="line-12"></span><span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span><span class="anchor" id="line-15"></span></p><pre><span class="anchor" id="line-1"></span>Mem Loc     Hex            Op Code
+<span class="anchor" id="line-2"></span>0351        18 01          JR $0354
+<span class="anchor" id="line-3"></span>0353        00             NOP
+<span class="anchor" id="line-4"></span>0354 </pre><span class="anchor" id="line-16"></span></li><li>indirect addressing <span class="anchor" id="line-17"></span></li><li>EQU, db <span class="anchor" id="line-18"></span></li><li>review of the generic qualities of labels <span class="anchor" id="line-19"></span></li><li>jp [hl] <span class="anchor" id="line-20"></span></li><li>ldi a,[hl] = ld a,[hl+] <span class="anchor" id="line-21"></span></li><li>ldh vs. ld <span class="anchor" id="line-22"></span></li><li>bit, set, reset, shifts and rotates (see upper right hand corner crib sheet page 1. <span class="anchor" id="line-23"></span></li><li>carry flag <span class="anchor" id="line-24"></span></li><li>bit mask <span class="anchor" id="line-25"></span></li><li>T states and M cycles <span class="anchor" id="line-26"></span></li></ul><p class="line867">
+</p><h2 id="Test_Questions">Test Questions</h2>
+<span class="anchor" id="line-27"></span><ol type="1"><li>Write something that will do a simple task. <span class="anchor" id="line-28"></span><ul><li>I give you all the comments but not the opcodes <span class="anchor" id="line-29"></span></li><li>make sure you understand how the tiles relate to ASCII for this one <span class="anchor" id="line-30"></span></li><li>uses DAA <span class="anchor" id="line-31"></span></li><li>understand swap, bit masks <span class="anchor" id="line-32"></span></li></ul></li><li>hand-assemble some code. <span class="anchor" id="line-33"></span></li><li>calculate how long something takes to execute <span class="anchor" id="line-34"></span><ul><li>understand the distinction between T states and M cycles. <span class="anchor" id="line-35"></span></li><li><p class="line862">Know how to read the GameBoy crib sheet for this information <span class="anchor" id="line-36"></span></p></li></ul></li><li>Write a simple routine to do simple 16-bit integer arithmetic <span class="anchor" id="line-37"></span></li><li>Show you understand the distinctions of labels, EQU, DB, etc. <span class="anchor" id="line-38"></span><ul><li>You will be given two very small snippets of code and asked if they perform their intended function. <span class="anchor" id="line-39"></span></li></ul></li><li>Verbatim from the exam: <span class="anchor" id="line-40"></span><ul><li style="list-style-type:none"><p class="line891"><tt>hello-broken.asm</tt> is <tt>hello-sprite.asm</tt> with some lines changed from the original and shown in <strong>bold</strong>. <span class="anchor" id="line-41"></span></p><ul><li>Compare hello-broken.asm with hello-sprite.asm. For each changed line, write if the altered code will still operate with the same functionality as the original. <span class="anchor" id="line-42"></span></li><li>If the altered line breaks the code or significantly alters its functionality, explain why. If the altered line does not significantly change the functionality, explain why not. <span class="anchor" id="line-43"></span></li><li>Show in your answers that you understand the functionality of both the original and the altered lines. An example correct response for a specific line might be &ldquo;This line breaks the code. We need to load register a into the contents of the memory location pointed to by 16-bit register pair hl, rather than the value of register hl itself.&rdquo; In contrast, a correct observation but incorrect response would be &ldquo;line should read ld [hl],a instead of ld hl,a.&rdquo; This latter response does not show that you understand the function of the original code and the function of the altered code. <span class="anchor" id="line-44"></span></li></ul></li></ul></li><li><p class="line862">Construct a simple macro. I give you <tt>hello-sprite.inc</tt> to remind you of macro syntax <span class="anchor" id="line-45"></span></p></li></ol><p class="line867">
+</p><h2 id="Questions_you_might_have">Questions you might have</h2>
+<span class="anchor" id="line-46"></span><ul><li>Ascii and tile maps <span class="anchor" id="line-47"></span></li><li>hand assembly <span class="anchor" id="line-48"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080310JohnNotes  (last edited 2010-08-04 16:53:53 by <span title="??? @ localhost[127.0.0.1]">localhost</span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

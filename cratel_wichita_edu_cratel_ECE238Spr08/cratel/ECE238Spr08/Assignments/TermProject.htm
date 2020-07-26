@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/Assignments/TermProject - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703091044/http://cratel.wichita.edu/cratel/ECE238Spr08/Assignments/TermProject">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 09:10:44 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:25:08 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-3a667be4226100fb21889df28f1e33064ba20f85">Term Project</h1>
+<span class="anchor" id="line-2"></span><ul><li><p class="line862">Under category "project," post to <a class="http_wayback" href="https://web.archive.org/web/20090606133145/http://cratel.wichita.edu/blogs/Assembly08">the blog</a> the culmination of all of your work for the term project as text and accompanying zip file <span class="anchor" id="line-3"></span></p></li><li><p class="line862">you are encouraged to comment on <a class="http_wayback" href="https://web.archive.org/web/20090607072702/http://cratel.wichita.edu/blogs/assembly08/category/project/">other people's work</a>. <span class="anchor" id="line-4"></span></p></li><li>Post is due May 11, midnight <span class="anchor" id="line-5"></span></li></ul><p class="line867">
+</p><h2 id="head-33bad115c3ea6a807b7d187fc571e3d009f876ce">Assignment Details</h2>
+<span class="anchor" id="line-6"></span><ul><li>post title should include your full name and the name of your project <span class="anchor" id="line-7"></span></li><li>post text should include: <span class="anchor" id="line-8"></span><ul><li>what is your project? Give a description of at least one paragraph.  <span class="anchor" id="line-9"></span></li><li>how does a user interact with your project? <span class="anchor" id="line-10"></span></li><li>what is the command line needed to assemble your project? <span class="anchor" id="line-11"></span></li><li>besides including this text in your post, put it in a file called 00-README.TXT within your zip file <span class="anchor" id="line-12"></span></li></ul></li><li><p class="line862">post attachment should include <strong>all</strong> files necessary for assembly, including source code libraries and data <em>even if unmodified from class resources (such as sprite.inc, bigsprite.asm, memory.asm and ibmpc1.inc)</em> and should also include the resulting gb binary. <span class="anchor" id="line-13"></span></p></li><li><p class="line862">source code include in the post attachment should be <strong>cleaned up and completely documented</strong> so anybody with your level of knowledge can easily understand the code <span class="anchor" id="line-14"></span></p></li></ul><p class="line867">
+</p><h2 id="head-aa9547a3edd4f589f975bec7cdf17f889f86e159">source code cleanup and documentation</h2>
+<span class="anchor" id="line-15"></span><p class="line862">This assignment serves as a record for your work in the class and will be the most likely resource used by future members of the class and the intergalactic GameBoy programming community at large. I will go over each of these assignments carefully to evaluate your level of understanding and the quality of your work for this class. Therefore, it is very important that you clean up and document your source code so others can understand it easily: <span class="anchor" id="line-16"></span></p><ul><li>As much as possible, make your source code self-documenting and easily modifiable. <span class="anchor" id="line-17"></span><ul><li><p class="line862">For example, if you are setting a flag, it is better to write code such as: <span class="anchor" id="line-18"></span></p><pre>MYFLAGSET   EQU   1
+<span class="anchor" id="line-19"></span>MYFLAGRESET EQU   0
+<span class="anchor" id="line-20"></span>&lt;....&gt;
+<span class="anchor" id="line-21"></span>         ld    a,MYFLAGSET
+<span class="anchor" id="line-22"></span>         ld    [myFlagVar],a </pre><span class="anchor" id="line-23"></span><p class="line862">than the equivalent code, which is not self-documenting: <span class="anchor" id="line-24"></span></p><pre>         ld    a,1
+<span class="anchor" id="line-25"></span>         ld    [myFlagVar],a </pre><span class="anchor" id="line-26"></span></li><li>choose good variable names. There should be an obvious correlation between a variable's name and its function. <span class="anchor" id="line-27"></span></li></ul></li><li><p class="line862">if a function is more than a few lines and isn't completely obvious, you should provide header information to the function right before the source code of the function itself. Look at my source code libraries, such as bigsprite.asm for good examples of this. In general, a good template is: <span class="anchor" id="line-28"></span></p><pre>;***************************************************************************
+<span class="anchor" id="line-29"></span>;* &lt;put name of function here&gt;
+<span class="anchor" id="line-30"></span>;* &lt;put description of function here. Take as many lines as you need&gt;
+<span class="anchor" id="line-31"></span>;* input:
+<span class="anchor" id="line-32"></span>;*   &lt;describe here what registers or parameters the function takes as input&gt;
+<span class="anchor" id="line-33"></span>;*   &lt;use a new line for each register or parameter&gt;
+<span class="anchor" id="line-34"></span>;* output:
+<span class="anchor" id="line-35"></span>;*   &lt;describe here what registers or parameters the function takes as output&gt;
+<span class="anchor" id="line-36"></span>;*   &lt;use a new line for each register or parameter&gt;
+<span class="anchor" id="line-37"></span>;* destroys:
+<span class="anchor" id="line-38"></span>;*   &lt;list here any registers (other than the output register(s)) whose values are destroyed in the function&gt; 
+<span class="anchor" id="line-39"></span>;***************************************************************************
+<span class="anchor" id="line-40"></span>&lt;function code goes here&gt; </pre><span class="anchor" id="line-41"></span></li><li>at the top of each source code file in your zip file which you have created or modified, make sure you give <span class="anchor" id="line-42"></span><ul><li>your name <span class="anchor" id="line-43"></span></li><li>version and date of completion of your code <span class="anchor" id="line-44"></span></li><li>description of purpose of source code file <span class="anchor" id="line-45"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-9ddfce0eba186a25d12119b11bea0062a5ca9029">Term project grading</h2>
+<span class="anchor" id="line-46"></span><p class="line874">The term project represents 40% of your overall grade. The term project grade will be determined by: <span class="anchor" id="line-47"></span></p><div><table><tbody><tr>  <td><p class="line891"><strong>% of grade</strong></p></td>
+  <td><p class="line891"><strong>name</strong></p></td>
+  <td><p class="line891"><strong>description</strong></p></td>
+</tr>
+<tr>  <td><span class="anchor" id="line-48"></span><p class="line862">40%</p></td>
+  <td><p class="line891">MindScapes presentation</p></td>
+  <td><p class="line862">you showed up to MindScapes from 7 to 9pm and showed a complete functional application to youth during that time</p></td>
+</tr>
+<tr>  <td><span class="anchor" id="line-49"></span><p class="line862">30%</p></td>
+  <td><p class="line862">Project functionality</p></td>
+  <td><p class="line862">Your project shows good functionality and demonstrates proficiency in GameBoy assembly language</p></td>
+</tr>
+<tr>  <td><span class="anchor" id="line-50"></span><p class="line862">30%</p></td>
+  <td><p class="line862">Project documentation</p></td>
+  <td><p class="line862">You describe both what your project is and how it works in your final blog post and in your 00-README.TXT file. Your code is well-documented and easy to understand.</p></td>
+</tr>
+</tbody></table></div><span class="anchor" id="line-51"></span><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/Assignments/TermProject  (last edited 2008-05-04 19:53:58 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

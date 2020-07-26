@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080225JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703124406/http://cratel.wichita.edu/cratel/ECE238Spr08/20080225JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 12:44:06 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:45:52 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-4d3de5c89955f2fc0b7840d14c8995604ed23e24">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>February 25, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-67461ec42070e814fcd82d1ef680c848423e3010">Quote</h2>
+<span class="anchor" id="line-5"></span><p class="line862">&ldquo;A computer would deserve to be called intelligent if it could deceive a human into believing that it was human.&rdquo; - Alan Turing (Chris McKinstry, Push Singh) <span class="anchor" id="line-6"></span>
+</p><h2 id="head-e511af1177ca8401632614fd63ac8f827224c517">Assignment Reminder</h2>
+<span class="anchor" id="line-7"></span><ul><li>Hello Sprite: due March 2 midnight <span class="anchor" id="line-8"></span></li></ul><p class="line867">
+</p><h2 id="head-d0781a92d323cb0911ab8abb535510cb1de5fcbf">Status of programmer order</h2>
+<span class="anchor" id="line-9"></span><p class="line867">
+</p><h2 id="head-a2934e39df721a7a12dc7306f754da03295be84e">Review</h2>
+<span class="anchor" id="line-10"></span><p class="line867">
+</p><h3 id="head-6e2a368c019f208aeea014dd1edaeac66d6fd97d">Sprites</h3>
+<span class="anchor" id="line-11"></span><ul><li><p class="line862">see GameBoy video tutorial <span class="anchor" id="line-12"></span></p></li><li><p class="line862">go over questions in <!--a class="http" href="http://groups.google.com/group/wsu-assembly-engrs/browse_thread/thread/344bc08a35f2102c"--><a class="http" href="email_to_list.htm">email to list</a> <span class="anchor" id="line-13"></span></p></li><li><p class="line862">memory map (from gbspec.txt lines 94 to 115: <span class="anchor" id="line-14"></span></p><pre>  Interrupt Enable Register
+<span class="anchor" id="line-15"></span>
+<span class="anchor" id="line-16"></span> --------------------------- FFFF
+<span class="anchor" id="line-17"></span>
+<span class="anchor" id="line-18"></span>  Internal RAM
+<span class="anchor" id="line-19"></span>
+<span class="anchor" id="line-20"></span> --------------------------- FF80
+<span class="anchor" id="line-21"></span>
+<span class="anchor" id="line-22"></span>  Empty but unusable for I/O
+<span class="anchor" id="line-23"></span>
+<span class="anchor" id="line-24"></span> --------------------------- FF4C
+<span class="anchor" id="line-25"></span>
+<span class="anchor" id="line-26"></span>  I/O ports
+<span class="anchor" id="line-27"></span>
+<span class="anchor" id="line-28"></span> --------------------------- FF00
+<span class="anchor" id="line-29"></span>
+<span class="anchor" id="line-30"></span>  Empty but unusable for I/O
+<span class="anchor" id="line-31"></span>
+<span class="anchor" id="line-32"></span> --------------------------- FEA0
+<span class="anchor" id="line-33"></span>
+<span class="anchor" id="line-34"></span>  Sprite Attrib Memory (OAM)
+<span class="anchor" id="line-35"></span>
+<span class="anchor" id="line-36"></span> --------------------------- FE00
+<span class="anchor" id="line-37"></span>
+<span class="anchor" id="line-38"></span>  Echo of 8kB Internal RAM
+<span class="anchor" id="line-39"></span>
+<span class="anchor" id="line-40"></span> --------------------------- E000
+<span class="anchor" id="line-41"></span>
+<span class="anchor" id="line-42"></span>  8kB Internal RAM
+<span class="anchor" id="line-43"></span>
+<span class="anchor" id="line-44"></span> --------------------------- C000
+<span class="anchor" id="line-45"></span>
+<span class="anchor" id="line-46"></span>  8kB switchable RAM bank
+<span class="anchor" id="line-47"></span>
+<span class="anchor" id="line-48"></span> --------------------------- A000
+<span class="anchor" id="line-49"></span>
+<span class="anchor" id="line-50"></span>  8kB Video RAM
+<span class="anchor" id="line-51"></span>
+<span class="anchor" id="line-52"></span> --------------------------- 8000
+<span class="anchor" id="line-53"></span>
+<span class="anchor" id="line-54"></span>  32kB Cartridge
+<span class="anchor" id="line-55"></span>
+<span class="anchor" id="line-56"></span> --------------------------- 0000
+<span class="anchor" id="line-57"></span> </pre><span class="anchor" id="line-58"></span></li><li>sprite bug (gbspec.txt lines 770-790) <span class="anchor" id="line-59"></span><ul><li>use incdecss.inc and the inc/dev macros to prevent this <span class="anchor" id="line-60"></span><span class="anchor" id="line-61"></span></li></ul></li></ul><p class="line867">
+</p><h3 id="head-fa7d2a4d02b4f927b12309312088aad07d31f702">Assembler commands</h3>
+<span class="anchor" id="line-62"></span><ul><li>help: asm.htm <span class="anchor" id="line-63"></span></li><li>MACRO: asm/macro.htm <span class="anchor" id="line-64"></span></li><li>SET, PRINT, RSSET, HOME, BSS, .labels (see line 101 in hello-world.asm for example) <span class="anchor" id="line-65"></span></li><li>_RS counter  <span class="anchor" id="line-66"></span></li><li>walkthrough of hello-sprite.inc: <span class="anchor" id="line-67"></span><ul><li><p class="line891">LoByteVar sort of like declaring variables in c <span class="anchor" id="line-68"></span></p></li><li>declaration of a structure <span class="anchor" id="line-69"></span></li></ul></li><li>show docs for rgbds <span class="anchor" id="line-70"></span></li></ul><p class="line867">
+</p><h2 id="head-16beccad35affee47b5984bd198d0763a2ebe7d5">Hello Sprite No Interrupts</h2>
+<span class="anchor" id="line-71"></span><ul><li>walkthrough <span class="anchor" id="line-72"></span></li></ul><p class="line867">
+</p><h3 id="head-b5dcbdf20464e90b5eab534ad9f55c023fc9902b">Interrupts</h3>
+<span class="anchor" id="line-73"></span><ul><li>define Interrupt <span class="anchor" id="line-74"></span></li><li><p class="line862">Z80 Interrupt vector not on the GameBoy <span class="anchor" id="line-75"></span></p></li><li>interrupt addresses: gbspec.txt lines 156-180 <span class="anchor" id="line-76"></span><ul><li>vblank <span class="anchor" id="line-77"></span></li><li>timer (rTMA, rTAC (gbspec lines 1137 - 1155) <span class="anchor" id="line-78"></span></li><li><p class="line862">serial transfer (for connecting multiple GameBoys, for example) <span class="anchor" id="line-79"></span></p></li></ul></li></ul><p class="line867">
+</p><h2 id="head-99c1d1e3d4e4d8e500cf1250fb2cbcc4d4e73033">If time</h2>
+<span class="anchor" id="line-80"></span><p class="line867">
+</p><h3 id="head-4fd6344846222cd5cbd64552d90f8022e05b1f2a">No$GMB emulator</h3>
+<span class="anchor" id="line-81"></span><ul><li>breakpoint <span class="anchor" id="line-82"></span></li><li>animate, trace <span class="anchor" id="line-83"></span></li></ul><p class="line867">
+</p><h2 id="head-7380fe85b8d434fa31511701396be03d3ce4292a">for another class</h2>
+<span class="anchor" id="line-84"></span><ul><li>instruction types <span class="anchor" id="line-85"></span></li><li>more on addressing modes (TRS-80 book page 41 chap 3) <span class="anchor" id="line-86"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080225JohnNotes  (last edited 2008-02-25 10:27:13 by <span title="JohnHarrison @ 156.26.67.98[156.26.67.98]"><a href="../JohnHarrison.htm" title="JohnHarrison @ 156.26.67.98[156.26.67.98]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

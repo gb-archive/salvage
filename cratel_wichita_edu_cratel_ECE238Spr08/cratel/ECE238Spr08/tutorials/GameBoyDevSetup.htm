@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/GameBoyDevSetup - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="GameBoy_Development_Setup">GameBoy Development Setup</h1>
+<span class="anchor" id="line-2"></span><p class="line867"></p><div class="table-of-contents"><p class="table-of-contents-heading">Contents</p><ol><li>
+<a href="#GameBoy_Development_Setup">GameBoy Development Setup</a><ol><li>
+<a href="#Windows_OS_.28all.29">Windows OS (all)</a><ol><li>
+<a href="#basic_environment">basic environment</a></li><li>
+<a href="#emulator">emulator</a><ol><li>
+<a href="#setup">setup</a></li><li>
+<a href="#test">test</a></li></ol></li><li>
+<a href="#assembler_and_linker">assembler and linker</a><ol><li>
+<a href="#setup-1">setup</a></li><li>
+<a href="#test-1">test</a></li></ol></li><li>
+<a href="#editor">editor</a></li></ol></li><li>
+<a href="#OS_X">OS X</a></li><li>
+<a href="#Linux">Linux</a></li></ol></li></ol></div> <span class="anchor" id="line-3"></span><ul><li><p class="line862">This page gives complete instructions for setting up a an editor, assembler, linker, and emulator for the GameBoy on any Windows system (98 through Vista). <span class="anchor" id="line-4"></span></p></li><li>An environment for OSX and Linux is possible but is not currently supported for class. <span class="anchor" id="line-5"></span><ul><li><p class="line891"><em>If somebody wants to volunteer instructions for setting up an environment on one of those two platforms, they are welcome to add them to this page</em> <span class="anchor" id="line-6"></span></p></li></ul></li><li><p class="line862">All software referenced on this page is available and maintained on <a href="../software/index.htm">the class software page</a>. Open it in a new tab or window. <span class="anchor" id="line-7"></span></p></li><li>All software is free <span class="anchor" id="line-8"></span></li></ul><p class="line867"></p><hr><p class="line874"> <span class="anchor" id="line-9"></span>
+</p><h2 id="Windows_OS_.28all.29">Windows OS (all)</h2>
+<span class="anchor" id="line-10"></span><p class="line867">
+</p><h3 id="basic_environment">basic environment</h3>
+<span class="anchor" id="line-11"></span><ul><li>If you have a USB flash drive, keep the complete development environment on this drive <span class="anchor" id="line-12"></span><ul><li>The complete development environment has a small footprint <span class="anchor" id="line-13"></span></li><li>By putting the environment on the flash drive, you are portable <span class="anchor" id="line-14"></span></li><li>none of the development tools require installation scripts <span class="anchor" id="line-15"></span></li></ul></li><li>You can save your developer tools in any directories you want <span class="anchor" id="line-16"></span><ul><li><p class="line862">for simplicity, I will assume you are installing on <tt>f:\gameboy</tt> and I will assume a directory structure that makes sense to me. You are welcome to change this as you see fit.  <span class="anchor" id="line-17"></span></p></li></ul></li></ul><p class="line867">
+</p><h3 id="emulator">emulator</h3>
+<span class="anchor" id="line-18"></span><p class="line867"><em>run gameboy ROMs on a standard PC</em> <span class="anchor" id="line-19"></span>
+</p><h4 id="setup">setup</h4>
+<span class="anchor" id="line-20"></span><ul><li><p class="line862">download <a href="../software/index.htm">nocash gameboy emulator/debugger for dos/windows</a> <span class="anchor" id="line-21"></span></p><ul><li>choose the standard Windows 32bit version <span class="anchor" id="line-22"></span></li><li><p class="line862">extract all files to <tt>f:\gameboy\no$gmb</tt> <span class="anchor" id="line-23"></span></p></li></ul></li></ul><p class="line867">
+</p><h4 id="test">test</h4>
+<span class="anchor" id="line-24"></span><ul><li><p class="line862">get a GameBoy ROM, such as <a href="../software/index.htm">Pacman</a> <span class="anchor" id="line-25"></span></p></li><li><p class="line862">save the ROM to <tt>f:\gameboy\no$gmb\SLOT</tt> <span class="anchor" id="line-26"></span></p></li><li><p class="line862">open <tt>f:\gameboy\no$gmb</tt> with Windows Explorer and click on <tt>GMB.BAT</tt> to run the emulator <span class="anchor" id="line-27"></span></p></li><li>On first run, you will see 2 initial flash screens <span class="anchor" id="line-28"></span><ul><li>disable the first flash screen with the check box in that screen <span class="anchor" id="line-29"></span></li><li><p class="line862">disable the second flash screen (emulator is older than 6 months) by going to <tt>options</tt> --&gt; <tt>emulation&nbsp;setup</tt> --&gt; <tt>other</tt> and unchecking the box labelled <tt>Warn&nbsp;if&nbsp;older&nbsp;than&nbsp;6&nbsp;months</tt> after the emulator loads <span class="anchor" id="line-30"></span></p></li></ul></li><li><p class="line862">once the emulator loads, from the <tt>file</tt> menu choose <tt>Cartridge&nbsp;Menu&nbsp;(FileName)</tt>. Navigate to find the GameBoy ROM you downloaded and open it. <span class="anchor" id="line-31"></span></p></li><li><p class="line862">controls can be changed in <tt>options</tt> --&gt; <tt>Controls&nbsp;Setup</tt> <span class="anchor" id="line-32"></span></p></li></ul><p class="line867">
+</p><h3 id="assembler_and_linker">assembler and linker</h3>
+<span class="anchor" id="line-33"></span><p class="line867"><em>build GameBoy assembly code</em> <span class="anchor" id="line-34"></span>
+</p><h4 id="setup-1">setup</h4>
+<span class="anchor" id="line-35"></span><ul><li><p class="line862">download <a href="../software/index.htm">RGBDS</a> <span class="anchor" id="line-36"></span></p><ul><li><p class="line862">extract all files to <tt>f:\gameboy\rgbds</tt> <span class="anchor" id="line-37"></span></p></li><li><p class="line862">extract <tt>examples.zip</tt> inside the <tt>rgbds.zip</tt> file to <tt>f:\gameboy\rgbds\examples</tt> <span class="anchor" id="line-38"></span></p></li><li><p class="line862">extract <tt>docs.zip</tt> inside the <tt>rgbds.zip</tt> file to <tt>f:\gameboy\rgbds\docs</tt> <span class="anchor" id="line-39"></span></p></li></ul></li><li><p class="line862">download <tt>assemble.bat</tt> and <tt>makelnk.bat</tt> and put them <tt>f:\gameboy\rgbds</tt> <span class="anchor" id="line-40"></span></p></li></ul><p class="line867">
+</p><h4 id="test-1">test</h4>
+<span class="anchor" id="line-41"></span><p class="line867"><em>build "Hello World" program</em> <span class="anchor" id="line-42"></span></p><ul><li><p class="line862">download <tt>hello-world.asm</tt>, <tt>gbhw.inc</tt>, <tt>ibmpc1.inc</tt>, and <tt>memory.asm</tt>, and save all of them in <tt>f:\gameboy\rgbds</tt> <span class="anchor" id="line-43"></span></p><ul><li><p class="line862">instead of <tt>hello-world.asm</tt> you can download <tt>hello-world-with-comments.asm</tt> to read tutorial comments in the code. The actual code is the same with both files. <span class="anchor" id="line-44"></span></p></li></ul></li><li><p class="line862">go to the command prompt (<tt>cmd</tt>) and change to directory <tt>f:\gameboy\rgbds</tt> <span class="anchor" id="line-45"></span></p></li><li><p class="line862">type <tt>assemble&nbsp;hello-world</tt> <span class="anchor" id="line-46"></span></p></li><li><p class="line862">hopefully you will see something like: <span class="anchor" id="line-47"></span><span class="anchor" id="line-48"></span><span class="anchor" id="line-49"></span><span class="anchor" id="line-50"></span><span class="anchor" id="line-51"></span><span class="anchor" id="line-52"></span><span class="anchor" id="line-53"></span><span class="anchor" id="line-54"></span><span class="anchor" id="line-55"></span><span class="anchor" id="line-56"></span><span class="anchor" id="line-57"></span><span class="anchor" id="line-58"></span><span class="anchor" id="line-59"></span><span class="anchor" id="line-60"></span></p><pre><span class="anchor" id="line-1"></span>assembling...
+<span class="anchor" id="line-2"></span>Output filename hello-world.obj
+<span class="anchor" id="line-3"></span>Assembling hello-world.asm
+<span class="anchor" id="line-4"></span>Pass 1...
+<span class="anchor" id="line-5"></span>Pass 2...
+<span class="anchor" id="line-6"></span>Success! 3471 lines in 0.15 seconds (1335000 lin
+<span class="anchor" id="line-7"></span>linking...
+<span class="anchor" id="line-8"></span>fixing...
+<span class="anchor" id="line-9"></span>Validating header:
+<span class="anchor" id="line-10"></span>        Nintendo Character Area is OK
+<span class="anchor" id="line-11"></span>        ROM size byte is OK
+<span class="anchor" id="line-12"></span>        Cartridge type byte is OK
+<span class="anchor" id="line-13"></span>        Checksum changed from 0x0000 to 0xF268
+<span class="anchor" id="line-14"></span>        CompChecksum changed from 0x00 to 0xA7 </pre><span class="anchor" id="line-61"></span></li><li><p class="line862">if the build was successful, you will find <tt>hello-world.gb</tt> in <tt>f:\gameboy\rgbds</tt> <span class="anchor" id="line-62"></span></p><ul><li><p class="line891"><tt>hello-world.gb</tt> is a GameBoy ROM. Load it in the emulator to confirm that it works. <span class="anchor" id="line-63"></span></p></li></ul></li></ul><p class="line867">
+</p><h3 id="editor">editor</h3>
+<span class="anchor" id="line-64"></span><p class="line867"><em>edit assembly code</em> <span class="anchor" id="line-65"></span></p><ul><li><p class="line862">I recommend <a href="../software/index.htm">SciTE</a> as your editor <span class="anchor" id="line-66"></span></p><ul><li>provides line numbers, which you will reference when tracking down errors reported by the assembler <span class="anchor" id="line-67"></span></li><li>nice color coding <span class="anchor" id="line-68"></span></li><li>very small footprint <span class="anchor" id="line-69"></span></li><li>open-source <span class="anchor" id="line-70"></span></li><li><p class="line862">Recommended version of SciTE: <a class="http" href="http://prdownloads.sourceforge.net/scintilla/Sc175.exe">single file executable called Sc1</a> (510K) <span class="anchor" id="line-71"></span></p></li><li><p class="line862">save it anywhere you want (<tt>f:\gameboy</tt>, perhaps) <span class="anchor" id="line-72"></span></p></li><li><p class="line862">open <tt>hello-world.asm</tt> with it and see how it feels. <span class="anchor" id="line-73"></span></p></li></ul></li></ul><p class="line867">
+</p><h2 id="OS_X">OS X</h2>
+<span class="anchor" id="line-74"></span><p class="line867"><em>OS X support is available for the assembler and linker, and is referenced on <a href="../software/index.htm">the class software page</a>. If you have specifics on how to get this to work, please add them here.</em> <span class="anchor" id="line-75"></span>
+</p><h2 id="Linux">Linux</h2>
+<span class="anchor" id="line-76"></span><p class="line867"><em>Linux support is available for the assembler and linker, and is referenced on <a href="../software/index.htm">the class software page</a>. If you have specifics on how to get this to work, please add them here.</em> <span class="anchor" id="line-77"></span><span class="anchor" id="bottom"></span></p></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/GameBoyDevSetup  (last edited 2010-08-04 16:50:18 by <span title="??? @ localhost[127.0.0.1]">localhost</span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

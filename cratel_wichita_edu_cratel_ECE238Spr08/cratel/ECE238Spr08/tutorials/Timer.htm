@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/Timer - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704121458/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/Timer">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 12:14:58 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:18:00 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-469978d62d2eb2d271515b86ff6ee2c8756b4ca2">GameBoy Timer</h1>
+<span class="anchor" id="line-2"></span><p class="line862">The GameBoy timer is an excellent way to set and dynamically change the speed of your application's main loop. Here's a tutorial on how to use the timer effectively for this purpose. The techniques here are demonstrated in both <a href="../software/index.htm">hello-window.asm</a> and <a href="../software/index.htm">hello-angle.asm</a>. <span class="anchor" id="line-3"></span>
+</p><h2 id="head-490182f745059bce7a0899d61c9c772cb2ad82c8">notes on the timer</h2>
+<span class="anchor" id="line-4"></span><ul><li>the timer is fully described in gbspec.txt lines 848 - 872 <span class="anchor" id="line-5"></span></li><li>the timer counts incrementally at a rate specified by the rTAC hardware register. The choices of speed are defined gbhw.inc lines 217 to 220: <span class="anchor" id="line-6"></span><ul><li>TACF_4KHZ <span class="anchor" id="line-7"></span></li><li>TACF_16KHZ <span class="anchor" id="line-8"></span></li><li>TACF_65KHZ <span class="anchor" id="line-9"></span></li><li>TACF_262KHZ <span class="anchor" id="line-10"></span></li></ul></li><li>The counter will start when the bits in rTAC corresponding with TAC_START are set. Likewise, the counter will stop when the bits in rTAC corresponding with TAC_STOP are set. <span class="anchor" id="line-11"></span></li><li>Whenever the timer overflows (counts from $ff to 0), it: <span class="anchor" id="line-12"></span><ul><li>generates an interrupt if the timer interrupt is enabled <span class="anchor" id="line-13"></span></li><li><p class="line862">loads the timer with the value set in register <tt>rTMA</tt> <span class="anchor" id="line-14"></span></p></li><li>examples: <span class="anchor" id="line-15"></span><ul><li>if <span class="anchor" id="line-16"></span><ul><li>rTAC = TACF_START | TACF_4KHZ ; start the timer at 4K <span class="anchor" id="line-17"></span></li><li>rTMA = $ff = 256 - 1 ; timer division = 1 <span class="anchor" id="line-18"></span></li><li><p class="line862">rIE =  EIF_TIMER | &lt;other stuff maybe&gt; <span class="anchor" id="line-19"></span></p></li></ul></li><li>then the timer interrupt will be called 4K/second <span class="anchor" id="line-20"></span></li><li>if <span class="anchor" id="line-21"></span><ul><li>rTAC = TACF_START | TACF_4KHZ ; start the timer at 4K <span class="anchor" id="line-22"></span></li><li>rTMA = $fe = 256 - 2 ; timer division = 2 <span class="anchor" id="line-23"></span></li><li><p class="line862">rIE =  EIF_TIMER | &lt;other stuff maybe&gt; <span class="anchor" id="line-24"></span></p></li></ul></li><li>then the timer interrupt will be called 2K/second <span class="anchor" id="line-25"></span></li></ul></li></ul></li></ul><p class="line867">
+</p><h2 id="head-c7431b0de8361c0133edc332c69fd0977dd7d630">Application</h2>
+<span class="anchor" id="line-26"></span><p class="line874">A good way to use the timer is to have the timer interrupt trigger the main loop to cycle one iteration. Then you can adjust the speed between timer interrupts to set the number of iterations in your main loop: <span class="anchor" id="line-27"></span></p><ol type="1"><li><p class="line862">add a call to a timer interrupt routine where the timer interrupt is called: <span class="anchor" id="line-28"></span></p><pre>SECTION "Timer_Overflow",HOME[$0050]
+<span class="anchor" id="line-29"></span>        jp      TimerInterrupt          ; flag the timer interrupt </pre><span class="anchor" id="line-30"></span></li><li><p class="line862">add some constants which describe the number of times you wish for the interrupt to be generated: <span class="anchor" id="line-31"></span></p><pre>TimerHertz      EQU     TACF_START|TACF_4KHZ
+<span class="anchor" id="line-32"></span>TimerClockDiv   EQU     256-30                          ; divide clock by 30 </pre><span class="anchor" id="line-33"></span><ul><li>in this example, the timer interrupt will be generated 4096/30 times each second <span class="anchor" id="line-34"></span></li></ul></li><li><p class="line862">whereever you already load <tt>rIE</tt> and enable interrupts in your code, add IEF_TIMER to the list of interrupts you are enabling. For example, if you wanted to enable the vblank and timer interrupts, you would have in your initialization code: <span class="anchor" id="line-35"></span></p><pre>        ld      a, IEF_VBLANK|IEF_TIMER
+<span class="anchor" id="line-36"></span>        ld      [rIE],a                 ; ENABLE VBLANK AND TIMER INTERRUPT
+<span class="anchor" id="line-37"></span>        ei                              ; LET THE INTS FLY </pre><span class="anchor" id="line-38"></span></li><li><p class="line862">if you don't already have one, add a variable in your code whose bits can be used as flags to know what interrupts have been generated: <span class="anchor" id="line-39"></span></p><pre>        LoByteVar       IFlags  ; flag var for interrupts </pre> <span class="anchor" id="line-40"></span></li><li><p class="line862">add your timer interrupt routine to your code. The routine's only purpose is to set a flag in IFlags and to reset the timer: <span class="anchor" id="line-41"></span></p><pre>; TimerInterrupt is the routine called when a timer interrupt occurs.
+<span class="anchor" id="line-42"></span>TimerInterrupt: 
+<span class="anchor" id="line-43"></span>        push    af                      ; save a
+<span class="anchor" id="line-44"></span>        ld      a,TimerClockDiv         ; load number of counts of timer
+<span class="anchor" id="line-45"></span>        ld      [rTMA],a                
+<span class="anchor" id="line-46"></span>        ld      a,TimerHertz            ; load timer speed
+<span class="anchor" id="line-47"></span>        ld      [rTAC],a
+<span class="anchor" id="line-48"></span>        ld      a,IEF_TIMER
+<span class="anchor" id="line-49"></span>        ld      [IFlags],a
+<span class="anchor" id="line-50"></span>        pop     af                      ; restore a. Everything has been preserved.
+<span class="anchor" id="line-51"></span>        reti </pre><span class="anchor" id="line-52"></span></li><li><p class="line862">add a manual call to the timer interrupt routine after you have enabled interrupts and before your main loop. This will turn the timer on: <span class="anchor" id="line-53"></span></p><pre>        call    TimerInterrupt          ; turn on the timer </pre><span class="anchor" id="line-54"></span></li><li>start your application's main loop with logic to look at the flag to know whether or not the timer interrupt occurred. The loop: <span class="anchor" id="line-55"></span><ul><li>halts, until an interrupt occurs <span class="anchor" id="line-56"></span></li><li>when an interrupt does occur, it looks at the IFlags variable to see if the interrupt the occurred was the timer interrupt  <span class="anchor" id="line-57"></span></li><li>if the interrupt was not a timer interrupt, it loops back to halt, waiting again for an interrupt. <span class="anchor" id="line-58"></span></li><li>if the interrupt was a timer interrupt, it resets the timer flag in IFlags variable and continues with the main loop. <span class="anchor" id="line-59"></span></li><li><p class="line862">the code for all of this might look like: <span class="anchor" id="line-60"></span></p><pre>MainLoop:
+<span class="anchor" id="line-61"></span>        halt
+<span class="anchor" id="line-62"></span>        nop
+<span class="anchor" id="line-63"></span>        ld      a,[IFlags]              ; sit and wait
+<span class="anchor" id="line-64"></span>        cp      IEF_TIMER               ; unless the timer caused the interrupt
+<span class="anchor" id="line-65"></span>        jr      nz,MainLoop
+<span class="anchor" id="line-66"></span>        and     ~IEF_TIMER              ; reset the timer flag to catch the next
+<span class="anchor" id="line-67"></span>        ld      [IFlags],a              ; timer interrupt
+<span class="anchor" id="line-68"></span>...the rest of your loop goes here. We only get here if there has been a timer interrupt </pre><span class="anchor" id="line-69"></span></li></ul></li></ol><p class="line867">
+</p><h2 id="head-da19fecf0fd2572dac13e853f906fcdd0c3b4fb8">Tips on the Main Loop</h2>
+<span class="anchor" id="line-70"></span><ul><li>Sometimes you want something to happen every 2nd, 4th, 8th, 16th, 128th time through the main loop. These easiest way to do this is to <span class="anchor" id="line-71"></span><ul><li><p class="line862">define this macro in your code: <span class="anchor" id="line-72"></span></p><pre>CALL_IF_NTH_TIME:       MACRO
+<span class="anchor" id="line-73"></span>                        push    af
+<span class="anchor" id="line-74"></span>                        push    bc
+<span class="anchor" id="line-75"></span>                        ld      a,[\1]
+<span class="anchor" id="line-76"></span>                        ld      b,a
+<span class="anchor" id="line-77"></span>                        and     256-\2
+<span class="anchor" id="line-78"></span>                        cp      b
+<span class="anchor" id="line-79"></span>                        call    z,\3
+<span class="anchor" id="line-80"></span>                        pop     bc
+<span class="anchor" id="line-81"></span>                        pop     af
+<span class="anchor" id="line-82"></span>                        ENDM </pre><span class="anchor" id="line-83"></span></li><li><p class="line862">create a routine which contains the code you wish to execute every 2nd, 4th, 8th, or (put a power of 2 here) time. For this example, we'll imagine we created a routine called ChangeWindow. <span class="anchor" id="line-84"></span></p></li><li><p class="line862">create a variable which counts the number of iterations through your loop: <span class="anchor" id="line-85"></span></p><pre>        LoByteVar       LoopCount               ; count iterations through MainLoop</pre><span class="anchor" id="line-86"></span></li><li><p class="line862">add code to increment the variable in your main loop. So the beginning of your main loop, complete with timer interrupt, might look like: <span class="anchor" id="line-87"></span></p><pre>MainLoop:
+<span class="anchor" id="line-88"></span>        halt
+<span class="anchor" id="line-89"></span>        nop
+<span class="anchor" id="line-90"></span>        ld      a,[IFlags]              ; sit and wait
+<span class="anchor" id="line-91"></span>        cp      IEF_TIMER               ; unless the timer caused the interrupt
+<span class="anchor" id="line-92"></span>        jr      nz,MainLoop
+<span class="anchor" id="line-93"></span>        xor     a                       ; reset the timer flag to catch the next
+<span class="anchor" id="line-94"></span>        ld      [IFlags],a              ; timer interrupt
+<span class="anchor" id="line-95"></span>
+<span class="anchor" id="line-96"></span>        ld      a,[LoopCount]
+<span class="anchor" id="line-97"></span>        inc     a
+<span class="anchor" id="line-98"></span>        ld      [LoopCount],a           ; inc LoopCount timer </pre><span class="anchor" id="line-99"></span></li><li><p class="line862">add a call to your macro in your main loop to do the magic. The call could be right below the main loop code example above. For example: <span class="anchor" id="line-100"></span></p><pre>        CALL_IF_NTH_TIME        LoopCount,16,ChangeWindow </pre><span class="anchor" id="line-101"></span><ul><li><p class="line862">This example will call the routine ChangeWindow every 16th time through the loop: <span class="anchor" id="line-102"></span></p><ul><li>1st parameter: name of variable being iterated through the loop <span class="anchor" id="line-103"></span></li><li>2nd parameter: how often to call the routine. In this case, the routine will be called every 16th time through the loop. This parameter must be a power of 2 and max 256. <span class="anchor" id="line-104"></span></li><li>3rd parameter: routine to call.  <span class="anchor" id="line-105"></span></li></ul></li></ul></li></ul></li></ul><p class="line867">
+</p><h2 id="head-30321ae54fb99fe4dbb9ca9f1364a6f4790f4a10">The Big Lie</h2>
+<span class="anchor" id="line-106"></span><p class="line862">Unless the timer interrupt is the only interrupt you have enabled, it isn't actually true that you can be sure how many timer interrupts will be generated in a second. This is because when the GameBoy is servicing an interrupt, interrupts are disabled. I <em>think</em> if the timer overflows while another interrupt (such as VBLANK) is being serviced, the timer interrupt is "lost" but I have not actually confirmed this. The alternative would be that perhaps the timer interrupt is generated immediately on return from the VBLANK interrupt...but...I doubt it. Anyway, for our non-time-critical uses (we aren't doing precision timing of digital electronics here) we can think of the timer interrupt as being consistent and predictable. <span class="anchor" id="line-107"></span><span class="anchor" id="bottom"></span></p></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/Timer  (last edited 2008-04-15 23:19:25 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

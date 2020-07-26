@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/EasyScore - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703163515/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/EasyScore">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 16:35:15 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:12:06 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-840fad0d443dac0ec280dd7a128ab3e52260d974">Keeping Score: Easy Peasy</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>This tutorial is for everybody who wants to throw some sort of score in their game, but doesn't have the time to tailor something special. They just need a score, somehow someway, and something generic will work. By doing exactly what is described in this tutorial, you can get a 4-digit score from 0000 to 9999 printed and updated at the beginning of the bottom line of the screen. It's easy. It's peasy. It's got your name all over it. Let's get started:</em> <span class="anchor" id="line-3"></span>
+</p><h2 id="head-eacf581e2a0dd49b342e44e5e294a9a481c77313">Assumptions</h2>
+<span class="anchor" id="line-4"></span><p class="line874">For this easy generic score stuff, we assume: <span class="anchor" id="line-5"></span></p><ul><li>your background tiles are at _SCRN0 ($9800) <span class="anchor" id="line-6"></span></li><li>you aren't already using a window <span class="anchor" id="line-7"></span></li><li>you have loaded in the ASCII tile set <span class="anchor" id="line-8"></span><span class="anchor" id="line-9"></span></li></ul><p class="line867">
+</p><h2 id="head-af2f785f659c106b863ce9c587b9a278e169cfef">Example Code</h2>
+<span class="anchor" id="line-10"></span><ul><li><p class="line862">see <a href="../software/index.htm">hello-score.asm</a> <span class="anchor" id="line-11"></span></p></li></ul><p class="line867">
+</p><h2 id="head-e0ccb63aa6dc11e3eeefe3d947f72d29726640f8">Implementation</h2>
+<span class="anchor" id="line-12"></span><p class="line867">
+</p><h3 id="head-a0cdf0ede9576781f36b338dde0857a2a151e1af">Initialization</h3>
+<span class="anchor" id="line-13"></span><ul><li><p class="line862">add <span class="anchor" id="line-14"></span></p><pre>INCLUDE "easyScore.asm"</pre><span class="anchor" id="line-15"></span><p class="line862">to your main code after a SECTION heading. A good place is right before or right after <tt>memory.asm</tt> <span class="anchor" id="line-16"></span></p></li><li><p class="line862">look for the line in the initialization area of your code that looks something like: <span class="anchor" id="line-17"></span></p><pre>        ld      a, LCDCF_ON|LCDCF_BG8000|LCDCF_BG9800|LCDCF_BGON|LCDCF_OBJ16|LCDCF_OBJOFF</pre><span class="anchor" id="line-18"></span><p class="line862">and append <span class="anchor" id="line-19"></span></p><pre>|LCDCF_WIN9C00|LCDCF_WINON</pre><span class="anchor" id="line-20"></span>to it. <span class="anchor" id="line-21"></span></li><li><p class="line862">somewhere after the above line and before your main loop, add a call to the score initilization routine: <span class="anchor" id="line-22"></span></p><pre>        call    easyScoreInit</pre><span class="anchor" id="line-23"></span></li></ul><p class="line867">
+</p><h3 id="head-942a3505688599f012c0615d5c202292055a31ac">Usage</h3>
+<span class="anchor" id="line-24"></span><ul><li><p class="line862">whenever you want to <strong>raise the score</strong>, load a with the amount you wish to raise the score by and call easyScoreRaise. For example, to raise the score by 1: <span class="anchor" id="line-25"></span></p><pre>        ld      a,1     ; raise score by this amount
+<span class="anchor" id="line-26"></span>        call    easyScoreRaise</pre><span class="anchor" id="line-27"></span></li><li><p class="line862">whenever you want to <strong>lower the score</strong>, load a with the amount you wish to lower the score by and call easyScoreDrop. For example, to lower the score by 1: <span class="anchor" id="line-28"></span></p><pre>        ld      a,1     ; lower score by this amount
+<span class="anchor" id="line-29"></span>        call    easyScoreDrop </pre><span class="anchor" id="line-30"></span></li><li><p class="line862">to <strong>reset the score to 0</strong>, call easyScoreReset: <span class="anchor" id="line-31"></span></p><pre>        call    z,easyScoreReset</pre><span class="anchor" id="line-32"></span></li><li><p class="line862">to <strong>set the score</strong> to any BCD number, load hl with the BCD number and call easyScoreSet: <span class="anchor" id="line-33"></span></p><pre>        ld      hl,$4000     ; choose any BCD number between 0 and $9999
+<span class="anchor" id="line-34"></span>        call    easyScoreSet </pre><span class="anchor" id="line-35"></span><span class="anchor" id="line-36"></span><span class="anchor" id="line-37"></span><span class="anchor" id="line-38"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/EasyScore  (last edited 2008-04-30 23:36:16 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

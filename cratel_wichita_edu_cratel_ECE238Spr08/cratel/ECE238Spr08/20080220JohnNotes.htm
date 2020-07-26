@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080220JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703120532/http://cratel.wichita.edu/cratel/ECE238Spr08/20080220JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 12:05:32 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:43:43 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-740c0932119eda09435b2cabf86d8130ddbf6084">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>February 20, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-c2f909ef9e24c39380d0dca0d873943fdd3cc47e">quote</h2>
+<span class="anchor" id="line-5"></span><p class="line874">"It's easier to ask forgiveness than it is to get permission." (Grace Hopper 1986) <span class="anchor" id="line-6"></span>
+</p><h2 id="head-26d1172d8ee4a46ddb7c65fddba72b014ea5f07e">Assignments</h2>
+<span class="anchor" id="line-7"></span><ul><li>Hello Sprite: due March 2 midnight <span class="anchor" id="line-8"></span></li><li>Hello Noise <span class="anchor" id="line-9"></span></li><li>Term Project proposals etc. <span class="anchor" id="line-10"></span></li></ul><p class="line867">
+</p><h2 id="head-b0e930ddc402d467452f00b12355bc717d6c872a">Review</h2>
+<span class="anchor" id="line-11"></span><ul><li>Hello I/O <span class="anchor" id="line-12"></span><ul><li>gbspec lines 1016 to end of document <span class="anchor" id="line-13"></span></li><li>I/O registers from $FF00 to $FF4B, and $FFFF (gbspec.txt lines 1016 to the end)  <span class="anchor" id="line-14"></span><ul><li>timer, read joy pad, serial data, sound, video modes, window placement, etc. <span class="anchor" id="line-15"></span></li></ul></li></ul></li><li>video: <span class="anchor" id="line-16"></span><ul><li>background tile map <span class="anchor" id="line-17"></span></li><li>tile pattern table <span class="anchor" id="line-18"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-fe70853f07929980f27bb39f041d7f1503ba527d">Sprites</h2>
+<span class="anchor" id="line-19"></span><ul><li><p class="line862">see GameBoy video tutorial <span class="anchor" id="line-20"></span></p></li><li>sprite bug (gbspec.txt lines 770-790) <span class="anchor" id="line-21"></span><ul><li>use incdecss.inc and the inc/dev macros to prevent this <span class="anchor" id="line-22"></span><span class="anchor" id="line-23"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-9a44c41b1c47a20b3c9eb41c784e9318ddccc7c4">Assembler commands</h2>
+<span class="anchor" id="line-24"></span><ul><li>help: asm.htm <span class="anchor" id="line-25"></span></li><li>MACRO: asm/macro.htm <span class="anchor" id="line-26"></span></li><li>SET, PRINT, RSSET, HOME, BSS, .labels (see line 101 in hello-world.asm for example),  <span class="anchor" id="line-27"></span></li><li>walkthrough of hello-sprite.inc: <span class="anchor" id="line-28"></span><ul><li><p class="line891">LoByteVar sort of like declaring variables in c <span class="anchor" id="line-29"></span></p></li><li>declaration of a structure <span class="anchor" id="line-30"></span></li></ul></li><li>show docs for rgbds <span class="anchor" id="line-31"></span></li></ul><p class="line867">
+</p><h2 id="head-dfc05bfa789596a2de7a74cbc63dcc1483e7793a">Hello Sprite No Interrupts</h2>
+<span class="anchor" id="line-32"></span><ul><li>walkthrough <span class="anchor" id="line-33"></span></li></ul><p class="line867">
+</p><h3 id="head-bfdc517364b8907c7c66894e9604fc42ada46cbd">Interrupts</h3>
+<span class="anchor" id="line-34"></span><ul><li>define Interrupt <span class="anchor" id="line-35"></span></li><li><p class="line862">Z80 Interrupt vector not on the GameBoy <span class="anchor" id="line-36"></span></p></li><li>interrupt addresses: gbspec.txt lines 156-180 <span class="anchor" id="line-37"></span><ul><li>vblank <span class="anchor" id="line-38"></span></li><li>timer (rTMA, rTAC (gbspec lines 1137 - 1155) <span class="anchor" id="line-39"></span></li><li><p class="line862">serial transfer (for connecting multiple GameBoys, for example) <span class="anchor" id="line-40"></span></p></li></ul></li></ul><p class="line867">
+</p><h2 id="head-fcb7685aec9c7f2d8d6ca8954d60a9f45392935e">for another class</h2>
+<span class="anchor" id="line-41"></span><ul><li>instruction types <span class="anchor" id="line-42"></span></li><li>more on addressing modes (TRS-80 book page 41 chap 3) <span class="anchor" id="line-43"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080220JohnNotes  (last edited 2008-02-20 07:58:30 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

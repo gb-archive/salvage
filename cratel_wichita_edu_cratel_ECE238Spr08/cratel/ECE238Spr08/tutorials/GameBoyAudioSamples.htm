@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/GameBoyAudioSamples - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704025222/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/GameBoyAudioSamples">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 02:52:22 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:06:28 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-23b77d587ceac0eb70f67ddaec91e7428c6264cd">Playing Audio Samples on the GameBoy</h1>
+<span class="anchor" id="line-2"></span><p class="line874">Ok, we are not talking audiophile sound here, but if you want to play short audio samples in 4-bit 8192Hz format, this is the tutorial for you... <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-59753ce1785f55ea19aaec688f264507d06bbb07">General Concept</h2>
+<span class="anchor" id="line-5"></span><ul><li><p class="line862">The GameBoy's sound channel 3 can play back audio samples <span class="anchor" id="line-6"></span></p></li><li>samples are stored in nibbles --- each byte stores 2 samples. <span class="anchor" id="line-7"></span></li><li><p class="line862">The GameBoy reads samples from wave pattern ram, located at $FF30-$FF3F <span class="anchor" id="line-8"></span></p><ul><li>wave pattern ram is only 16 bytes so we can store only 32 samples at a time. <span class="anchor" id="line-9"></span></li><li>We cannot write to wave pattern ram when channel 3 is on so we must continually turn off channel 3 and refresh the wave pattern ram with new samples, then turn channel 3 back on. <span class="anchor" id="line-10"></span><span class="anchor" id="line-11"></span></li></ul></li><li class="gap">this tutorial supports only very short samples of audio (~5 seconds max), because larger samples of audio would require more than 16K and therefore involves bank switching. <span class="anchor" id="line-12"></span></li><li><p class="line862">This tutorial includes <a href="../software/index.htm">the code to play the sample</a> by continually updating the wave patterm ram. This code uses a simple delay loop to get the timing right, so using this code, the GameBoy cannot do anything else while playing the audio. However, it should be completely possible to alter the code to use the timer interrupt instead, which would allow for the GameBoy to perform other tasks seemingly concurrently <span class="anchor" id="line-13"></span></p></li></ul><p class="line867">
+</p><h2 id="head-a0bb375e28ac4949bac46e571509614ac650f8d4">Steps involved</h2>
+<span class="anchor" id="line-14"></span><ul><li><p class="line862">convert audio to nibbles for the GameBoy <span class="anchor" id="line-15"></span></p></li><li>import into code <span class="anchor" id="line-16"></span></li></ul><p class="line867">
+</p><h2 id="head-2d5a850d49cb42d6c367e211c3fbb4e4f2913567">Convert Audio into nibbles</h2>
+<span class="anchor" id="line-17"></span><p class="line867">
+</p><h3 id="head-66e4cbbef52be4623800586359258a92cd711d66">Convert Audio from anything to 8 bit unsigned mono</h3>
+<span class="anchor" id="line-18"></span><p class="line874">There are probably many ways to do this. Here's how I did it: <span class="anchor" id="line-19"></span></p><ul><li><p class="line862">load audio into <a class="http" href="http://audacity.sourceforge.net/">Audacity</a> (which is free and BTW awesome. I recommend the beta version) <span class="anchor" id="line-20"></span></p></li><li><p class="line862">convert to mono: from the <tt>tracks</tt> menu choose <tt>stereo&nbsp;to&nbsp;mono</tt> <span class="anchor" id="line-21"></span></p></li><li><p class="line862">resample to 8192Hz: from the <tt>tracks</tt> menu choose <tt>resample...</tt> and enter a sample rate of 8192 <span class="anchor" id="line-22"></span></p></li><li><p class="line862">from the <tt>file</tt> menu choose <tt>export...</tt> <span class="anchor" id="line-23"></span></p><ul><li><p class="line862">leave type as <tt>WAV,&nbsp;AIFF,&nbsp;and&nbsp;other&nbsp;uncompressed&nbsp;types</tt> <span class="anchor" id="line-24"></span></p></li><li><p class="line862">choose <tt>Options...</tt> <span class="anchor" id="line-25"></span></p><ul><li>format: Other... <span class="anchor" id="line-26"></span></li><li>Header: Raw (header-less) <span class="anchor" id="line-27"></span></li><li>Encoding: Unsigned 8 bit PCM <span class="anchor" id="line-28"></span></li></ul></li><li><p class="line862">choose a filename ending in <tt>.MOD</tt>. Ignore Audacity's warning not to use this extension <span class="anchor" id="line-29"></span></p></li></ul></li></ul><p class="line867">
+</p><h3 id="head-130cdfee5b1389932268490821f1b8d777f17833">Convert Audio from 8 bit unsigned mono to GameBoy</h3>
+<span class="anchor" id="line-30"></span><ul><li><p class="line862">download <a class="http" href="http://www.yvan256.net/projects/gameboy/#gbwave">MegaMan_X's GameBoy Wave Converter</a> <span class="anchor" id="line-31"></span></p></li><li><p class="line862">copy the <tt>.MOD</tt> file you created to the same directory where you downloaded the wave converter <span class="anchor" id="line-32"></span></p></li><li><p class="line862">go to the command line and change to the directory where both the <tt>.MOD</tt> file and the wave converter are located <span class="anchor" id="line-33"></span></p></li><li><p class="line862">type: <span class="anchor" id="line-34"></span></p><pre>snd2gbw &lt;filename&gt;.MOD &lt;filename&gt;.gbw</pre><span class="anchor" id="line-35"></span></li><li><p class="line862">get the exact length in bytes of your <tt>.gbw</tt>. You'll need this when importing the code <span class="anchor" id="line-36"></span></p><ul><li><p class="line862">find the <tt>.gbw</tt> file from Windows Explorer <span class="anchor" id="line-37"></span></p></li><li><p class="line862">right-click on the file and choose <tt>Properties...</tt> <span class="anchor" id="line-38"></span></p></li><li><p class="line862">you should see something like: <tt>Size:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x.xx&nbsp;KB&nbsp;(yy,yyy&nbsp;bytes)</tt> <span class="anchor" id="line-39"></span></p></li><li>yy,yyy is the number you want. For this example, make sure it is less than 16,383 <span class="anchor" id="line-40"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-61541e5bbd84f65739d792b746833afe6a2253f7">Add audio and audio player to your source code</h2>
+<span class="anchor" id="line-41"></span><p class="line867"><em>this is just an example, where I assume you are not using the upper 16K in a 32K GameBoy cartridge.</em> You may need to tweak these directions for your use: <span class="anchor" id="line-42"></span></p><ul><li><p class="line862">download <a href="../software/index.htm">snd-playback.asm</a> and save it in the directory with your source code <span class="anchor" id="line-43"></span></p></li><li><p class="line862">copy the <tt>.gbw</tt> file to the directory where your source code is located. <span class="anchor" id="line-44"></span></p></li><li><p class="line862">In your source code, right before <tt>SECTION&nbsp;"start",HOME[$0100]</tt> (or the equivalent), add the following code:<span class="anchor" id="line-45"></span></p><pre>SECTION "raw-audio",CODE[$4000]
+<span class="anchor" id="line-46"></span>AUDIOBYTES      EQU     &lt;add the exact length of bytes of your audio sample&gt;
+<span class="anchor" id="line-47"></span>AUDIOLEN        EQU     AUDIOBYTES/16
+<span class="anchor" id="line-48"></span>RAWAUDIO:
+<span class="anchor" id="line-49"></span>                db      AUDIOLEN-((AUDIOLEN/256)*256)   ; LOW BYTE
+<span class="anchor" id="line-50"></span>                db      AUDIOLEN/256                    ; HIGH BYTE
+<span class="anchor" id="line-51"></span>                INCBIN  "&lt;filename&gt;.GBW" </pre><span class="anchor" id="line-52"></span></li><li><p class="line862">somewhere after <tt>SECTION&nbsp;&nbsp;&nbsp;"start",HOME[$0100]</tt> (immediately after would work), add: <span class="anchor" id="line-53"></span></p><pre>INCLUDE "snd-playback.asm" ; requires gbhw.inc</pre><span class="anchor" id="line-54"></span></li><li><p class="line862">whereever you want the audio to play, add this to your code: <span class="anchor" id="line-55"></span></p><pre>        ld      hl, RAWAUDIO
+<span class="anchor" id="line-56"></span>        call    snd_Sample1     </pre><span class="anchor" id="line-57"></span></li></ul><p class="line862">And now...<br>
+ <span class="anchor" id="line-58"></span><strong>Enjoy fine 4-bit 8192Hz sound</strong> <span class="anchor" id="line-59"></span><span class="anchor" id="bottom"></span></p></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/GameBoyAudioSamples  (last edited 2008-03-04 19:29:15 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

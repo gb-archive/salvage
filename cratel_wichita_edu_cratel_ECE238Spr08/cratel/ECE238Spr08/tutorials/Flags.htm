@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/Flags - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704113229/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/Flags">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 11:32:29 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:15:14 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-f0a42f71b485c62d848aa4587bef6787401ec1c5">Using flags to handle concurrent operation of multiple events</h1>
+<span class="anchor" id="line-2"></span><p class="line867"></p><div class="table-of-contents"><p class="table-of-contents-heading">Contents</p><ol><li><a href="#head-f0a42f71b485c62d848aa4587bef6787401ec1c5">Using flags to handle concurrent operation of multiple events</a><ol><li><a href="#head-450e946b8a55906be50f855fca4728a976d2cb44">Examples of the problem</a><ol><li><a href="#head-54d2d85a9433c502368707b1c425e3bf969ca07b">Playing notes</a></li><li><a href="#head-1658ae03f1a58f691494ca4dd59a871b076f5d3d">shooting a bullet</a></li></ol></li><li><a href="#head-6f52bf88c433f4f798b5b6b1709645ce4ab1b9ea">basic idea for the solution</a></li><li><a href="#head-fd580f8debd24905a69744f2d3ae5431fece30f0">example solutions</a><ol><li><a href="#head-e9d5aa2c4ac83d30a8ea68fa849d15069b8743b0">playing a note</a></li><li><a href="#head-1658ae03f1a58f691494ca4dd59a871b076f5d3d-2">shooting a bullet</a></li></ol></li><li><a href="#head-e89a3d5d59d838c7f77e02e0485569cff7843f52">tips</a></li></ol></li></ol></div> <span class="anchor" id="line-3"></span>
+<h2 id="head-450e946b8a55906be50f855fca4728a976d2cb44">Examples of the problem</h2>
+<span class="anchor" id="line-4"></span><p class="line867">
+</p><h3 id="head-54d2d85a9433c502368707b1c425e3bf969ca07b">Playing notes</h3>
+<span class="anchor" id="line-5"></span><ul><li>You want the up key to be play an A as long as the keypad is pressed and the left key to play a B as long as the keypad is pressed. <span class="anchor" id="line-6"></span></li><li>If the user pressed up and left at the same time, you would like both A and B to sound. <span class="anchor" id="line-7"></span></li><li><p class="line862">To accomplish this, you might at first imagine something in your main loop like this: <span class="anchor" id="line-8"></span></p><pre>MainLoop:
+<span class="anchor" id="line-9"></span>        ...
+<span class="anchor" id="line-10"></span>        call    GetKeys
+<span class="anchor" id="line-11"></span>        push    af
+<span class="anchor" id="line-12"></span>        and     PADF_UP
+<span class="anchor" id="line-13"></span>        call    nz,play_a
+<span class="anchor" id="line-14"></span>        pop     af
+<span class="anchor" id="line-15"></span>        and     PADF_LEFT
+<span class="anchor" id="line-16"></span>        call    nz,play_b
+<span class="anchor" id="line-17"></span>        ...
+<span class="anchor" id="line-18"></span>        jr      MainLoop
+<span class="anchor" id="line-19"></span>play_a: &lt;code here to start the note a&gt;
+<span class="anchor" id="line-20"></span>        ret
+<span class="anchor" id="line-21"></span>...
+<span class="anchor" id="line-22"></span>play_b: &lt;code here to start the note b&gt;
+<span class="anchor" id="line-23"></span>        ret </pre><span class="anchor" id="line-24"></span></li><li><p class="line862">the problem with this is that it will continually restart the note a as long as the UP key is pressed. This won't sound very good. We just want the note to be triggered once. At first, you might think the solution for this is: <span class="anchor" id="line-25"></span></p><pre>MainLoop:
+<span class="anchor" id="line-26"></span>        ...
+<span class="anchor" id="line-27"></span>        call    GetKeys
+<span class="anchor" id="line-28"></span>        push    af
+<span class="anchor" id="line-29"></span>        and     PADF_UP
+<span class="anchor" id="line-30"></span>        call    nz,play_a
+<span class="anchor" id="line-31"></span>        pop     af
+<span class="anchor" id="line-32"></span>        and     PADF_LEFT
+<span class="anchor" id="line-33"></span>        call    nz,play_b
+<span class="anchor" id="line-34"></span>        ...
+<span class="anchor" id="line-35"></span>        jr      MainLoop
+<span class="anchor" id="line-36"></span>...
+<span class="anchor" id="line-37"></span>play_a: &lt;code here to start the note a&gt;
+<span class="anchor" id="line-38"></span>        &lt;code here to sit in a tight loop until the keypad is released&gt;
+<span class="anchor" id="line-39"></span>        &lt;code here to stop the note a&gt;
+<span class="anchor" id="line-40"></span>        ret
+<span class="anchor" id="line-41"></span>...
+<span class="anchor" id="line-42"></span>play_b: &lt;code here to start the note b&gt;
+<span class="anchor" id="line-43"></span>        &lt;code here to sit in a tight loop until the keypad is released&gt;
+<span class="anchor" id="line-44"></span>        &lt;code here to stop the note b&gt;
+<span class="anchor" id="line-45"></span>        ret </pre><span class="anchor" id="line-46"></span></li><li>Now the note won't be retriggered continually, but there is also no way to play a and b at the same time. <span class="anchor" id="line-47"></span></li><li>Perhaps we could solve this problem somehow, looking for the left keypress while in the play_a routine etc. but these kinds of solutions are not very scalable for multiple notes and multiple keypresses. <span class="anchor" id="line-48"></span></li><li>What's a programmer to do?  <span class="anchor" id="line-49"></span></li></ul><p class="line867">
+</p><h3 id="head-1658ae03f1a58f691494ca4dd59a871b076f5d3d">shooting a bullet</h3>
+<span class="anchor" id="line-50"></span><ul><li>Imagine we have some sort of object on the screen and if you press the A key, the object shoots a bullet. <span class="anchor" id="line-51"></span></li><li><p class="line862">Upon initial consideration we might write some code like this: <span class="anchor" id="line-52"></span></p><pre>MainLoop:
+<span class="anchor" id="line-53"></span>        ...
+<span class="anchor" id="line-54"></span>        call    GetKeys
+<span class="anchor" id="line-55"></span>        push    af
+<span class="anchor" id="line-56"></span>        and     PADF_A
+<span class="anchor" id="line-57"></span>        call    nz,shoot_bullet
+<span class="anchor" id="line-58"></span>        ...
+<span class="anchor" id="line-59"></span>        jr      MainLoop
+<span class="anchor" id="line-60"></span>...
+<span class="anchor" id="line-61"></span>shoot_bullet: &lt;code here to shoot the bullet&gt;
+<span class="anchor" id="line-62"></span>        ret </pre><span class="anchor" id="line-63"></span></li><li><p class="line862">But this sort of logic means we do not loop through MainLoop at all for the duration that the bullet is shot. <span class="anchor" id="line-64"></span></p><ul><li><p class="line862">If we do not loop through MainLoop, all objects will stop moving, the keypad will stop responding, etc. <span class="anchor" id="line-65"></span></p></li><li>It would be a pretty lame game if all objects stop moving and become unresponsive whenever a bullet is shot. <span class="anchor" id="line-66"></span></li></ul></li><li>What's a programmer to do? <span class="anchor" id="line-67"></span></li></ul><p class="line867">
+</p><h2 id="head-6f52bf88c433f4f798b5b6b1709645ce4ab1b9ea">basic idea for the solution</h2>
+<span class="anchor" id="line-68"></span><p class="line862">The general concept is to have no loops other than MainLoop. If something has to happen inside a loop, such a moving a bullet, use a flag to use MainLoop as the loop which processes this, rather than some other loop effectively inside of MainLoop. <span class="anchor" id="line-69"></span></p><ul><li>when an event such as shooting a bullet, playing a note is supposed to happen, call a subroutine, as we have in the above examples. However, in this subroutine, instead of actually trying to fulfill the task of shooting a bullet, playing a note, etc.: <span class="anchor" id="line-70"></span><ul><li>check if a flag is set indicating that the bullet is already being shot, the note is already being played, etc. If this is the case, return. <span class="anchor" id="line-71"></span></li><li>otherwise, set initial values needed for shooting a bullet, playing a note, etc. <span class="anchor" id="line-72"></span></li><li>set a flag which indicates that a bullet should be shot, a note should be played, etc. <span class="anchor" id="line-73"></span></li><li>return <span class="anchor" id="line-74"></span></li></ul></li><li><p class="line862">within MainLoop, if needed, call a subroutine for shooting a bullet, playing a note, etc. if a flag indicating such an operation is set. <span class="anchor" id="line-75"></span></p><ul><li>the subroutine will not shoot the bullet, play the sound, etc. but instead process one iteration of doing so. For example, if we are shooting a bullet to the left, the subroutine will move the bullet one pixel to the left. <span class="anchor" id="line-76"></span></li><li>the subroutine will do a test to see if the flag should be reset. For example, if the bullet has moved off the screen, the subroutine will reset the flag. In the sound example, the subroutine will reset the flag when the user releases the key. <span class="anchor" id="line-77"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-fd580f8debd24905a69744f2d3ae5431fece30f0">example solutions</h2>
+<span class="anchor" id="line-78"></span><p class="line867">
+</p><h3 id="head-e9d5aa2c4ac83d30a8ea68fa849d15069b8743b0">playing a note</h3>
+<span class="anchor" id="line-79"></span><p class="line867"><span class="anchor" id="line-80"></span></p><pre>...
+<span class="anchor" id="line-81"></span>       LoByteVar NoteFlags
+<span class="anchor" id="line-82"></span>NOTE_A_ON  EQU #00000001
+<span class="anchor" id="line-83"></span>NOTE_A_OFF EQU #00000000
+<span class="anchor" id="line-84"></span>NOTE_B_ON  EQU #00000010
+<span class="anchor" id="line-85"></span>NOTE_B_OFF EQU #00000000
+<span class="anchor" id="line-86"></span>...
+<span class="anchor" id="line-87"></span>MainLoop:
+<span class="anchor" id="line-88"></span>        ...
+<span class="anchor" id="line-89"></span>        call    GetKeys
+<span class="anchor" id="line-90"></span>        push    af
+<span class="anchor" id="line-91"></span>        and     PADF_UP
+<span class="anchor" id="line-92"></span>        call    nz,play_a
+<span class="anchor" id="line-93"></span>        call    z,stop_a        ; stop the note if the user has released the key
+<span class="anchor" id="line-94"></span>        pop     af
+<span class="anchor" id="line-95"></span>        and     PADF_LEFT
+<span class="anchor" id="line-96"></span>        call    nz,play_b
+<span class="anchor" id="line-97"></span>        ...
+<span class="anchor" id="line-98"></span>        jr      MainLoop
+<span class="anchor" id="line-99"></span>...
+<span class="anchor" id="line-100"></span>play_a: ld      a,[NoteFlags]
+<span class="anchor" id="line-101"></span>        and     NOTE_A_ON        ; is note a already being played
+<span class="anchor" id="line-102"></span>        ret     nz               ; yep. Don't retrigger it.
+<span class="anchor" id="line-103"></span>        ld      a,[NoteFlags]
+<span class="anchor" id="line-104"></span>        or      NOTE_A_ON        ; set the flag
+<span class="anchor" id="line-105"></span>        ld      [NoteFlags],a    ; save it
+<span class="anchor" id="line-106"></span>&lt;code here to start the note a&gt;
+<span class="anchor" id="line-107"></span>        ret
+<span class="anchor" id="line-108"></span>...
+<span class="anchor" id="line-109"></span>play_b: ld      a,[NoteFlags]
+<span class="anchor" id="line-110"></span>        and     NOTE_B_ON        ; is note b already being played
+<span class="anchor" id="line-111"></span>        ret     nz
+<span class="anchor" id="line-112"></span>        ld      a,[Noteflags]
+<span class="anchor" id="line-113"></span>        or      NOTE_B_On
+<span class="anchor" id="line-114"></span>        ld      [NoteFlags],a
+<span class="anchor" id="line-115"></span>        &lt;code here to start the note b&gt;
+<span class="anchor" id="line-116"></span>        ret
+<span class="anchor" id="line-117"></span>...
+<span class="anchor" id="line-118"></span>stop_a: ld      a,[NoteFlags]
+<span class="anchor" id="line-119"></span>        and     ~NOTE_A_ON
+<span class="anchor" id="line-120"></span>        ld      [NoteFlags],a
+<span class="anchor" id="line-121"></span>        &lt;code here to stop note a&gt;
+<span class="anchor" id="line-122"></span>        ret </pre><span class="anchor" id="line-123"></span><p class="line867">
+</p><h3 id="head-1658ae03f1a58f691494ca4dd59a871b076f5d3d-2">shooting a bullet</h3>
+<span class="anchor" id="line-124"></span><p class="line867"><span class="anchor" id="line-125"></span></p><pre>            LoByteVar ProjectileFlags
+<span class="anchor" id="line-126"></span>BULLET_SHOT EQU       #00000001
+<span class="anchor" id="line-127"></span>MainLoop:
+<span class="anchor" id="line-128"></span>        ...
+<span class="anchor" id="line-129"></span>        call    GetKeys
+<span class="anchor" id="line-130"></span>        push    af
+<span class="anchor" id="line-131"></span>        and     PADF_A
+<span class="anchor" id="line-132"></span>        call    nz,shoot_bullet
+<span class="anchor" id="line-133"></span>        ...
+<span class="anchor" id="line-134"></span>        call    processBullet
+<span class="anchor" id="line-135"></span>        jr      MainLoop
+<span class="anchor" id="line-136"></span>...
+<span class="anchor" id="line-137"></span>shoot_bullet: 
+<span class="anchor" id="line-138"></span>        ld      a,[ProjectileFlags]
+<span class="anchor" id="line-139"></span>        and     BULLET_SHOT
+<span class="anchor" id="line-140"></span>        ret     nz                    ; there's already a bullet out there. Don't shoot another
+<span class="anchor" id="line-141"></span>        ld      a, [ProjectileFlags]
+<span class="anchor" id="line-142"></span>        or      BULLET_SHOT           ; set the bullet flag
+<span class="anchor" id="line-143"></span>        ld      [ProjectileFlags],a   ; set the flag saying the bullet is being shot
+<span class="anchor" id="line-144"></span>&lt;code here for initialization of the bullet, for example initial screen location&gt;
+<span class="anchor" id="line-145"></span>        ret
+<span class="anchor" id="line-146"></span>...
+<span class="anchor" id="line-147"></span>processBullet:
+<span class="anchor" id="line-148"></span>        ld      a,[ProjectileFlags]
+<span class="anchor" id="line-149"></span>        and     BULLET_SHOT
+<span class="anchor" id="line-150"></span>        ret     z                     ; ain't no bullet. Go home.
+<span class="anchor" id="line-151"></span>        &lt;move the bullet one iteration (one to left, one to right, one up, down, whatever)&gt;
+<span class="anchor" id="line-152"></span>        &lt;check if bullet has hit something or is off the screen or if it should die for some other reason. If so:&gt;
+<span class="anchor" id="line-153"></span>        ld      a,[ProjectileFlags]
+<span class="anchor" id="line-154"></span>        and     ~BULLET_SHOT           ; reset the flag
+<span class="anchor" id="line-155"></span>        ret
+<span class="anchor" id="line-156"></span>        &lt;otherwise, just return&gt;
+<span class="anchor" id="line-157"></span>...
+<span class="anchor" id="line-158"></span> </pre><span class="anchor" id="line-159"></span><p class="line867">
+</p><h2 id="head-e89a3d5d59d838c7f77e02e0485569cff7843f52">tips</h2>
+<span class="anchor" id="line-160"></span><ul><li><p class="line862">Sometimes you might not want something to move at the same speed as everything else in MainLoop. You can easily set things to move any power of 2 slower than the number of cycles in MainLoop. Just look at the macro called CALL_IF_NTH_TIME in <a href="Timer.htm">the timer tutorial</a> to do this. <span class="anchor" id="line-161"></span></p></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/Flags  (last edited 2008-04-30 15:01:18 by <span title="JohnHarrison @ 156.26.121.150[156.26.121.150]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ 156.26.121.150[156.26.121.150]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

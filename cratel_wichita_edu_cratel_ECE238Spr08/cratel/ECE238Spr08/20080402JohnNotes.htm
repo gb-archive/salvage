@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080402JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703204543/http://cratel.wichita.edu/cratel/ECE238Spr08/20080402JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 20:45:43 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:19:59 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-dc785064ecdd5f2f97631337d5d6a3174501b62e">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>April 2, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-1491ca0557d7ddf6343a6ea3b4d243d18f0fb320">Assignments</h2>
+<span class="anchor" id="line-5"></span><ul><li>Project Proposals <span class="anchor" id="line-6"></span></li><li>Phase I discussion <span class="anchor" id="line-7"></span></li></ul><p class="line867">
+</p><h2 id="head-076dc1307eac2356adce002461c2bc8650f6de01">Review</h2>
+<span class="anchor" id="line-8"></span><ul><li>lookup tables with sound revisited <span class="anchor" id="line-9"></span><ul><li>convert from Hz to GB values at assemble time <span class="anchor" id="line-10"></span></li></ul></li><li>main loop with timer <span class="anchor" id="line-11"></span><ul><li>CALL_IF_NTH_TIME macro <span class="anchor" id="line-12"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-0c5296421bcd0f344192ea17c8db493a2e5d6f3b">Transferer II questions</h2>
+<span class="anchor" id="line-13"></span><p class="line867">
+</p><h2 id="head-f3f7f0fef8a6c85ca7c210dd1cfb4fb2bf6bb584">What to cover next week</h2>
+<span class="anchor" id="line-14"></span><p class="line874">How do we "pool our recourses?" <span class="anchor" id="line-15"></span></p><ul><li>break into small groups? <span class="anchor" id="line-16"></span></li><li>program at the lab? <span class="anchor" id="line-17"></span></li><li>identify more common problems? <span class="anchor" id="line-18"></span></li><li>go over people's code, either broken or working? <span class="anchor" id="line-19"></span></li></ul><p class="line867">
+</p><h2 id="head-5dc413133b2220302921d2cb52e15a1c374dceba">windows</h2>
+<span class="anchor" id="line-20"></span><ul><li>32 x 32 8x8 tiles <span class="anchor" id="line-21"></span></li><li>choose coordinates on the screen with WX and WY <span class="anchor" id="line-22"></span><ul><li>WX offset by 7 i.e. WX = 7 WY = 0 is actually (0,0) <span class="anchor" id="line-23"></span></li></ul></li><li>turn the window off and on with LCDC and LCDCF_WINON and LCDCF_WINOFF <span class="anchor" id="line-24"></span></li><li>choose Window Tile Map also with LCDC. <span class="anchor" id="line-25"></span><ul><li>Use $9c00 for Window Tile Map if you use $9800 for Background Tile Map....or...vice versa <span class="anchor" id="line-26"></span></li></ul></li><li>no tiles in a window are transparent <span class="anchor" id="line-27"></span></li><li>window is always above background <span class="anchor" id="line-28"></span></li><li>sprite is either above both background and window, or below both background and window. <span class="anchor" id="line-29"></span></li></ul><p class="line867">
+</p><h3 id="head-2ccf73d9d74e13c3906dce2b64538e427d99b87f">LCDC interrupt</h3>
+<span class="anchor" id="line-30"></span><ul><li>use to turn window on and off at certain vertical lines <span class="anchor" id="line-31"></span></li><li>set flags in STAT so the LCDC interrupt is generated when LYC = LCDC LY <span class="anchor" id="line-32"></span></li><li>in your LCDC interrupt routine, turn the window off or on, etc.  <span class="anchor" id="line-33"></span></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080402JohnNotes  (last edited 2008-04-02 13:27:31 by <span title="JohnHarrison @ 156.26.66.141[156.26.66.141]"><a href="../JohnHarrison.htm" title="JohnHarrison @ 156.26.66.141[156.26.66.141]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

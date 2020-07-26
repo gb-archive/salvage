@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/Linux - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704064149/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/Linux">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 06:41:49 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:40:13 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-e68ba87fc7c18b40a10a75b212b924a86135c2a7">GameBoy programming in Linux</h1>
+<span class="anchor" id="line-2"></span><p class="line867">
+</p><h2 id="head-72a60bf8513538388d20910132965b06af40baa5">programmer</h2>
+<span class="anchor" id="line-3"></span><p class="line874">The programmer software comes in 2 versions: one for Win98 and one for Win2000/XP. <span class="anchor" id="line-4"></span></p><ul><li>use the Win98 version of the programmer under Wine <span class="anchor" id="line-5"></span></li><li>run Wine as root (gksudo wine) <span class="anchor" id="line-6"></span></li><li>set Wine to run the programmer (GBSWPre.exe) in Win98 emulation <span class="anchor" id="line-7"></span></li><li><p class="line862">Wine must directly access the parallel port hardware (from: <a class="http_wayback" href="https://web.archive.org/web/20080117210138/http://wiki.jswindle.com/index.php/Wine_Registry#Parallel_Port">http://wiki.jswindle.com/index.php/Wine_Registry#Parallel_Port</a>} <span class="anchor" id="line-8"></span></p><ul><li><p class="line862">edit the wine registry: <tt>gksudo&nbsp;regedit</tt> <span class="anchor" id="line-9"></span></p></li><li><p class="line862">add the following key: <span class="anchor" id="line-10"></span></p><pre>[HKEY_USERS\S-1-5-4\Software\Wine\VDM\Ports]
+<span class="anchor" id="line-11"></span>"read"="0x278-0x27f,0x378-0x37f"
+<span class="anchor" id="line-12"></span>"write"="0x278-0x27f,0x378-0x37f"</pre><span class="anchor" id="line-13"></span><span class="anchor" id="line-14"></span></li></ul></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/Linux  (last edited 2008-05-21 09:13:06 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080303JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704081602/http://cratel.wichita.edu/cratel/ECE238Spr08/20080303JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 08:16:02 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:55:53 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-8112ba9285ba2c56e1dd166f9f0046e0738f677b">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>March 3, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-ec57dc988d7e9a47777d3d53689a60c5cc2d8bf2">Assignment Reminders</h2>
+<span class="anchor" id="line-5"></span><ul><li>Initial Term Project Proposal: due March 9 midnight (discussion) <span class="anchor" id="line-6"></span></li><li>Midterm: March 12 (discussion) <span class="anchor" id="line-7"></span></li><li>Hello Noise: March 25th <span class="anchor" id="line-8"></span><ul><li><p class="line862">focus on sound effects for the games, not the music i.e. handing in Lemon Player is not going to fly. <img alt=":-)" height="15" src="smile.png" title=":-)" width="15"> <span class="anchor" id="line-9"></span></p></li></ul></li></ul><p class="line867">
+</p><h2 id="head-b6831841da9af3118ba34b5a5557b869063a5f8c">Quote</h2>
+<span class="anchor" id="line-10"></span><p class="line874">"Engineering problems are under-defined, there are many solutions, good, bad and indifferent. The art is to arrive at a good solution. This is a creative activity, involving imagination, intuition and deliberate choice." -- Ove Arup <span class="anchor" id="line-11"></span>
+</p><h2 id="head-292ce8b9c336cdb7743554b5f461de4954a5d024">Hello GameBoy and Hello Sprite projects</h2>
+<span class="anchor" id="line-12"></span><p class="line867">
+</p><h3 id="head-ce0f5aab92fa503a3c41b4bc580cda4d67560b41">Feedback</h3>
+<span class="anchor" id="line-13"></span><ul><li>delay routine doesn't look at c <span class="anchor" id="line-14"></span></li><li>no value given to bc before calling delay <span class="anchor" id="line-15"></span></li><li>hard-coding one character at a time <span class="anchor" id="line-16"></span></li><li>more comments in your code <span class="anchor" id="line-17"></span><ul><li>put your name on your code! <span class="anchor" id="line-18"></span></li></ul></li></ul><p class="line867">
+</p><h4 id="head-07f6475d9b1a1cb6692ba0b417b4dbd16e9d66d8">Examples</h4>
+<span class="anchor" id="line-19"></span><p class="line874">Alec's Code: <span class="anchor" id="line-20"></span></p><ul><li>97 - 101 should be a routine or a macro... <span class="anchor" id="line-21"></span></li><li>2nd and 3rd dot are hard-coded... <span class="anchor" id="line-22"></span></li><li><p class="line862">call BigLoop. What happens to SP? <span class="anchor" id="line-23"></span></p></li><li>how can the code take input at any time instead of just before printing "loading"? <span class="anchor" id="line-24"></span><ul><li><p class="line891"><tt>gbspec</tt> example: lines 574-608: <span class="anchor" id="line-25"></span></p><pre>  ; **** Main Game Loop ****
+<span class="anchor" id="line-26"></span>  Main:
+<span class="anchor" id="line-27"></span>        halt                    ; stop system clock
+<span class="anchor" id="line-28"></span>                                ; return from halt when interrupted
+<span class="anchor" id="line-29"></span>        nop                     ; (See WARNING above.)
+<span class="anchor" id="line-30"></span>        ld      a,(VblnkFlag)
+<span class="anchor" id="line-31"></span>        or      a               ; V-Blank interrupt ?
+<span class="anchor" id="line-32"></span>        jr      z,Main          ; No, some other interrupt
+<span class="anchor" id="line-33"></span>        xor     a
+<span class="anchor" id="line-34"></span>        ld      (VblnkFlag),a   ; Clear V-Blank flag
+<span class="anchor" id="line-35"></span>        call    Controls        ; button inputs
+<span class="anchor" id="line-36"></span>        call    Game            ; game operation
+<span class="anchor" id="line-37"></span>        jr      Main
+<span class="anchor" id="line-38"></span>
+<span class="anchor" id="line-39"></span>  ; **** V-Blank Interrupt Routine ****
+<span class="anchor" id="line-40"></span>  Vblnk:
+<span class="anchor" id="line-41"></span>        push    af
+<span class="anchor" id="line-42"></span>        push    bc
+<span class="anchor" id="line-43"></span>        push    de
+<span class="anchor" id="line-44"></span>        push    hl
+<span class="anchor" id="line-45"></span>        call    SpriteDma       ; Do sprite updates
+<span class="anchor" id="line-46"></span>        ld      a,1
+<span class="anchor" id="line-47"></span>        ld      (VblnkFlag),a
+<span class="anchor" id="line-48"></span>        pop     hl
+<span class="anchor" id="line-49"></span>        pop     de
+<span class="anchor" id="line-50"></span>        pop     bc
+<span class="anchor" id="line-51"></span>        pop     af
+<span class="anchor" id="line-52"></span>        reti
+<span class="anchor" id="line-53"></span></pre><span class="anchor" id="line-54"></span></li></ul></li></ul><p class="line874">Tien's Code: <span class="anchor" id="line-55"></span></p><ul><li>delay loops 442-460 <span class="anchor" id="line-56"></span></li><li>do a variable to demonstrate? <span class="anchor" id="line-57"></span></li></ul><p class="line867">
+</p><h3 id="head-21e1f1d12b0d1803675090c62b80abc20c55b873">Look at some Hello Sprite projects</h3>
+<span class="anchor" id="line-58"></span><ul><li>Daniel Schossow? <span class="anchor" id="line-59"></span><ul><li>understanding the never-ending loop --- purpose etc. <span class="anchor" id="line-60"></span></li></ul></li><li>Tommy <span class="anchor" id="line-61"></span><ul><li>music concurrently with whatever is happening in your game etc. <span class="anchor" id="line-62"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-c4157cbd2ccbce232634c2d195b1a97adf23f43a">Z80 wrapup-part I</h2>
+<span class="anchor" id="line-63"></span><ul><li>addressing modes (page 44 of Z80 user's manual) <span class="anchor" id="line-64"></span><ul><li>Immediate: opcode and 1 byte <span class="anchor" id="line-65"></span></li><li>Immediate extended: opcode and 2 byte data <span class="anchor" id="line-66"></span></li><li>Modified Page 0 Addressing: (b5 b4 b3 0 0 0) <span class="anchor" id="line-67"></span></li><li>Relative Addressing <span class="anchor" id="line-68"></span></li><li>Extended Addressing: and 2 byte address <span class="anchor" id="line-69"></span></li><li><p class="line862">Indexed Addressing: not used on GameBoy. on Z80 offers displacement to IX or IY <span class="anchor" id="line-70"></span></p></li><li>Register Addressing:  <span class="anchor" id="line-71"></span></li><li>Implied Addressing: register is implied <span class="anchor" id="line-72"></span></li><li>Register Indirect Addressing: pointer to location in memory <span class="anchor" id="line-73"></span></li><li>Bit Addressing <span class="anchor" id="line-74"></span></li></ul></li><li><p class="line862">how does the assembler assemble? From <a class="http_wayback" href="https://web.archive.org/web/20071204061132/http://www.nersc.gov/vendor_docs/ibm/asm/assembler_passes.htm">http://www.nersc.gov/vendor_docs/ibm/asm/assembler_passes.htm</a> <span class="anchor" id="line-75"></span></p><ul><li>First Pass <span class="anchor" id="line-76"></span><ul><li>Checks to see if the instructions are legal in the current assembly mode. <span class="anchor" id="line-77"></span></li><li>Allocates space for instructions and storage areas you request. <span class="anchor" id="line-78"></span></li><li>Fills in the values of constants, where possible. <span class="anchor" id="line-79"></span></li><li>Builds a symbol table, also called a cross-reference table, and makes an entry in this table for every symbol it encounters in the label field of a statement. <span class="anchor" id="line-80"></span></li></ul></li><li>Second Pass <span class="anchor" id="line-81"></span><ul><li>Examines the operands for symbolic references to storage locations and resolves these symbolic references using information in the symbol table. <span class="anchor" id="line-82"></span></li><li>Ensures that no instructions contain an invalid instruction form. <span class="anchor" id="line-83"></span></li><li>Translates source statements into machine code and constants, thus filling the allocated space with object code. <span class="anchor" id="line-84"></span></li><li>Produces a file containing error messages, if any have occurred. <span class="anchor" id="line-85"></span></li></ul></li></ul></li><li>timing (T cycles, M cycles) (Z80 manual page 80) <span class="anchor" id="line-86"></span><ul><li>1 T cycle is 1/f of clock <span class="anchor" id="line-87"></span></li><li>each machines cycle is one of <span class="anchor" id="line-88"></span><ul><li>1st is always "fetch" which is 4-6 T cycles long <span class="anchor" id="line-89"></span></li><li>subsequent M cycles move data to or from memory <span class="anchor" id="line-90"></span></li></ul></li><li>see page 12 of z80 manual <span class="anchor" id="line-91"></span></li></ul></li><li>instruction types (see Z80 manual page vi) <span class="anchor" id="line-92"></span><ul><li>8 bit load group <span class="anchor" id="line-93"></span></li><li>16 bit load group <span class="anchor" id="line-94"></span></li><li>exchange, block transfer, and search group <span class="anchor" id="line-95"></span></li><li>8 bit arithmetic group <span class="anchor" id="line-96"></span><ul><li>DAA <span class="anchor" id="line-97"></span></li><li>note addressing mode <span class="anchor" id="line-98"></span></li></ul></li><li>general-purpose arithmetic and CPU control <span class="anchor" id="line-99"></span></li><li>16 bit arithmetic group <span class="anchor" id="line-100"></span></li><li>rotate and shift group <span class="anchor" id="line-101"></span></li><li>bit set, reset, and test group <span class="anchor" id="line-102"></span></li><li>jump group <span class="anchor" id="line-103"></span></li><li>call and return group <span class="anchor" id="line-104"></span></li><li>input and output group <span class="anchor" id="line-105"></span></li></ul></li><li><p class="line862">differences between Z80 and GameBoy <span class="anchor" id="line-106"></span></p><ul><li><p class="line862">gbspec lines 60-90: <span class="anchor" id="line-107"></span></p><pre> The following are added instructions:
+<span class="anchor" id="line-108"></span>
+<span class="anchor" id="line-109"></span>  ADD  SP,nn             ;nn = signed byte
+<span class="anchor" id="line-110"></span>  LD  (HLI),A            ;Write A to (HL) and increment HL
+<span class="anchor" id="line-111"></span>  LD  (HLD),A            ;Write A to (HL) and decrement HL
+<span class="anchor" id="line-112"></span>  LD  A,(HLI)            ;Write (HL) to A and increment HL
+<span class="anchor" id="line-113"></span>  LD  A,(HLD)            ;Write (HL) to A and decrement HL
+<span class="anchor" id="line-114"></span>  LD  A,($FF00+nn)
+<span class="anchor" id="line-115"></span>  LD  A,($FF00+C)
+<span class="anchor" id="line-116"></span>  LD  ($FF00+nn),A
+<span class="anchor" id="line-117"></span>  LD  ($FF00+C),A
+<span class="anchor" id="line-118"></span>  LD  (nnnn),SP
+<span class="anchor" id="line-119"></span>  LD  HL,SP+nn           ;nn = signed byte
+<span class="anchor" id="line-120"></span>  STOP                   ;Stop processor &amp; screen until button press
+<span class="anchor" id="line-121"></span>  SWAP r                 ;Swap high &amp; low nibbles of r
+<span class="anchor" id="line-122"></span>
+<span class="anchor" id="line-123"></span> The following instructions have been removed:
+<span class="anchor" id="line-124"></span>
+<span class="anchor" id="line-125"></span>  Any command that uses the IX or IY registers.
+<span class="anchor" id="line-126"></span>  All IN/OUT instructions.
+<span class="anchor" id="line-127"></span>  All exchange instructions.
+<span class="anchor" id="line-128"></span>  All commands prefixed by ED (except remapped RETI).
+<span class="anchor" id="line-129"></span>  All conditional jumps/calls/rets on parity/overflow and sign flag.
+<span class="anchor" id="line-130"></span>
+<span class="anchor" id="line-131"></span> The following instructions have different opcodes:
+<span class="anchor" id="line-132"></span>
+<span class="anchor" id="line-133"></span>  LD  A,[nnnn]
+<span class="anchor" id="line-134"></span>  LD  [nnnn],A
+<span class="anchor" id="line-135"></span>  RETI
+<span class="anchor" id="line-136"></span></pre><span class="anchor" id="line-137"></span></li></ul></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080303JohnNotes  (last edited 2008-03-03 09:51:23 by <span title="JohnHarrison @ 156.26.66.64[156.26.66.64]"><a href="../JohnHarrison.htm" title="JohnHarrison @ 156.26.66.64[156.26.66.64]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

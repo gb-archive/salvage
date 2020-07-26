@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080128JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703195218/http://cratel.wichita.edu/cratel/ECE238Spr08/20080128JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 19:52:18 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:12:57 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-ce1ea19a2ae2da53289857eaf8c2af5aa66547bc">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>January 28, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-d3e83c5fef16870daef870c95f33c75af0c1f48d">quote</h2>
+<span class="anchor" id="line-5"></span><p class="line862">"Where a calculator on the <a class="http" href="http://en.wikipedia.org/wiki/ENIAC">ENIAC</a> is equipped with 18,000 vacuum tubes and weighs 30 tons, computers in the future may have only 1,000 vacuum tubes and perhaps weigh 1.5 tons." -- Popular Mechanics, 1949 <span class="anchor" id="line-6"></span>
+</p><h2 id="head-a317cbfca9708eb64703cdf105d03dfe1baeeab2">review</h2>
+<span class="anchor" id="line-7"></span><ul><li>binary, decimal, hexadecimal <span class="anchor" id="line-8"></span></li><li>bit, nibble, byte, word <span class="anchor" id="line-9"></span></li><li>unsigned, signed: 2s complement <span class="anchor" id="line-10"></span></li><li>bit shifts and rotates <span class="anchor" id="line-11"></span></li></ul><p class="line867">
+</p><h2 id="head-22b1c7b17eedc92594d24a898674aae1218be4e4">Z80 assembly applied intro</h2>
+<span class="anchor" id="line-12"></span><ul><li>von Neumann architecture (also called stored-program) <span class="anchor" id="line-13"></span><ul><li>compare with Harvard architecture <span class="anchor" id="line-14"></span></li></ul></li><li><p class="line862">Z80 family tree: 8008 --&gt; 8080 --&gt; Z80 <span class="anchor" id="line-15"></span></p></li><li>registers (Z80 user's guide page A1-3) <span class="anchor" id="line-16"></span></li><li><p class="line862">Fetch, execute: fetch data, PC &lt;= PC + 1, decode, repeat <span class="anchor" id="line-17"></span></p></li><li>telling the CPU what to do <span class="anchor" id="line-18"></span></li><li><p class="line862">what is assembler? <span class="anchor" id="line-19"></span></p><pre>011111101111111011100100
+<span class="anchor" id="line-20"></span>---
+<span class="anchor" id="line-21"></span>01111110 11111110 11100100
+<span class="anchor" id="line-22"></span>---
+<span class="anchor" id="line-23"></span>01111110
+<span class="anchor" id="line-24"></span>11111110 11100100
+<span class="anchor" id="line-25"></span>---
+<span class="anchor" id="line-26"></span>7E
+<span class="anchor" id="line-27"></span>FE E4
+<span class="anchor" id="line-28"></span>---
+<span class="anchor" id="line-29"></span>LD A,[HL]
+<span class="anchor" id="line-30"></span>CP $E4 </pre><span class="anchor" id="line-31"></span><ul><li>format of assembler code, before and after assembly (label, opcode, operands) <span class="anchor" id="line-32"></span></li></ul></li><li>Register's details: (A1-3 of Z80 user's guide) <span class="anchor" id="line-33"></span><ul><li>Accumulator <span class="anchor" id="line-34"></span></li><li>HL: the 16-bit accumulator, sort-of <span class="anchor" id="line-35"></span></li><li>DE, BC <span class="anchor" id="line-36"></span></li><li>the flag register (chap 5 Z80 user's guide) <span class="anchor" id="line-37"></span></li></ul></li><li>simple instructions <span class="anchor" id="line-38"></span><ul><li>LD, CP, JP, JR, call <span class="anchor" id="line-39"></span></li><li>the meaning of [] <span class="anchor" id="line-40"></span></li></ul></li><li>addressing modes <span class="anchor" id="line-41"></span></li></ul><p class="line867">
+</p><h2 id="head-080b85b9c11cedfaef919ebd8769928a1b8b3c53">special commands for the assembler</h2>
+<span class="anchor" id="line-42"></span><ul><li>include <span class="anchor" id="line-43"></span></li><li>section "name",HOME[location] <span class="anchor" id="line-44"></span></li><li>db <span class="anchor" id="line-45"></span></li></ul><p class="line867">
+</p><h2 id="head-8b440f3a3c93bba85df8a57e884bfbb78905b7ec">blog</h2>
+<span class="anchor" id="line-46"></span><ul><li><p class="line862">log into <a class="nonexistent" href="/web/20100703195218/http://cratel.wichita.edu/cratel/BlackBoard">BlackBoard</a> and check <a class="nonexistent" href="/web/20100703195218/http://cratel.wichita.edu/cratel/FirstnameLastname">FirstnameLastname</a> stuff <span class="anchor" id="line-47"></span></p></li><li>example of posting on blog <span class="anchor" id="line-48"></span></li><li>assignment: make a "home page" on the blog for Monday. <span class="anchor" id="line-49"></span></li></ul><p class="line867">
+</p><h2 id="head-181a84a9c39bf915e6894930a6f91f5072e29b29">discussion list</h2>
+<span class="anchor" id="line-50"></span><ul><li>make sure everybody has the email addy they want <span class="anchor" id="line-51"></span></li></ul><p class="line867">
+</p><h2 id="head-4194d684c5f4d60a4fb8d05a4a8e931a624b720b">IDE</h2>
+<span class="anchor" id="line-52"></span><p class="line867"><em>download and install</em> <span class="anchor" id="line-53"></span></p><ul><li>editor <span class="anchor" id="line-54"></span></li><li>assembler <span class="anchor" id="line-55"></span></li><li>emulator <span class="anchor" id="line-56"></span></li><li>"hello world" test program <span class="anchor" id="line-57"></span></li></ul><p class="line867">
+</p><h2 id="head-4814fc936526c0bdf1c6bbaa2f09ddfb8128b6b8">for another class</h2>
+<span class="anchor" id="line-58"></span><ul><li>instruction types <span class="anchor" id="line-59"></span></li><li>addressing modes (TRS-80 book page 41 chap 3) <span class="anchor" id="line-60"></span></li><li><p class="line891"><a class="nonexistent" href="/web/20100703195218/http://cratel.wichita.edu/cratel/GameBoy">GameBoy</a> applied intro <span class="anchor" id="line-61"></span></p></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080128JohnNotes  (last edited 2008-01-28 10:12:56 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

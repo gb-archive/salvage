@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/20080324JohnNotes - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100704043234/http://cratel.wichita.edu/cratel/ECE238Spr08/20080324JohnNotes">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 04:32:34 Jul 04, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:12:44 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-d1a52426b521928b22dfd50ac83f3ab220964a96">Instructor Notes</h1>
+<span class="anchor" id="line-2"></span><p class="line867"><em>March 24, 2008</em> <span class="anchor" id="line-3"></span></p><hr><p class="line874"> <span class="anchor" id="line-4"></span>
+</p><h2 id="head-42899b7092e9fb814764cbc045bc6874699fa3ac">Midterm</h2>
+<span class="anchor" id="line-5"></span><ul><li>too long <span class="anchor" id="line-6"></span></li><li>best course of action? <span class="anchor" id="line-7"></span></li></ul><p class="line867">
+</p><h2 id="head-2252a92a633a2d7bb0f81e0b3c1c886639b7749c">Final Project Proposals</h2>
+<span class="anchor" id="line-8"></span><ul><li>what do we need to cover? <span class="anchor" id="line-9"></span><ul><li>windows <span class="anchor" id="line-10"></span></li><li>random <span class="anchor" id="line-11"></span></li><li>scoring <span class="anchor" id="line-12"></span></li><li>??? <span class="anchor" id="line-13"></span></li></ul></li><li>other questions? <span class="anchor" id="line-14"></span></li></ul><p class="line867">
+</p><h2 id="head-bbcc9fd4bd8e3a50380aea2c61146bbddf8327b4">GameBoy Audio: General</h2>
+<span class="anchor" id="line-15"></span><ul><li>4 sound circuits <span class="anchor" id="line-16"></span></li><li><p class="line862">1 &amp; 2 are PWM, 3 plays wave patterns, and 4 is noise <span class="anchor" id="line-17"></span></p></li><li>2 sound channels (stereo), called SO1 (left) and SO2 (right) <span class="anchor" id="line-18"></span></li><li>There is a line called Vin which can accept input from a microphone. From there you can route it back to either SO1 or SO2 <span class="anchor" id="line-19"></span></li><li>channels 1,2 and 4 have envelope functions, meaning you can have them automatically get louder or softer over time <span class="anchor" id="line-20"></span></li><li>channel 1 has a sweep function, meaning you can get it to sweep up in pitch (chirp) or down automatically <span class="anchor" id="line-21"></span></li><li>All channels have a duration parameter, or can be left continuously on <span class="anchor" id="line-22"></span></li><li><p class="line891"><a href="software/index.htm">gbhw-snd.inc</a> is an include file to help your code be more self-documenting when coding sound in your apps <span class="anchor" id="line-23"></span></p></li><li><p class="line891"><a href="software/index.htm">hello-noise.asm</a> demonstrates some basic concepts for producing sound on the GameBoy <span class="anchor" id="line-24"></span></p></li></ul><p class="line867">
+</p><h2 id="head-d853fa6c5a023de8a6fc059c11766bf2083c5079">General I/O Registers</h2>
+<span class="anchor" id="line-25"></span><ul><li>AUDVOL <span class="anchor" id="line-26"></span><ul><li>Controls volume of SO1 and SO2 (range 0 through 7, 7 is the loudest) <span class="anchor" id="line-27"></span></li><li>Routes Vin to SO1 and/or SO2 <span class="anchor" id="line-28"></span></li></ul></li><li>AUDTERM <span class="anchor" id="line-29"></span><ul><li>select which of the 4 circuits goes to which of the 2 output channels <span class="anchor" id="line-30"></span></li></ul></li><li>AUDENA <span class="anchor" id="line-31"></span><ul><li>turn all sound on or all sound off <span class="anchor" id="line-32"></span></li><li>read only: find out which sound circuits are on <span class="anchor" id="line-33"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-d89e765f0bd45ceb7e0df50bc88b6ca12b81dde2">I/O Registers for Circuits 1 and 2</h2>
+<span class="anchor" id="line-34"></span><ul><li>AUD1LEN, AUD2LEN <span class="anchor" id="line-35"></span><ul><li>set duty cycle and sound length <span class="anchor" id="line-36"></span></li><li>Sound length is 6 bits and = (64-x)*(1/256) seconds <span class="anchor" id="line-37"></span></li><li><p class="line862">Duty cycle. From <tt>gbspec</tt> lines 1220-1223: <span class="anchor" id="line-38"></span></p><pre>              Wave Duty: 00: 12.5% ( _--------_--------_-------- )
+<span class="anchor" id="line-39"></span>                         01: 25%   ( __-------__-------__------- )
+<span class="anchor" id="line-40"></span>                         10: 50%   ( ____-----____-----____----- ) (default)
+<span class="anchor" id="line-41"></span>                         11: 75%   ( ______---______---______--- )
+<span class="anchor" id="line-42"></span></pre><span class="anchor" id="line-43"></span></li></ul></li><li>AUD1ENV, AUD2ENV <span class="anchor" id="line-44"></span><ul><li>set an envelope to get either louder or softer <span class="anchor" id="line-45"></span></li><li>set initial volume of envelope (4 bit) <span class="anchor" id="line-46"></span></li><li>set envelope rate (3 bit). One step = x * (1/64) seconds <span class="anchor" id="line-47"></span></li></ul></li><li>AUD1SWEEP <span class="anchor" id="line-48"></span><ul><li>circuit 1 only <span class="anchor" id="line-49"></span></li><li>sweep time (3 bit). Higher is slower <span class="anchor" id="line-50"></span></li><li>sweep up or down <span class="anchor" id="line-51"></span></li><li>change of frequency per shift: x(t) = x(t-1) +- x(t-1)/(2^n) <span class="anchor" id="line-52"></span></li></ul></li><li>AUD1LOW, AUD2LOW <span class="anchor" id="line-53"></span><ul><li>lower 8 bits of 11 bit number (x) representing a frequency: freq = 131072/(2048-x) Hz <span class="anchor" id="line-54"></span></li></ul></li><li>AUD1HIGH, AUD2HIGH <span class="anchor" id="line-55"></span><ul><li>choose if sound is continuous or indeed only the length you specified in AUD1LEN or AUD2LEN <span class="anchor" id="line-56"></span></li><li>upper 3 bits of 11 bit number (x) (see AUD1LOW, AUD2LOW) <span class="anchor" id="line-57"></span></li><li>trigger sound  <span class="anchor" id="line-58"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-646663e7cef114ecafdc52fa322fded4b80fccb6">Sound Circuit 3</h2>
+<span class="anchor" id="line-59"></span><p class="line867">
+</p><h3 id="head-ec738d23b9ba9a0e0bd06a3f9c3283692e4547eb">overall</h3>
+<span class="anchor" id="line-60"></span><ul><li>Plays wave pattern ram at $ff30 to $ff3f <span class="anchor" id="line-61"></span></li><li>stores in nibbles, reading high nibble first. 32 nibble memory <span class="anchor" id="line-62"></span></li><li>play continuous sounds by continually shutting off circuit and reloading memory <span class="anchor" id="line-63"></span><ul><li><p class="line891"><a href="tutorials/GameBoyAudioSamples.htm">tutorial for this</a> <span class="anchor" id="line-64"></span></p></li></ul></li></ul><p class="line867">
+</p><h3 id="head-c1d303d20905145737bcc46c26e186f95b5abefd">I/O Registers</h3>
+<span class="anchor" id="line-65"></span><ul><li>AUD3ENA <span class="anchor" id="line-66"></span><ul><li>turn circuit 3 on or off <span class="anchor" id="line-67"></span></li></ul></li><li>AUD3LEN <span class="anchor" id="line-68"></span><ul><li>8 bits to set sound length (256-x)*.5 seconds <span class="anchor" id="line-69"></span></li></ul></li><li>AUD3LEVEL <span class="anchor" id="line-70"></span><ul><li>bits 5 and 6: <span class="anchor" id="line-71"></span><ul><li>00: mute <span class="anchor" id="line-72"></span></li><li>01: full volume <span class="anchor" id="line-73"></span></li><li>02: 1/2 volume <span class="anchor" id="line-74"></span></li><li>03: 1/4 volume <span class="anchor" id="line-75"></span></li></ul></li></ul></li><li>AUD3LOW, AUD3HIGH <span class="anchor" id="line-76"></span><ul><li>load 11 bit number representing equation for freq <span class="anchor" id="line-77"></span></li><li>trigger sound <span class="anchor" id="line-78"></span></li><li>choose whether or not continuous <span class="anchor" id="line-79"></span></li></ul></li></ul><p class="line867">
+</p><h2 id="head-86481533411040ff3c7927b3ce3ce63d9973bf82">Sound Circuit 4</h2>
+<span class="anchor" id="line-80"></span><p class="line867">
+</p><h3 id="head-ec738d23b9ba9a0e0bd06a3f9c3283692e4547eb-2">overall</h3>
+<span class="anchor" id="line-81"></span><ul><li>uses binary polynomials to generate pseudo-random numbers (CRC check) <span class="anchor" id="line-82"></span></li><li>mess with the parameters and get some interesting effects <span class="anchor" id="line-83"></span></li></ul><p class="line867">
+</p><h3 id="head-b4b079ead3b6b8de8f09a48ba668cd27eddf46dd">I/O registers</h3>
+<span class="anchor" id="line-84"></span><ul><li>AUD4LEN --- just like AUD1LEN and AUD2LEN <span class="anchor" id="line-85"></span></li><li>AUD4ENV --- just like AUD1ENV and AUD2ENV <span class="anchor" id="line-86"></span></li><li>AUD4POLY: Parameters for the pseudo random number generator <span class="anchor" id="line-87"></span><ul><li>shift clock frequency (4 bits - ) <span class="anchor" id="line-88"></span></li><li>selection of polynomial counter step (7 or 15) <span class="anchor" id="line-89"></span></li><li>dividing ratio of freqs (3 bits) <span class="anchor" id="line-90"></span></li></ul></li><li>AUD4GO <span class="anchor" id="line-91"></span><ul><li>set whether or not continuous <span class="anchor" id="line-92"></span></li><li>trigger sound <span class="anchor" id="line-93"></span></li></ul></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/20080324JohnNotes  (last edited 2008-03-24 12:59:58 by <span title="JohnHarrison @ 156.26.67.159[156.26.67.159]"><a href="../JohnHarrison.htm" title="JohnHarrison @ 156.26.67.159[156.26.67.159]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

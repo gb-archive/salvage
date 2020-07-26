@@ -1,0 +1,50 @@
+a{
+    color:Blue;
+}
+a.http_wayback,
+a.attachment_wayback,
+a.wayback{
+    color:DarkGreen;
+}
+a.http_dead,
+a.attachment_dead,
+a.dead{
+    color:DarkRed;
+}
+a.nonexistent{
+    color:Gray;
+}
+a.dead,
+a.http_dead,
+a.attachment_dead,
+a.nonexistent{
+    text-decoration:line-through;
+    pointer-events: none;
+    cursor: default;
+}
+div.http_wayback,
+div.attachment_wayback,
+div.wayback{
+    background-color:lightgray;
+}
+
+table,
+td,
+th{
+    border: 1px solid black;
+}
+table{
+    border-collapse: collapse;
+}
+
+a.www:before {content: url(moin-www.png); margin: 0 0.2em;}
+a.http:before {content: url(moin-www.png); margin: 0 0.2em;}
+a.https:before {content: url(moin-www.png); margin: 0 0.2em;}
+a.http_wayback:before {content: url(moin-www.png); margin: 0 0.2em;}
+a.http_dead:before {content: url(moin-www.png); margin: 0 0.2em;}
+
+a.mailto:before {content: url(moin-email.png); margin: 0 0.2em;}
+
+a.attachment:before {content: url(moin-attach.png); margin: 0 0.2em;}
+a.attachment_wayback:before {content: url(moin-attach.png); margin: 0 0.2em;}
+a.attachment_dead:before {content: url(moin-attach.png); margin: 0 0.2em;}

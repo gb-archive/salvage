@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>ECE238Spr08/tutorials/Random - CRATEL Wiki</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+<body>
+
+<div class="wayback">Page retrieved from the <a class="wayback" href="https://web.archive.org/web/20100703232849/http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/Random">Internet Archive Wayback Machine</a>
+<!--
+     FILE ARCHIVED ON 23:28:49 Jul 03, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:45:57 Jul 25, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+</div>
+
+<div id="page" lang="en" dir="ltr">
+<div dir="ltr" id="content" lang="en"><span class="anchor" id="top"></span>
+<span class="anchor" id="line-1"></span><p class="line867">
+</p><h1 id="head-e428a58f91e1340e806ba2e3e58c14519d77a398">Generate and use pseudo random numbers</h1>
+<span class="anchor" id="line-2"></span><p class="line867">
+</p><h2 id="head-55399fab232a8debc15474c2007c968af327132c">Basic idea</h2>
+<span class="anchor" id="line-3"></span><p class="line874">It is very difficult for a computer to generate truly random numbers. However, functions exist which are computationally efficient and generate numbers which seem reasonably random statistically-speaking. These functions are called pseudo random number generators, and the numbers they generate are called pseudo-random numbers. The methodology of how these functions generate these numbers is a computer science topic, beyond the scope of this class. However, given an already-existing pseudo random number generator, it is not difficult to use the function effectively. You just need to understand a few basic principles: <span class="anchor" id="line-4"></span></p><ul><li>The pseudo random number generator is truly a function. It accepts one number as input and generates one number as output. <span class="anchor" id="line-5"></span></li><li>The input number is called the random seed. <span class="anchor" id="line-6"></span></li><li>The output number the function generates is the pseudo random number and is automatically used by the function as the input for the next time the function is called. <span class="anchor" id="line-7"></span></li><li>If we do not initially set the random seed, it may continually default to 0, meaning the function will always generate the same set of random numbers every time. In a game environment this would be deadly, because it would mean we basically have the game behaving exactly the same way every time we play. <span class="anchor" id="line-8"></span></li><li>To avoid this, we must start with a reasonably random random seed. Once we have this, the function will happy generate pseudo-random numbers. <span class="anchor" id="line-9"></span></li><li>One way to create a random seed is to use a very fast counter to time how long it takes for a user to hit a key. The resulting counter value will be random enough to serve as a reasonable seed. <span class="anchor" id="line-10"></span></li></ul><p class="line867">
+</p><h2 id="head-a31a7fd1652c6ef016e581ac1068f4a820598ba2">Application</h2>
+<span class="anchor" id="line-11"></span><p class="line867"><em>Application is demonstrated in <a href="../software/index.htm">hello-random.asm</a></em> <span class="anchor" id="line-12"></span>
+</p><h3 id="head-bb111929d50d23f59498aa0582c2da67195b418b">Basic Generation of Random numbers</h3>
+<span class="anchor" id="line-13"></span><ul><li><p class="line862">add to your main code, after a SECTION declaration (perhaps right in front of or behind memory.asm): <span class="anchor" id="line-14"></span></p><pre>INCLUDE "gbrandom.asm" </pre><span class="anchor" id="line-15"></span></li><li>In your main code, perhaps right before your main loop, create a screen which tells the user in some sense "press any key to continue." <span class="anchor" id="line-16"></span><ul><li>This could be your title screen for your game. <span class="anchor" id="line-17"></span></li><li>Print this screen to the display, as you have now done many time, perhaps using mem_CopyVRAM <span class="anchor" id="line-18"></span></li></ul></li><li><p class="line862">immediately following your call to mem_CopyVRAM, add to your code: <span class="anchor" id="line-19"></span></p><pre>        call    MakeRandomSeedByTimingKeypress </pre><span class="anchor" id="line-20"></span><ul><li>this will set a random seed by running a tight loop, counting how long it takes for the user to press any key. <span class="anchor" id="line-21"></span></li></ul></li><li><p class="line862">when you want a random number, add to your code: <span class="anchor" id="line-22"></span></p><pre>        call    Rand16          ; put rand # in hl </pre><span class="anchor" id="line-23"></span><ul><li>as the comment explains, this will put a random word in hl. <span class="anchor" id="line-24"></span></li></ul></li></ul><p class="line867">
+</p><h3 id="head-a2f4601172128f343a0c1c6cd1521b7f26df5149">Using random numbers</h3>
+<span class="anchor" id="line-25"></span><ul><li>when you call Rand16, hl is loaded with a random word i.e. a number between 0 and 65535. <span class="anchor" id="line-26"></span><ul><li>if you need a number between 0 and 255, just use h or just use l. <span class="anchor" id="line-27"></span></li><li><p class="line862">You can use bitmasking to easily change the range of your random number to any power of 2 minus 1 (1,3,7,15,31,etc.). For example, if you need a number between 0 and 15, do a bitmask of #00001111 on either h or l and use the result: <span class="anchor" id="line-28"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-29"></span>     ld       a,l        ; use h if you have something against the letter l
+<span class="anchor" id="line-30"></span>     and      %00001111  ; now a contains a random number between 0 and %00001111=15.
+<span class="anchor" id="line-31"></span>;    and      %00000011  ; If we did this instead of the above line, a would contain a random number between 0 and 3.</pre><span class="anchor" id="line-32"></span></li></ul></li><li>if you want something to happen with a certain probably, one way is to use the carry flag. Examples: <span class="anchor" id="line-33"></span><ul><li><p class="line862">50% probability: <span class="anchor" id="line-34"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-35"></span>     ld       a,l
+<span class="anchor" id="line-36"></span>     cp       128        ; a - 128
+<span class="anchor" id="line-37"></span>     jr       c,whatever ; our random number between 0 and 255 is less than 128 </pre><span class="anchor" id="line-38"></span></li><li><p class="line862">25% probability: <span class="anchor" id="line-39"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-40"></span>     ld       a,h        ; it doesn't matter whether we use h or l
+<span class="anchor" id="line-41"></span>     cp       64         ; a - 64
+<span class="anchor" id="line-42"></span>     jr       c,whatever ; our random number between 0 and 255 is less than 64 </pre><span class="anchor" id="line-43"></span></li><li><p class="line862">25% probability: <span class="anchor" id="line-44"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-45"></span>     ld       a,l
+<span class="anchor" id="line-46"></span>     cp       64+128     ; a - 192
+<span class="anchor" id="line-47"></span>     jr       nc,whatever ; our random number between 0 and 255 is greater than or equal to 192</pre><span class="anchor" id="line-48"></span></li><li><p class="line862">4ish% probability: <span class="anchor" id="line-49"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-50"></span>     ld       a,l
+<span class="anchor" id="line-51"></span>     cp       1        ; a - 1
+<span class="anchor" id="line-52"></span>     jr       c,whatever ; our random number between 0 and 255 is less than 1 (i.e. == 0</pre><span class="anchor" id="line-53"></span></li></ul></li><li>For those of you who love the z flag and don't care for the carry flag, you can use bitmasking to set your probability <span class="anchor" id="line-54"></span><ul><li><p class="line862">50% probability: <span class="anchor" id="line-55"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-56"></span>     ld       a,l        ; use h if you have something against the letter l
+<span class="anchor" id="line-57"></span>     and      %00000001  ; a now contains a random number between 0 and 1.
+<span class="anchor" id="line-58"></span>     jr       nz,whatever; it's not 0, so it must be 1. We got a 50/50 chance.</pre><span class="anchor" id="line-59"></span></li><li><p class="line862">75% probability: <span class="anchor" id="line-60"></span></p><pre>     call     Rand16
+<span class="anchor" id="line-61"></span>     ld       a,l        ; use h if you have something against the letter l
+<span class="anchor" id="line-62"></span>     and      %00000011  ; a now contains a random number between 0 and 3.
+<span class="anchor" id="line-63"></span>     jr       nz,whatever; it's not 0, so it must be 1,2, or 3. We got a 75% chance.</pre><span class="anchor" id="line-64"></span></li></ul></li></ul><span class="anchor" id="bottom"></span></div><p id="pageinfo" class="info" lang="en" dir="ltr">ECE238Spr08/tutorials/Random  (last edited 2008-04-20 21:55:04 by <span title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]"><a href="../../JohnHarrison.htm" title="JohnHarrison @ ip68-103-181-172.ks.ok.cox.net[68.103.181.172]">JohnHarrison</a></span>)</p>
+
+<div id="pagebottom"></div>
+</div>
+
+</body>
+</html>

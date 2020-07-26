@@ -1,0 +1,213 @@
+<!--Received: by 10.35.99.14 with SMTP id b14mr15404135pym.4.1203566140279;
+        Wed, 20 Feb 2008 19:55:40 -0800 (PST)
+Return-Path: <john.h...@wichita.edu>
+Received: from eastrmmtao106.cox.net (eastrmmtao106.cox.net [68.230.240.48])
+        by mx.google.com with ESMTP id v63si6115532pyh.2.2008.02.20.19.55.40;
+        Wed, 20 Feb 2008 19:55:40 -0800 (PST)
+Received-SPF: neutral (google.com: 68.230.240.48 is neither permitted nor denied by best guess record for domain of john.h...@wichita.edu) client-ip=68.230.240.48;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 68.230.240.48 is neither permitted nor denied by best guess record for domain of john.h...@wichita.edu) smtp.mail=john.h...@wichita.edu
+Received: from eastrmimpo03.cox.net ([68.1.16.126])
+          by eastrmmtao106.cox.net
+          (InterMail vM.7.08.02.01 201-2186-121-102-20070209) with ESMTP
+          id <20080221035540.MWTZ20...@eastrmimpo03.cox.net>
+          for <wsu-assem...@googlegroups.com>;
+          Wed, 20 Feb 2008 22:55:40 -0500
+Received: from [192.168.1.3] ([68.103.181.172])
+	by eastrmimpo03.cox.net with bizsmtp
+	id s3sK1Y0023jagSk0000000; Wed, 20 Feb 2008 22:52:20 -0500
+Message-ID: <47BCF62F.8070401@wichita.edu>
+Date: Wed, 20 Feb 2008 21:55:27 -0600
+From: John Harrison <john.h...@wichita.edu>
+User-Agent: Thunderbird 2.0.0.6 (X11/20071022)
+MIME-Version: 1.0
+To: wsu-assembly-engrs@googlegroups.com
+Subject: Today's lecture: did you "get" it?
+Content-Type: multipart/alternative;
+ boundary="------------010707080007030400030009"
+
+--------------010707080007030400030009
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+I wasn't convinced everybody who showed up understood today's class. By 
+Monday please make sure you can answer the questions below, so you know 
+whether or not you "get" it:
+
+Object Attribute Memory (OAM):
+
+    * Read over writing to OAM in
+      http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/GameBoyVideo.
+      Email the list with anything that doesn't make sense
+    * Look at lines 217-233 in hello-sprite-no-interrupts.asm. You'll
+      find the defs for the constants in hello-sprite.inc.
+          o what is the purpose of the code in lines 217-233? Why is it
+            necessary?
+          o what is the purpose of the loop labeled dma_wait? What would
+            happen if we removed this loop?
+          o does line 230 have to be a jr instruction or could we use jp
+            instead?
+    * in line 59 of hello-sprite-no-interrupts.asm you'll see the call
+      to init-dma. What does that code do? What is that code for?
+    * why is DMACODELOC set to $ff80? Could we set it to any other
+      values instead? If so, what values?
+    * why is there no call to the dmacode label in
+      hello-sprite-no-interrupts.asm? Does that code ever get called then?
+    * what is the purpose of OAMDATALENGTH in
+      hello-sprite-no-interrupts.inc and why is it set to $a0?
+    * why is the following assembler command *not* valid on the GameBoy
+      platform:
+
+        SECTION    "DMATransfer",HOME[$FF80]
+
+
+General questions:
+
+    * can your code write to memory location $0? how about $7000? $a000?
+      C000? F000? FF80?
+    * can you load code in memory location $0? how about $7000? $a000?
+      C000? F000? FF80?
+    * what are the GameBoy I/O registers and how are they the same or
+      not the same as memory in the GameBoy?
+
+Assembler Commands:
+
+    * where is the documentation for the assembler and linker?
+    * what does \1 and \2 mean within a macro? How do you make use of them?
+    * what is the difference between HOME and BSS within a SECTION command?
+    * if I add a printv statment in my code, when and what can I print?
+      What about printt? How about printf?
+    * what is the difference between SET and EQU? When would you use SET
+      and when would you use EQU?
+    * what is the difference between a macro and a subroutine?
+    * imagine this code:
+
+include "hello-sprite.inc"
+    LoByteVar   VarX
+    LoByteVar   VarY
+    LoByteVar   VarZ
+
+    * what will be the values of VarX, VarY, VarZ, and LoRamBase after
+      these macros are executed? Why?
+    * I'll go over RSSET and RB at the beginning of class on Monday, but
+      in the meantime, look them up in the documentation for the
+      assembler. It's not too hard to figure out. The rest of the
+      hello-sprite.inc file should now make sense. If it doesn't, email
+      the list with questions. 
+
+I expect that everybody in the class will be able to confidently answer 
+these questions by Monday. I will be around Friday 4:30-6:30 for office 
+hours in the cratel lab. I will also be in the lab 1:30 to 3:30 on 
+Friday but I give priority to Tech Art and Sound by Design students 
+during that time. If I don't see or hear from you, that means you 
+understand, right? RIGHT? RIIIGHHHTTT?
+
+-John
+
+-- 
+John Harrison
+http://alumni.media.mit.edu/~harrison
+
+
+--------------010707080007030400030009
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+I wasn't convinced everybody who showed up understood today's class. By
+Monday please make sure you can answer the questions below, so you know
+whether or not you "get" it:<br>
+<br>
+Object Attribute Memory (OAM):<br>
+<ul>
+  <li>Read over <tt>writing to OAM</tt> in
+<a class="moz-txt-link-freetext" href="tutorials/GameBoyVideo.htm">http://cratel.wichita.edu/cratel/ECE238Spr08/tutorials/GameBoyVideo</a>.
+Email the list with anything that doesn't make sense</li>
+  <li>Look at lines 217-233 in hello-sprite-no-interrupts.asm. You'll
+find the defs for the constants in hello-sprite.inc.<br>
+  </li>
+  <ul>
+    <li>what is the purpose of the code in lines 217-233? Why is it
+necessary?</li>
+    <li>what is the purpose of the loop labeled dma_wait? What would
+happen if we removed this loop?<br>
+    </li>
+    <li>does line 230 have to be a jr instruction or could we use jp
+instead?<br>
+    </li>
+  </ul>
+  <li>in line 59 of hello-sprite-no-interrupts.asm you'll see the call
+to init-dma. What does that code do? What is that code for?</li>
+  <li>why is DMACODELOC set to $ff80? Could we set it to any other
+values instead? If so, what values?<br>
+  </li>
+  <li>why is there no call to the dmacode label in
+hello-sprite-no-interrupts.asm? Does that code ever get called then?</li>
+  <li>what is the purpose of OAMDATALENGTH in
+hello-sprite-no-interrupts.inc and why is it set to $a0?</li>
+  <li>why is the following assembler command *not* valid on the GameBoy
+platform:</li>
+</ul>
+<blockquote>
+  <blockquote>SECTION&nbsp;&nbsp;&nbsp; "DMATransfer",HOME[$FF80]<br>
+  </blockquote>
+</blockquote>
+<br>
+General questions:<br>
+<ul>
+  <li>can your code write to memory location $0? how about $7000?
+$a000? C000? F000? FF80?</li>
+  <li>can you load code in memory location $0? how about $7000? $a000?
+C000? F000? FF80?</li>
+  <li>what are the GameBoy I/O registers and how are they the same or
+not the same as memory in the GameBoy?</li>
+</ul>
+Assembler Commands:<br>
+<ul>
+  <li>where is the documentation for the assembler and linker?</li>
+  <li>what does \1 and \2 mean within a macro? How do you make use of
+them?<br>
+  </li>
+  <li>what is the difference between HOME and BSS within a SECTION
+command?</li>
+  <li>if I add a printv statment in my code, when and what can I print?
+What about printt? How about printf?<br>
+  </li>
+  <li>what is the difference between SET and EQU? When would you use
+SET and when would you use EQU?<br>
+  </li>
+  <li>what is the difference between a macro and a subroutine?<br>
+  </li>
+  <li>imagine this code:</li>
+</ul>
+include "hello-sprite.inc"<br>
+&nbsp;&nbsp;&nbsp; LoByteVar&nbsp;&nbsp; VarX<br>
+&nbsp;&nbsp;&nbsp; LoByteVar&nbsp;&nbsp; VarY<br>
+&nbsp;&nbsp;&nbsp; LoByteVar&nbsp;&nbsp; VarZ<br>
+<br>
+<ul>
+  <li>what will be the values of VarX, VarY, VarZ, and LoRamBase after
+these macros are executed? Why?</li>
+  <li>I'll go over RSSET and RB at the beginning of class on Monday,
+but in the meantime, look them up in the documentation for the
+assembler. It's not too hard to figure out. The rest of the
+hello-sprite.inc file should now make sense. If it doesn't, email the
+list with questions.&nbsp;<br>
+  </li>
+</ul>
+I expect that everybody in the class will be able to confidently answer
+these questions by Monday. I will be around Friday 4:30-6:30 for office
+hours in the cratel lab. I will also be in the lab 1:30 to 3:30 on
+Friday but I give priority to Tech Art and Sound by Design students
+during that time. If I don't see or hear from you, that means you
+understand, right? RIGHT? RIIIGHHHTTT?<br>
+<br>
+-John<br>
+<pre class="moz-signature" cols="72">-- 
+John Harrison
+<a class="moz-txt-link-freetext" href="http://alumni.media.mit.edu/~harrison">http://alumni.media.mit.edu/~harrison</a></pre>
+</body>
+</html>
